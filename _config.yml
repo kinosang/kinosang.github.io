@@ -7,12 +7,12 @@ title: 7IN0SAN9
 subtitle:
 description:
 author: Chino Chang
-language: zh-TW
+language: zh-tw
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://blog.7in0.me/
+url: https://blog.7in0.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -83,6 +83,9 @@ deploy:
   message:
 
 feed:
-    type: atom
-    path: atom.xml
-    limit: 20
+  type: atom
+  path: atom.xml
+  limit: 20
+
+licenseType: by-nc-sa
+licenseIconSize: small

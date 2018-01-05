@@ -953,6 +953,10 @@ hexo-generator-tag@^0.2.0:
     hexo-pagination "0.0.2"
     object-assign "^4.0.1"
 
+hexo-global-license@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/hexo-global-license/-/hexo-global-license-0.5.2.tgz#42cedee68837d18d64680d621d74df57e09c1f1e"
+
 hexo-i18n@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/hexo-i18n/-/hexo-i18n-0.2.1.tgz#84f141432bf09d8b558ed878c728164b6d1cd6de"
