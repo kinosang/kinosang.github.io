@@ -32,14 +32,10 @@ Google 也沒有查詢到有用的信息，於是抱著試試看的態度在 Pre
 
 <del>鏘鏘鏘鏘！完美運行！</del>
 
-&nbsp;
-
 <span style="color: #ff0000;">各位朋友，十分抱歉，這其實是一個錯誤的方法！測試時我沒有注意到需要調用的模組已經被拷貝到項目目錄下！</span>
-
-&nbsp;
 
 正確的解決方案是在每個 Node Source File 的第一個 require 之前添加下面的代碼：
 
-<pre class="prettyprint linenums">module.paths.push("/wp-content/local/lib/node_modules");</pre>
-
-&nbsp;
+```
+module.paths.push("/wp-content/local/lib/node_modules");
+```

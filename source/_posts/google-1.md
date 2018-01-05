@@ -25,11 +25,11 @@ tags:
 下面就以將Google+1按鈕融入WP博客（也可以是一般網站，那麼就要把wp的函數修改掉）“Hot”功能為例進行一下講解。
 
 > +1 標記參數
-> 
+>
 > 鍵                   描述
-> 
+>
 > callback       在用戶點擊 +1 按鈕後被調用。回調函數可以接受包含href和state的 JSON 對象
-> 
+>
 > href               要進行 +1 推薦的網址
 
 上面兩個參數就是本次要用到的東西。
@@ -38,20 +38,26 @@ tags:
 
 找到你的模板的home.php文件（若沒有，則修改index.php），找到
 
-<pre class="prettyprint linenums">&lt;?php while (have_posts()) : the_post(); ?&gt;</pre>
+```
+&lt;?php while (have_posts()) : the_post(); ?&gt;
+```
 
 向下查找，尋找如下代碼：
 
-<pre class="prettyprint linenums">&lt;div class="post" id="post-&lt;?php the_ID(); ?&gt;"&gt;</pre>
+```
+&lt;div class="post" id="post-&lt;?php the_ID(); ?&gt;"&gt;
+```
 
 在這個div的範圍內，選擇一個你認為合適的地方，添加下面的腳本
 
-<pre class="prettyprint linenums">&lt;!-- Google+ Begin --&gt;
+```
+&lt;!-- Google+ Begin --&gt;
 &lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;
 {lang: 'zh-CN'}
 &lt;/script&gt;
 &lt;g:plusone size="small" href="&lt;?php the_permalink() ?&gt;"&gt;&lt;/g:plusone&gt;
-&lt;!-- Google+ End --&gt;</pre>
+&lt;!-- Google+ End --&gt;
+```
 
 當然，script標籤你也可以移動到其他位置，重點是g:plusone標籤，它決定了Google+1按鈕的位置。
 你也可以使用兼容W3C規則的標籤形式。
@@ -59,12 +65,14 @@ tags:
 如法炮製，把文章歸檔 (archive.php)也修改一下。
 當然，你還可以在文章頁面（single.php）的任意位置添加下面的代碼：
 
-<pre class="prettyprint linenums">&lt;!-- Google+ Begin --&gt;
+```
+&lt;!-- Google+ Begin --&gt;
 &lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;
 {lang: 'zh-CN'}
 &lt;/script&gt;
 &lt;g:plusone size="small"&gt;&lt;/g:plusone&gt;
-&lt;!-- Google+ End --&gt;</pre>
+&lt;!-- Google+ End --&gt;
+```
 
 然後，下面就是重頭戲了。
 

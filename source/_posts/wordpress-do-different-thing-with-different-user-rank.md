@@ -15,41 +15,41 @@ tags:
 
 【一】對登錄用戶不顯示，對評論者和訪客顯示的內容
 
-<pre class="prettyprint linenums">
+```
 <?php if (!$ user_ID) { ?>
 這裏填某些調用代碼、內容
 <?php } ?>
-</pre>
+```
 
 <!--more-->
 
 【二】對登錄用戶和評論者不顯示，只對訪客顯示的內容
 
-<pre class="prettyprint linenums">
+```
 <?php if (!$ user_ID && !isset($ _COOKIE['comment_author_'.COOKIEHASH])) { ?>
 這裏填某些調用代碼、內容
 <?php } ?>
-</pre>
+```
 
 【三】只對登錄用戶顯示的內容
 
-<pre class="prettyprint linenums">
+```
 <?php if ($ user_ID) { ?>
 這裏填某些調用代碼、內容
 <?php } ?>
-</pre>
+```
 
 【四】只對評論者顯示的內容
 
-<pre class="prettyprint linenums">
+```
 <?php if (!$ user_ID && isset($ _COOKIE['comment_author_'.COOKIEHASH])) { ?>
 這裏填某些調用代碼、內容
 <?php } ?>
-</pre>
+```
 
 二、對不同級別的登錄者顯示不同內容
 
-<pre class="prettyprint linenums">
+```
 <?php
 //連結SQL，Kinosang's Labs提醒您請修改sql用戶名、密碼、使用的數據庫名
 $ conn=@mysql_connect("localhost", "root","pwd");
@@ -77,7 +77,7 @@ if ($ result_level[0]->meta_value > 5) { //官方用戶（wp中默認 編輯的l
 ?>
 這裏填某些調用代碼、內容 Kinosang's Labs過客
 <?php ?>
-</pre>
+```
 
 如果你有什麼不明白的地方請留言討論 :smile:
 

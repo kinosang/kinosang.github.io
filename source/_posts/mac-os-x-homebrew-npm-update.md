@@ -17,8 +17,10 @@ tags:
 
 總結一下網上的解決方案：
 
-<pre class="prettyprint linenums">$ sudo npm update -gf
+```
+$ sudo npm update -gf
 $ sudo rm -rf /wp-content/local/lib/node_modules/npm
-$ brew unlink node &amp;&amp; brew link --overwrite node</pre>
+$ brew unlink node &amp;&amp; brew link --overwrite node
+```
 
 這只是一個折中的辦法，因為如果你這麽做，npm 本身依舊無法更新到新版本，除非你通過Homebrew更新node。但是這個方法可以允許你正常更新其他模組而不出現錯誤。

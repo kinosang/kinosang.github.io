@@ -20,15 +20,20 @@ Deis 提供的 Documents 比較零散，很多人看得雲裡霧裡。
 
 首先你需要 clone dies 提供的一個 git 倉庫，裡面提供了一些工具用來進行前期準備。
 
-<pre class="prettyprint linenums">$ git clone https://github.com/deis/deis.git</pre>
+```
+$ git clone https://github.com/deis/deis.git
+```
 
 然後，最好為 Deis 專門生成一個 RSA Key
 
-<pre class="prettyprint linenums">$ ssh-keygen -q -t rsa -f ~/.ssh/deis -N '' -C deis</pre>
+```
+$ ssh-keygen -q -t rsa -f ~/.ssh/deis -N '' -C deis
+```
 
 接著在 git 倉庫根目錄執行下面的指令生成一個最小集群（3 nodes, 2G RAM）
 
-<pre class="prettyprint linenums">$ make discovery-url
+```
+$ make discovery-url
 $ gem install docl
 $ docl authorize #在這裡你需要前往 DigitalOcean 的 Apps&amp;API 頁面獲取一個 Personal Access Tokens
 $ docl upload_key deis ~/.ssh/deis.pub
@@ -41,49 +46,57 @@ London 1 (lon1)
 New York 3 (nyc3)
 Singapore 1 (sgp1)
 $ ./contrib/digitalocean/provision-do-cluster.sh nyc3 12345 2GB
-</pre>
+```
 
 設定 DNS，你需要設定如下記錄（用上一條指令返回的三個 IP 取代下面對應的 IP）：
 
-<pre class="prettyprint linenums">deis-1   IN A    104.131.93.162
+```
+deis-1   IN A    104.131.93.162
 deis-2   IN A    104.131.47.125
 deis-3   IN A    104.131.113.138
 *   CNAME   @
 @   IN A    104.131.93.162
 @   IN A    104.131.47.125
 @   IN A    104.131.113.138
-</pre>
+```
 
 ### 設定 Deis
 
 因為 DigitalOcean 沒有提供安全組設定，所以使用 iptables 來實現轉發，在 git 倉庫根目錄使用下面的命令（記得用你自己的域名替換 example.com）
 
-<pre class="prettyprint linenums">$ for i in 1 2 3; do ssh core@deis-$i.example.com 'bash -s' &lt; contrib/util/custom-firewall.sh; done</pre>
+```
+$ for i in 1 2 3; do ssh core@deis-$i.example.com 'bash -s' &lt; contrib/util/custom-firewall.sh; done
+```
 
 在你的電腦中安裝 deisctl（[參考](http://docs.deis.io/en/latest/installing_deis/install-deisctl/#install-deisctl)）
 然後確認你所安裝的 deisctl 版本和你的 deis node 一致
 
-<pre class="prettyprint linenums">$ deisctl --version
+```
+$ deisctl --version
 1.0.1
-</pre>
+```
 
 啟動 ssh-agent 並且導入 RSA 密匙
 
-<pre class="prettyprint linenums">$ eval `ssh-agent -s`
+```
+$ eval `ssh-agent -s`
 $ ssh-add ~/.ssh/deis
-</pre>
+```
 
 準備環境變量，替換下面的 IP 為三個 node 中任意一個的 IP 或者域名
 
-<pre class="prettyprint linenums">$ export DEISCTL_TUNNEL=104.131.93.162</pre>
+```
+$ export DEISCTL_TUNNEL=104.131.93.162
+```
 
 設定私鈅和節點域名，安裝并啟動 deis 平台（這一步之前記得到 DigitalOcean 裡面創建個快照）
 
-<pre class="prettyprint linenums">$ deisctl config platform set sshPrivateKey=~/.ssh/deis
+```
+$ deisctl config platform set sshPrivateKey=~/.ssh/deis
 $ deisctl config platform set domain=example.com
 $ deisctl install platform
 $ deisctl start platform
-</pre>
+```
 
 這樣部署工作就全部完成了
 

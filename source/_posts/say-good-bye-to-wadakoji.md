@@ -14,10 +14,6 @@ https://twitter.com/solid_vox/status/718304983192616960
 
 [![wada_koji](https://blog.7in0.me/wp-content/uploads/2016/04/wada_koji.jpg)](http://wadakoji.com/archives/479)
 
-&nbsp;
-
 https://www.youtube.com/watch?v=RMFVuCURZIs
-
-&nbsp;
 
 R.I.P.

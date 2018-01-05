@@ -31,7 +31,8 @@ HDD sda 6TB（SAS Raid, /media/RAID）sdb 1TB（6GB swap, 200M /boot, 剩餘 /�
 
 貼上核心程式（mirrors_sync）
 
-<pre class="prettyprint linenums">#!/bin/sh
+```
+#!/bin/sh
 
 . /etc/init.d/functions
 
@@ -88,11 +89,12 @@ statusfile=/media/RAID/mirrors/.status/$1.txt
   echo
   sleep 10s
   return $RETVAL
-</pre>
+```
 
 然後創建一個 shell 文件（uuMirrors）
 
-<pre class="prettyprint linenums">#!/bin/sh
+```
+#!/bin/sh
 nohup /root/mirrors_sync apache &amp;
 nohup /root/mirrors_sync archlinux &amp;
 nohup /root/mirrors_sync centos &amp;
@@ -102,12 +104,13 @@ nohup /root/mirrors_sync linux-kernel &amp;
 nohup /root/mirrors_sync mariadb &amp;
 nohup /root/mirrors_sync opensuse &amp;
 nohup /root/mirrors_sync ubuntu &amp;
-</pre>
+```
 
 最後，添加一條 cron，每 30 分鐘執行一次
 
-<pre class="prettyprint linenums">*/30 * * * * /root/uuMirrors &gt;&gt; /dev/null 2&gt;&amp;1
-</pre>
+```
+*/30 * * * * /root/uuMirrors &gt;&gt; /dev/null 2&gt;&amp;1
+```
 
 這樣，上面提到的源就會同步到 /media/RAID/mirrors，狀態保存到 /media/RAID/mirrors/.status 中。
 

@@ -21,5 +21,6 @@ tags:
 
 Homebrew 中收錄了 OpenConnect Client，在沒有安裝 TUNTAP Device 的 OS X 10.10 上運行良好，唯一不方便的就是沒有 GUI 工具，CLI 使用方法如下：
 
-<pre>$ sudo openconnect --user=username --cafile=/path/to/your/ca-cert.pem ladder.abc.com
-</pre>
+```
+$ sudo openconnect --user=username --cafile=/path/to/your/ca-cert.pem ladder.abc.com
+```

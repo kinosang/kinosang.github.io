@@ -13,36 +13,44 @@ Ejabberd 支援通過執行外部程式自定義外部認證邏輯，ejabberd �
 
 以 ejabberd Developers Guide 中提供的 python 範例為基礎進行改進，首先修改 python 版本為 python3。
 
-<pre class="lang:default decode:true ">#!/usr/bin/python</pre>
+```
+#!/usr/bin/python
+```
 
 修改為
 
-<pre class="lang:default decode:true ">#!/usr/bin/env python3</pre>
+```
+#!/usr/bin/env python3
+```
 
 對於 python3 不同於 python2 的部分做如下修改：
 
-<pre class="lang:default decode:true ">...
-    (size,) = unpack('&gt;h', input_length)
+```
+...
+    (size,) = unpack('>h', input_length)
 ...
 def to_ejabberd(bool):
     answer = 0
     if bool:
         answer = 1
-    token = pack('&gt;hh', 2, answer)
+    token = pack('>hh', 2, answer)
     sys.stdout.write(token)
-    sys.stdout.flush()</pre>
+    sys.stdout.flush()
+```
 
 修改為
 
-<pre class="lang:default decode:true ">...
-    (size,) = unpack('&gt;h', input_length.encode())
+```
+...
+    (size,) = unpack('>h', input_length.encode())
 ...
 def to_ejabberd(result):
     if result:
         sys.stdout.write('\x00\x02\x00\x01')
     else:
         sys.stdout.write('\x00\x02\x00\x00')
-    sys.stdout.flush()</pre>
+    sys.stdout.flush()
+```
 
 之後可對`auth()`, `isuser()`, `setpass()`做改動以適應自己的認證邏輯。其中`isuser()`和`setpass()`可以保留`return True`.
 
@@ -50,26 +58,30 @@ def to_ejabberd(result):
 
 在`/etc/ejabberd/ejabberd.yml`找到`auth_method: internal`修改為：
 
-<pre class="lang:default decode:true ">auth_method:
+```
+auth_method:
   - internal
-  - external</pre>
+  - external
+```
 
 在其下方增加：
 
-<pre class="lang:default decode:true">extauth_program: "/etc/ejabberd/extauth.py"
+```
+extauth_program: "/etc/ejabberd/extauth.py"
 extauth_instances: 3
-auth_use_cache: false</pre>
+auth_use_cache: false
+```
 
 通過`ejabberdcctl`重新啟動`ejabberd`使設定生效。
 
-&nbsp;
-
 若出現`extauth script has exitted abruptly with reason 'normal'`，在排除檔案 owner 和執行權限有誤的情況下，可能為`apparmor`所致（帶有 SELinux 的作業系統中可能為 SELinux 所致，可以通過`sudo setenforce 0`臨時關閉 SELinux 測試），查看`/var/log/syslog`可看到相關 log。
 
-<pre class="lang:default decode:true ">Sep 19 11:31:45 localhost kernel: [ 5031.995813] audit: type=1400 audit(1505827901.939:57): apparmor="DENIED" operation="exec" profile="/usr/sbin/ejabberdctl" name="/var/lib/ejabberd/extauth.py" pid=4419 comm="sh" requested_mask="x" denied_mask="x" fsuid=100 ouid=100</pre>
+```
+Sep 19 11:31:45 localhost kernel: [ 5031.995813] audit: type=1400 audit(1505827901.939:57): apparmor="DENIED" operation="exec" profile="/usr/sbin/ejabberdctl" name="/var/lib/ejabberd/extauth.py" pid=4419 comm="sh" requested_mask="x" denied_mask="x" fsuid=100 ouid=100
+```
 
 臨時解決方法是移除`apparmor`.
 
-<pre class="lang:default decode:true ">sudo apt-get purge --auto-remove apparmor</pre>
-
-&nbsp;
+```
+sudo apt-get purge --auto-remove apparmor
+```

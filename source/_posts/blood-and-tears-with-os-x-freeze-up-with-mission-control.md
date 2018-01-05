@@ -37,6 +37,8 @@ tags:
 
 在下在 Google 上找到了一行命令解決問題的方案：
 
-<pre class="prettyprint linenums">$ sudo rm /Library/Preferences/com.apple.windowserver.plist</pre>
+```
+$ sudo rm /Library/Preferences/com.apple.windowserver.plist
+```
 
 欲哭無淚啊，這讓像在下一樣折騰一整天的情以何堪（TAT）

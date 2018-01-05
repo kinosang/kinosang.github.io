@@ -19,7 +19,8 @@ tags:
 首先，我們要修改 function.php，Kinosang's Labs的處理包括 3 大塊： 獲取選項、初始化、標籤頁操作界面。 Kinosang在這裏只創建一個公告欄，包括兩個選項 (是否顯示公告欄和公告欄內容)。如果要添加更多選項，也只需要代碼中 3 個 TODO 的位置上追加一些代碼而已。當然，你還需要改一下選項名稱，將 Classic的相關內容全部換掉。
 Kinosang已經在代碼中標註了大量註釋，下面看看代碼吧。
 
-<pre class="prettyprint linenums">/**
+```
+/**
 * 選項組類型
 */
 class ClassicOptions {
@@ -74,7 +75,7 @@ $ options = ClassicOptions::getOptions();
 <form id="classic_form" action="#" enctype="multipart/form-data" method="post" name="classic_form">
 <div>
 
-## 
+##
 
 <!-- 公告欄 -->
 <label> <input type="checkbox" checked="checked" name="notice" value="checkbox" /> /> <?php _e('Show notice.', 'classic'); ?> </label><label> <textarea id="notice_content" style="width: 98%; font-size: 12px;" cols="50" name="notice_content" rows="10"><;?php echo($ options['notice_content']); ?></textarea> </label>
@@ -89,7 +90,7 @@ $ options = ClassicOptions::getOptions();
 
 </div>
 </form>
-</pre>
+```
 
 前臺處理：
 
@@ -98,12 +99,13 @@ $ options = ClassicOptions::getOptions();
 1\. 獲取選項 (對每個 PHP 文件，獲取一次就行了，可以在文件頂部執行)
 2\. 對選項進行處理 (這裏判斷成立的話就將公告內容顯示出來)
 
-<pre class="prettyprint linenums"><!-- 獲取選項 -->
+```
+<!-- 獲取選項 -->
 <?php $ options = get_option('classic_options'); ?>
 
 <!-- 如果用戶選擇顯示公告欄, 並且公告欄有內容, 則顯示出來 -->
 <?php if($ options['notice'] && $ options['notice_content']) : ?>
 <div id="notice"></div>
-</pre>
+```
 
 好了，這個教程就到這裏了。

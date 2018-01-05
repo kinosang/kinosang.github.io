@@ -18,7 +18,8 @@ tags:
 
 ### 系統結構
 
-<pre>  訪客
+```
+  訪客
    |
   \|/
 1.2.3.4
@@ -34,7 +35,7 @@ tags:
 |bk_web|
  ======
 10.0.0.3
-</pre>
+```
 
 `ft_` 前綴系 HAProxy frontends
 `bk_` 前綴系 HAProxy backends
@@ -46,7 +47,8 @@ tags:
 Nginx 和 Naxsi 安裝在 bk_waf 上。
 在 `nginx.conf` 啓用 Naxsi，修改 Nginx 默認站點文件如下：
 
-<pre>server {
+```
+server {
     proxy_set_header Proxy-Connection "";
     listen     10.0.0.2:80;
 
@@ -71,7 +73,7 @@ Nginx 和 Naxsi 安裝在 bk_waf 上。
         return 403;
     }
 }
-</pre>
+```
 
 #### HAProxy
 
@@ -80,7 +82,8 @@ Nginx 和 Naxsi 安裝在 bk_waf 上。
 * 由 `bk_waf` 分析攻擊行爲並由 `ft_waf` 阻擋
 * 當 `bk_waf` 不可用時自動跳過 WAF
 
-<pre>defaults
+```
+defaults
     option  http-server-close
     option  dontlognull
     option  redispatch
@@ -180,7 +183,7 @@ backend bk_waf_health_check
     default-server inter 3s rise 2 fall 3
     timeout server 25s
     server server1 10.0.0.3:80 maxconn 100 weight 10 check
-</pre>
+```
 
 #### Fail2ban
 
@@ -188,24 +191,26 @@ backend bk_waf_health_check
 
 創建 `/etc/fail2ban/filter.d/nginx-naxsi.conf` ：
 
-<pre>[INCLUDES]
+```
+[INCLUDES]
 before = common.conf
 
 [Definition]
 failregex = NAXSI_FMT: ip=.*
 ignoreregex =
-</pre>
+```
 
 在 `/etc/fail2ban/jail.conf` 添加：
 
-<pre>[nginx-naxsi]
+```
+[nginx-naxsi]
 
 enabled = true
 port = http,https
 filter = nginx-naxsi
 logpath = /var/log/nginx/naxsi_error.log
 maxretry = 6
-</pre>
+```
 
 #### 參考資料
 

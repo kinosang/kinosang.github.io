@@ -14,5 +14,3 @@ tags:
 <!--more-->
 
 [download id="1"]
-
-&nbsp;

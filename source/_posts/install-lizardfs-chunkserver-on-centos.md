@@ -13,21 +13,28 @@ tags:
 
 首先添加 epel repo.
 
-<pre>$ sudo yum install epel-release</pre>
+```
+$ sudo yum install epel-release
+```
 
 <!--more-->
 
 然後添加 Lizardfs repo.
 
-<pre>$ curl http://packages.lizardfs.com/yum/el7/lizardfs.repo | sudo tee /etc/yum.repos.d/lizardfs.repo</pre>
+```
+$ curl http://packages.lizardfs.com/yum/el7/lizardfs.repo | sudo tee /etc/yum.repos.d/lizardfs.repo
+```
 
 安裝 Lizardfs 的組件
 
-<pre>$ sudo yum install vim lizardfs-master lizardfs-metalogger lizardfs-chunkserver</pre>
+```
+$ sudo yum install vim lizardfs-master lizardfs-metalogger lizardfs-chunkserver
+```
 
 設定 Lizardfs
 
-<pre>$ cd /etc/mfs
+```
+$ cd /etc/mfs
 $ sudo rename .cfg.dist .cfg *.dist
 $ sudo cp /var/lib/mfs/metadata.mfs.empty /var/lib/mfs/metadata.mfs
 $ sudo vim mfsmaster.cfg
@@ -36,21 +43,26 @@ $ sudo vim mfshdd.cfg
  /mnt/mfs # /mnt/mfs XFS filesystem for MFS
 $ sudo vim /etc/hosts
  192.168.19.1 mfsmaster
-$ sudo chown -R mfs:mfs /mnt/mfs</pre>
+$ sudo chown -R mfs:mfs /mnt/mfs
+```
 
 設定 Firewalld
 
-<pre>$ sudo vim /etc/sysconfig/network-scripts/ifcfg-eno1
+```
+$ sudo vim /etc/sysconfig/network-scripts/ifcfg-eno1
  ZONE="trusted"
 $ sudo systemctl restart network.service
-$ sudo systemctl restart firewalld.service</pre>
+$ sudo systemctl restart firewalld.service
+```
 
 啓動 Lizardfs
 
-<pre>$ sudo systemctl restart lizardfs-master
+```
+$ sudo systemctl restart lizardfs-master
 $ sudo systemctl restart lizardfs-metalogger
 $ sudo systemctl restart lizardfs-chunkserver
 
 $ sudo systemctl enable lizardfs-master
 $ sudo systemctl enable lizardfs-metalogger
-$ sudo systemctl enable lizardfs-chunkserver</pre>
+$ sudo systemctl enable lizardfs-chunkserver
+```

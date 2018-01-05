@@ -30,8 +30,6 @@ CentOS 安裝 Nginx + PHP + MariaDB | MySQL自動最佳化
 2.  之前圖省事使用了 lnmp 套件，這個套件是通過 make 、 make install 的方式灌裝組件的，並且具備一個統一管理 N/M/P 的工具，修改起來十分不方便
 3.  之前幾次折騰導致系統中殘留了大量垃圾
 
-&nbsp;
-
 然後使用之前創建的 Snapshot 新建一個 Droplet（命名為 bk，原有 Droplet 命名為 main），兩個 Droplet 都開啟Private Network，方便稍後傳輸文件。
 
 ## 一、安裝 MariaDB：
@@ -42,26 +40,31 @@ CentOS 安裝 Nginx + PHP + MariaDB | MySQL自動最佳化
 
 ### 添加源
 
-<pre class="prettyprint linenums">$ vim /etc/yum.repos.d/MariaDB.repo
+```
+$ vim /etc/yum.repos.d/MariaDB.repo
 # MariaDB 5.5 RedHat repository list - created 2013-08-11 14:29 UTC
 # http://mariadb.org/mariadb/repositories/
 [mariadb]
 name = MariaDB
 baseurl = http://yum.mariadb.org/5.5/rhel6-x86
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
-gpgcheck=1</pre>
+gpgcheck=1
+```
 
 ### 安裝並啟用 MariaDB
 
-<pre class="prettyprint linenums">$ yum -y install MariaDB-server MariaDB-client MariaDB-common MariaDB-compat MariaDB-shared
+```
+$ yum -y install MariaDB-server MariaDB-client MariaDB-common MariaDB-compat MariaDB-shared
 ...
 $ service mysql start
 ...
-$ chkconfig --levels 235 mysql on</pre>
+$ chkconfig --levels 235 mysql on
+```
 
 ### 初次設定 root 帳戶
 
-<pre class="prettyprint linenums">$ mysql_secure_installation
+```
+$ mysql_secure_installation
 /wp-content/bin/mysql_secure_installation: line 379: find_mysql_client: command not found
 
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
@@ -117,7 +120,8 @@ Cleaning up...
 All done!  If you've completed all of the above steps, your MariaDB
 installation should now be secure.
 
-Thanks for using MariaDB!</pre>
+Thanks for using MariaDB!
+```
 
 ## 二、安裝 Nginx 和 PHP
 
@@ -127,31 +131,39 @@ Thanks for using MariaDB!</pre>
 
 參見[Installing RHEL EPEL Repo on Centos 5.x or 6.x](http://www.rackspace.com/knowledge_center/article/installing-rhel-epel-repo-on-centos-5x-or-6x)
 
-<pre class="prettyprint linenums">$ wget http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+```
+$ wget http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 $ wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-$ rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm</pre>
+$ rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
+```
 
 記得將 /etc/yum.repos.d/remi.repo 中的 [remi] 設定為 enabled=1
 還有 Nginx 的源
 
-<pre class="prettyprint linenums">$ vim /etc/yum.repos.d/nginx.repo
+```
+$ vim /etc/yum.repos.d/nginx.repo
 [nginx]
 name=nginx repo
 baseurl=http://nginx.org/packages/centos/6/$basearch/
 gpgcheck=0
-enabled=1</pre>
+enabled=1
+```
 
 ### 安裝並啟用 Nginx
 
-<pre class="prettyprint linenums">$ yum install nginx
+```
+$ yum install nginx
 $ service nginx start
-$ chkconfig --levels 235 nginx on</pre>
+$ chkconfig --levels 235 nginx on
+```
 
 ### 安裝並啟用 PHP-FPM
 
-<pre class="prettyprint linenums">$ yum install php-fpm php-mysqlnd php-gd php-curl php-mcrypt php-apc
+```
+$ yum install php-fpm php-mysqlnd php-gd php-curl php-mcrypt php-apc
 $ service php-fpm start
-$ chkconfig --levels 235 php-fpm on</pre>
+$ chkconfig --levels 235 php-fpm on
+```
 
 如何設定 Nginx + PHP-FPM 此處不在敘述。
 
@@ -159,19 +171,21 @@ $ chkconfig --levels 235 php-fpm on</pre>
 
 ### sftp 傳輸檔案夾
 
-<pre class="prettyprint linenums">$ scp -r user@ip:/path/to/dir /local/dir</pre>
+```
+$ scp -r user@ip:/path/to/dir /local/dir
+```
 
 ### MySQL 數據匯入 MariaDB
 
 我直接使用 PHPMyAdmin 匯出 MySQL 數據庫為 SQL 文檔，然後匯入 MariaDB 中。
 
-&nbsp;
-
 # 一點小動作
 
 讓系統自動優化數據庫，以提高效率
 
-<pre class="prettyprint linenums">$ crontab -e
-0 0 * * 0 /wp-content/bin/mysqlcheck --all-databases --optimize --auto-repair -u root -pYourRootPassword &gt; /dev/null 2&gt;&amp;1</pre>
+```
+$ crontab -e
+0 0 * * 0 /wp-content/bin/mysqlcheck --all-databases --optimize --auto-repair -u root -pYourRootPassword > /dev/null 2>&1
+```
 
 當前時間 GMT+08:00 2014/01/08 20:00 ，全部工作完成，移除 bk。

@@ -21,12 +21,12 @@ tags:
 
 然後，用 Node.js 取得 Task 列：
 
-<pre class="prettyprint linenums">
+```
 $ node
 > var fs = require('fs');
 > var file = '/path/to/your.json';
 > fs.readFile(file, 'utf8', function (err, data) {data = JSON.parse(data);fs.writeFile(file, JSON.stringify(data.tasks));});
-</pre>
+```
 
 接著，藉助 [JSON to CSV](http://www.json2csv.com) 將 JSON 轉換成 CSV。
 
@@ -36,7 +36,7 @@ $ node
 
 分別對應：
 
-<pre class="prettyprint linenums">
+```
 Task ID ﹣> 留空
 Type ﹣> ＝IF(ISBLANK(D2),"Project","Action")
 Task ﹣> title
@@ -48,7 +48,7 @@ Completion Date ﹣> completed_at
 Duration ﹣> 留空
 Flagged ﹣> starred
 Notes ﹣> 留空
-</pre>
+```
 
 P.S. Wunderlist 匯出的 Date 數據格式是 2014-04-27T01:57:45Z 的形式，請自行尋找工具轉換成 DD/MM/YYYY H:i:s 的格式。
 

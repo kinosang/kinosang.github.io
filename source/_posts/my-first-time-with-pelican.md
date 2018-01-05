@@ -17,7 +17,8 @@ CentOS 的 Python 是 2.6 版本，Pelican 則需求 2.7+，因此，先編譯�
 
 <!--more-->
 
-<pre class="prettyprint linenums">$ wget -c http://python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+```
+$ wget -c http://python.org/ftp/python/2.7.6/Python-2.7.6.tgz
 ...
 $ tar vzxf Python-2.7.6.tgz
 ...
@@ -31,41 +32,57 @@ Python 2.6.6
 $ mv /wp-content/bin/python /wp-content/bin/python.bak
 $ ln -s /wp-content/local/bin/python2.7 /wp-content/bin/python
 $ python --version
-Python 2.7.6</pre>
+Python 2.7.6
+```
 
 有人說 yum 不兼容 Python 2.7，需要修改下
 
-<pre class="prettyprint linenums">$ vim /wp-content/bin/yum</pre>
+```
+$ vim /wp-content/bin/yum
+```
 
 把第一行的
 
-<pre class="prettyprint linenums">#!/wp-content/bin/python</pre>
+```
+#!/wp-content/bin/python
+```
 
 改成
 
-<pre class="prettyprint linenums">#!/wp-content/bin/python2.6</pre>
+```
+#!/wp-content/bin/python2.6
+```
 
 然後安裝 setuptools
 
-<pre class="prettyprint linenums">$ wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python</pre>
+```
+$ wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python
+```
 
 和 pip
 
-<pre class="prettyprint linenums">$ wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py -O - | python</pre>
+```
+$ wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py -O - | python
+```
 
 使用 pip 安裝 pelican
 
-<pre class="prettyprint linenums">$ pip install pelican</pre>
+```
+$ pip install pelican
+```
 
 在下使用 Markdown 進行創作，因此需要額外安裝 Markdown 支援
 
 [caption id="attachment_1720" align="alignnone" width="300"][![Markdown](/wp-content/uploads/2014/01/MarkdownDocumentIcon-300x300.png)](/wp-content/uploads/2014/01/MarkdownDocumentIcon-e1390272755111.png) Markdown[/caption]
 
-<pre class="prettyprint linenums">$ pip install Markdown</pre>
+```
+$ pip install Markdown
+```
 
 測試一下
 
-<pre class="prettyprint linenums">$ pelican --help
+```
+$ pelican --help
 usage: pelican [-h] [-t THEME] [-o OUTPUT] [-s SETTINGS] [-d] [-v] [-q] [-D]
                [--version] [-r]
                [path]
@@ -97,18 +114,22 @@ optional arguments:
                         None)
   --version             Print the pelican version and exit.
   -r, --autoreload      Relaunch pelican each time a modification occurs on
-                        the content files. (default: False)</pre>
+                        the content files. (default: False)
+```
 
 現在，新建一個檔案夾並在其中開始一個 Pelican 工程
 
-<pre class="prettyprint linenums">$ mkdir test
+```
+$ mkdir test
 $ cd test
 $ pelican-quickstart
-...</pre>
+...
+```
 
 工程的檔案結構是這樣的：
 
-<pre class="prettyprint linenums">test/
+```
+test/
 ├── content
 │   └── (pages)
 ├── output
@@ -116,12 +137,15 @@ $ pelican-quickstart
 ├── fabfile.py
 ├── Makefile
 ├── pelicanconf.py
-└── publishconf.py</pre>
+└── publishconf.py
+```
 
 通過修改 pelicanconf.py 設定站點，修改 Makefile 可以改變目標檔案夾（默認是 ./output）
 
 把寫好的 md 檔案丟進 content 裏，然後
 
-<pre class="prettyprint linenums">$ make html</pre>
+```
+$ make html
+```
 
 GJ，工作就這樣完成了！

@@ -21,7 +21,7 @@ tags:
 
 連接時注意下面的對應關係：
 
-<pre class="prettyprint linenums">
+```
 HC-05    Arduino
 KEY   -> 5V
 RXD   -> RX
@@ -29,7 +29,7 @@ TXD   -> TX
 5.0   -> 5V
 3.3   -> NC
 GND   -> GND
-</pre>
+```
 
 然後打開 Arduino IDE 的 Serial Monitor （使用 screen 也可以）
 
@@ -39,7 +39,7 @@ GND   -> GND
 
 [![設定 HC-05](/wp-content/uploads/2014/02/設定HC-05-300x193.png)](/wp-content/uploads/2014/02/設定HC-05.png)
 
-<pre class="prettyprint linenums">
+```
 > AT
 ERROR:(0)
 > AT
@@ -65,7 +65,7 @@ OK
 OK
 > AT+PSWD=****
 OK
-</pre>
+```
 
 > 更多指令參見 [hc-05-at_command_set.pdf](http://robopoly.epfl.ch/files/content/sites/robopoly/files/Tutoriels/bluetooth/hc-05-at_command_set.pdf)
 
@@ -79,7 +79,7 @@ Cubieboard 預留了四針的 TTY 連接埠，我們只需要對號入座即可�
 
 因此對應關系如下：
 
-<pre class="prettyprint linenums">
+```
 HC-05    Cubieboard
 KEY   -> NC
 RXD   -> RX
@@ -87,7 +87,7 @@ TXD   -> TX
 5.0   -> NC
 3.3   -> Vcc
 GND   -> GND
-</pre>
+```
 
 然後只需要配對連線即可。
 
@@ -95,7 +95,9 @@ GND   -> GND
 
 這時可以用下面的指令連線 Cubieboard
 
-<pre class="prettyprint linenums">$ screen /dev/cu.7IN0BT-DevB 115200 -U</pre>
+```
+$ screen /dev/cu.7IN0BT-DevB 115200 -U
+```
 
 ### Cubieboard 96pins 連接埠非標準解決方案
 

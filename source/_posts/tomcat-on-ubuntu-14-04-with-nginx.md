@@ -14,13 +14,15 @@ tags:
 
 ### 安裝 Nginx
 
-<pre class="lang:sh decode:true">$ sudo apt update
+```
+$ sudo apt update
 $ sudo apt install nginx
-</pre>
+```
 
 ### 安裝 Tomcat 7
 
-<pre class="lang:sh decode:true">$ sudo apt install tomcat7
+```
+$ sudo apt install tomcat7
 $ sudo vim /etc/tomcat7/server.xml
 ...
 &lt;Connector port="8080" protocol="HTTP/1.1"
@@ -34,11 +36,12 @@ $ sudo vim /etc/tomcat7/tomcat-users.xml
     &lt;user username="user" password="password" roles="manager-gui,admin-gui"/&gt;
 &lt;/tomcat-users&gt;
 $ sudo service tomcat7 start
-</pre>
+```
 
 ### 設定 Nginx
 
-<pre class="lang:sh decode:true">$ sudo vim /etc/nginx/sites-enabled/default
+```
+$ sudo vim /etc/nginx/sites-enabled/default
 ...
     location / {
         # First attempt to serve request as file, then
@@ -54,6 +57,6 @@ $ sudo service tomcat7 start
         proxy_pass http://127.0.0.1:8080;
     }
 ...
-</pre>
+```
 
 然後可以使用 `http://127.0.0.1/manager/html `和 `http://127.0.0.1/host-manager/html `管理 tomcat 。

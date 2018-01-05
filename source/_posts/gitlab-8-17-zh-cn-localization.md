@@ -15,7 +15,8 @@ tags:
 
 ### 簡單粗暴
 
-<pre>$ sudo systemctl stop gitlab
+```
+$ sudo systemctl stop gitlab
 
 $ cd /tmp
 $ sudo -u git -H git clone https://gitlab.com/xhang/gitlab.git -b 8-17-stable-zh gitlab-zh
@@ -23,7 +24,8 @@ $ sudo -u git -H git clone https://gitlab.com/xhang/gitlab.git -b 8-17-stable-zh
 $ cd /home/git/gitlab
 $ sudo -u git -H cp -R /tmp/gitlab-zh/* .
 
-$ sudo systemctl start gitlab</pre>
+$ sudo systemctl start gitlab
+```
 
 ### 規範做法
 

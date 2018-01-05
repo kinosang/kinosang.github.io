@@ -43,19 +43,22 @@ TunnelBroker，he.net 旗下的免費 IPv6 Tunnel Broker。
 
 啟用 IPv6 和 Radvd，並鍵入如下設定信息（粗體紅色部分使用之前的信息替換）：
 
-<pre>interface br0 {
+```
+interface br0 {
   AdvSendAdvert on;
   prefix <span style="color: #ff0000;">**Routed /64**</span> {
     AdvOnLink on;
     AdvAutonomous on;
   };
-};</pre>
+};
+```
 
 然後，進入“系統管理”——“指令”，編輯啟動指令（其中，MTU 請到 “Tunnel Details” 的 “Advanced” 查找）
 
 TunnelBroker 調整了安全設定，目前網上流傳的指令無法完成自動更新 IPv4 位址信息的工作，下面的指令是7IN0修改後的新版指令。
 
-<pre>sleep 10
+```
+sleep 10
 insmod ipv6
 USERID="<span style="color: #ff0000;">**User ID**</span>"
 PASSWORD="<span style="color: #ff0000;">**MTU**</span>"
@@ -68,7 +71,7 @@ then
 /wp-content/bin/wget 'http://ipv4.tunnelbroker.net/ipv4_end.php?ipv4b='$IPV4'&amp;pass='$PASSWORD'&amp;user_id='$USERID'&amp;tunnel_id='$TUNNELID -O -
 echo "`date` ip address changed" &gt;&gt; /tmp/startup.debug
 ip tunnel del he-ipv6
-ip tunnel add he-ipv6 mode sit remote <span style="color: #ff0000;">**Server IPv4 Address**</span> local $IPV4 ttl 255 
+ip tunnel add he-ipv6 mode sit remote <span style="color: #ff0000;">**Server IPv4 Address**</span> local $IPV4 ttl 255
 ip link set he-ipv6 up
 ip addr add <span style="color: #ff0000;">**Server IPv6 Address**</span> dev he-ipv6
 ip -6 addr add <span style="color: #ff0000;">**Routed /64（在::之後添加“1”，如2001:470:19:456::1/64）**</span> dev br0
@@ -83,7 +86,8 @@ echo "`date` process radvd not found, restarting" &gt;&gt; /tmp/startup.debug
 fi
 OLDIP="$IPV4"
 sleep 60
-done</pre>
+done
+```
 
 全部保存後重啟路徑器。
 

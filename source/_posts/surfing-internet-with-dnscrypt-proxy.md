@@ -23,9 +23,11 @@ DNS 加密代理——這玩意兒應對 DNS 污染很有用。
 
 Mac 下使用 Homebrew 進行安裝
 
-<pre class="prettyprint linenums">$ brew install dnscrypt-proxy
+```
+$ brew install dnscrypt-proxy
 $ sudo cp -fv /wp-content/local/opt/dnscrypt-proxy/*.plist /Library/LaunchDaemons
-$ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnscrypt-proxy.plist</pre>
+$ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnscrypt-proxy.plist
+```
 
 然後設定系統的 DNS 伺服器為 127.0.0.1
 
@@ -42,14 +44,18 @@ _如果在學校或公司等需要使用網絡時需要設定內網 DNS，將內
 1.  下载 DNSCrypt-proxy 原始码（.tar.bz2檔）（点击[这里](http://download.dnscrypt.org/dnscrypt-proxy/)）</p>
 2.  安裝</p>
 
-<pre class="prettyprint linenums">$ bunzip2 -cd dnscrypt-proxy-*.tar.bz2 | tar xvf -
+```
+$ bunzip2 -cd dnscrypt-proxy-*.tar.bz2 | tar xvf -
 $ cd dnscrypt-proxy-*
 $ ./configure &amp;&amp; make -j2
-$ make install</pre>
+$ make install
+```
 
 <p>3.啟動
 
-<pre class="prettyprint linenums">$ dnscrypt-proxy --daemonize</pre>
+```
+$ dnscrypt-proxy --daemonize
+```
 
 1.  修改 DNS 设定（同 Mac OS X）
 
@@ -61,6 +67,8 @@ $ make install</pre>
 
 解開 zip 檔，cd 進入相應檔案夾，執行下面的指令：
 
-<pre class="prettyprint linenums">cmd&gt; dnscrypt-proxy.exe --install</pre>
+```
+cmd&gt; dnscrypt-proxy.exe --install
+```
 
 1.  修改 DNS 设定（同 Mac OS X）

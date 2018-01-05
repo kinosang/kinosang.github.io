@@ -18,8 +18,6 @@ tags:
 如何使用這項服務呢？
 首先，用力按[這裡](https://developers.google.com/speed/pagespeed/service?hl=zh-TW)，點擊頁面右側大大的“Sign up now”按鈕。
 
-&nbsp;
-
 [caption id="attachment_1193" align="alignnone" width="300"][![Google PageSpeed 項目頁面](/wp-content/uploads/2013/06/20130621205719-300x177.jpg)](/wp-content/uploads/2013/06/20130621205719-e1389272604145.jpg) Google PageSpeed 項目頁面[/caption]
 
 然後在下面的頁面填入你的電子郵件地址和站點URL。

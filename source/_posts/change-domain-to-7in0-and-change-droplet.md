@@ -19,6 +19,4 @@ tags:
 
 [![選擇Droplets](/wp-content/uploads/2014/01/螢幕快照-2014-01-07-19.33.23-300x206.png)](/wp-content/uploads/2014/01/螢幕快照-2014-01-07-19.33.23.png)
 
-&nbsp;
-
 這裏需要提醒大家的一點是：DO 會把你自己已經移除的 Droplet 的 IP 位址分配給你新建的相同節點下的 Droplet，因此，如果想要更換 IP 位置，需要保留現有 Droplet 的情況下新建 Droplet，然後再移除舊的 Droplet。

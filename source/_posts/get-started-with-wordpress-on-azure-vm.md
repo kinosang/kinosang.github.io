@@ -81,11 +81,15 @@ tags:
 
 通過 ssh 登入你的虛擬機器：
 
-<pre>$ssh user@public-ip</pre>
+```
+$ssh user@public-ip
+```
 
 例如：
 
-<pre>$ ssh chino@your-ip-here</pre>
+```
+$ ssh chino@your-ip-here
+```
 
 ![connect-to-server-via-ssh.png](https://blog.7in0.me/wp-content/uploads/2016/10/connect-to-server-via-ssh.png)
 
@@ -93,49 +97,63 @@ tags:
 
 首先安裝 WordPress 運行環境，這裏選擇 Apache2 + MySQL + PHP7
 
-<pre>$ sudo apt update &amp;&amp; sudo apt -y upgrade
-$ sudo apt -y install apache2 mysql-server php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-mcrypt</pre>
+```
+$ sudo apt update && sudo apt -y upgrade
+$ sudo apt -y install apache2 mysql-server php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-mcrypt
+```
 
 若此前選擇的作業系統爲“Ubuntu 12.04”或“Ubuntu 14.04”，則第二條指令修改爲
 
-<pre>$ sudo apt -y install libapache2-mod-php5 mysql-server php5-mysql php5-mcrypt</pre>
+```
+$ sudo apt -y install libapache2-mod-php5 mysql-server php5-mysql php5-mcrypt
+```
 
 安裝 MySQL 過程中要求設定 root 密碼
 
 ![螢幕快照 2016-10-14 14.51.49.png](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-14.51.49.png)![螢幕快照 2016-10-14 14.52.20.png](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-14.52.20.png)
 
-<pre>$ sudo a2enmod php7.0 #手動啓用 php7 for apache
+```
+$ sudo a2enmod php7.0 #手動啓用 php7 for apache
 $ sudo a2dismod mpm_event #禁用 MPM，否則與 php7 NTS 衝突
 $ sudo a2enmod mpm_prefork
-$ sudo systemctl restart apache2</pre>
+$ sudo systemctl restart apache2
+```
 
 若爲“Ubuntu 12.04”或“Ubuntu 14.04”則上面四條指令修改爲
 
-<pre>$ sudo service apache2 restart</pre>
+```
+$ sudo service apache2 restart
+```
 
 ### 安裝 WordPress
 
-<pre>$ wget https://wordpress.org/latest.tar.gz
-$ tar vzxf latest.tar.gz</pre>
+```
+$ wget https://wordpress.org/latest.tar.gz
+$ tar vzxf latest.tar.gz
+```
 
 ![螢幕快照 2016-10-14 14.57.50.png](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-14.57.50.png)
 
-<pre>$ cd /var/www/html #前往 Apache2 根目錄
+```
+$ cd /var/www/html #前往 Apache2 根目錄
 $ sudo rm index.html #刪除默認主頁
 $ sudo mv ~/wordpress/* . # 移動 WordPress 到當前目錄
 $ sudo chown www-data:www-data ./ -R
-$ ls #查看當前目錄下的檔案</pre>
+$ ls #查看當前目錄下的檔案
+```
 
 ![螢幕快照 2016-10-14 15.01.02.png](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-15.01.02.png)
 
 然後爲 WordPress 建立 MySQL 用戶
 
-<pre>$ mysql -uroot -p #登入 MySQL 控制檯，會要求輸入此前設置的 MySQL root 密碼
-mysql&gt; CREATE USER 'demo'@'localhost' IDENTIFIED BY 'password';
-mysql&gt; CREATE DATABASE demo;
-mysql&gt; GRANT ALL PRIVILEGES ON demo.* TO 'demo'@'localhost';
-mysql&gt; FLUSH PRIVILEGES;
-mysql&gt; exit</pre>
+```
+$ mysql -uroot -p #登入 MySQL 控制檯，會要求輸入此前設置的 MySQL root 密碼
+mysql> CREATE USER 'demo'@'localhost' IDENTIFIED BY 'password';
+mysql> CREATE DATABASE demo;
+mysql> GRANT ALL PRIVILEGES ON demo.* TO 'demo'@'localhost';
+mysql> FLUSH PRIVILEGES;
+mysql> exit
+```
 
 打開瀏覽器（比如 Google Chrome），轉到 http://your-ip-here 根據頁面提示繼續安裝。
 
@@ -152,5 +170,3 @@ mysql&gt; exit</pre>
 現在轉到 http://your-ip-here 就可以看到“Hello world! 哈囉！”的文章。
 
 ![2016-10-14-15-24-04](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-15.24.04.png)
-
-&nbsp;

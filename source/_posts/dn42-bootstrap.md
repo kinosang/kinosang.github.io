@@ -9,8 +9,6 @@ tags:
 
 [![dn42](https://blog.7in0.me/wp-content/uploads/2016/04/dn42.png)](https://blog.7in0.me/wp-content/uploads/2016/04/dn42.png)
 
-&nbsp;
-
 ### 什么是 dn42
 
 dn42 是一個使用多種因特網技術（包括 BGP、whois 資料庫、DNS 等）構建的大型的動態 VPN 網路。參與者使用隧道技術（比如 GRE、OpenVPN、Tinc、IPsec）與其他人互相連線並利用BGP（邊界閘道器協議）交換路由。
@@ -50,19 +48,23 @@ dn42 也與其他網路，比如 ChaosVPN 和部分 Freifunk 網路。
 
 按“Create Object”創建 mntner 項目，輸入必備信息並按“Save”送出，注意觀察右側下方信息是否報錯：
 
-<pre class="lang:default decode:true">mntner:    FOO-MNT
+```
+mntner:    FOO-MNT
 descr:     簡介
 sha512-pw: 密碼（明文，非 sha512 指紋）
 admin-c:   DUMMY-DN42 （稍後我們會更新該項，下同）
 tech-c:    DUMMY-DN42
-mnt-by:    FOO-MNT （和 mntner 項相同）</pre>
+mnt-by:    FOO-MNT （和 mntner 項相同）
+```
 
 #### 為你個人創建個人（person）
 
-<pre class="lang:default decode:true">person:  foo foo 個人姓名或暱稱
+```
+person:  foo foo 個人姓名或暱稱
 contact: 電子郵箱地址、xmpp、irc 或 twitter 如 xmpp:foo@foo.com
 nic-hdl: FOO-DN42 以 -DN42 結尾
-mnt-by:  FOO-MNT</pre>
+mnt-by:  FOO-MNT
+```
 
 #### 更新 mntner
 
@@ -72,30 +74,34 @@ mnt-by:  FOO-MNT</pre>
 
 #### 為你的機構創建機構（organisation）（若需要）
 
-<pre class="lang:default decode:true">organisation: ORG-FOO
+```
+organisation: ORG-FOO
 org-name:     機構名稱
 descr:        機構簡介
 e-mail:       dn42@foo.com 按“+”添加該項，並填寫機構電郵或 mail list
 www:          http://foo.com 按“+”添加該項，並填寫機構網站
 admin-c:      FOO-DN42
 tech-c:       FOO-DN42
-mnt-by:       FOO-MNT</pre>
+mnt-by:       FOO-MNT
+```
 
 #### 現在，你可以使用下面的信息創建其他項目
 
 個人項目：
 
-<pre class="lang:default decode:true">admin-c: FOO-DN42
+```
+admin-c: FOO-DN42
 tech-c:  FOO-DN42
 mnt-by:  FOO-MNT
-</pre>
+```
 
 機構項目：
 
-<pre class="lang:default decode:true">admin-c: ORG-FOO
+```
+admin-c: ORG-FOO
 tech-c:  ORG-FOO
 mnt-by:  FOO-MNT
-</pre>
+```
 
 #### 註冊 AS 號碼（ASN）
 
@@ -109,9 +115,11 @@ mnt-by:  FOO-MNT
 
 創建 aut-num 項目（省略了admin-c、tech-c 和 mnt-by）
 
-<pre class="lang:default decode:true">aut-num: AS4242420000 按前述內容自行選擇 AS 號碼
+```
+aut-num: AS4242420000 按前述內容自行選擇 AS 號碼
 as-name: FOO-AS
-descr:   Foo's AS</pre>
+descr:   Foo's AS
+```
 
 #### 註冊子網
 
@@ -122,25 +130,29 @@ descr:   Foo's AS</pre>
 
 inetnum/172.23.75.0_24 範例：
 
-<pre class="lang:default decode:true">inetnum: 172.23.75.0 - 172.23.75.255
+```
+inetnum: 172.23.75.0 - 172.23.75.255
 netname: FOO-NETWORK
 descr:   Network of FOO
 country: CN
 nserver: ns1.foo.dn42
 nserver: ns2.foo.dn42
-status:  ASSIGNED</pre>
+status:  ASSIGNED
+```
 
 若需要 IPv6，你可以通過 http://unique-local-ipv6.com/ 生成一個 IPv6 子網。
 
 inet6num/fd42:4992:6a6d::_48 範例：
 
-<pre class="lang:default decode:true">inet6num: fd42:4992:6a6d:0000:0000:0000:0000:0000 - fd42:4992:6a6d:ffff:ffff:ffff:ffff:ffff
+```
+inet6num: fd42:4992:6a6d:0000:0000:0000:0000:0000 - fd42:4992:6a6d:ffff:ffff:ffff:ffff:ffff
 netname:  FOO-NETWORK
 descr:    Network of FOO
 country:  CN
 nserver:  ns1.foo.dn42
 nserver:  ns2.foo.dn42
-status:   ASSIGNED</pre>
+status:   ASSIGNED
+```
 
 #### 創建路由器
 
@@ -148,17 +160,20 @@ status:   ASSIGNED</pre>
 
 route/172.23.75.0_24:
 
-<pre class="lang:default decode:true">route:      172.23.75.0/24
+```
+route:      172.23.75.0/24
 origin:     AS4242420000
 mnt-by:     FOO-MNT
-bgp-status: active</pre>
+bgp-status: active
+```
 
 route6/fd42:4992:6a6d::_48
 
-<pre class="lang:default decode:true">route6: fd42:4992:6a6d::/48
+```
+route6: fd42:4992:6a6d::/48
 origin: AS4242420000
 mnt-by: FOO-MNT
-</pre>
+```
 
 ### 下一步（待整理）
 
@@ -171,7 +186,5 @@ mnt-by: FOO-MNT
 設定 DNS
 
 使用或創建網際服務
-
-&nbsp;
 
 你們可以在“[關於我](https://blog.7in0.me/7in0/)”找到我的 dn42 ASN 等信息。

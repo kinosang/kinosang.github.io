@@ -9,8 +9,6 @@ tags:
 
 Arduino as usb2tty | tty 終端機 | Cubieboard | Cubian | NAND
 
-&nbsp;
-
 今天稍早些時候，我從內蒙古回到了濟寧。
 
 之前從欣然兄手中收購了一塊 Cubieboard，並拜託他刷好 Ubuntu。於是回到家的第一時間，我便嘗試折騰這塊小巧可愛的板子。
@@ -33,8 +31,10 @@ Arduino as usb2tty | tty 終端機 | Cubieboard | Cubian | NAND
 
 然後……
 
-<pre class="prettyprint linenums">$ ssh 192.168.1.5
-ssh: connect to host 192.168.1.5 port 22: connection refused</pre>
+```
+$ ssh 192.168.1.5
+ssh: connect to host 192.168.1.5 port 22: connection refused
+```
 
 誰能告訴我這是怎麽回事？！難不成是 Ubuntu 有問題了？
 
@@ -52,7 +52,8 @@ ssh: connect to host 192.168.1.5 port 22: connection refused</pre>
 
 然後，用 screen 連接
 
-<pre class="prettyprint linenums">$ ls /dev/tty.*
+```
+$ ls /dev/tty.*
 /dev/tty.Bluetooth-Incoming-Port
 /dev/tty.Bluetooth-Modem
 /dev/tty.usbmodem1a1221
@@ -67,24 +68,28 @@ individual files in /wp-content/share/doc/*/copyright.
 
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
-cubie@Cubian:~$</pre>
+cubie@Cubian:~$
+```
 
 成功連接，開瓶香檳慶祝下！
 
 ## 灌到 NAND
 
-<pre class="prettyprint linenums">$ sudo -i
+```
+$ sudo -i
 $ apt-get install cubian-nandinstall
 ...
 $ cubian-nandinstall
 ...
 *** Success! remember to REMOVE your SD card from board ***
 shutdown now? yes
-...</pre>
+...
+```
 
 拔掉 SD 卡然後開機，搞定！
 
-<pre class="prettyprint linenums">...
+```
+...
 $ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 rootfs          3.8G  1.2G  2.5G  32% /
@@ -92,18 +97,21 @@ rootfs          3.8G  1.2G  2.5G  32% /
 devtmpfs        405M     0  405M   0% /dev
 tmpfs            81M  148K   81M   1% /run
 tmpfs           5.0M     0  5.0M   0% /run/lock
-tmpfs           162M     0  162M   0% /run/shm</pre>
+tmpfs           162M     0  162M   0% /run/shm
+```
 
 ## 安全性設定
 
 Cubian 的默認帳戶和密碼都是 cubie，這很不安全。我們使用下面的命令修改密碼
 
-<pre class="prettyprint linenums">$ passwd
+```
+$ passwd
 Changing password for cubie.
 (current) UNIX password: // Enter "cubie"
 Enter new UNIX password: // Enter new password
 Retype new UNIX password: // Retype new password
-passwd: password updated successfully</pre>
+passwd: password updated successfully
+```
 
 ## 預告
 

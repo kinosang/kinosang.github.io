@@ -16,7 +16,7 @@ URLLoader 類和原來的loadVars類似，是加載文本、二進制數據、xm
 
 AS腳本（放到關鍵幀上）：
 
-<pre class="prettyprint linenums">
+```
 //聲明一個URLLoader
 var loader:URLLoader = new URLLoader();
 //監聽數載加載完成事件
@@ -28,25 +28,25 @@ trace(loader.data);
 }
 //加載test.php
 loader.load(new URLRequest("test.php"));
-</pre>
+```
 
 test.php：
 
-<pre class="prettyprint linenums">
+```
 <?php
 //聲明一個變數並賦給一個字元串
 $ data = "I am PHP!";
 //輸出這個變數給flash
 echo $ data;
 ?>
-</pre>
+```
 
 從上面的示例可以看出，as3和後臺交互非常簡單，但這只是單項的交互，如果要flash向後臺發送數據並傳回數據該如何去做呢？
 這個時候你可能會把代碼該成這樣：
 
 AS腳本（放到關鍵幀上）：
 
-<pre class="prettyprint linenums">
+```
 var loader:URLLoader = new URLLoader();
 loader.data={message:"hello im flash!"};
 loader.addEventListener(Event.COMPLETE,loaded);
@@ -55,23 +55,23 @@ trace(loader.data);
 //輸出
 }
 loader.load(new URLRequest("test.php"));
-</pre>
+```
 
 test.php：
 
-<pre class="prettyprint linenums">
+```
 <?php
 $ flashData = $ _POST['message'];
 echo "this is flash say:$ flashData";
 ?>
-</pre>
+```
 
 看看輸出的代碼，你得到了什麼？是的，信息並沒有傳輸到php，你還是在用loadVars的方式試圖傳送數據，但as3裏已經不是這樣了， URLLoader的data只有在數據被下載完時才會被初始化，在數據沒有加載完成時，它是等於null的，也就是說，它只包含接受到的數據，而不管要發送的數據，那麼，as3裏如何向後臺發送數據呢？使用URLVariables。URLVariables允許你在flash和後臺程序間傳輸變數， as3裏已經把發送和接受數據分離，再也不像as2的loadVars那樣，一個類通吃所有了，那麼這個URLVariables如何送要發送的數據呢？
 你可能找遍了URLLoader的文檔也沒有發現與它相關的東西，是的URLLoader並不和URLVariables有關聯，而是 URLRequest在使用它，URLRequest包含整個http請求的所有信息，所以我們要發送的數據要放在這裏，URLRequest有一個 data屬性他接受一個object類型的參數，這就是我們要發送的數據。同時你可能還注意到了，URLRequest也管理用什麼樣的方式來發送 http請求，它的method屬性接受一個字元參數，post或者是get。好了，現在我們來看看它們是怎麼工作的：
 
 AS腳本（放到關鍵幀上）：
 
-<pre class="prettyprint linenums">
+```
 var loader:URLLoader = new URLLoader();
 //聲明一個URLRequest
 var url:URLRequest = new URLRequest("test.php");
@@ -88,7 +88,7 @@ trace(loader.data);
 //輸出
 }
 loader.load(url);
-</pre>
+```
 
 test.php同上
 
@@ -96,7 +96,7 @@ test.php同上
 
 AS腳本（放到關鍵幀上）：
 
-<pre class="prettyprint linenums">
+```
 var loader:URLLoader = new URLLoader();
 //聲明一個URLRequest
 var url:URLRequest = new URLRequest("test.php");
@@ -117,23 +117,23 @@ trace(loader.data.flashMessage);
 //輸出flashMessage
 }
 loader.load(url);
-</pre>
+```
 
 test.php：
 
-<pre class="prettyprint linenums">
+```
 <?php
 $ flashData = $ _POST['message'];
 $ phpMessage = "I am PHP!";
 echo "phpMessage=$ phpMessage&amp;flashMessage=$ flashData";
 ?>
-</pre>
+```
 
 可以看到，數據被完全下載下來了，但是卻沒有被解析，還拋出了異常，那麼是不是 URLLoader就不能自動解析數據了呢？不是，相反URLLoader 提供了多種數據解析方式供你選擇。這些數據解析方式都在URLLoaderDataFormat裏，他們是：BINARY-以2進制的方式解析 TEXT-以文本的方式解析 VARIABLES-以變數-值配對的方式解析。URLLoader的dataFormat屬性提供了對解析方式的選擇，好，我們再來修改下程序使它變的更完美些：
 
 AS腳本（放到關鍵幀上）：
 
-<pre class="prettyprint linenums">
+```
 var loader:URLLoader = new URLLoader();
 //聲明一個URLRequest
 var url:URLRequest = new URLRequest("test.php");
@@ -156,7 +156,7 @@ trace(loader.data.flashMessage);
 //輸出整串數據flashMessage
 }
 loader.load(url);
-</pre>
+```
 
 test.php同上
 

@@ -16,20 +16,24 @@ tags:
 
 <!--more-->
 
-<pre class="pretty print linenums">/* TopToolbar */
+```
+/* TopToolbar */
 #topToolBar{width:100%;height:30px;position:fixed;background:#000;color:#FFFF00; z-index:9999;overflow:hidden;opacity:0.7;filter:alpha(opacity=70);-moz-opacity:.7;border-radius:0 0 5px 5px;box-shadow:0px 5px 5px #565656;-moz-border-radius:0 0 5px 5px;-webkit-border-radius:0 0 5px 5px;-khtml-border-radius:0 0 5px 5px;-webkit-box-shadow:0px 5px 5px #565656;-moz-box-shadow:0px 5px 5px #565656;top:0;_position:absolute;_top:expression(0+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+"px");}
 #topToolBar a{text-decoration:none;}
 #topSNS{float:right;padding:5px 10px 0 0;margin:0;}
-#rssfeeddiv{width: 82px; height: 212px;right: 55px ;position:fixed;z-index:10000;overflow:hidden;top:expression(document.documentElement.scrollTop +"30px");VISIBILITY: hidden;}</pre>
+#rssfeeddiv{width: 82px; height: 212px;right: 55px ;position:fixed;z-index:10000;overflow:hidden;top:expression(document.documentElement.scrollTop +"30px");VISIBILITY: hidden;}
+```
 
 用下面的代碼替換body標籤（在header.php中），其中oncopy事件你可以根據需要進行修改，Kinosang在這裏提醒您：firefox中不支持JS對剪貼板的set操作，常見的添加版權信息的腳本在firefox中無法運行。
 
-<pre class="prettyprint linenums">
-<body onclick = "document.getElementById('rssfeeddiv').style.visibility = 'hidden'; document.getElementById('topInfo').innerHTML = 'Kinosang推荐您使用Firefox3.6+、Opera10+或Safari5.0+ 在1280*720+分辨率下浏览本站。'; " oncopy = "document.getElementById('topInfo').innerHTML = '鉴于安全性的考虑奇诺网没有关闭半角字符替换功能，如果您拷贝的是程序代码，你需要手动把代码中的全角单双引号等字符替换成半角字符。';"></pre>
+```
+<body onclick = "document.getElementById('rssfeeddiv').style.visibility = 'hidden'; document.getElementById('topInfo').innerHTML = 'Kinosang推荐您使用Firefox3.6+、Opera10+或Safari5.0+ 在1280*720+分辨率下浏览本站。'; " oncopy = "document.getElementById('topInfo').innerHTML = '鉴于安全性的考虑奇诺网没有关闭半角字符替换功能，如果您拷贝的是程序代码，你需要手动把代码中的全角单双引号等字符替换成半角字符。';">
+```
 
 以下代碼放到header.php適當位置（Kinosang's Labs建議您放在的下一行）
 
-<pre class="prettyprint linenums"><!-- RSS Feed BEGIN -->
+```
+<!-- RSS Feed BEGIN -->
 <div id="rssfeeddiv">
 <map name="FPMap0"> <area coords="0, 0, 80, 20" shape="rect" href="http://fusion.google.com/add?feedurl=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 20, 80, 40" shape="rect" href="http://reader.youdao.com/#url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 40, 80, 60" shape="rect" href="http://www.xianguo.com/subscribe.php?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 60, 80, 80" shape="rect" href="http://www.zhuaxia.com/add_channel.php?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 80, 80, 100" shape="rect" href="http://add.my.yahoo.com/rss?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 100, 80, 120" shape="rect" href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 120, 80, 140" shape="rect" href="http://www.bloglines.com/sub/&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 140, 80, 160" shape="rect" href="http://inezha.com/add?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> </map>![](/wp-content/themes/whitelove/images/readers.gif)
 </div>
@@ -44,7 +48,8 @@ tags:
 
 </div>
 </div>
-<!-- Top Toolbar End --></pre>
+<!-- Top Toolbar End -->
+```
 
 記得修改上面的代碼中的Kinosang's Labs獨有的信息（包括域名、主題名、郵箱等）
 

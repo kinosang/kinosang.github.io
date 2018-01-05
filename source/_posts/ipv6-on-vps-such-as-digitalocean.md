@@ -29,17 +29,23 @@ IPv6真的很好很強大，在下折騰了一天讓在下的小窩也支援 IPv
 
 檢查方法：使用 nginx -v 指令，若回顯的結果中有
 
-<pre class="prettyprint linenums">configure arguments: --with-ipv6</pre>
+```
+configure arguments: --with-ipv6
+```
 
 則可以跳過重新編譯安裝的步驟，否則需要重新編譯：在 configure 時添加 --with-ipv6 的選項。
 
 接著，修改 Nginx 站點設定檔，在 server_name 上面添加一行：
 
-<pre class="prettyprint linenums">listen  [::]:80 ipv6only=on;</pre>
+```
+listen  [::]:80 ipv6only=on;
+```
 
 最後執行：
 
-<pre class="prettyprint linenums">$ service nginx reload</pre>
+```
+$ service nginx reload
+```
 
 使修改生效
 
@@ -47,13 +53,17 @@ IPv6真的很好很強大，在下折騰了一天讓在下的小窩也支援 IPv
 
 IPv6 不受 iptables 限制，但是受到 ip6tables 的限制，用下面的指令查看相關設定
 
-<pre class="prettyprint linenums">$ ip6tables -L</pre>
+```
+$ ip6tables -L
+```
 
 然後可以根據個人需要，修改規則，指令同 iptables。
 
 最後，別忘記儲存 =.=
 
-<pre class="prettyprint linenums">$ service ip6tables save</pre>
+```
+$ service ip6tables save
+```
 
 ## 四、設定 DNS AAAA 記錄
 

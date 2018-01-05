@@ -12,23 +12,27 @@ tags:
 
 過程略，參見 往期網誌。
 
-<pre class="lang:sh decode:true">$ mysql -u root -p
+```
+$ mysql -u root -p
 MariaDB [(none)]&gt; create database shadowsocks;
 MariaDB [(none)]&gt; CREATE USER 'shadowsocks'@'%' IDENTIFIED BY 'password';
 MariaDB [(none)]&gt; GRANT SELECT, INSERT, UPDATE, DELETE, INDEX ON shadowsocks.* TO 'shadowsocks'@'%';
-MariaDB [(none)]&gt; flush privileges;\q</pre>
+MariaDB [(none)]&gt; flush privileges;\q
+```
 
 <!--more-->
 
 ### 安裝依賴
 
-<pre class="lang:sh decode:true">$ sudo apt install python-pip python-m2crypto unzip vim
+```
+$ sudo apt install python-pip python-m2crypto unzip vim
 $ sudo pip install cymysql
-</pre>
+```
 
 ### 安裝 Shadowsocks Manyuser
 
-<pre class="lang:sh decode:true ">$ wget https://github.com/mengskysama/shadowsocks/archive/manyuser.zip
+```
+$ wget https://github.com/mengskysama/shadowsocks/archive/manyuser.zip
 $ unzip manyuser.zip
 $ cd shadowsocks-manyuser/shadowsocks/
 $ vim Config.py
@@ -44,11 +48,12 @@ MANAGE_PASS = 'ss233333333'
 MANAGE_BIND_IP = '127.0.0.1'
 #make sure this port is idle
 MANAGE_PORT = 23333
-</pre>
+```
 
 ### 優化 Shadowsocks
 
-<pre class="lang:sh decode:true">$ sudo vim /etc/sysctl.conf
+```
+$ sudo vim /etc/sysctl.conf
 # max open files
 fs.file-max = 51200
 # max read buffer
@@ -97,11 +102,12 @@ net.ipv4.tcp_congestion_control = hybla
 
 $ sudo sysctl -p
 $ ulimit -n 51200
-</pre>
+```
 
 ### 增强安全性
 
-<pre class="lang:sh decode:true">$ sudo apt install wondershaper
+```
+$ sudo apt install wondershaper
 # limit bandwidth to 10Mb/10Mb on eth0
 $ wondershaper eth0 10000 10000
 $ sudo apt install fail2ban
@@ -149,9 +155,10 @@ proxy_buffering off;
 
 $ sudo service nginx restart
 $ sudo iptables -t nat -m owner --uid-owner ssuser -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-port 3128
-</pre>
+```
 
 ### 啟動 Shadowsocks
 
-<pre class="lang:sh decode:true">$ sudo -u ssuser python server.py &gt; /var/log/shadowsocks.log 2&gt;&amp;1 &amp;
-</pre>
+```
+$ sudo -u ssuser python server.py &gt; /var/log/shadowsocks.log 2&gt;&amp;1 &amp;
+```

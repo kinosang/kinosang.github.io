@@ -23,7 +23,7 @@ tags:
 
 首先，在頁面頭部的前添加如下代碼：
 
-<pre class="prettyprint linenums">
+```
 <script type="text/javascript">// <![CDATA[
 function addEventHandler(target, type, func) {
 if (target.addEventListener)｛
@@ -38,29 +38,29 @@ if (coverDIV) coverDIV.style.top = document.body.scrollTop || document.documentE
 }
 addEventHandler(window, "scroll", move);
 // ]]></script>
-</pre>
+```
 
 之後添加一個空行，在這裏添加：
 
-<pre class="prettyprint linenums">
+```
 <div id="coverdiv">
 
 **<span id="waitInfo" style="font-size: 23px;">Now Loading...</span>**
 
 </div>
-</pre>
+```
 
 然後，在頁腳的前一行，添加下面的代碼：
 
-<pre class="prettyprint linenums">
+```
 <script type="text/javascript" language="JavaScript">// <![CDATA[
 document.getElementById('coverdiv').style.display = "none";
 // ]]></script>
-</pre>
+```
 
 最後，是樣式，wp可以添加到style.css，普通網站放到style標籤中
 
-<pre class="prettyprint linenums">
+```
 /* loading */
 /*灰色背景覆蓋層*/
 #coverdiv
@@ -77,6 +77,6 @@ opacity:0.8; /*CSS3,FF1.5*/
 display:block;
 }
 #coverdiv a{color:#FF0000;}
-</pre>
+```
 
 歡迎各位留言討論，發現問題請及時告訴我（留言或E-mail） ;-) 。

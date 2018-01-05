@@ -16,12 +16,14 @@ tags:
 
 以 Ubuntu 14.04 為例，修改 /var/lib/locales/supported.d/local 之後更新 locales：
 
-<pre class="lang:default decode:true">$ sudo vim /var/lib/locales/supported.d/local
+```
+$ sudo vim /var/lib/locales/supported.d/local
 en_US.UTF-8 UTF-8
 zh_TW.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
 
-$ sudo dpkg-reconfigure locales</pre>
+$ sudo dpkg-reconfigure locales
+```
 
 最後 restart php-fpm（使用 Apache mod-php 的則 restart apache）
 

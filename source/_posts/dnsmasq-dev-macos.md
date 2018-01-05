@@ -26,12 +26,14 @@ tags:
 
 使用 Homebrew 安裝
 
-<pre>$ brew install dnsmasq
-</pre>
+```
+$ brew install dnsmasq
+```
 
 ### 設定 Dnsmasq
 
-<pre>$ vim /usr/local/etc/dnsmasq.conf
+```
+$ vim /usr/local/etc/dnsmasq.conf
 
 # address=/double-click.net/127.0.0.1
 address=/dev/127.0.0.1
@@ -41,20 +43,20 @@ $ sudo brew services start dnsmasq
 $ dig abc.dev @127.0.0.1
 ;; ANSWER SECTION:
 abc.dev. 0 IN   A   127.0.0.1
-</pre>
+```
 
 ### 設定 macOS
 
-<pre>$ sudo mkdir -p /etc/resolver
+```
+$ sudo mkdir -p /etc/resolver
 $ sudo vim /etc/resolver/dev
 nameserver 127.0.0.1
-</pre>
+```
 
 ### 測試
 
-&nbsp;
-
-<pre>$ ping he.net
+```
+$ ping he.net
 $ ping abc.dev
 $ ping foo.bar.dev
-</pre>
+```

@@ -10,10 +10,10 @@ tags:
 前些日子翻 PHP 的手冊看，發現一個神奇的函數，手冊中的說明如下：
 
 > Description
-> 
+>
 > `array token_get_all ( string $source )`
 > token_get_all() parses the given source string into PHP language tokens using the Zend engine's lexical scanner.
-> 
+>
 > For a list of parser tokens, see List of Parser Tokens, or use token_name() to translate a token value into its string representation.
 
 <!--more-->
@@ -28,7 +28,8 @@ tags:
 
 下面給出一段示例代碼：
 
-<pre class="lang:php decode:true ">function uglify($contents) {
+```
+function uglify($contents) {
 
     $tokens = token_get_all($contents);
 
@@ -65,6 +66,6 @@ tags:
 
     return implode("", $tokens);
 }
-</pre>
+```
 
 註：代碼沒有實現混淆功能，僅演示了利用 token_get_all() 分析處理 PHP 文件。

@@ -13,8 +13,6 @@ tags:
 
 <!--more-->
 
-&nbsp;
-
 [caption id="attachment_2329" align="alignnone" width="748"]![openstack-software-diagram](https://blog.7in0.me/wp-content/uploads/2016/10/openstack-software-diagram.png) 圖片來源： openstack.org[/caption]
 
 網際網路上的雲端運算服務特徵和自然界的雲、水迴圈具有一定的相似性，因此，雲端是一個相當貼切的比喻。根據美國國家標準和技術研究院的定義，雲端運算服務應該具備以下幾條特徵：

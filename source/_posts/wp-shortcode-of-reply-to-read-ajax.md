@@ -27,7 +27,7 @@ tags:
 
 [reply]
 
-<pre class="prettyprint linenums">
+```
 /**
 * 短代碼之評論可見
 * @author 亂了感覺(http://messense.me)
@@ -69,24 +69,24 @@ return;
 }
 }
 add_action('init', 'ajax_post');
-</pre>
+```
 
 [/reply]
 
 在你的comments-ajax.js中找到：
 
-<pre class="prettyprint linenums">
+```
 if ( temp && respond ) {
 temp.parentNode.insertBefore(respond, temp);
 temp.parentNode.removeChild(temp)
 }
-</pre>
+```
 
 在其後插入：
 
 [reply]
 
-<pre class="prettyprint linenums">
+```
 //handle reply-to-read,auto refresh page
 if($ ('.reply-to-read').length&gt;0){
 var title=$ ('.post-info h2').text(); //這裏的選擇器改成你的文章的標題的選擇器
@@ -107,7 +107,7 @@ alert('ajax請求出錯,請重試!')
 }
 });
 }
-</pre>
+```
 
 [/reply]
 關於用法，原作者如是說：
