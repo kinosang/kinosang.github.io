@@ -32,7 +32,7 @@ tags:
 <!-- Top Toolbar Begin -->
 <div id="topToolBar">[![](https://blog.7in0.me/wp-content/uploads/2015/06/ebf7e62abaa2db8e332e3e4662658308.png)](javascript:void(0) "加入收藏")
 [![](https://blog.7in0.me/wp-content/uploads/2015/06/b83a886a5c437ccd9ac15473fd6f1788.png)](mailto:chinvo@chinvo.org "Email")
-[![](https://blog.7in0.me/wp-content/uploads/2015/06/8bb856027f758e85ddf2085c98ae2908.png)](&lt;?php bloginfo( "訂閱本站")
+[![](https://blog.7in0.me/wp-content/uploads/2015/06/8bb856027f758e85ddf2085c98ae2908.png)](<?php bloginfo( "訂閱本站")
 
 [![](https://blog.7in0.me/wp-content/uploads/2015/06/479ec3a475294205ce35aa7abc762dce1.gif)](http://www.jiathis.com/share/)
 <script charset="utf-8" type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js"></script>

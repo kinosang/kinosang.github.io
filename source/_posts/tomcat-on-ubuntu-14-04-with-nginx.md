@@ -25,16 +25,16 @@ $ sudo apt install nginx
 $ sudo apt install tomcat7
 $ sudo vim /etc/tomcat7/server.xml
 ...
-&lt;Connector port="8080" protocol="HTTP/1.1"
+<Connector port="8080" protocol="HTTP/1.1"
            connectionTimeout="20000"
            URIEncoding="UTF-8"
-           redirectPort="8443" /&gt;
+           redirectPort="8443" />
 ...
 $ sudo apt-get install tomcat7-docs tomcat7-admin tomcat7-examples
 $ sudo vim /etc/tomcat7/tomcat-users.xml
-&lt;tomcat-users&gt;
-    &lt;user username="user" password="password" roles="manager-gui,admin-gui"/&gt;
-&lt;/tomcat-users&gt;
+<tomcat-users>
+    <user username="user" password="password" roles="manager-gui,admin-gui"/>
+</tomcat-users>
 $ sudo service tomcat7 start
 ```
 

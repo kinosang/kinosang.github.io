@@ -34,7 +34,7 @@ function uglify($contents) {
     $tokens = token_get_all($contents);
 
     $last_space = false;
-    foreach( $tokens as $num =&gt; $token) {
+    foreach( $tokens as $num => $token) {
         if (is_string($token)) {
             $last_space = false;
             continue;
@@ -45,10 +45,10 @@ function uglify($contents) {
                 $token[1] = "";
                 break;
             case T_OPEN_TAG:
-                $token[1] = "&lt;?php";
+                $token[1] = "<?php";
                 break;
             case T_CLOSE_TAG:
-                $token[1] = "?&gt;";
+                $token[1] = "?>";
                 break;
             case T_WHITESPACE:
                 if (!$last_space) {

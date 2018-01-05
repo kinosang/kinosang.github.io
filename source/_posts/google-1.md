@@ -39,24 +39,24 @@ tags:
 找到你的模板的home.php文件（若沒有，則修改index.php），找到
 
 ```
-&lt;?php while (have_posts()) : the_post(); ?&gt;
+<?php while (have_posts()) : the_post(); ?>
 ```
 
 向下查找，尋找如下代碼：
 
 ```
-&lt;div class="post" id="post-&lt;?php the_ID(); ?&gt;"&gt;
+<div class="post" id="post-<?php the_ID(); ?>">
 ```
 
 在這個div的範圍內，選擇一個你認為合適的地方，添加下面的腳本
 
 ```
-&lt;!-- Google+ Begin --&gt;
-&lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;
+<!-- Google+ Begin -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
 {lang: 'zh-CN'}
-&lt;/script&gt;
-&lt;g:plusone size="small" href="&lt;?php the_permalink() ?&gt;"&gt;&lt;/g:plusone&gt;
-&lt;!-- Google+ End --&gt;
+</script>
+<g:plusone size="small" href="<?php the_permalink() ?>"></g:plusone>
+<!-- Google+ End -->
 ```
 
 當然，script標籤你也可以移動到其他位置，重點是g:plusone標籤，它決定了Google+1按鈕的位置。
@@ -66,12 +66,12 @@ tags:
 當然，你還可以在文章頁面（single.php）的任意位置添加下面的代碼：
 
 ```
-&lt;!-- Google+ Begin --&gt;
-&lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;
+<!-- Google+ Begin -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
 {lang: 'zh-CN'}
-&lt;/script&gt;
-&lt;g:plusone size="small"&gt;&lt;/g:plusone&gt;
-&lt;!-- Google+ End --&gt;
+</script>
+<g:plusone size="small"></g:plusone>
+<!-- Google+ End -->
 ```
 
 然後，下面就是重頭戲了。

@@ -125,7 +125,7 @@ test.php：
 <?php
 $ flashData = $ _POST['message'];
 $ phpMessage = "I am PHP!";
-echo "phpMessage=$ phpMessage&amp;flashMessage=$ flashData";
+echo "phpMessage=$ phpMessage&flashMessage=$ flashData";
 ?>
 ```
 

@@ -25,7 +25,7 @@ $ tar vzxf Python-2.7.6.tgz
 $ cd Python-2.7.6
 $ ./configure
 ...
-$ make &amp;&amp; make install
+$ make && make install
 ...
 $ python --version
 Python 2.6.6

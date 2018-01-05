@@ -88,12 +88,12 @@ temp.parentNode.removeChild(temp)
 
 ```
 //handle reply-to-read,auto refresh page
-if($ ('.reply-to-read').length&gt;0){
+if($ ('.reply-to-read').length>0){
 var title=$ ('.post-info h2').text(); //這裏的選擇器改成你的文章的標題的選擇器
 var postId=$ ('.post').attr('id').replace(/^post-(.*)$ /,'$ 1');
 $ .ajax({
 type: 'GET',
-url: 'http://'+document.domain+'/?action=ajax&amp;id='+postId,
+url: 'http://'+document.domain+'/?action=ajax&id='+postId,
 beforeSend:function(){
 $ ('.post-info h2').text('正在重新加載文章中'); //這裏的選擇器改成你的文章的標題的選擇器
 $ body.animate( {scrollTop: $ ('.entry').offset().top - 200}, 900);//這裏的選擇器改成你的文章的內容的選擇器

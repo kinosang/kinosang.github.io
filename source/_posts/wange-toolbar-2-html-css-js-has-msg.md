@@ -35,14 +35,14 @@ tags:
 ```
 <!-- RSS Feed BEGIN -->
 <div id="rssfeeddiv">
-<map name="FPMap0"> <area coords="0, 0, 80, 20" shape="rect" href="http://fusion.google.com/add?feedurl=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 20, 80, 40" shape="rect" href="http://reader.youdao.com/#url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 40, 80, 60" shape="rect" href="http://www.xianguo.com/subscribe.php?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 60, 80, 80" shape="rect" href="http://www.zhuaxia.com/add_channel.php?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 80, 80, 100" shape="rect" href="http://add.my.yahoo.com/rss?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 100, 80, 120" shape="rect" href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 120, 80, 140" shape="rect" href="http://www.bloglines.com/sub/&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> <area coords="0, 140, 80, 160" shape="rect" href="http://inezha.com/add?url=&lt;?php bloginfo('rss2_url'); ?&gt;" target="_blank" /> </map>![](/wp-content/themes/whitelove/images/readers.gif)
+<map name="FPMap0"> <area coords="0, 0, 80, 20" shape="rect" href="http://fusion.google.com/add?feedurl=<?php bloginfo('rss2_url'); ?>" target="_blank" /> <area coords="0, 20, 80, 40" shape="rect" href="http://reader.youdao.com/#url=<?php bloginfo('rss2_url'); ?>" target="_blank" /> <area coords="0, 40, 80, 60" shape="rect" href="http://www.xianguo.com/subscribe.php?url=<?php bloginfo('rss2_url'); ?>" target="_blank" /> <area coords="0, 60, 80, 80" shape="rect" href="http://www.zhuaxia.com/add_channel.php?url=<?php bloginfo('rss2_url'); ?>" target="_blank" /> <area coords="0, 80, 80, 100" shape="rect" href="http://add.my.yahoo.com/rss?url=<?php bloginfo('rss2_url'); ?>" target="_blank" /> <area coords="0, 100, 80, 120" shape="rect" href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url=<?php bloginfo('rss2_url'); ?>" target="_blank" /> <area coords="0, 120, 80, 140" shape="rect" href="http://www.bloglines.com/sub/<?php bloginfo('rss2_url'); ?>" target="_blank" /> <area coords="0, 140, 80, 160" shape="rect" href="http://inezha.com/add?url=<?php bloginfo('rss2_url'); ?>" target="_blank" /> </map>![](/wp-content/themes/whitelove/images/readers.gif)
 </div>
 <!-- RSS Feed END -->
 <!-- Top Toolbar Begin -->
 <div id="topToolBar">
 <div id="topInfo">Kinosang推薦您使用Firefox3.6+、Opera10+或Safari5.0+ 在1280*720+分辨率下瀏覽本站。</div>
 <div id="topRight">
-[![](/wp-content/themes/whitelove/images/fav.png)](javascript:void(0) "加入收藏")[![](/wp-content/themes/whitelove/images/mail.png)](mailto:chinvo@chinvo.org "E-mail")[![](/wp-content/themes/whitelove/images/rss.png)](&lt;?php bloginfo( "訂閱本站")
+[![](/wp-content/themes/whitelove/images/fav.png)](javascript:void(0) "加入收藏")[![](/wp-content/themes/whitelove/images/mail.png)](mailto:chinvo@chinvo.org "E-mail")[![](/wp-content/themes/whitelove/images/rss.png)](<?php bloginfo( "訂閱本站")
 
 [![](https://blog.7in0.me/wp-content/uploads/2015/06/479ec3a475294205ce35aa7abc762dce.gif)](http://www.jiathis.com/share/)<script charset="utf-8" type="mce-text/javascript" src="http://v2.jiathis.com/code_mini/jia.js"></script>
 

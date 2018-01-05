@@ -120,7 +120,7 @@ $ sudo -u postgres psql -d template1 -c "CREATE EXTENSION IF NOT EXISTS pg_trgm;
 $ sudo -u postgres psql -d template1 -c "CREATE DATABASE gitlabhq_production OWNER git;"
 $ sudo -u git -H psql -d gitlabhq_production
 
-gitlabhq_production&gt; SELECT true AS enabled FROM pg_available_extensions WHERE name = 'pg_trgm' AND installed_version IS NOT NULL;
+gitlabhq_production> SELECT true AS enabled FROM pg_available_extensions WHERE name = 'pg_trgm' AND installed_version IS NOT NULL;
 
 # 理論上有如下信息顯示
 enabled
@@ -128,7 +128,7 @@ enabled
  t
 (1 row)
 
-gitlabhq_production&gt;\q
+gitlabhq_production>\q
 
 $ sudo systemctl enable postgresql
 ```
@@ -165,7 +165,7 @@ $ cd /home/git/gitlab
 
 $ sudo -u git -H cp config/gitlab.yml.example config/gitlab.yml
 $ sudo -u git -H editor config/gitlab.yml # 編輯 gitlab 配置
-# 主要修改 gitlab -&gt; host, gitlab -&gt; email_from, git -&gt; bin_path
+# 主要修改 gitlab -> host, gitlab -> email_from, git -> bin_path
 # HTTPS 相關 port 修改爲 443, https 修改爲 true
 
 $ sudo -u git -H cp config/initializers/smtp_settings.rb.sample config/initializers/smtp_settings.rb

@@ -17,20 +17,20 @@ tags:
 ASP基本結構
 
 ```
-&lt;%
+<%
 語句
 ……
-%&gt;
+%>
 ```
 
 定義變數dim語句
 
 ```
-&lt;%
+<%
 dim a,b
 a=10
 b="ok!"
-%&gt;
+%>
 ```
 
 注意：定義的變數可以是數值型，也可以是字元或者其他類型的
@@ -74,10 +74,10 @@ Kinosang在這裏聲明：您需要先創建一個數據庫，數據庫結構請
 .數據庫連接(用來單獨編制連接文件conn.asp)
 
 ```
-&lt;%
+<%
 Set conn = Server.CreateObject("ADODB.Connection")
-conn.Open "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" &amp; Server.MapPath("bbsdb1user.mdb")
-%&gt;
+conn.Open "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" & Server.MapPath("bbsdb1user.mdb")
+%>
 ```
 
 (用來連接bbsdb1目錄下的user.mdb數據庫)
@@ -91,7 +91,7 @@ conn.Open "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" &amp; Server.MapPath(
 
 ```
 <!--#include file=conn.asp--><!-- 包含conn.asp用來打開bbsdb1目錄下的user.mdb數據庫 -->
-&lt;%
+<%
 set rs=server.CreateObject("adodb.recordset") ' 建立recordset對象
 sqlstr="select * from message" 'message為數據庫中的一個數據表，即你要顯示的數據所存放的數據表
 rs.open sqlstr,conn,1,3 '表示打開數據庫的方式
@@ -106,7 +106,7 @@ conn.close '這幾句是用來關閉數據庫
 set rs=nothing
 set conn=nothing
 '----Kinosang.ws分割線-----------------------------
-%&gt;
+%>
 ```
 
 其中response對象是服務器向客戶端瀏覽器發送的信息
@@ -117,7 +117,7 @@ set conn=nothing
 
 ```
 <!--#include file=conn.asp--> <!-- 包含conn.asp用來打開bbsdb1目錄下的user.mdb數據庫 -->
-&lt;%
+<%
 set rs=server.CreateObject("adodb.recordset") '建立recordset對象
 sqlstr="select * from message" 'message為數據庫中的一個數據表，即你要顯示的數據所存放的數據表
 rs.open sqlstr,conn,1,3 '表示打開數據庫的方式
@@ -130,7 +130,7 @@ conn.close '這幾句是用來關閉數據庫
 set rs=nothing
 set conn=nothing
 '----Kinosang.ws分割線----------------------------
-%&gt;
+%>
 ```
 
 刪除一條記錄
@@ -139,7 +139,7 @@ set conn=nothing
 
 ```
 <!--#include file=conn.asp--> <!-- 包含conn.asp用來打開bbsdb1目錄下的user.mdb數據庫 -->
-&lt;%
+<%
 dim name
 name="xx"
 set rs=server.CreateObject("adodb.recordset") '建立recordset對象
@@ -159,7 +159,7 @@ rs.close
 conn.close '這幾句是用來關閉數據庫
 set rs=nothing
 set conn=nothing
-%&gt;
+%>
 ```
 
 關於數據庫的查詢
@@ -167,18 +167,18 @@ set conn=nothing
 (a) 查詢欄位為字元型
 
 ```
-&lt;%
+<%
 dim user,pass,qq,mail,message
 user=request.Form("user")
 pass=request.Form("pass")
 qq=request.Form("qq")
 mail=request.Form("mail")
 message=request.Form("message")
-if trim(user)&amp;"x"="x" or trim(pass)&amp;"x"="x" then '檢測user值和pass值是否為空，可以檢測到空格
+if trim(user)&"x"="x" or trim(pass)&"x"="x" then '檢測user值和pass值是否為空，可以檢測到空格
 response.write("註冊信息不能為空")
 else
 set rs=server.CreateObject("adodb.recordset")
-sqlstr="select * from user where user=''"&amp;user&amp;"''" '查詢user數據表中的user欄位其中user欄位為字元型
+sqlstr="select * from user where user=''"&user&"''" '查詢user數據表中的user欄位其中user欄位為字元型
 rs.open sqlstr,conn,1,3
 if rs.eof then
 rs.addnew
@@ -199,17 +199,17 @@ conn.close
 set rs=nothing
 set conn=nothing
 response.write("註冊重名")
-%&gt;
+%>
 ```
 
 (b)查詢欄位為數字型
 
 ```
-&lt;%
+<%
 dim num
 num=request.Form("num")
 set rs=server.CreateObject("adodb.recordset")
-sqlstr="select * from message where id="&amp;num '查詢message數據表中id欄位的值是否與num相等，其中id為數字型
+sqlstr="select * from message where id="&num '查詢message數據表中id欄位的值是否與num相等，其中id為數字型
 rs.open sqlstr,conn,1,3
 if not rs.eof then
 rs.delete
@@ -225,7 +225,7 @@ conn.close
 set rs=nothing
 set conn=nothing
 response.write("刪除失敗")
-%&gt;
+%>
 ```
 
 幾個簡單的asp對象的講解 本文來自Kinosang.ws
@@ -243,17 +243,17 @@ server對象：提供對服務器上方法和屬性的訪問
 比如：
 
 ```
-&lt;%
+<%
 resposne.write("hello, welcome to Kinosang!")
-%&gt;
+%>
 ```
 
 在客戶端瀏覽器就會看到 hello, welcome to Kinosang! 這一段文字
 
 ```
-&lt;%
+<%
 response.Redirect("www.kinosang.ws")
-%&gt;
+%>
 ```
 
 如果執行這一段，則瀏覽器就會自動連接到 "Kinosang's Labs" 的網址
@@ -275,11 +275,11 @@ response.Redirect("www.kinosang.ws")
 下面我們就來分析request.asp的寫法
 
 ```
-&lt;%
+<%
 dim name,password '定義user和password兩個變數
 name=request.form("user") '將表單中的user信息傳給變數name
 password=request.form("pass") '將表單中的pass信息傳給變數password
-%&gt;
+%>
 ```
 
 通過以上的幾句代碼我們就將表單中的數據讀進來了，接下來我們要做的就是將信息寫入數據庫了，寫入數據庫的方法上面都介紹了，這裏就不一一重複了。

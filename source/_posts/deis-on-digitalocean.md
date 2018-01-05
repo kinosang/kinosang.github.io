@@ -35,7 +35,7 @@ $ ssh-keygen -q -t rsa -f ~/.ssh/deis -N '' -C deis
 ```
 $ make discovery-url
 $ gem install docl
-$ docl authorize #在這裡你需要前往 DigitalOcean 的 Apps&amp;API 頁面獲取一個 Personal Access Tokens
+$ docl authorize #在這裡你需要前往 DigitalOcean 的 Apps&API 頁面獲取一個 Personal Access Tokens
 $ docl upload_key deis ~/.ssh/deis.pub
 $ docl keys
 deis (id: 12345)
@@ -65,7 +65,7 @@ deis-3   IN A    104.131.113.138
 因為 DigitalOcean 沒有提供安全組設定，所以使用 iptables 來實現轉發，在 git 倉庫根目錄使用下面的命令（記得用你自己的域名替換 example.com）
 
 ```
-$ for i in 1 2 3; do ssh core@deis-$i.example.com 'bash -s' &lt; contrib/util/custom-firewall.sh; done
+$ for i in 1 2 3; do ssh core@deis-$i.example.com 'bash -s' < contrib/util/custom-firewall.sh; done
 ```
 
 在你的電腦中安裝 deisctl（[參考](http://docs.deis.io/en/latest/installing_deis/install-deisctl/#install-deisctl)）

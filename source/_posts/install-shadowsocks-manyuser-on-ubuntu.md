@@ -14,10 +14,10 @@ tags:
 
 ```
 $ mysql -u root -p
-MariaDB [(none)]&gt; create database shadowsocks;
-MariaDB [(none)]&gt; CREATE USER 'shadowsocks'@'%' IDENTIFIED BY 'password';
-MariaDB [(none)]&gt; GRANT SELECT, INSERT, UPDATE, DELETE, INDEX ON shadowsocks.* TO 'shadowsocks'@'%';
-MariaDB [(none)]&gt; flush privileges;\q
+MariaDB [(none)]> create database shadowsocks;
+MariaDB [(none)]> CREATE USER 'shadowsocks'@'%' IDENTIFIED BY 'password';
+MariaDB [(none)]> GRANT SELECT, INSERT, UPDATE, DELETE, INDEX ON shadowsocks.* TO 'shadowsocks'@'%';
+MariaDB [(none)]> flush privileges;\q
 ```
 
 <!--more-->
@@ -160,5 +160,5 @@ $ sudo iptables -t nat -m owner --uid-owner ssuser -A OUTPUT -p tcp --dport 80 -
 ### 啟動 Shadowsocks
 
 ```
-$ sudo -u ssuser python server.py &gt; /var/log/shadowsocks.log 2&gt;&amp;1 &amp;
+$ sudo -u ssuser python server.py > /var/log/shadowsocks.log 2>&1 &
 ```

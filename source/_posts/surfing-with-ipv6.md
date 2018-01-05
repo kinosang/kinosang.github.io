@@ -68,8 +68,8 @@ do
 IPV4=$(ip -4 addr show dev ppp0 | awk '/inet / {print $2}' | cut -d/ -f1)
 if [ "$IPV4" != "$OLDIP" ]
 then
-/wp-content/bin/wget 'http://ipv4.tunnelbroker.net/ipv4_end.php?ipv4b='$IPV4'&amp;pass='$PASSWORD'&amp;user_id='$USERID'&amp;tunnel_id='$TUNNELID -O -
-echo "`date` ip address changed" &gt;&gt; /tmp/startup.debug
+/wp-content/bin/wget 'http://ipv4.tunnelbroker.net/ipv4_end.php?ipv4b='$IPV4'&pass='$PASSWORD'&user_id='$USERID'&tunnel_id='$TUNNELID -O -
+echo "`date` ip address changed" >> /tmp/startup.debug
 ip tunnel del he-ipv6
 ip tunnel add he-ipv6 mode sit remote <span style="color: #ff0000;">**Server IPv4 Address**</span> local $IPV4 ttl 255
 ip link set he-ipv6 up
@@ -81,8 +81,8 @@ fi
 
 if [ `ps | grep radvd | grep -vc grep` -ne 1 ]
 then
-radvd -C /tmp/radvd.conf &amp;
-echo "`date` process radvd not found, restarting" &gt;&gt; /tmp/startup.debug
+radvd -C /tmp/radvd.conf &
+echo "`date` process radvd not found, restarting" >> /tmp/startup.debug
 fi
 OLDIP="$IPV4"
 sleep 60

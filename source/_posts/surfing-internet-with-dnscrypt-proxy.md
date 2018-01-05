@@ -47,7 +47,7 @@ _如果在學校或公司等需要使用網絡時需要設定內網 DNS，將內
 ```
 $ bunzip2 -cd dnscrypt-proxy-*.tar.bz2 | tar xvf -
 $ cd dnscrypt-proxy-*
-$ ./configure &amp;&amp; make -j2
+$ ./configure && make -j2
 $ make install
 ```
 
@@ -68,7 +68,7 @@ $ dnscrypt-proxy --daemonize
 解開 zip 檔，cd 進入相應檔案夾，執行下面的指令：
 
 ```
-cmd&gt; dnscrypt-proxy.exe --install
+cmd> dnscrypt-proxy.exe --install
 ```
 
 1.  修改 DNS 设定（同 Mac OS X）

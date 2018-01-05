@@ -33,7 +33,7 @@ GND   -> GND
 
 然後打開 Arduino IDE 的 Serial Monitor （使用 screen 也可以）
 
-選擇 `Both NL &amp; CR -- 38400 baud`
+選擇 `Both NL & CR -- 38400 baud`
 
 鍵入 “AT” 並送出，如果收到 ERROR 或者沒有迴應，稍等片刻再繼續。
 
