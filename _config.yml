@@ -82,6 +82,33 @@ deploy:
   branch: gh-pages
   message:
 
+algolia:
+  appId: "PAABXPOQCP"
+  apiKey: "7e4cbdf633b332005fc09c6a10ce275f"
+  adminApiKey: ""
+  chunkSize: 5000
+  indexName: "my-hexo-blog"
+  fields:
+    - title
+    - date
+    - excerpt
+    - excerpt:strip
+    - permalink
+    - thumbnailImageUrl
+
+archive_generator:
+  per_page: 10
+  yearly: true
+  monthly: true
+  daily: false
+  order_by: -date
+
+category_generator:
+  per_page: 10
+
+tag_generator:
+  per_page: 10
+
 feed:
   type: atom
   path: atom.xml
@@ -89,3 +116,6 @@ feed:
 
 licenseType: by-nc-sa
 licenseIconSize: small
+
+sitemap:
+  path: sitemap.xml
