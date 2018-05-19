@@ -26,4 +26,6 @@ auth       sufficient     pam_smartcard.so
 
 因為 `/etc/pam.d/sudo` 檔唯讀，所以需要用 `:w!` 存儲。
 
+![Touch ID for sudo](87c01ec7gy1frgnmgy396j20oq08ct9o.jpg)
+
 現在就可以在使用 `sudo` 時按手指了。
