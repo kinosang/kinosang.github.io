@@ -18,7 +18,7 @@ gRPC 目前已經支援 TLS 相互驗證、Google 驗證和自訂驗證，但說
 // 說明中指出可使用如下方案，但此種寫法不強制要求相互驗證
 // creds := credentials.NewServerTLSFromFile(certFile, keyFile)
 // s := grpc.NewServer(grpc.Creds(creds))
-// 注意其實次寫法存在錯誤，NewServerTLSFromFile() 傳回值為 (TransportCredentials, error)
+// 注意其實此寫法存在錯誤，NewServerTLSFromFile() 傳回值為 (TransportCredentials, error)
 // 故應寫成 creds, _ := credentials.NewServerTLSFromFile(certFile, keyFile)
 
 // 載入 TLS 伺服器憑據
@@ -63,7 +63,7 @@ const client = new services.WalletClient('localhost:8080', ssl_creds);
 
 開始時思路為傳遞一個 RPC 的 HMAC-SHA256 數位簽名，為了避免重送攻擊，在生成簽名時引入時間戳和 Nonce。
 
-仔細分析了 gRPC 的原始碼，發現對完整 RPC 用戶端請求進行簽名的可能性極低（伺服器端攔截器不方便獲取請求內容，用戶端攔截器無法獲取到請求內容），遂改為對用戶端請求動作進行簽名。
+仔細分析了 gRPC 的原始碼，發現對完整 RPC 用戶端請求進行簽名的可能性極低 (伺服器端攔截器不方便獲取請求內容，用戶端攔截器無法獲取到請求內容)，遂改為對用戶端請求動作 (URI) 進行簽名。
 
 對伺服器端進行修改
 
