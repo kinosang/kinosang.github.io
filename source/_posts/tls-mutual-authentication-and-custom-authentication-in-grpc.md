@@ -63,6 +63,8 @@ const client = new services.WalletClient('localhost:8080', ssl_creds);
 
 開始時思路為傳遞一個 RPC 的 HMAC-SHA256 數位簽名，為了避免重送攻擊，在生成簽名時引入時間戳和 Nonce。
 
+為了實現相關功能，需要用到 gRPC 的攔截器 (Interceptor)，在 gRPC 中，攔截器與各種 HTTP 伺服器軟體的中介層 (middleware) 作用類似，分為伺服器端攔截器和用戶端攔截器，可以對請求動作添加額外邏輯。
+
 仔細分析了 gRPC 的原始碼，發現對完整 RPC 用戶端請求進行簽名的可能性極低 (伺服器端攔截器不方便獲取請求內容，用戶端攔截器無法獲取到請求內容)，遂改為對用戶端請求動作 (URI) 進行簽名。
 
 對伺服器端進行修改
@@ -99,7 +101,7 @@ opts := []grpc.ServerOption{
 
 ```javascript
 // 如果不需要 options.method_definition.path 等資訊，可以使用 createFromMetadataGenerator
-// grpc.createFromMetadataGenerator(function(args, callback) {
+// grpc.credentials.createFromMetadataGenerator(function(args, callback) {
 //   var metadata = new Metadata();
 //   metadata.add('authorization', 'something-here');
 //   callback(null, metadata);
