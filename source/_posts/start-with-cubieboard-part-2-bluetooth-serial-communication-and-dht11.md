@@ -7,7 +7,7 @@ date: 2014-02-07 16:04:00
 tags:
 ---
 
-<!--markdown-->HC-05藍牙串列埠 | DHT11 溫度感測器 | Cubieboard | Cubian
+HC-05藍牙串列埠 | DHT11 溫度感測器 | Cubieboard | Cubian
 
 總是用 Arduino as USB2TTY 連接 Cubieboard 很不方便，正好手頭有一塊 HC-05，今天就來實驗一下藍牙串列埠的使用方法。
 

@@ -9,7 +9,7 @@ date: 2015-01-06 00:50:00
 tags:
 ---
 
-<!--markdown-->最近幾天被各種 AnyConnect 的消息反覆轟炸，終於下定決心試試傳說中萌萌噠的 AnyConnect。
+最近幾天被各種 AnyConnect 的消息反覆轟炸，終於下定決心試試傳說中萌萌噠的 AnyConnect。
 
 伺服器的部署參考鳳凰菊苣的網誌[《在 Ubuntu 服务器上搭建 OpenConnect 服务器小记》](https://blog.phoenixlzx.com/2014/07/21/setup-openconnect-server-on-ubuntu/)。
 

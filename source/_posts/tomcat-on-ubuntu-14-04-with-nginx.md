@@ -8,7 +8,7 @@ date: 2015-03-04 22:56:00
 tags:
 ---
 
-<!--markdown-->最近有一個 Tomcat 應用需要部署到現有 VPS 上，該 VPS 已經安裝了 Nginx 和 HHVM，綜合考慮多種因素，決定不安裝 Apache，通過 Nginx 反代 Tomcat。
+最近有一個 Tomcat 應用需要部署到現有 VPS 上，該 VPS 已經安裝了 Nginx 和 HHVM，綜合考慮多種因素，決定不安裝 Apache，通過 Nginx 反代 Tomcat。
 
 <!--more-->
 

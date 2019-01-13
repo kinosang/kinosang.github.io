@@ -7,7 +7,7 @@ date: 2014-04-14 21:32:00
 tags:
 ---
 
-<!--markdown-->### To Heart 是什麼？
+### To Heart 是什麼？
 
 > 《To Heart》是由Leaf／AQUAPLUS在1997年出版的PC美少女遊戲，並在1999年推出的PlayStation版本中加入配音。2003年，在PC上推出的第二個版本《To Heart PSE》，是PS版本再加上附加小遊戲而成。1997年PC版屬十八禁遊戲，PlayStation及PSE屬全年齡版本。
 >   1999年，KSS製作動畫《To Heart》，共十三集。第二個相關動畫《To Heart 青春紀事》[注 1]（To Heart ～Remember My Memories～）直到2004年10月才在日本推出。《To Heart》系列在日本受到相當大的迴響。它受歡迎的程度，在為數眾多的同人誌裡可見一斑。遊戲中的女角來棲川芹香以及Multi的人氣，在日本歷久不衰。
