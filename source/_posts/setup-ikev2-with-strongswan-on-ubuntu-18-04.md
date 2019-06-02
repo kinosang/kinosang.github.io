@@ -10,14 +10,14 @@ tags:
 
 <!--more-->
 
-1. 安裝 StrongSwan
+### 安裝 StrongSwan
 
 ```bash
 $ sudo apt update
 $ sudo apt install strongswan libcharon-extra-plugins # strongswan-plugin-dhcp 已被 libcharon-extra-plugins 取代
 ```
 
-2. 設定 StrongSwan
+### 設定 StrongSwan
 
 需要將 `server-cert.crt` 放入 `/etc/ipsec.d/certs/`，將 `server-key.pem` 放入 `/etc/ipsec.d/private/`，將 CA 放入 `/etc/ipsec.d/cacerts/`.
 
@@ -83,14 +83,14 @@ vpn : EAP "vpn" # 使用者名稱和密碼
 ...
 ```
 
-3. 啟動 StrongSwan
+### 啟動 StrongSwan
 
 ```bash
 $ sudo systemctl start strongswan
 $ sudo systemctl enable strongswan
 ```
 
-4. 設定轉發
+### 設定轉發
 
 ```bash
 $ sudo ufw allow from 10.0.0.0/24 to any port 22 # 只允許辦公室訪問 SSH
@@ -151,12 +151,12 @@ COMMIT
 $ sudo ufw enable
 ```
 
-5. DNS 問題
+### DNS 問題
 
 因為前文設定 `leftsubnet=10.0.0.0/24`，在 iOS 和 macOS 上 `rightdns=10.0.0.1` 不起作用，
 所以需要通過 `attr` 外掛來使內網域名正常解析。
 
-*`leftsubnet=0.0.0.0/0` 時所有網路通訊都會通過 VPN 進行*
+*`leftsubnet=0.0.0.0/0` 時所有網路通訊都會通過 VPN*
 
 ```bash
 $ sudo vim /etc/ipsec.conf
