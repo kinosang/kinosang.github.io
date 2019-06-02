@@ -29,3 +29,9 @@ auth       sufficient     pam_smartcard.so
 ![Touch ID for sudo](87c01ec7gy1frgnmgy396j20oq08ct9o.jpg)
 
 現在就可以在使用 `sudo` 時按手指了。
+
+*Updated 2019/06/22*
+
+iTerm2 3.2.8 預設不支援此用法，需要手動配置 `Allow sessions to survive logging out and back in` 為 `No`.
+
+詳見：https://gitlab.com/gnachman/iterm2/issues/7618
