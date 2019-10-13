@@ -1252,11 +1252,6 @@ hexo-generator-tag@^1.0.0:
   dependencies:
     hexo-pagination "1.0.0"
 
-hexo-global-license@^0.5.5:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/hexo-global-license/-/hexo-global-license-0.5.5.tgz#a9d921302408603573d66105b15ef06631f1c0ab"
-  integrity sha512-5Qz1uhUw5izeZejJQCbKToam60d+FSL1M77F32sPUqXCZj339kKBTM6/dAN7wDNhy6RP2l1L+FxPVllil4bKuw==
-
 hexo-i18n@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/hexo-i18n/-/hexo-i18n-0.2.1.tgz#84f141432bf09d8b558ed878c728164b6d1cd6de"

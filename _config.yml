@@ -138,8 +138,5 @@ feed:
   path: atom.xml
   limit: 20
 
-licenseType: by-nc-sa
-licenseIconSize: small
-
 sitemap:
   path: sitemap.xml
