@@ -2,8 +2,7 @@
 title: 讓 Nodeclipse 使用 NPM 全局模組不再需要拷貝！
 id: 1439
 categories:
-  - 應用技巧
-  - 軟件開發
+  - 軟體開發
 date: 2013-12-09 09:18:01
 tags:
 ---

@@ -2,8 +2,7 @@
 title: Github自動部署解決方案
 id: 1311
 categories:
-  - 互聯網絡
-  - 軟件開發
+  - 軟體開發
 date: 2013-07-13 18:25:30
 tags:
 ---

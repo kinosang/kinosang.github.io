@@ -2,8 +2,7 @@
 title: ASP留言板教學
 id: 367
 categories:
-  - 互聯網絡
-  - 軟件開發
+  - 軟體開發
 date: 2011-02-09 12:37:37
 tags:
 ---

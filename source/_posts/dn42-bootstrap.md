@@ -2,7 +2,7 @@
 title: DN42 入門指南
 id: 2138
 categories:
-  - 互聯網絡
+  - 網際網路
 date: 2016-04-09 16:33:32
 tags:
 ---

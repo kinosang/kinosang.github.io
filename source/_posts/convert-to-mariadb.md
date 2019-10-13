@@ -2,7 +2,6 @@
 title: 轉投 MariaDB 的懷抱！
 id: 1517
 categories:
-  - 互聯網絡
   - 應用技巧
 date: 2014-01-08 20:51:05
 tags:

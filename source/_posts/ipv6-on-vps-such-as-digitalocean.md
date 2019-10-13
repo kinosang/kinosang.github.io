@@ -2,7 +2,7 @@
 title: 讓你的 IPv4 Only VPS（如DigitalOcean） 支援 IPv6
 id: 1784
 categories:
-  - 互聯網絡
+  - 網際網路
 date: 2014-02-03 17:55:37
 tags:
 ---

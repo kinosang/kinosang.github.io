@@ -3,7 +3,7 @@ title: 騰訊雲 CDN 與 WebSocket
 date: 2019-01-13 20:27:35
 tags:
 categories:
-  - 互聯網絡
+  - 網際網路
 ---
 
 眾所周知，騰訊雲 CDN 是支援 WebSocket 的，但是最近的一個專案中使用 SignalR 時發現在生產環境中 WebSocket 連結總是在聯通 10 秒左右自動斷開，錯誤程式碼 1006.

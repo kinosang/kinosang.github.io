@@ -2,7 +2,6 @@
 title: Ubuntu 14.04 下 Nginx 作反代部署 Tomcat 應用
 id: 1968
 categories:
-  - 互聯網絡
   - 應用技巧
 date: 2015-03-04 22:56:00
 tags:

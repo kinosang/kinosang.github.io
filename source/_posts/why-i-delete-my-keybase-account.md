@@ -3,7 +3,7 @@ title: 我為什麼不再使用 Keybase
 date: 2018-06-28 17:16:25
 tags:
 categories:
-  - 互聯網絡
+  - 網際網路
 ---
 
 Keybase 對 PGP 和網路信任來說是一個好的嘗試，但是他也有一些缺陷。

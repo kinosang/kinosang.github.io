@@ -2,7 +2,7 @@
 title: gRPC TLS 相互驗證和自訂驗證
 date: 2018-05-28 23:37:23
 categories:
-  - 軟件開發
+  - 軟體開發
 tags:
 ---
 

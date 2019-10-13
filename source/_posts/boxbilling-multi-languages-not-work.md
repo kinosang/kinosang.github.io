@@ -2,7 +2,6 @@
 title: Boxbilling 多語言設置問題
 id: 2125
 categories:
-  - 互聯網絡
   - 應用技巧
 date: 2015-12-02 01:12:56
 tags:

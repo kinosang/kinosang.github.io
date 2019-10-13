@@ -2,7 +2,7 @@
 title: 暢遊·IPv6
 id: 1760
 categories:
-  - 互聯網絡
+  - 網際網路
 date: 2014-02-01 16:37:35
 tags:
 ---

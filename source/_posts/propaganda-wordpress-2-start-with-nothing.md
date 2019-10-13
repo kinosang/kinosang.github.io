@@ -2,7 +2,6 @@
 title: WordPress普及系列（二）從零開始搭建WP站點
 id: 608
 categories:
-  - 互聯網絡
   - 應用技巧
 date: 2011-06-05 14:52:25
 tags:

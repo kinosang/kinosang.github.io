@@ -1,7 +1,7 @@
 ---
 title: Base62 BitConverter 以及 CPU 端序
 categories:
-  - 軟件開發
+  - 軟體開發
 date: 2018-07-30 11:23:27
 tags:
 ---

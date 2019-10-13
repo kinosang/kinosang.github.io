@@ -2,7 +2,6 @@
 title: Deis on DigitalOcean 部署小記
 id: 1941
 categories:
-  - 互聯網絡
   - 應用技巧
 date: 2014-11-19 14:18:00
 tags:

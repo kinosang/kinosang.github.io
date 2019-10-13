@@ -2,8 +2,7 @@
 title: 使用Google PageSpeed Service加速你的個人網誌吧！
 id: 1191
 categories:
-  - 互聯網絡
-  - 應用技巧
+  - 網際網路
 date: 2013-06-21 21:27:51
 tags:
 ---

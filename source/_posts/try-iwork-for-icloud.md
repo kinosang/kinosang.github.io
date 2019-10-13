@@ -2,7 +2,6 @@
 title: iWork for iCloud試用
 id: 1370
 categories:
-  - 互聯網絡
   - 應用技巧
 date: 2013-09-14 12:58:20
 tags:

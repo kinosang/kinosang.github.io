@@ -2,7 +2,7 @@
 title: AtomPHP And SMSbao
 id: 1833
 categories:
-  - 軟件開發
+  - 軟體開發
 date: 2014-03-22 21:23:00
 tags:
 ---
