@@ -7,11 +7,11 @@ date: 2011-02-12 15:44:18
 tags:
 ---
 
-不知道萬戈工具條的朋友可以到萬戈的博客[《萬戈牌工具條》](http://wange.im/wg-toolbar.html) 認識一下這個工具條插件。
+不知道萬戈工具條的朋友可以到萬戈的博客[《萬戈牌工具條》](http://wange.im/wg-toolbar.html) 認識一下這個工具條插件.
 
 # 複製粘貼的簡單過程
 
-（鑒於安全性的考慮Kinosang's Labs沒有關閉半形字元替換功能，你需要手動把全形單雙引號等字元替換成半形字元）
+（鑒於安全性的考慮Kinosang's Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元）
 
 以下代碼放到style.css
 
@@ -39,18 +39,18 @@ tags:
 <!-- Top Toolbar End -->
 ```
 
-記得修改上面的代碼中的Kinosang's Labs獨有的信息（包括域名、主題名、郵箱等）
+記得修改上面的代碼中的Kinosang's Labs獨有的信息（包括域名, 主題名, 郵箱等）
 
-<del>如果需要Kinosang's Labs的圖標，你可以直接依照代碼中的img標籤下載（但不要直接使用Kinosang's Labs的png文件的url，Kinosang's Labs的流量會嚴重短缺的。）</del><span style="color: #ff0000;">Kinosang's Labs改版，源文件已被移除。</span>
+<del>如果需要Kinosang's Labs的圖標, 你可以直接依照代碼中的img標籤下載（但不要直接使用Kinosang's Labs的png文件的url, Kinosang's Labs的流量會嚴重短缺的.）</del><span style="color: #ff0000;">Kinosang's Labs改版, 源文件已被移除.</span>
 
-這樣，一個仿造的“萬戈工具條”就完成了。
+這樣, 一個仿造的“萬戈工具條”就完成了.
 
-當然，你也可以修改本工具條中的內容。
+當然, 你也可以修改本工具條中的內容.
 
 第二版連結：[http://7in0.me/2011/02/wange-toolbar-2-html-css-js-has-msg/](http://7in0.me/2011/02/wange-toolbar-2-html-css-js-has-msg/)
 
-各位同學可以在下面留言討論，第一時間答覆。
+各位同學可以在下面留言討論, 第一時間答覆.
 
-發現錯誤的同學，及時Email我，會有獎勵喲～
+發現錯誤的同學, 及時Email我, 會有獎勵喲～
 
-您也可以Email我以付費定製工具條等。
+您也可以Email我以付費定製工具條等.

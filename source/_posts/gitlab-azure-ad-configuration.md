@@ -7,15 +7,15 @@ date: 2017-03-10 17:42:46
 tags:
 ---
 
-GitLab 自帶 Azure AD Oauth2 支援，詳見 GitLab 文檔 https://docs.gitlab.com/ce/integration/azure.html
+GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 https://docs.gitlab.com/ce/integration/azure.html
 
 <!--more-->
 
 ### 註冊企業應用程式
 
-首先在 Azure 入口網站 Azure AD 管理界面註冊企業應用程式，到“Azure Active Directory”-“預設目錄”-“應用程式註冊”點“加入”，填寫“名稱”和“登入URL”創建企業應用程式，然後點“端點”查看鏈接內的TENANT ID。
+首先在 Azure 入口網站 Azure AD 管理界面註冊企業應用程式, 到“Azure Active Directory”-“預設目錄”-“應用程式註冊”點“加入”, 填寫“名稱”和“登入URL”創建企業應用程式, 然後點“端點”查看鏈接內的TENANT ID.
 
-然後到新創建的應用“設定”-“金鑰”中創建新的金鑰並記下來。
+然後到新創建的應用“設定”-“金鑰”中創建新的金鑰並記下來.
 
 ### 設定 GitLab
 

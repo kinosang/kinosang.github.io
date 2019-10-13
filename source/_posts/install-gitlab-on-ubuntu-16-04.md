@@ -7,9 +7,9 @@ date: 2017-02-23 13:10:16
 tags:
 ---
 
-雖然 GitLab 推出了 one-key deb 包，但是爲了更大的靈活性，我還是選擇 step-by-step 的部署方式。
+雖然 GitLab 推出了 one-key deb 包, 但是爲了更大的靈活性, 我還是選擇 step-by-step 的部署方式.
 
-同時，我在部署過程中直接配置好了 SMTP 和 HTTPS，相關操作會註明。
+同時, 我在部署過程中直接配置好了 SMTP 和 HTTPS, 相關操作會註明.
 
 官方指引：[https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md).
 
@@ -17,7 +17,7 @@ tags:
 
 ### 準備系統
 
-我預先添加了 50G 的存儲，手動掛載到 /home，具體操作請自行搜索。
+我預先添加了 50G 的存儲, 手動掛載到 /home, 具體操作請自行搜索.
 
 先重新設定系統 locales
 
@@ -28,7 +28,7 @@ $ sudo dpkg-reconfigure locales
 $ locale # 驗證 locale
 ```
 
-這一步可以完全按文檔來。
+這一步可以完全按文檔來.
 
 ```
 $ sudo apt update -y
@@ -43,9 +43,9 @@ $ sudo adduser --disabled-login --gecos 'GitLab' git
 
 ### 安裝 Git
 
-Ubuntu 16.04 上的 apt 安裝的 git 版本是 2.7，比 GitLab 要求的 2.8.4 低，我們要手動建置。
+Ubuntu 16.04 上的 apt 安裝的 git 版本是 2.7, 比 GitLab 要求的 2.8.4 低, 我們要手動建置.
 
-官方指引中使用 2.8.4，我們可以安裝最新版。
+官方指引中使用 2.8.4, 我們可以安裝最新版.
 
 ```
 $ sudo apt remove git-core
@@ -66,7 +66,7 @@ $ git --version # 檢查 git 版本
 
 ### 安裝 Ruby
 
-Ruby **必須是 2.3 版本**，否則後面 gem 安裝 json 時會報錯。
+Ruby **必須是 2.3 版本**, 否則後面 gem 安裝 json 時會報錯.
 
 ```
 $ sudo apt-get remove ruby1.8
@@ -101,7 +101,7 @@ $ go version
 
 ### 安裝 Node
 
-其中 yarn 需要安裝到 git 用戶，否則後續操作中會報錯。
+其中 yarn 需要安裝到 git 用戶, 否則後續操作中會報錯.
 
 ```
 $ curl --location https://deb.nodesource.com/setup_7.x | bash -
@@ -190,7 +190,7 @@ $ sudo chmod -R u+rwX shared/artifacts/
 $ sudo chmod -R ug+rwX shared/pages/
 
 $ sudo -u git -H cp config/unicorn.rb.example config/unicorn.rb
-$ sudo -u git -H editor config/unicorn.rb # 設定 unicorn，主要是 RAM
+$ sudo -u git -H editor config/unicorn.rb # 設定 unicorn, 主要是 RAM
 
 $ sudo -u git -H cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb
 
@@ -252,7 +252,7 @@ $ sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab
 
 ### 建置素材
 
-第一步的指令**與官方不同**，使用安裝到 git 用戶的 yarn.
+第一步的指令**與官方不同**, 使用安裝到 git 用戶的 yarn.
 
 ```
 $ sudo -u git -H /home/git/.yarn/bin/yarn install --production --pure-lockfile
@@ -261,7 +261,7 @@ $ sudo -u git -H bundle exec rake gitlab:assets:compile RAILS_ENV=production NOD
 
 ### 安裝並設定 Nginx
 
-因爲是在全新的伺服器上安裝 GitLab，伺服器專用作 GitLab，所以我移除了 nginx 默認的 default 站點並且不對 GitLab 提供的設定檔作修改。
+因爲是在全新的伺服器上安裝 GitLab, 伺服器專用作 GitLab, 所以我移除了 nginx 默認的 default 站點並且不對 GitLab 提供的設定檔作修改.
 
 ```
 $ sudo apt install -y nginx
@@ -303,4 +303,4 @@ $ sudo -u git -H bundle exec rake gitlab:env:info RAILS_ENV=production
 
 設定 GitLab
 
-參訪伺服器 IP 或網域進行設定。
+參訪伺服器 IP 或網域進行設定.

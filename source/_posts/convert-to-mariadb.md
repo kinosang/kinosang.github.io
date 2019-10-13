@@ -1,5 +1,5 @@
 ---
-title: 轉投 MariaDB 的懷抱！
+title: 轉投 MariaDB 的懷抱!
 id: 1517
 categories:
   - 應用技巧
@@ -9,29 +9,29 @@ tags:
 
 CentOS 安裝 Nginx + PHP + MariaDB | MySQL自動最佳化
 
-眾所周知，萬惡的 Orcal 正在逐步封閉 MySQL 的原始碼，這讓很多人十分不爽。比如維基百科、維基百科還有維基百科，哦，Google 也正在嘗試從 MySQL 遷移到 MariaDB。
+眾所周知, 萬惡的 Orcal 正在逐步封閉 MySQL 的原始碼, 這讓很多人十分不爽.比如維基百科, 維基百科還有維基百科, 哦, Google 也正在嘗試從 MySQL 遷移到 MariaDB.
 
 [caption id="attachment_1523" align="alignnone" width="300"][![MariaDB Foundation](/wp-content/uploads/2014/01/ice_logo-5dcea9e47b780ff52f75c3c3304d54827f56211e-300x300.png)](/wp-content/uploads/2014/01/ice_logo-5dcea9e47b780ff52f75c3c3304d54827f56211e.png) MariaDB Foundation's Logo[/caption]
 
-技術宅社區的技術之一，氺菓  剛剛把 gn00 轉換到 MariaDB。於是，7IN0 也跟風了一把，嘗試進行轉換。
+技術宅社區的技術之一, 氺菓  剛剛把 gn00 轉換到 MariaDB.於是, 7IN0 也跟風了一把, 嘗試進行轉換.
 
-這個過程從 GMT+08:00 2014/01/08 19:10 開始。
+這個過程從 GMT+08:00 2014/01/08 19:10 開始.
 
 <!--more-->
 
-首先，保險起見，我創建了一個快照。
+首先, 保險起見, 我創建了一個快照.
 
 [caption id="attachment_1518" align="alignnone" width="300"][![Snapshot(DigitalOcean)](/wp-content/uploads/2014/01/H@_5NOHHWXCFOL8GYU-300x151.jpg)](/wp-content/uploads/2014/01/H@_5NOHHWXCFOL8GYU.jpg) Snapshot(DigitalOcean)[/caption]
 
-然後，經過一番考慮，我直接用 CentOS 6.5 x86 重灌了 Droplet（VPS）。這樣做的原因有三：
+然後, 經過一番考慮, 我直接用 CentOS 6.5 x86 重灌了 Droplet（VPS）.這樣做的原因有三：
 
-1.  之前不小心使用 yum update 更新了系統 kernel，導致每次 Boot 有一定几率不能正常啟動
-2.  之前圖省事使用了 lnmp 套件，這個套件是通過 make 、 make install 的方式灌裝組件的，並且具備一個統一管理 N/M/P 的工具，修改起來十分不方便
+1.  之前不小心使用 yum update 更新了系統 kernel, 導致每次 Boot 有一定几率不能正常啟動
+2.  之前圖省事使用了 lnmp 套件, 這個套件是通過 make ,  make install 的方式灌裝組件的, 並且具備一個統一管理 N/M/P 的工具, 修改起來十分不方便
 3.  之前幾次折騰導致系統中殘留了大量垃圾
 
-然後使用之前創建的 Snapshot 新建一個 Droplet（命名為 bk，原有 Droplet 命名為 main），兩個 Droplet 都開啟Private Network，方便稍後傳輸文件。
+然後使用之前創建的 Snapshot 新建一個 Droplet（命名為 bk, 原有 Droplet 命名為 main）, 兩個 Droplet 都開啟Private Network, 方便稍後傳輸文件.
 
-## 一、安裝 MariaDB：
+## 一, 安裝 MariaDB：
 
 參閱[Install MariaDB Database in RHEL/CentOS/Fedora and Debian/Ubuntu](http://www.tecmint.com/install-mariadb-in-linux/ "Install MariaDB Database in RHEL/CentOS/Fedora and Debian/Ubuntu")
 
@@ -122,7 +122,7 @@ installation should now be secure.
 Thanks for using MariaDB!
 ```
 
-## 二、安裝 Nginx 和 PHP
+## 二, 安裝 Nginx 和 PHP
 
 安裝 PHP 需要使用 remi 源
 
@@ -164,9 +164,9 @@ $ service php-fpm start
 $ chkconfig --levels 235 php-fpm on
 ```
 
-如何設定 Nginx + PHP-FPM 此處不在敘述。
+如何設定 Nginx + PHP-FPM 此處不在敘述.
 
-## 三、傳輸文件
+## 三, 傳輸文件
 
 ### sftp 傳輸檔案夾
 
@@ -176,15 +176,15 @@ $ scp -r user@ip:/path/to/dir /local/dir
 
 ### MySQL 數據匯入 MariaDB
 
-我直接使用 PHPMyAdmin 匯出 MySQL 數據庫為 SQL 文檔，然後匯入 MariaDB 中。
+我直接使用 PHPMyAdmin 匯出 MySQL 數據庫為 SQL 文檔, 然後匯入 MariaDB 中.
 
 # 一點小動作
 
-讓系統自動優化數據庫，以提高效率
+讓系統自動優化數據庫, 以提高效率
 
 ```
 $ crontab -e
 0 0 * * 0 /wp-content/bin/mysqlcheck --all-databases --optimize --auto-repair -u root -pYourRootPassword > /dev/null 2>&1
 ```
 
-當前時間 GMT+08:00 2014/01/08 20:00 ，全部工作完成，移除 bk。
+當前時間 GMT+08:00 2014/01/08 20:00 , 全部工作完成, 移除 bk.

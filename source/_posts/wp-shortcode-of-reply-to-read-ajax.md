@@ -7,19 +7,19 @@ date: 2011-07-31 12:36:05
 tags:
 ---
 
-剛剛在雷鋒博客群裏看到 亂了感覺 發佈的評論可見功能短代碼（[《WP短代碼之評論可見》](http://messense.me/wp-shortcode-of-reply-to-read.html)），對於其中的“評論後刷新”頗為煩惱。
+剛剛在雷鋒博客群裏看到 亂了感覺 發佈的評論可見功能短代碼（[《WP短代碼之評論可見》](http://messense.me/wp-shortcode-of-reply-to-read.html)）, 對於其中的“評論後刷新”頗為煩惱.
 
-一切追求快捷！
+一切追求快捷!
 
-於是就有了這篇文章和後面的代碼。
+於是就有了這篇文章和後面的代碼.
 
 亂了感覺在原文中是這樣解釋這段代碼的：
 
-> 今天繼續給大家分享《WP短代碼之評論可見》，這個可就實用多了吧，比如說你的文章裏面給出了一個115的附件下載連結又不希望看文章的人直接去下載了而不對文章發表評論，這時候評論可見就可以起作用了。好了，下面給出實現這個功能的代碼，加到你的主題的functions.php中。代碼雖然很短，但是我可是查閱了很多WP函數參考的資料才終於寫好的，這裏直接把演示也放進去，嘿嘿，這段代碼評論可見哦！
+> 今天繼續給大家分享《WP短代碼之評論可見》, 這個可就實用多了吧, 比如說你的文章裏面給出了一個115的附件下載連結又不希望看文章的人直接去下載了而不對文章發表評論, 這時候評論可見就可以起作用了.好了, 下面給出實現這個功能的代碼, 加到你的主題的functions.php中.代碼雖然很短, 但是我可是查閱了很多WP函數參考的資料才終於寫好的, 這裏直接把演示也放進去, 嘿嘿, 這段代碼評論可見哦!
 
-好了，廢話不多說，上代碼：
+好了, 廢話不多說, 上代碼：
 <!--more-->
-注意：使用本代碼前提是使用Ajax評論功能！
+注意：使用本代碼前提是使用Ajax評論功能!
 
 下面的代碼放在functions.php中
 
@@ -38,9 +38,9 @@ $ user_ID=(int)wp_get_current_user()->ID;
 if($ user_ID>0){
 $ email =  get_userdata($ user_ID)->user_email; //如果用戶已登錄,從登錄信息中獲取email
 }else if(isset($ _COOKIE['comment_author_email_'.COOKIEHASH])){
-$ email=str_replace('%40','@',$ _COOKIE['comment_author_email_'.COOKIEHASH]); //如果用戶未登錄但電腦上有本站的Cookie信息，從Cookie裏讀取email
+$ email=str_replace('%40','@',$ _COOKIE['comment_author_email_'.COOKIEHASH]); //如果用戶未登錄但電腦上有本站的Cookie信息, 從Cookie裏讀取email
 }else{
-return $ notice; //無法獲取email，直接返回提示信息
+return $ notice; //無法獲取email, 直接返回提示信息
 }
 if(empty($ email)){
 return $ notice;
@@ -108,6 +108,6 @@ alert('ajax請求出錯,請重試!')
 ```
 
 [/reply]
-關於用法，原作者如是說：
+關於用法, 原作者如是說：
 
-> 用法很簡單，即：[@reply]評論可見的內容[@/reply](去掉@)，同時支持自定義提示信息，使用[@reply notice="自定義的提示信息"]評論可見的內容[@/reply](同樣要去掉@)。
+> 用法很簡單, 即：[@reply]評論可見的內容[@/reply](去掉@), 同時支持自定義提示信息, 使用[@reply notice="自定義的提示信息"]評論可見的內容[@/reply](同樣要去掉@).

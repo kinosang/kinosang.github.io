@@ -9,13 +9,13 @@ tags:
 
 HC-05藍牙串列埠 | DHT11 溫度感測器 | Cubieboard | Cubian
 
-總是用 Arduino as USB2TTY 連接 Cubieboard 很不方便，正好手頭有一塊 HC-05，今天就來實驗一下藍牙串列埠的使用方法。
+總是用 Arduino as USB2TTY 連接 Cubieboard 很不方便, 正好手頭有一塊 HC-05, 今天就來實驗一下藍牙串列埠的使用方法.
 
 <!--more-->
 
 ### 設定 HC-05
 
-首先得設定一下 HC-05。讓我們祭出 Arduino as USB2TTY 神器。
+首先得設定一下 HC-05.讓我們祭出 Arduino as USB2TTY 神器.
 
 [![HC-05 和 Arduino as USB2TTY](/wp-content/uploads/2014/02/CIMG2384-300x225.jpg)](/wp-content/uploads/2014/02/CIMG2384.jpg)
 
@@ -35,7 +35,7 @@ GND   -> GND
 
 選擇 `Both NL & CR -- 38400 baud`
 
-鍵入 “AT” 並送出，如果收到 ERROR 或者沒有迴應，稍等片刻再繼續。
+鍵入 “AT” 並送出, 如果收到 ERROR 或者沒有迴應, 稍等片刻再繼續.
 
 [![設定 HC-05](/wp-content/uploads/2014/02/設定HC-05-300x193.png)](/wp-content/uploads/2014/02/設定HC-05.png)
 
@@ -73,9 +73,9 @@ OK
 
 [![Cubieboard with HC-05](/wp-content/uploads/2014/02/CIMG2380-300x225.jpg)](/wp-content/uploads/2014/02/CIMG2380.jpg)
 
-Cubieboard 預留了四針的 TTY 連接埠，我們只需要對號入座即可。
+Cubieboard 預留了四針的 TTY 連接埠, 我們只需要對號入座即可.
 
-值得注意的事，Cubieboard TTY 連接埠提供的 Vcc 是 3.3V。
+值得注意的事, Cubieboard TTY 連接埠提供的 Vcc 是 3.3V.
 
 因此對應關系如下：
 
@@ -89,7 +89,7 @@ TXD   -> TX
 GND   -> GND
 ```
 
-然後只需要配對連線即可。
+然後只需要配對連線即可.
 
 [![藍牙配對](/wp-content/uploads/2014/02/Bluetooth-Connection-300x216.png)](/wp-content/uploads/2014/02/Bluetooth-Connection.png)
 
@@ -101,11 +101,11 @@ $ screen /dev/cu.7IN0BT-DevB 115200 -U
 
 ### Cubieboard 96pins 連接埠非標準解決方案
 
-在下手頭沒有 2mm 間距的連接線，杜邦線的口徑又太大，根本無法用在 Cubieboard 上面，於是在下從單排圓孔座上面拆下來一小部分來用。
+在下手頭沒有 2mm 間距的連接線, 杜邦線的口徑又太大, 根本無法用在 Cubieboard 上面, 於是在下從單排圓孔座上面拆下來一小部分來用.
 
 [![單排圓孔座](/wp-content/uploads/2014/02/CIMG2375-300x225.jpg)](/wp-content/uploads/2014/02/CIMG2375.jpg)
 
-這些單獨拆下來的接口可以完美地用在 Cubieboard 上面。
+這些單獨拆下來的接口可以完美地用在 Cubieboard 上面.
 
 [![單排圓孔座](/wp-content/uploads/2014/02/CIMG2376-300x225.jpg)](/wp-content/uploads/2014/02/CIMG2376.jpg)
 

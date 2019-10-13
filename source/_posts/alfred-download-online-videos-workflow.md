@@ -7,9 +7,9 @@ date: 2013-12-10 12:56:05
 tags:
 ---
 
-本 Workflow 通過調用 www.flvxz.com 進行解析。
+本 Workflow 通過調用 www.flvxz.com 進行解析.
 
-內中使用 PHP Script 對返回的信息進行處理。
+內中使用 PHP Script 對返回的信息進行處理.
 
 <!--more-->
 

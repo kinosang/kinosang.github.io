@@ -9,7 +9,7 @@ tags:
 
 ### 安裝 Mariadb
 
-過程略，參見 往期網誌。
+過程略, 參見 往期網誌.
 
 ```
 $ mysql -u root -p

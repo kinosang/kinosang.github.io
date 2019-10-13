@@ -7,7 +7,7 @@ date: 2014-09-20 22:50:00
 tags:
 ---
 
-有人強烈要求我更新網誌，這兩天又正好在折騰這個，發出來求批評求指正。
+有人強烈要求我更新網誌, 這兩天又正好在折騰這個, 發出來求批評求指正.
 
 先說一下所選擇的伺服器的情況：
 
@@ -23,7 +23,7 @@ HDD sda 6TB（SAS Raid, /media/RAID）sdb 1TB（6GB swap, 200M /boot, 剩餘 /�
 
 <!--more-->
 
-因為是實驗性質，暫時還沒有使用虛擬化等技術來保護鏡像站。
+因為是實驗性質, 暫時還沒有使用虛擬化等技術來保護鏡像站.
 
 首先確定將要對下面的源進行鏡像：
 
@@ -106,16 +106,16 @@ nohup /root/mirrors_sync opensuse &
 nohup /root/mirrors_sync ubuntu &
 ```
 
-最後，添加一條 cron，每 30 分鐘執行一次
+最後, 添加一條 cron, 每 30 分鐘執行一次
 
 ```
 */30 * * * * /root/uuMirrors >> /dev/null 2>&1
 ```
 
-這樣，上面提到的源就會同步到 /media/RAID/mirrors，狀態保存到 /media/RAID/mirrors/.status 中。
+這樣, 上面提到的源就會同步到 /media/RAID/mirrors, 狀態保存到 /media/RAID/mirrors/.status 中.
 
-下面美化 web indexlist，在下選擇 h5ai 進行修改后使用。
+下面美化 web indexlist, 在下選擇 h5ai 進行修改后使用.
 
-（圖中還有 nginx 源，是使用 wget 進行 clone 的，方案十分不成熟，暫時不公開了）
+（圖中還有 nginx 源, 是使用 wget 進行 clone 的, 方案十分不成熟, 暫時不公開了）
 
 [![uuMirrors](/wp-content/uploads/2014/09/uuMirrors-300x187.png)](/wp-content/uploads/2014/09/uuMirrors-e1411224684522.png)

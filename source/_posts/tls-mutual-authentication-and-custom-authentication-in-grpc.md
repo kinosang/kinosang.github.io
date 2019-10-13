@@ -6,7 +6,7 @@ categories:
 tags:
 ---
 
-gRPC 目前已經支援 TLS 相互驗證、Google 驗證和自訂驗證，但說明 ([gRPC Authentication](https://grpc.io/docs/guides/auth.html)) 中的相關內容十分有限，今天踩到好幾次坑。
+gRPC 目前已經支援 TLS 相互驗證, Google 驗證和自訂驗證, 但說明 ([gRPC Authentication](https://grpc.io/docs/guides/auth.html)) 中的相關內容十分有限, 今天踩到好幾次坑.
 
 <!--more-->
 
@@ -15,10 +15,10 @@ gRPC 目前已經支援 TLS 相互驗證、Google 驗證和自訂驗證，但說
 伺服器端以 Go 為例
 
 ```go
-// 說明中指出可使用如下方案，但此種寫法不強制要求相互驗證
+// 說明中指出可使用如下方案, 但此種寫法不強制要求相互驗證
 // creds := credentials.NewServerTLSFromFile(certFile, keyFile)
 // s := grpc.NewServer(grpc.Creds(creds))
-// 注意其實此寫法存在錯誤，NewServerTLSFromFile() 傳回值為 (TransportCredentials, error)
+// 注意其實此寫法存在錯誤, NewServerTLSFromFile() 傳回值為 (TransportCredentials, error)
 // 故應寫成 creds, _ := credentials.NewServerTLSFromFile(certFile, keyFile)
 
 // 載入 TLS 伺服器憑據
@@ -59,13 +59,13 @@ const client = new services.WalletClient('localhost:8080', ssl_creds);
 
 ### 自訂驗證
 
-為了加強 RPC 安全性，除 TLS 相互驗證之外，我還希望引入利用 HTTP Header 的自訂驗證。
+為了加強 RPC 安全性, 除 TLS 相互驗證之外, 我還希望引入利用 HTTP Header 的自訂驗證.
 
-開始時思路為傳遞一個 RPC 的 HMAC-SHA256 數位簽名，為了避免重送攻擊，在生成簽名時引入時間戳和 Nonce。
+開始時思路為傳遞一個 RPC 的 HMAC-SHA256 數位簽名, 為了避免重送攻擊, 在生成簽名時引入時間戳和 Nonce.
 
-為了實現相關功能，需要用到 gRPC 的攔截器 (Interceptor)，在 gRPC 中，攔截器與各種 HTTP 伺服器軟體的中介層 (middleware) 作用類似，分為伺服器端攔截器和用戶端攔截器，可以對請求動作添加額外邏輯。
+為了實現相關功能, 需要用到 gRPC 的攔截器 (Interceptor), 在 gRPC 中, 攔截器與各種 HTTP 伺服器軟體的中介層 (middleware) 作用類似, 分為伺服器端攔截器和用戶端攔截器, 可以對請求動作添加額外邏輯.
 
-仔細分析了 gRPC 的原始碼，發現對完整 RPC 用戶端請求進行簽名的可能性極低 (伺服器端攔截器不方便獲取請求內容，用戶端攔截器無法獲取到請求內容)，遂改為對用戶端請求動作 (URI) 進行簽名。
+仔細分析了 gRPC 的原始碼, 發現對完整 RPC 用戶端請求進行簽名的可能性極低 (伺服器端攔截器不方便獲取請求內容, 用戶端攔截器無法獲取到請求內容), 遂改為對用戶端請求動作 (URI) 進行簽名.
 
 對伺服器端進行修改
 
@@ -100,7 +100,7 @@ opts := []grpc.ServerOption{
 對用戶端進行修改
 
 ```javascript
-// 如果不需要 options.method_definition.path 等資訊，可以使用 createFromMetadataGenerator
+// 如果不需要 options.method_definition.path 等資訊, 可以使用 createFromMetadataGenerator
 // grpc.credentials.createFromMetadataGenerator(function(args, callback) {
 //   var metadata = new Metadata();
 //   metadata.add('authorization', 'something-here');
@@ -115,7 +115,7 @@ const interceptor = function(options, nextCall) {
     return new grpc.InterceptingCall(nextCall(options), {
         start: function(metadata, listener, next) {
             // options.method_definition.path 即請求動作的 URI
-            // 部分邏輯略去，具體實現不在此討論
+            // 部分邏輯略去, 具體實現不在此討論
             // 創建新 metadata 並且添加欄位
             var metadata = new grpc.Metadata();
             metadata.add('authorization', 'Basic: ' + Buffer.from(client_id + ':' + signature).toString('base64'));
@@ -134,4 +134,4 @@ const client = new services.WalletClient('localhost:8080', ssl_creds, {
 
 ### 小結
 
-gRPC 作為 Google 開發的 RPC 專案，目前正在蓬勃發展，文檔難免有落後於實際功能之處，如果每次都要翻閱原始碼，真的是十分不方便，所以將本次經歷記下希望其他人有遇到類似情況可以少走一些彎路。
+gRPC 作為 Google 開發的 RPC 專案, 目前正在蓬勃發展, 文檔難免有落後於實際功能之處, 如果每次都要翻閱原始碼, 真的是十分不方便, 所以將本次經歷記下希望其他人有遇到類似情況可以少走一些彎路.

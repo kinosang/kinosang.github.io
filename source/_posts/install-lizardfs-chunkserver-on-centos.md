@@ -7,7 +7,7 @@ date: 2016-11-27 21:42:53
 tags:
 ---
 
-這兩天對原有的 Lizardfs 的 Chunkserver 進行改造，增添新的硬碟，並且重新灌 CentOS 7.
+這兩天對原有的 Lizardfs 的 Chunkserver 進行改造, 增添新的硬碟, 並且重新灌 CentOS 7.
 
 本例中 Chunkserver 同時安裝 Shadow Master, Metalogger.
 

@@ -4,7 +4,7 @@ date: 2019-01-18 23:18:56
 tags:
 ---
 
-在已有 Asp.Net Core MVC (Identity) 專案中新增 IdentityServer 可以通過 Nuget 安裝並新增程式碼，但直接使用會導致外部登入時出現 404 錯誤。
+在已有 Asp.Net Core MVC (Identity) 專案中新增 IdentityServer 可以通過 Nuget 安裝並新增程式碼, 但直接使用會導致外部登入時出現 404 錯誤.
 
 <!--more-->
 
@@ -26,7 +26,7 @@ services
     .AddAspNetIdentity<ApplicationUser>();
 ```
 
-外部登入有時會出現 404 錯誤，發現系 `.Identity.External` 和 `.AspNetCore.Correlation.*` Cookies 過大所致，經調查可使用 SessionStore 解決。
+外部登入有時會出現 404 錯誤, 發現系 `.Identity.External` 和 `.AspNetCore.Correlation.*` Cookies 過大所致, 經調查可使用 SessionStore 解決.
 
 ```csharp
 services.AddSingleton<ITicketStore, CacheTicketStore>();
@@ -55,4 +55,4 @@ Task<AuthenticationTicket> RetrieveAsync(string key);
 Task RemoveAsync(string key);
 ```
 
-亦可在建構函式中通過 DI 存取 `IMemoryCache`、`IDistributedCache` 服務。
+亦可在建構函式中通過 DI 存取 `IMemoryCache`, `IDistributedCache` 服務.

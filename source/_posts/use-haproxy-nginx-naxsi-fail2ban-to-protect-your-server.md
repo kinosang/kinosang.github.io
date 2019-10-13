@@ -1,5 +1,5 @@
 ---
-title: haproxy、nginx-naxsi 和 fail2ban 緩解網路攻擊
+title: haproxy, nginx-naxsi 和 fail2ban 緩解網路攻擊
 id: 1967
 categories:
   - 資安技術
@@ -7,11 +7,11 @@ date: 2015-02-26 13:32:00
 tags:
 ---
 
-這篇博文是根據回憶所寫，可能存在謬誤，歡迎大家指正。
+這篇博文是根據回憶所寫, 可能存在謬誤, 歡迎大家指正.
 
 ### 系統簡介
 
-這套系統是一套高可靠性 WAF 平臺，讓 haproxy, Naxsi(Nginx 模塊) 和 fail2ban 協同工作來保護網路服務，對注入、XSS、CC、DDoS等攻擊方式有一定效果。
+這套系統是一套高可靠性 WAF 平臺, 讓 haproxy, Naxsi(Nginx 模塊) 和 fail2ban 協同工作來保護網路服務, 對注入, XSS, CC, DDoS等攻擊方式有一定效果.
 <!--more-->
 
 ### 系統結構
@@ -42,8 +42,8 @@ tags:
 
 #### Nginx 和 Naxsi
 
-Nginx 和 Naxsi 安裝在 bk_waf 上。
-在 `nginx.conf` 啓用 Naxsi，修改 Nginx 默認站點文件如下：
+Nginx 和 Naxsi 安裝在 bk_waf 上.
+在 `nginx.conf` 啓用 Naxsi, 修改 Nginx 默認站點文件如下：
 
 ```
 server {

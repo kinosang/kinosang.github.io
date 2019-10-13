@@ -7,13 +7,13 @@ date: 2014-01-21 10:52:49
 tags:
 ---
 
-2014年1月18日，在下將 7IN0's Arts 換為使用 Pelican 驅動。
+2014年1月18日, 在下將 7IN0's Arts 換為使用 Pelican 驅動.
 
 [caption id="attachment_1719" align="alignnone" width="300"][![Pelican](/wp-content/uploads/2014/01/pelican-300x121.png)](/wp-content/uploads/2014/01/pelican.png) Pelican[/caption]
 
-Pelican 是一個靜態網站生成器（Static Site Generator），基於 Python，提供豐富的設定、主題和插件，可以使用 PIP 進行安裝。
+Pelican 是一個靜態網站生成器（Static Site Generator）, 基於 Python, 提供豐富的設定, 主題和插件, 可以使用 PIP 進行安裝.
 
-CentOS 的 Python 是 2.6 版本，Pelican 則需求 2.7+，因此，先編譯安裝 Python 2.7
+CentOS 的 Python 是 2.6 版本, Pelican 則需求 2.7+, 因此, 先編譯安裝 Python 2.7
 
 <!--more-->
 
@@ -35,7 +35,7 @@ $ python --version
 Python 2.7.6
 ```
 
-有人說 yum 不兼容 Python 2.7，需要修改下
+有人說 yum 不兼容 Python 2.7, 需要修改下
 
 ```
 $ vim /wp-content/bin/yum
@@ -71,7 +71,7 @@ $ wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py -O - | python
 $ pip install pelican
 ```
 
-在下使用 Markdown 進行創作，因此需要額外安裝 Markdown 支援
+在下使用 Markdown 進行創作, 因此需要額外安裝 Markdown 支援
 
 [caption id="attachment_1720" align="alignnone" width="300"][![Markdown](/wp-content/uploads/2014/01/MarkdownDocumentIcon-300x300.png)](/wp-content/uploads/2014/01/MarkdownDocumentIcon-e1390272755111.png) Markdown[/caption]
 
@@ -117,7 +117,7 @@ optional arguments:
                         the content files. (default: False)
 ```
 
-現在，新建一個檔案夾並在其中開始一個 Pelican 工程
+現在, 新建一個檔案夾並在其中開始一個 Pelican 工程
 
 ```
 $ mkdir test
@@ -140,12 +140,12 @@ test/
 └── publishconf.py
 ```
 
-通過修改 pelicanconf.py 設定站點，修改 Makefile 可以改變目標檔案夾（默認是 ./output）
+通過修改 pelicanconf.py 設定站點, 修改 Makefile 可以改變目標檔案夾（默認是 ./output）
 
-把寫好的 md 檔案丟進 content 裏，然後
+把寫好的 md 檔案丟進 content 裏, 然後
 
 ```
 $ make html
 ```
 
-GJ，工作就這樣完成了！
+GJ, 工作就這樣完成了!

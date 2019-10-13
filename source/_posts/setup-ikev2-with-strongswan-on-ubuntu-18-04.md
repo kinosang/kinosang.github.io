@@ -4,9 +4,9 @@ date: 2019-06-02 23:04:09
 tags:
 ---
 
-前幾天需要在公司辦公室設定 IKEv2 VPN，於是在伺服器上建立了一個 Ubuntu 18.04 LXC 容器，分配 IP 地址 `10.0.0.3`.
+前幾天需要在公司辦公室設定 IKEv2 VPN, 於是在伺服器上建立了一個 Ubuntu 18.04 LXC 容器, 分配 IP 地址 `10.0.0.3`.
 
-因伺服器在辦公室路徑器和防火牆後面，所以需要先在防火牆上開放 `500/UDP`, `4500/UDP` 和 `ESP (Protocol 50)`，並在路徑器上將 `500/UDP`, `4500/UDP` 和 `ESP` 轉發給 `10.0.0.3`.
+因伺服器在辦公室路徑器和防火牆後面, 所以需要先在防火牆上開放 `500/UDP`, `4500/UDP` 和 `ESP (Protocol 50)`, 並在路徑器上將 `500/UDP`, `4500/UDP` 和 `ESP` 轉發給 `10.0.0.3`.
 
 <!--more-->
 
@@ -19,7 +19,7 @@ $ sudo apt install strongswan libcharon-extra-plugins # strongswan-plugin-dhcp �
 
 ### 設定 StrongSwan
 
-需要將 `server-cert.crt` 放入 `/etc/ipsec.d/certs/`，將 `server-key.pem` 放入 `/etc/ipsec.d/private/`，將 CA 放入 `/etc/ipsec.d/cacerts/`.
+需要將 `server-cert.crt` 放入 `/etc/ipsec.d/certs/`, 將 `server-key.pem` 放入 `/etc/ipsec.d/private/`, 將 CA 放入 `/etc/ipsec.d/cacerts/`.
 
 *注意：server-cert.crt 需要具備 Digital Signature, Key Encipherment, serverAuth 和 ikeIntermediate 屬性*
 
@@ -29,7 +29,7 @@ $ sudo vim /etc/ipsec.conf
 
 ```nginx
 config setup
-    charondebug="ike 2, knl 2, cfg 2, net 2, esp 2, dmn 2,  mgr 2"
+    charondebug="ike 2, knl 2, cfg 2, net 2, esp 2, dmn 2, mgr 2"
     uniqueids=no
 
 conn %default
@@ -94,7 +94,7 @@ $ sudo systemctl enable strongswan
 
 ```bash
 $ sudo ufw allow from 10.0.0.0/24 to any port 22 # 只允許辦公室訪問 SSH
-$ sudo ufw allow 500,4500/udp # 允許 ISAKMP、NAT-T
+$ sudo ufw allow 500,4500/udp # 允許 ISAKMP, NAT-T
 ```
 
 ```bash
@@ -153,8 +153,8 @@ $ sudo ufw enable
 
 ### DNS 問題
 
-因為前文設定 `leftsubnet=10.0.0.0/24`，在 iOS 和 macOS 上 `rightdns=10.0.0.1` 不起作用，
-所以需要通過 `attr` 外掛來使內網域名正常解析。
+因為前文設定 `leftsubnet=10.0.0.0/24`, 在 iOS 和 macOS 上 `rightdns=10.0.0.1` 不起作用,
+所以需要通過 `attr` 外掛來使內網域名正常解析.
 
 *`leftsubnet=0.0.0.0/0` 時所有網路通訊都會通過 VPN*
 

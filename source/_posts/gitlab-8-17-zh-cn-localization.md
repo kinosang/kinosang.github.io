@@ -7,7 +7,7 @@ date: 2017-03-10 16:53:12
 tags:
 ---
 
-之前，我安裝了 GitLab 8.17\. 現在有需求將其中文化。
+之前, 我安裝了 GitLab 8.17\. 現在有需求將其中文化.
 
 本文參考了 [https://larryli.cn/2015/07/644905](https://larryli.cn/2015/07/644905).
 
@@ -29,6 +29,6 @@ $ sudo systemctl start gitlab
 
 ### 規範做法
 
-在安裝 GitLab 的時候，直接使用前文中的中文版進行安裝。
+在安裝 GitLab 的時候, 直接使用前文中的中文版進行安裝.
 
-或安裝完成後，備份 /home/git/gitlab，clone 中文版到 /home/git/gitlab，然後複製備份中的文件到 /home/git/gitlab。
+或安裝完成後, 備份 /home/git/gitlab, clone 中文版到 /home/git/gitlab, 然後複製備份中的文件到 /home/git/gitlab.
