@@ -1,5 +1,7 @@
 ---
 title: Asp.Net Core MVC 中文字地化問題
+categories:
+  - 軟體開發
 date: 2019-10-13 21:22:45
 tags:
 ---

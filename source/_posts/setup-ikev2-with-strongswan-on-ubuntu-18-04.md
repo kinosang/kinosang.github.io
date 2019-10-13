@@ -1,5 +1,7 @@
 ---
 title: Ubuntu 18.04 安裝設定 IKEv2
+categories:
+  - 網際網路
 date: 2019-06-02 23:04:09
 tags:
 ---

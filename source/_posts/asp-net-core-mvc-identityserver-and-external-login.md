@@ -1,5 +1,7 @@
 ---
 title: 'Asp.Net Core MVC, IdentityServer 和外部登入'
+categories:
+  - 軟體開發
 date: 2019-01-18 23:18:56
 tags:
 ---

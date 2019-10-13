@@ -1,5 +1,7 @@
 ---
 title: RouterOS DNSPod DDNS 設定
+categories:
+  - 網際網路
 date: 2019-10-13 16:36:37
 tags:
 ---
