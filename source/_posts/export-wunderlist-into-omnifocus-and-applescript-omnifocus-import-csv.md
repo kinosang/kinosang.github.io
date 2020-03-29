@@ -21,7 +21,7 @@ tags:
 
 然後, 用 Node.js 取得 Task 列：
 
-```
+```javascript
 $ node
 > var fs = require('fs');
 > var file = '/path/to/your.json';

@@ -31,7 +31,7 @@ Arduino as usb2tty | tty 終端機 | Cubieboard | Cubian | NAND
 
 然後……
 
-```
+```bash
 $ ssh 192.168.1.5
 ssh: connect to host 192.168.1.5 port 22: connection refused
 ```
@@ -52,7 +52,7 @@ ssh: connect to host 192.168.1.5 port 22: connection refused
 
 然後, 用 screen 連接
 
-```
+```bash
 $ ls /dev/tty.*
 /dev/tty.Bluetooth-Incoming-Port
 /dev/tty.Bluetooth-Modem
@@ -75,7 +75,7 @@ cubie@Cubian:~$
 
 ## 灌到 NAND
 
-```
+```bash
 $ sudo -i
 $ apt-get install cubian-nandinstall
 ...
@@ -88,7 +88,7 @@ shutdown now? yes
 
 拔掉 SD 卡然後開機, 搞定!
 
-```
+```bash
 ...
 $ df -h
 Filesystem      Size  Used Avail Use% Mounted on
@@ -104,7 +104,7 @@ tmpfs           162M     0  162M   0% /run/shm
 
 Cubian 的默認帳戶和密碼都是 cubie, 這很不安全.我們使用下面的命令修改密碼
 
-```
+```bash
 $ passwd
 Changing password for cubie.
 (current) UNIX password: // Enter "cubie"

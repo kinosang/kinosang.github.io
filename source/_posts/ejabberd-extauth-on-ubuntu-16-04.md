@@ -13,19 +13,19 @@ Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的
 
 以 ejabberd Developers Guide 中提供的 python 範例為基礎進行改進, 首先修改 python 版本為 python3.
 
-```
+```bash
 #!/usr/bin/python
 ```
 
 修改為
 
-```
+```bash
 #!/usr/bin/env python3
 ```
 
 對於 python3 不同於 python2 的部分做如下修改：
 
-```
+```python
 ...
     (size,) = unpack('>h', input_length)
 ...
@@ -40,7 +40,7 @@ def to_ejabberd(bool):
 
 修改為
 
-```
+```python
 ...
     (size,) = unpack('>h', input_length.encode())
 ...
@@ -58,7 +58,7 @@ def to_ejabberd(result):
 
 在`/etc/ejabberd/ejabberd.yml`找到`auth_method: internal`修改為：
 
-```
+```yaml
 auth_method:
   - internal
   - external
@@ -66,7 +66,7 @@ auth_method:
 
 在其下方增加：
 
-```
+```yaml
 extauth_program: "/etc/ejabberd/extauth.py"
 extauth_instances: 3
 auth_use_cache: false
@@ -76,12 +76,12 @@ auth_use_cache: false
 
 若出現`extauth script has exitted abruptly with reason 'normal'`, 在排除檔案 owner 和執行權限有誤的情況下, 可能為`apparmor`所致（帶有 SELinux 的作業系統中可能為 SELinux 所致, 可以通過`sudo setenforce 0`臨時關閉 SELinux 測試）, 查看`/var/log/syslog`可看到相關 log.
 
-```
+```log
 Sep 19 11:31:45 localhost kernel: [ 5031.995813] audit: type=1400 audit(1505827901.939:57): apparmor="DENIED" operation="exec" profile="/usr/sbin/ejabberdctl" name="/var/lib/ejabberd/extauth.py" pid=4419 comm="sh" requested_mask="x" denied_mask="x" fsuid=100 ouid=100
 ```
 
 臨時解決方法是移除`apparmor`.
 
-```
-sudo apt-get purge --auto-remove apparmor
+```bash
+$ sudo apt-get purge --auto-remove apparmor
 ```

@@ -21,7 +21,7 @@ DNS 加密代理——這玩意兒應對 DNS 污染很有用.
 
 Mac 下使用 Homebrew 進行安裝
 
-```
+```bash
 $ brew install dnscrypt-proxy
 $ sudo cp -fv /wp-content/local/opt/dnscrypt-proxy/*.plist /Library/LaunchDaemons
 $ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnscrypt-proxy.plist
@@ -42,7 +42,7 @@ _如果在學校或公司等需要使用網絡時需要設定內網 DNS, 將內�
 1.  下载 DNSCrypt-proxy 原始码（.tar.bz2檔）（点击[这里](http://download.dnscrypt.org/dnscrypt-proxy/)）</p>
 2.  安裝</p>
 
-```
+```bash
 $ bunzip2 -cd dnscrypt-proxy-*.tar.bz2 | tar xvf -
 $ cd dnscrypt-proxy-*
 $ ./configure && make -j2
@@ -51,7 +51,7 @@ $ make install
 
 <p>3.啟動
 
-```
+```bash
 $ dnscrypt-proxy --daemonize
 ```
 
@@ -65,7 +65,7 @@ $ dnscrypt-proxy --daemonize
 
 解開 zip 檔, cd 進入相應檔案夾, 執行下面的指令：
 
-```
+```dosbatch
 cmd> dnscrypt-proxy.exe --install
 ```
 

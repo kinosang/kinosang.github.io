@@ -37,7 +37,7 @@ tags:
 
 在下在 Google 上找到了一行命令解決問題的方案：
 
-```
+```bash
 $ sudo rm /Library/Preferences/com.apple.windowserver.plist
 ```
 

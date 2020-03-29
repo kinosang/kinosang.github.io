@@ -45,7 +45,7 @@ tags:
 Nginx 和 Naxsi 安裝在 bk_waf 上.
 在 `nginx.conf` 啓用 Naxsi, 修改 Nginx 默認站點文件如下：
 
-```
+```nginx
 server {
     proxy_set_header Proxy-Connection "";
     listen     10.0.0.2:80;
@@ -80,7 +80,7 @@ server {
 * 由 `bk_waf` 分析攻擊行爲並由 `ft_waf` 阻擋
 * 當 `bk_waf` 不可用時自動跳過 WAF
 
-```
+```conf
 defaults
     option  http-server-close
     option  dontlognull
@@ -189,7 +189,7 @@ backend bk_waf_health_check
 
 創建 `/etc/fail2ban/filter.d/nginx-naxsi.conf` ：
 
-```
+```conf
 [INCLUDES]
 before = common.conf
 
@@ -200,7 +200,7 @@ ignoreregex =
 
 在 `/etc/fail2ban/jail.conf` 添加：
 
-```
+```conf
 [nginx-naxsi]
 
 enabled = true

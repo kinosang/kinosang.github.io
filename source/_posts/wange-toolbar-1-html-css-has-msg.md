@@ -17,7 +17,7 @@ tags:
 
 <!--more-->
 
-```
+```css
 /* TopToolbar */
 #topToolBar{width:100%;height:30px;position:fixed;background:#000;z-index:9999;overflow:hidden;opacity:0.7;filter:alpha(opacity=70);-moz-opacity:.7;border-radius:0 0 5px 5px;box-shadow:0px 5px 5px #565656;-moz-border-radius:0 0 5px 5px;-webkit-border-radius:0 0 5px 5px;-khtml-border-radius:0 0 5px 5px;-webkit-box-shadow:0px 5px 5px #565656;-moz-box-shadow:0px 5px 5px #565656;top:0;_position:absolute;_top:expression(0+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+"px");}
 #topToolBar a{text-decoration:none;}
@@ -26,7 +26,7 @@ tags:
 
 以下代碼放到header.php適當位置（Kinosang's Labs建議您放在的下一行）
 
-```
+```html
 <!-- Top Toolbar Begin -->
 <div id="topToolBar">[![](https://blog.7in0.me/wp-content/uploads/2015/06/ebf7e62abaa2db8e332e3e4662658308.png)](javascript:void(0) "加入收藏")
 [![](https://blog.7in0.me/wp-content/uploads/2015/06/b83a886a5c437ccd9ac15473fd6f1788.png)](mailto:chinvo@chinvo.org "Email")

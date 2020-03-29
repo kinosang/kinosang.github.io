@@ -43,10 +43,10 @@ TunnelBroker, he.net 旗下的免費 IPv6 Tunnel Broker.
 
 啟用 IPv6 和 Radvd, 並鍵入如下設定信息（粗體紅色部分使用之前的信息替換）：
 
-```
+```nginx
 interface br0 {
   AdvSendAdvert on;
-  prefix <span style="color: #ff0000;">**Routed /64**</span> {
+  prefix [Routed /64] {
     AdvOnLink on;
     AdvAutonomous on;
   };
@@ -57,7 +57,7 @@ interface br0 {
 
 TunnelBroker 調整了安全設定, 目前網上流傳的指令無法完成自動更新 IPv4 位址信息的工作, 下面的指令是7IN0修改後的新版指令.
 
-```
+```bash
 sleep 10
 insmod ipv6
 USERID="<span style="color: #ff0000;">**User ID**</span>"

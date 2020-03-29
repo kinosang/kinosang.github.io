@@ -21,7 +21,7 @@ tags:
 
 首先, 在頁面頭部的前添加如下代碼：
 
-```
+```html
 <script type="text/javascript">// <![CDATA[
 function addEventHandler(target, type, func) {
 if (target.addEventListener)｛
@@ -40,17 +40,17 @@ addEventHandler(window, "scroll", move);
 
 之後添加一個空行, 在這裏添加：
 
-```
+```html
 <div id="coverdiv">
 
-**<span id="waitInfo" style="font-size: 23px;">Now Loading...</span>**
+<span id="waitInfo" style="font-size: 23px;">Now Loading...</span>
 
 </div>
 ```
 
 然後, 在頁腳的前一行, 添加下面的代碼：
 
-```
+```html
 <script type="text/javascript" language="JavaScript">// <![CDATA[
 document.getElementById('coverdiv').style.display = "none";
 // ]]></script>
@@ -58,7 +58,7 @@ document.getElementById('coverdiv').style.display = "none";
 
 最後, 是樣式, wp可以添加到style.css, 普通網站放到style標籤中
 
-```
+```css
 /* loading */
 /*灰色背景覆蓋層*/
 #coverdiv

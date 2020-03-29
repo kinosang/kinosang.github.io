@@ -15,7 +15,7 @@ tags:
 
 <!--more-->
 
-```
+```vb
 strPath = App.Path
 If Right(strPath, 1) <> "" Then
 strPath = strPath & ""
@@ -37,7 +37,7 @@ MyData.RecordSource = "Info" '表名
 
 這種方法相對於方法一來說, 代碼量大, 但是它操作靈活, 能夠滿足多樣形式下的操作, 受到更多編程者的青睞.但是涉及到的知識面相對要多一些, 不僅要掌握數據庫的操作方法, 還要二進制文件的讀寫作進一步的瞭解.關於數據庫及二進制文件的基本操作很多參考書上都介紹的比較詳細, 需要時請查閱即可.在編程之前把本部分用到的變數說明如下：
 
-```
+```vb
 Dim RS As New ADODB.Recordset
 Dim Chunk() As Byte
 Const ChunkSize As Integer = 2384
@@ -51,7 +51,7 @@ Dim i As Integer
 
 第一步首先打開數據庫, 看有沒有要查找的內容, 有則繼續執行, 沒有就退出
 
-```
+```vb
 RS.Source = "select * from Info Where Name='" & sparaName &"';"
 RS.ActiveConnection = "UID=;PWD=;DSN=TestDB;"
 RS.Open
@@ -60,7 +60,7 @@ If RS.EOF Then RS.cCose : Exit Sub
 
 第二步, 讀出長二進制數據即圖片數據, 把它轉換成圖片文件, 操作過程如下
 
-```
+```vb
 MediaTemp = strPath & "picturetemp.tmp"
 DataFile = 1
 Open MediaTemp For Binary Access Write As DataFile
@@ -80,7 +80,7 @@ Close DataFile
 
 第三步, 關閉數據庫, 這樣就可以顯示所要的圖片了.
 
-```
+```vb
 RS.Close
 If MediaTemp = "" Then Exit Sub
 Picture1.Picture = LoadPicture(MediaTemp)
@@ -93,7 +93,7 @@ If Picture1.Picture = 0 Then Exit Subj
 
 第一步首先打開數據庫, 過程如下：
 
-```
+```vb
 RS.Source = "select * from Info ;"
 RS.CursorType = adOpenKeyset
 RS.LockType = adLockOptimistic
@@ -103,7 +103,7 @@ RS.Open
 
 第二步, 把要存儲的圖片轉換成二進制長文件存入數據庫中, 操作過程如下
 
-```
+```vb
 RS.AddNew
 DataFile = 1
 Open strPathPicture For Binary Access Read As DataFile
@@ -124,7 +124,7 @@ Close DataFile
 
 第三步, 更新紀錄後, 關閉數據庫, 就完成了數據圖片到數據庫的存儲.
 
-```
+```vb
 RS.Update
 RS.Close
 Set RS = Nothing

@@ -37,19 +37,19 @@ tags:
 
 找到你的模板的home.php文件（若沒有, 則修改index.php）, 找到
 
-```
+```php
 <?php while (have_posts()) : the_post(); ?>
 ```
 
 向下查找, 尋找如下代碼：
 
-```
+```html
 <div class="post" id="post-<?php the_ID(); ?>">
 ```
 
 在這個div的範圍內, 選擇一個你認為合適的地方, 添加下面的腳本
 
-```
+```html
 <!-- Google+ Begin -->
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
 {lang: 'zh-CN'}
@@ -64,7 +64,7 @@ tags:
 如法炮製, 把文章歸檔 (archive.php)也修改一下.
 當然, 你還可以在文章頁面（single.php）的任意位置添加下面的代碼：
 
-```
+```html
 <!-- Google+ Begin -->
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
 {lang: 'zh-CN'}

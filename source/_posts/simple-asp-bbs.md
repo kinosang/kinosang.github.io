@@ -15,7 +15,7 @@ tags:
 
 ASP基本結構
 
-```
+```vb
 <%
 語句
 ……
@@ -24,7 +24,7 @@ ASP基本結構
 
 定義變數dim語句
 
-```
+```vb
 <%
 dim a,b
 a=10
@@ -38,7 +38,7 @@ b="ok!"
 
 1.if語句（elseif和與其搭配的語句2可以沒有, 也可以有多個）
 
-```
+```vb
 If 條件1 then
 語句1
 elseif 條件2 then
@@ -50,7 +50,7 @@ end if
 
 2.while語句
 
-```
+```vb
 while 條件
 語句
 wend
@@ -58,7 +58,7 @@ wend
 
 3.for語句
 
-```
+```vb
 for count=1 to n step m
 語句1
 exit for
@@ -72,7 +72,7 @@ Kinosang在這裏聲明：您需要先創建一個數據庫, 數據庫結構請�
 
 .數據庫連接(用來單獨編制連接文件conn.asp)
 
-```
+```vb
 <%
 Set conn = Server.CreateObject("ADODB.Connection")
 conn.Open "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" & Server.MapPath("bbsdb1user.mdb")
@@ -88,7 +88,7 @@ conn.Open "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" & Server.MapPath("bbs
 
 如果是從尾到頭：用循環並判斷指針是否到開始 使用：not rs.bof
 
-```
+```vb
 <!--#include file=conn.asp--><!-- 包含conn.asp用來打開bbsdb1目錄下的user.mdb數據庫 -->
 <%
 set rs=server.CreateObject("adodb.recordset") ' 建立recordset對象
@@ -114,7 +114,7 @@ set conn=nothing
 
 增加數據庫記錄用到rs.addnew,rs.update兩個函數
 
-```
+```vb
 <!--#include file=conn.asp--> <!-- 包含conn.asp用來打開bbsdb1目錄下的user.mdb數據庫 -->
 <%
 set rs=server.CreateObject("adodb.recordset") '建立recordset對象
@@ -136,7 +136,7 @@ set conn=nothing
 
 刪除數據庫記錄主要用到rs.delete,rs.update
 
-```
+```vb
 <!--#include file=conn.asp--> <!-- 包含conn.asp用來打開bbsdb1目錄下的user.mdb數據庫 -->
 <%
 dim name
@@ -165,7 +165,7 @@ set conn=nothing
 
 (a) 查詢欄位為字元型
 
-```
+```vb
 <%
 dim user,pass,qq,mail,message
 user=request.Form("user")
@@ -203,7 +203,7 @@ response.write("註冊重名")
 
 (b)查詢欄位為數字型
 
-```
+```vb
 <%
 dim num
 num=request.Form("num")
@@ -241,7 +241,7 @@ server對象：提供對服務器上方法和屬性的訪問
 
 比如：
 
-```
+```vb
 <%
 resposne.write("hello, welcome to Kinosang!")
 %>
@@ -249,7 +249,7 @@ resposne.write("hello, welcome to Kinosang!")
 
 在客戶端瀏覽器就會看到 hello, welcome to Kinosang! 這一段文字
 
-```
+```vb
 <%
 response.Redirect("www.kinosang.ws")
 %>
@@ -265,7 +265,7 @@ response.Redirect("www.kinosang.ws")
 
 這是一段Kinosang給出的表單的代碼, 這是提供給客戶填寫信息的, 填寫完了按"提交"傳遞給request.asp文件處理後再存入服務器數據庫
 
-```
+```html
 <form action="request.asp" method="post" name="form1"><input type="text" name="user" /> <input type="text" name="pass" /> <input type="submit" name="Submit" value="提交" /></form>
 ```
 
@@ -273,7 +273,7 @@ response.Redirect("www.kinosang.ws")
 
 下面我們就來分析request.asp的寫法
 
-```
+```vb
 <%
 dim name,password '定義user和password兩個變數
 name=request.form("user") '將表單中的user信息傳給變數name

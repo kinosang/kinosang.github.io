@@ -95,7 +95,7 @@ GND   -> GND
 
 這時可以用下面的指令連線 Cubieboard
 
-```
+```bash
 $ screen /dev/cu.7IN0BT-DevB 115200 -U
 ```
 

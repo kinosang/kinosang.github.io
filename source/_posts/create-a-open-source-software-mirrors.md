@@ -31,7 +31,7 @@ HDD sda 6TB（SAS Raid, /media/RAID）sdb 1TB（6GB swap, 200M /boot, 剩餘 /�
 
 貼上核心程式（mirrors_sync）
 
-```
+```bash
 #!/bin/sh
 
 . /etc/init.d/functions
@@ -93,7 +93,7 @@ statusfile=/media/RAID/mirrors/.status/$1.txt
 
 然後創建一個 shell 文件（uuMirrors）
 
-```
+```bash
 #!/bin/sh
 nohup /root/mirrors_sync apache &
 nohup /root/mirrors_sync archlinux &
@@ -108,7 +108,7 @@ nohup /root/mirrors_sync ubuntu &
 
 最後, 添加一條 cron, 每 30 分鐘執行一次
 
-```
+```crontab
 */30 * * * * /root/uuMirrors >> /dev/null 2>&1
 ```
 

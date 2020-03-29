@@ -35,6 +35,6 @@ Google 也沒有查詢到有用的信息, 於是抱著試試看的態度在 Pref
 
 正確的解決方案是在每個 Node Source File 的第一個 require 之前添加下面的代碼：
 
-```
+```javascript
 module.paths.push("/wp-content/local/lib/node_modules");
 ```

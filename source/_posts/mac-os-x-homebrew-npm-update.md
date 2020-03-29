@@ -17,7 +17,7 @@ tags:
 
 總結一下網上的解決方案：
 
-```
+```bash
 $ sudo npm update -gf
 $ sudo rm -rf /wp-content/local/lib/node_modules/npm
 $ brew unlink node && brew link --overwrite node

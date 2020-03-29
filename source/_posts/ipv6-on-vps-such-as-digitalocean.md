@@ -29,7 +29,7 @@ IPv6真的很好很強大, 在下折騰了一天讓在下的小窩也支援 IPv6
 
 檢查方法：使用 nginx -v 指令, 若回顯的結果中有
 
-```
+```yaml
 configure arguments: --with-ipv6
 ```
 
@@ -37,13 +37,13 @@ configure arguments: --with-ipv6
 
 接著, 修改 Nginx 站點設定檔, 在 server_name 上面添加一行：
 
-```
+```nginx
 listen  [::]:80 ipv6only=on;
 ```
 
 最後執行：
 
-```
+```bash
 $ service nginx reload
 ```
 
@@ -53,7 +53,7 @@ $ service nginx reload
 
 IPv6 不受 iptables 限制, 但是受到 ip6tables 的限制, 用下面的指令查看相關設定
 
-```
+```bash
 $ ip6tables -L
 ```
 
@@ -61,7 +61,7 @@ $ ip6tables -L
 
 最後, 別忘記儲存 =.=
 
-```
+```bash
 $ service ip6tables save
 ```
 

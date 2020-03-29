@@ -15,7 +15,7 @@ tags:
 
 ### 簡單粗暴
 
-```
+```bash
 $ sudo systemctl stop gitlab
 
 $ cd /tmp

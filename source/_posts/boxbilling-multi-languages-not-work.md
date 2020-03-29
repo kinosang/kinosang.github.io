@@ -15,7 +15,7 @@ tags:
 
 以 Ubuntu 14.04 為例, 修改 /var/lib/locales/supported.d/local 之後更新 locales：
 
-```
+```bash
 $ sudo vim /var/lib/locales/supported.d/local
 en_US.UTF-8 UTF-8
 zh_TW.UTF-8 UTF-8

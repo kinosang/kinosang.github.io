@@ -19,7 +19,7 @@ GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 https://docs.gitlab.
 
 ### 設定 GitLab
 
-```
+```yaml
 $ sudo -u git -H editor config/gitlab.yml
 
 ## OmniAuth settings

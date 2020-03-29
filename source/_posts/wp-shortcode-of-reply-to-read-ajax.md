@@ -25,7 +25,7 @@ tags:
 
 [reply]
 
-```
+```php
 /**
 * 短代碼之評論可見
 * @author 亂了感覺(http://messense.me)
@@ -73,7 +73,7 @@ add_action('init', 'ajax_post');
 
 在你的comments-ajax.js中找到：
 
-```
+```javascript
 if ( temp && respond ) {
 temp.parentNode.insertBefore(respond, temp);
 temp.parentNode.removeChild(temp)
@@ -84,7 +84,7 @@ temp.parentNode.removeChild(temp)
 
 [reply]
 
-```
+```javascript
 //handle reply-to-read,auto refresh page
 if($ ('.reply-to-read').length>0){
 var title=$ ('.post-info h2').text(); //這裏的選擇器改成你的文章的標題的選擇器

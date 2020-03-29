@@ -28,7 +28,7 @@ tags:
 
 下面給出一段示例代碼：
 
-```
+```php
 function uglify($contents) {
 
     $tokens = token_get_all($contents);

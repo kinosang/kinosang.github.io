@@ -21,7 +21,7 @@ tags:
 
 先重新設定系統 locales
 
-```
+```bash
 $ sudo dpkg-reconfigure locales
 # Locales to be generated 中僅保留 en_US.UTF-8
 # Default locale for the system environment 中選 en_US.UTF-8
@@ -30,7 +30,7 @@ $ locale # 驗證 locale
 
 這一步可以完全按文檔來.
 
-```
+```bash
 $ sudo apt update -y
 $ sudo apt upgrade -y
 $ sudo apt install -y vim
@@ -47,7 +47,7 @@ Ubuntu 16.04 上的 apt 安裝的 git 版本是 2.7, 比 GitLab 要求的 2.8.4 
 
 官方指引中使用 2.8.4, 我們可以安裝最新版.
 
-```
+```bash
 $ sudo apt remove git-core
 
 $ sudo apt install -y libcurl4-openssl-dev libexpat1-dev gettext libz-dev libssl-dev build-essential
@@ -68,7 +68,7 @@ $ git --version # 檢查 git 版本
 
 Ruby **必須是 2.3 版本**, 否則後面 gem 安裝 json 時會報錯.
 
-```
+```bash
 $ sudo apt-get remove ruby1.8
 
 $ cd /tmp
@@ -86,7 +86,7 @@ $ sudo gem install bundler --no-ri --no-rdoc
 
 ### 安裝 Go
 
-```
+```bash
 $ sudo rm -rf /usr/local/go
 
 $ cd /tmp
@@ -103,7 +103,7 @@ $ go version
 
 其中 yarn 需要安裝到 git 用戶, 否則後續操作中會報錯.
 
-```
+```bash
 $ curl --location https://deb.nodesource.com/setup_7.x | bash -
 $ sudo apt-get install -y nodejs
 
@@ -113,7 +113,7 @@ $ sudo -u git -H bash install.sh
 
 ### 安裝並設定 PostgreSQL
 
-```
+```sql
 $ sudo apt install -y postgresql postgresql-client libpq-dev postgresql-contrib
 $ sudo -u postgres psql -d template1 -c "CREATE USER git CREATEDB;"
 $ sudo -u postgres psql -d template1 -c "CREATE EXTENSION IF NOT EXISTS pg_trgm;"
@@ -135,7 +135,7 @@ $ sudo systemctl enable postgresql
 
 ### 安裝並設定 Redis
 
-```
+```bash
 $ sudo apt install redis-server
 
 $ sudo cp /etc/redis/redis.conf /etc/redis/redis.conf.orig
@@ -157,7 +157,7 @@ $ sudo usermod -aG redis git
 
 ### 安裝 GitLab
 
-```
+```bash
 $ cd /home/git
 $ sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 8-17-stable gitlab
 
@@ -204,20 +204,20 @@ $ sudo -u git -H editor config/resque.yml # 若需要修改 Redis socket
 
 ### 設定 GitLab 資料庫
 
-```
+```bash
 $ sudo -u git cp config/database.yml.postgresql config/database.yml
 $ sudo -u git -H chmod o-rwx config/database.yml
 ```
 
 ### 安裝 Gems
 
-```
+```bash
 $ sudo -u git -H bundle install --deployment --without development test mysql aws kerberos
 ```
 
 ### 安裝 GitLab Shell
 
-```
+```bash
 $ sudo -u git -H bundle exec rake gitlab:shell:install REDIS_URL=unix:/var/run/redis/redis.sock RAILS_ENV=production SKIP_STORAGE_VALIDATION=true
 $ sudo -u git -H editor ../gitlab-shell/config.yml
 # HTTPS 相關 檢查 gitlab_url 是否爲 HTTPS, 設置 ca_file 爲證書文件
@@ -225,20 +225,20 @@ $ sudo -u git -H editor ../gitlab-shell/config.yml
 
 ### 安裝 gitlab-workhorse
 
-```
+```bash
 $ sudo -u git -H bundle exec rake "gitlab:workhorse:install[/home/git/gitlab-workhorse]" RAILS_ENV=production
 ```
 
 ### 建置資料庫
 
-```
+```bash
 $ sudo -u git -H bundle exec rake gitlab:setup RAILS_ENV=production
 # Do you want to continue (yes/no)?
 ```
 
 ### 準備腳本
 
-```
+```bash
 $ sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
 $ sudo cp lib/support/init.d/gitlab.default.example /etc/default/gitlab
 $ sudo update-rc.d gitlab defaults 21
@@ -246,7 +246,7 @@ $ sudo update-rc.d gitlab defaults 21
 
 ### 設定 Logrotate
 
-```
+```bash
 $ sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab
 ```
 
@@ -254,7 +254,7 @@ $ sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab
 
 第一步的指令**與官方不同**, 使用安裝到 git 用戶的 yarn.
 
-```
+```bash
 $ sudo -u git -H /home/git/.yarn/bin/yarn install --production --pure-lockfile
 $ sudo -u git -H bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
 ```
@@ -263,7 +263,7 @@ $ sudo -u git -H bundle exec rake gitlab:assets:compile RAILS_ENV=production NOD
 
 因爲是在全新的伺服器上安裝 GitLab, 伺服器專用作 GitLab, 所以我移除了 nginx 默認的 default 站點並且不對 GitLab 提供的設定檔作修改.
 
-```
+```bash
 $ sudo apt install -y nginx
 
 $ mkdir -p /etc/nginx/ssl/
@@ -283,13 +283,13 @@ $ sudo systemctl enable nginx
 
 ### 檢查應用狀態
 
-```
+```bash
 $ sudo -u git -H bundle exec rake gitlab:env:info RAILS_ENV=production
 ```
 
 ### 啓動 GitLab
 
-```
+```bash
 $ sudo systemctl start gitlab
 ```
 
@@ -297,7 +297,7 @@ $ sudo systemctl start gitlab
 
 檢查 GitLab 狀態
 
-```
+```bash
 $ sudo -u git -H bundle exec rake gitlab:env:info RAILS_ENV=production
 ```
 

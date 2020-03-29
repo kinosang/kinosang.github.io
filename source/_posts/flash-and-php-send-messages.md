@@ -16,7 +16,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
 
 AS腳本（放到關鍵幀上）：
 
-```
+```actionscript
 //聲明一個URLLoader
 var loader:URLLoader = new URLLoader();
 //監聽數載加載完成事件
@@ -32,7 +32,7 @@ loader.load(new URLRequest("test.php"));
 
 test.php：
 
-```
+```php
 <?php
 //聲明一個變數並賦給一個字元串
 $ data = "I am PHP!";
@@ -46,7 +46,7 @@ echo $ data;
 
 AS腳本（放到關鍵幀上）：
 
-```
+```actionscript
 var loader:URLLoader = new URLLoader();
 loader.data={message:"hello im flash!"};
 loader.addEventListener(Event.COMPLETE,loaded);
@@ -59,7 +59,7 @@ loader.load(new URLRequest("test.php"));
 
 test.php：
 
-```
+```php
 <?php
 $ flashData = $ _POST['message'];
 echo "this is flash say:$ flashData";
@@ -71,7 +71,7 @@ echo "this is flash say:$ flashData";
 
 AS腳本（放到關鍵幀上）：
 
-```
+```actionscript
 var loader:URLLoader = new URLLoader();
 //聲明一個URLRequest
 var url:URLRequest = new URLRequest("test.php");
@@ -96,7 +96,7 @@ test.php同上
 
 AS腳本（放到關鍵幀上）：
 
-```
+```actionscript
 var loader:URLLoader = new URLLoader();
 //聲明一個URLRequest
 var url:URLRequest = new URLRequest("test.php");
@@ -121,7 +121,7 @@ loader.load(url);
 
 test.php：
 
-```
+```php
 <?php
 $ flashData = $ _POST['message'];
 $ phpMessage = "I am PHP!";
@@ -133,7 +133,7 @@ echo "phpMessage=$ phpMessage&flashMessage=$ flashData";
 
 AS腳本（放到關鍵幀上）：
 
-```
+```actionscript
 var loader:URLLoader = new URLLoader();
 //聲明一個URLRequest
 var url:URLRequest = new URLRequest("test.php");

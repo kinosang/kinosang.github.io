@@ -39,7 +39,7 @@ CentOS 安裝 Nginx + PHP + MariaDB | MySQL自動最佳化
 
 ### 添加源
 
-```
+```bash
 $ vim /etc/yum.repos.d/MariaDB.repo
 # MariaDB 5.5 RedHat repository list - created 2013-08-11 14:29 UTC
 # http://mariadb.org/mariadb/repositories/
@@ -52,7 +52,7 @@ gpgcheck=1
 
 ### 安裝並啟用 MariaDB
 
-```
+```bash
 $ yum -y install MariaDB-server MariaDB-client MariaDB-common MariaDB-compat MariaDB-shared
 ...
 $ service mysql start
@@ -62,7 +62,7 @@ $ chkconfig --levels 235 mysql on
 
 ### 初次設定 root 帳戶
 
-```
+```bash
 $ mysql_secure_installation
 /wp-content/bin/mysql_secure_installation: line 379: find_mysql_client: command not found
 
@@ -130,7 +130,7 @@ Thanks for using MariaDB!
 
 參見[Installing RHEL EPEL Repo on Centos 5.x or 6.x](http://www.rackspace.com/knowledge_center/article/installing-rhel-epel-repo-on-centos-5x-or-6x)
 
-```
+```bash
 $ wget http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 $ wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 $ rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
@@ -139,7 +139,7 @@ $ rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
 記得將 /etc/yum.repos.d/remi.repo 中的 [remi] 設定為 enabled=1
 還有 Nginx 的源
 
-```
+```bash
 $ vim /etc/yum.repos.d/nginx.repo
 [nginx]
 name=nginx repo
@@ -150,7 +150,7 @@ enabled=1
 
 ### 安裝並啟用 Nginx
 
-```
+```bash
 $ yum install nginx
 $ service nginx start
 $ chkconfig --levels 235 nginx on
@@ -158,7 +158,7 @@ $ chkconfig --levels 235 nginx on
 
 ### 安裝並啟用 PHP-FPM
 
-```
+```bash
 $ yum install php-fpm php-mysqlnd php-gd php-curl php-mcrypt php-apc
 $ service php-fpm start
 $ chkconfig --levels 235 php-fpm on
@@ -170,7 +170,7 @@ $ chkconfig --levels 235 php-fpm on
 
 ### sftp 傳輸檔案夾
 
-```
+```bash
 $ scp -r user@ip:/path/to/dir /local/dir
 ```
 
@@ -182,7 +182,7 @@ $ scp -r user@ip:/path/to/dir /local/dir
 
 讓系統自動優化數據庫, 以提高效率
 
-```
+```bash
 $ crontab -e
 0 0 * * 0 /wp-content/bin/mysqlcheck --all-databases --optimize --auto-repair -u root -pYourRootPassword > /dev/null 2>&1
 ```

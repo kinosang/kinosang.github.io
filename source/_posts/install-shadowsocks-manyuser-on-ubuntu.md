@@ -11,7 +11,7 @@ tags:
 
 過程略, 參見 往期網誌.
 
-```
+```sql
 $ mysql -u root -p
 MariaDB [(none)]> create database shadowsocks;
 MariaDB [(none)]> CREATE USER 'shadowsocks'@'%' IDENTIFIED BY 'password';
@@ -23,14 +23,14 @@ MariaDB [(none)]> flush privileges;\q
 
 ### 安裝依賴
 
-```
+```bash
 $ sudo apt install python-pip python-m2crypto unzip vim
 $ sudo pip install cymysql
 ```
 
 ### 安裝 Shadowsocks Manyuser
 
-```
+```bash
 $ wget https://github.com/mengskysama/shadowsocks/archive/manyuser.zip
 $ unzip manyuser.zip
 $ cd shadowsocks-manyuser/shadowsocks/
@@ -51,7 +51,7 @@ MANAGE_PORT = 23333
 
 ### 優化 Shadowsocks
 
-```
+```conf
 $ sudo vim /etc/sysctl.conf
 # max open files
 fs.file-max = 51200
@@ -105,7 +105,7 @@ $ ulimit -n 51200
 
 ### 增强安全性
 
-```
+```conf
 $ sudo apt install wondershaper
 # limit bandwidth to 10Mb/10Mb on eth0
 $ wondershaper eth0 10000 10000
@@ -158,6 +158,6 @@ $ sudo iptables -t nat -m owner --uid-owner ssuser -A OUTPUT -p tcp --dport 80 -
 
 ### 啟動 Shadowsocks
 
-```
+```bash
 $ sudo -u ssuser python server.py > /var/log/shadowsocks.log 2>&1 &
 ```

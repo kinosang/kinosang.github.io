@@ -13,7 +13,7 @@ tags:
 
 首先添加 epel repo.
 
-```
+```bash
 $ sudo yum install epel-release
 ```
 
@@ -21,19 +21,19 @@ $ sudo yum install epel-release
 
 然後添加 Lizardfs repo.
 
-```
+```bash
 $ curl http://packages.lizardfs.com/yum/el7/lizardfs.repo | sudo tee /etc/yum.repos.d/lizardfs.repo
 ```
 
 安裝 Lizardfs 的組件
 
-```
+```bash
 $ sudo yum install vim lizardfs-master lizardfs-metalogger lizardfs-chunkserver
 ```
 
 設定 Lizardfs
 
-```
+```bash
 $ cd /etc/mfs
 $ sudo rename .cfg.dist .cfg *.dist
 $ sudo cp /var/lib/mfs/metadata.mfs.empty /var/lib/mfs/metadata.mfs
@@ -48,7 +48,7 @@ $ sudo chown -R mfs:mfs /mnt/mfs
 
 設定 Firewalld
 
-```
+```bash
 $ sudo vim /etc/sysconfig/network-scripts/ifcfg-eno1
  ZONE="trusted"
 $ sudo systemctl restart network.service
@@ -57,7 +57,7 @@ $ sudo systemctl restart firewalld.service
 
 啓動 Lizardfs
 
-```
+```bash
 $ sudo systemctl restart lizardfs-master
 $ sudo systemctl restart lizardfs-metalogger
 $ sudo systemctl restart lizardfs-chunkserver

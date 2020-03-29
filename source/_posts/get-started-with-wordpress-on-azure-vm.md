@@ -81,13 +81,13 @@ tags:
 
 通過 ssh 登入你的虛擬機器：
 
-```
-$ssh user@public-ip
+```bash
+$ ssh user@public-ip
 ```
 
 例如：
 
-```
+```bash
 $ ssh chino@your-ip-here
 ```
 
@@ -97,14 +97,14 @@ $ ssh chino@your-ip-here
 
 首先安裝 WordPress 運行環境, 這裏選擇 Apache2 + MySQL + PHP7
 
-```
+```bash
 $ sudo apt update && sudo apt -y upgrade
 $ sudo apt -y install apache2 mysql-server php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-mcrypt
 ```
 
 若此前選擇的作業系統爲“Ubuntu 12.04”或“Ubuntu 14.04”, 則第二條指令修改爲
 
-```
+```bash
 $ sudo apt -y install libapache2-mod-php5 mysql-server php5-mysql php5-mcrypt
 ```
 
@@ -112,7 +112,7 @@ $ sudo apt -y install libapache2-mod-php5 mysql-server php5-mysql php5-mcrypt
 
 ![螢幕快照 2016-10-14 14.51.49.png](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-14.51.49.png)![螢幕快照 2016-10-14 14.52.20.png](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-14.52.20.png)
 
-```
+```bash
 $ sudo a2enmod php7.0 #手動啓用 php7 for apache
 $ sudo a2dismod mpm_event #禁用 MPM, 否則與 php7 NTS 衝突
 $ sudo a2enmod mpm_prefork
@@ -121,20 +121,20 @@ $ sudo systemctl restart apache2
 
 若爲“Ubuntu 12.04”或“Ubuntu 14.04”則上面四條指令修改爲
 
-```
+```bash
 $ sudo service apache2 restart
 ```
 
 ### 安裝 WordPress
 
-```
+```bash
 $ wget https://wordpress.org/latest.tar.gz
 $ tar vzxf latest.tar.gz
 ```
 
 ![螢幕快照 2016-10-14 14.57.50.png](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-14.57.50.png)
 
-```
+```bash
 $ cd /var/www/html #前往 Apache2 根目錄
 $ sudo rm index.html #刪除默認主頁
 $ sudo mv ~/wordpress/* . # 移動 WordPress 到當前目錄
@@ -146,7 +146,7 @@ $ ls #查看當前目錄下的檔案
 
 然後爲 WordPress 建立 MySQL 用戶
 
-```
+```sql
 $ mysql -uroot -p #登入 MySQL 控制檯, 會要求輸入此前設置的 MySQL root 密碼
 mysql> CREATE USER 'demo'@'localhost' IDENTIFIED BY 'password';
 mysql> CREATE DATABASE demo;

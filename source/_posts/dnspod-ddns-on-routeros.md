@@ -14,7 +14,7 @@ tags:
 
 MikroTik Wiki 中有如何設定 NO-IP DDNS 的說明[^2], 從其程式碼修改即可適配 DNSPod.
 
-```
+```routeros
 ##############Script Settings##################
 
 :local DNSPODTOKENID "DNSPod API Token ID"

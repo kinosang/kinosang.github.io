@@ -13,14 +13,14 @@ tags:
 
 ### 安裝 Nginx
 
-```
+```bash
 $ sudo apt update
 $ sudo apt install nginx
 ```
 
 ### 安裝 Tomcat 7
 
-```
+```xml
 $ sudo apt install tomcat7
 $ sudo vim /etc/tomcat7/server.xml
 ...
@@ -39,7 +39,7 @@ $ sudo service tomcat7 start
 
 ### 設定 Nginx
 
-```
+```nginx
 $ sudo vim /etc/nginx/sites-enabled/default
 ...
     location / {

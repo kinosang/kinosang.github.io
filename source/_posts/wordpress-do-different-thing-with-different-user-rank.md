@@ -13,7 +13,7 @@ tags:
 
 【一】對登錄用戶不顯示, 對評論者和訪客顯示的內容
 
-```
+```php
 <?php if (!$ user_ID) { ?>
 這裏填某些調用代碼, 內容
 <?php } ?>
@@ -23,7 +23,7 @@ tags:
 
 【二】對登錄用戶和評論者不顯示, 只對訪客顯示的內容
 
-```
+```php
 <?php if (!$ user_ID && !isset($ _COOKIE['comment_author_'.COOKIEHASH])) { ?>
 這裏填某些調用代碼, 內容
 <?php } ?>
@@ -31,7 +31,7 @@ tags:
 
 【三】只對登錄用戶顯示的內容
 
-```
+```php
 <?php if ($ user_ID) { ?>
 這裏填某些調用代碼, 內容
 <?php } ?>
@@ -39,7 +39,7 @@ tags:
 
 【四】只對評論者顯示的內容
 
-```
+```php
 <?php if (!$ user_ID && isset($ _COOKIE['comment_author_'.COOKIEHASH])) { ?>
 這裏填某些調用代碼, 內容
 <?php } ?>
@@ -47,7 +47,7 @@ tags:
 
 二, 對不同級別的登錄者顯示不同內容
 
-```
+```php
 <?php
 //連結SQL, Kinosang's Labs提醒您請修改sql用戶名, 密碼, 使用的數據庫名
 $ conn=@mysql_connect("localhost", "root","pwd");
