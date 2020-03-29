@@ -65,8 +65,8 @@ $ dnscrypt-proxy --daemonize
 
 解開 zip 檔, cd 進入相應檔案夾, 執行下面的指令：
 
-```dosbatch
-cmd> dnscrypt-proxy.exe --install
+```powershell
+> .\dnscrypt-proxy.exe --install
 ```
 
 1.  修改 DNS 设定（同 Mac OS X）

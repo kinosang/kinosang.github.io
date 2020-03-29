@@ -189,7 +189,7 @@ backend bk_waf_health_check
 
 創建 `/etc/fail2ban/filter.d/nginx-naxsi.conf` ：
 
-```conf
+```ini
 [INCLUDES]
 before = common.conf
 
@@ -200,7 +200,7 @@ ignoreregex =
 
 在 `/etc/fail2ban/jail.conf` 添加：
 
-```conf
+```ini
 [nginx-naxsi]
 
 enabled = true

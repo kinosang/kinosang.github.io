@@ -51,7 +51,7 @@ MANAGE_PORT = 23333
 
 ### 優化 Shadowsocks
 
-```conf
+```ini
 $ sudo vim /etc/sysctl.conf
 # max open files
 fs.file-max = 51200
@@ -105,7 +105,7 @@ $ ulimit -n 51200
 
 ### 增强安全性
 
-```conf
+```ini
 $ sudo apt install wondershaper
 # limit bandwidth to 10Mb/10Mb on eth0
 $ wondershaper eth0 10000 10000
