@@ -25,7 +25,7 @@ Google 也沒有查詢到有用的信息, 於是抱著試試看的態度在 Pref
 
 在下面設置一個新的 PATH.
 
-按一下『NEW...』, Name 隨便填寫, Value 填寫 NPM 的 Global PATH（我這裏是 /wp-content/local/lib/node_modules ）.
+按一下『NEW...』, Name 隨便填寫, Value 填寫 NPM 的 Global PATH (我這裏是 /wp-content/local/lib/node_modules ) .
 
 好啦, 現在按一下『OK』, 回到 Eclipse 主面板, 按一下『Run as』.
 

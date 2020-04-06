@@ -15,7 +15,7 @@ tags:
 
 ## 知識的獲取
 
-我目前主要通過 Rss訂閱, 社區（V2EX, StackOverflow 等）, 社交網絡（Twitter, Facebook, 微博）, Google 來獲取各類信息.
+我目前主要通過 Rss訂閱, 社區 (V2EX, StackOverflow 等) , 社交網絡 (Twitter, Facebook, 微博) , Google 來獲取各類信息.
 
 過去我使用 Google Reader 訂閱 Feed, 但是 Google Reader 已經關閉, 因此我轉而使用 Feedly.
 

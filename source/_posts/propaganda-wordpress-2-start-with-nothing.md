@@ -1,5 +1,5 @@
 ---
-title: WordPress普及系列（二）從零開始搭建WP站點
+title: WordPress普及系列 (二) 從零開始搭建WP站點
 id: 608
 categories:
   - 應用技巧
@@ -9,7 +9,7 @@ tags:
 
 撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的[《WordPress 那些事兒》](http://wange.im/about-wordpress.html), [《WordPress 我變我變我變變變》](http://wange.im/wordpress-is-not-everything.html)兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.
 
-<span style="line-height: 1.714285714; font-size: 1rem;">上一篇博文（</span>[《WordPress普及系列（一）為什麼選擇WP》](http://www.chinvo.org/html/y_2011/m_05/593.html)<span style="line-height: 1.714285714; font-size: 1rem;">）介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用.</span>
+<span style="line-height: 1.714285714; font-size: 1rem;">上一篇博文 (</span>[《WordPress普及系列 (一) 為什麼選擇WP》](http://www.chinvo.org/html/y_2011/m_05/593.html)<span style="line-height: 1.714285714; font-size: 1rem;">) 介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用.</span>
 
 想要使用WP, 第一步當然是安裝, 安裝方式分為本地安裝和遠程安裝, 步驟基本相同, 只不過遠程安裝需要你擁有一臺服務器, 並將WP的文件上傳至你的服務器.
 
@@ -19,9 +19,9 @@ tags:
 
 一, 搭建運行環境
 
-本地安裝需要你在本地（就是你的電腦上, 別告訴我你看不懂-_-!）搭建一個PHP+Mysql運行環境, 如果你已經搭建好了一個運行環境, 請跳過本步.
+本地安裝需要你在本地 (就是你的電腦上, 別告訴我你看不懂-_-!) 搭建一個PHP+Mysql運行環境, 如果你已經搭建好了一個運行環境, 請跳過本步.
 
-萬戈（叫他萬大叔好像傷到了他的心）推薦在本地搭建運行環境時使用<span style="text-decoration: underline;">XAMPP for Windows PHP+MySql 套裝</span>, 我個人習慣使用appserv（win32版本已在文末提供下載）, 這裏就以appserv-win32進行講解了.
+萬戈 (叫他萬大叔好像傷到了他的心) 推薦在本地搭建運行環境時使用<span style="text-decoration: underline;">XAMPP for Windows PHP+MySql 套裝</span>, 我個人習慣使用appserv (win32版本已在文末提供下載) , 這裏就以appserv-win32進行講解了.
 
 運行“appserv-win32.exe”進行安裝, 設置什麼的很簡單, 不多說了, 上圖：
 
@@ -39,8 +39,8 @@ tags:
 
 [![](https://blog.7in0.me/wp-content/uploads/2015/06/e4da3b7fbbce2345d7772b0674a318d5.png "捕獲5")](http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b75)
 
-*   Kinosang's Labs在這裏修改了Port（連接埠）!
-*   Server Name可以隨便填, 但推薦填寫127.0.0.1（僅限本地測試時）
+*   Kinosang's Labs在這裏修改了Port (連接埠) !
+*   Server Name可以隨便填, 但推薦填寫127.0.0.1 (僅限本地測試時)
 *   Email請填寫正確的E-mail地址, 這裏因為是演示, 所以隨便填寫了一個
 
 [![](https://blog.7in0.me/wp-content/uploads/2015/06/1679091c5a880faf6fb5e6087eb1b2dc1.png "捕獲6")](http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b76)
@@ -49,9 +49,9 @@ tags:
 
 二, 安裝WordPress
 
-把WP的文件解壓到appserv安裝目錄下的WWW目錄中（最好新建一個目錄, 如wordpress, 放在新建的目錄裏面）.
+把WP的文件解壓到appserv安裝目錄下的WWW目錄中 (最好新建一個目錄, 如wordpress, 放在新建的目錄裏面) .
 
-然後訪問http://127.0.0.1:8080/wordpress（以上文中所述地址）
+然後訪問http://127.0.0.1:8080/wordpress (以上文中所述地址)
 
 會提示錯誤, 如下圖：
 
@@ -72,7 +72,7 @@ tags:
 填寫好數據庫信息, 點擊“提交”
 
 *   Kinosang's Labs不推薦使用root級別數據庫用戶
-*   Kinosang's Labs推薦將表名前綴修改為無規律的字元（與您的網站或wp差距越大越好）
+*   Kinosang's Labs推薦將表名前綴修改為無規律的字元 (與您的網站或wp差距越大越好)
 
 進入下一步：
 

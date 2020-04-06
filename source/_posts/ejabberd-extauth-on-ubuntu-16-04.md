@@ -74,7 +74,7 @@ auth_use_cache: false
 
 通過`ejabberdcctl`重新啟動`ejabberd`使設定生效.
 
-若出現`extauth script has exitted abruptly with reason 'normal'`, 在排除檔案 owner 和執行權限有誤的情況下, 可能為`apparmor`所致（帶有 SELinux 的作業系統中可能為 SELinux 所致, 可以通過`sudo setenforce 0`臨時關閉 SELinux 測試）, 查看`/var/log/syslog`可看到相關 log.
+若出現`extauth script has exitted abruptly with reason 'normal'`, 在排除檔案 owner 和執行權限有誤的情況下, 可能為`apparmor`所致 (帶有 SELinux 的作業系統中可能為 SELinux 所致, 可以通過`sudo setenforce 0`臨時關閉 SELinux 測試) , 查看`/var/log/syslog`可看到相關 log.
 
 ```log
 Sep 19 11:31:45 localhost kernel: [ 5031.995813] audit: type=1400 audit(1505827901.939:57): apparmor="DENIED" operation="exec" profile="/usr/sbin/ejabberdctl" name="/var/lib/ejabberd/extauth.py" pid=4419 comm="sh" requested_mask="x" denied_mask="x" fsuid=100 ouid=100

@@ -7,7 +7,7 @@ date: 2011-02-09 18:43:30
 tags:
 ---
 
-首先要說明一點, 本站的VIP級別用戶是使用Role Manager創建的, Role Manager的具體用法我會專門講解, 下面的代碼中特殊用戶組以本站VIP用戶（level = 3）為例.
+首先要說明一點, 本站的VIP級別用戶是使用Role Manager創建的, Role Manager的具體用法我會專門講解, 下面的代碼中特殊用戶組以本站VIP用戶 (level = 3) 為例.
 
 一, 對登錄或未登錄或評論者的訪客顯示不同內容
 
@@ -57,16 +57,16 @@ $ db = @mysql_select_db("dbname",$ conn);
 if ($ user_ID) {
 $ result_level = @mysql_query("SELECT meta_value FROM wp_usermeta WHERE user_id = '" . $ user_ID . "' and meta_key = 'w_user_level'",$ db); //Kinosang's Labs提醒您這裏的wp_usermeta改為你的對應的表名
 //分情況設定更新時間
-if ($ result_level[0]->meta_value < 3) { //訂閱者, 投稿者和作者級別（訂閱者的level=0, 投稿者的level=1, 作者的level=2）
+if ($ result_level[0]->meta_value < 3) { //訂閱者, 投稿者和作者級別 (訂閱者的level=0, 投稿者的level=1, 作者的level=2)
 ?>
 這裏填某些調用代碼, 內容 Kinosang's Labs一般用戶
 <?php
 }
-if ($ result_level[0]->meta_value == 3) { //VIP用戶（這是Kinosang's Labs自定義用戶組, wp原本沒有level=3的用戶組）
+if ($ result_level[0]->meta_value == 3) { //VIP用戶 (這是Kinosang's Labs自定義用戶組, wp原本沒有level=3的用戶組)
 ?>
 這裏填某些調用代碼, 內容 Kinosang's LabsVIP用戶
 <?php
-if ($ result_level[0]->meta_value > 5) { //官方用戶（wp中默認 編輯的level=7, 管理員的level=10）
+if ($ result_level[0]->meta_value > 5) { //官方用戶 (wp中默認 編輯的level=7, 管理員的level=10)
 ?>
 這裏填某些調用代碼, 內容 Kinosang's Labs管理團隊
 <?php

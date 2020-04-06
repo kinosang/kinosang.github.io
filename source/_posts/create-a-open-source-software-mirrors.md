@@ -19,7 +19,7 @@ Mem 6 GB
 
 Ethernet Broadcom BCM5716 Gigabit Ethernet
 
-HDD sda 6TB（SAS Raid, /media/RAID）sdb 1TB（6GB swap, 200M /boot, 剩餘 /） sdc 2TB（/data, 其他用途）
+HDD sda 6TB (SAS Raid, /media/RAID) sdb 1TB (6GB swap, 200M /boot, 剩餘 /)  sdc 2TB (/data, 其他用途)
 
 <!--more-->
 
@@ -29,7 +29,7 @@ HDD sda 6TB（SAS Raid, /media/RAID）sdb 1TB（6GB swap, 200M /boot, 剩餘 /�
 
 > apache, archlinux, centos, epel, fedora, linux-kernel, mariadb, opensuse, ubuntu
 
-貼上核心程式（mirrors_sync）
+貼上核心程式 (mirrors_sync)
 
 ```bash
 #!/bin/sh
@@ -91,7 +91,7 @@ statusfile=/media/RAID/mirrors/.status/$1.txt
   return $RETVAL
 ```
 
-然後創建一個 shell 文件（uuMirrors）
+然後創建一個 shell 文件 (uuMirrors)
 
 ```bash
 #!/bin/sh
@@ -116,6 +116,6 @@ nohup /root/mirrors_sync ubuntu &
 
 下面美化 web indexlist, 在下選擇 h5ai 進行修改后使用.
 
-（圖中還有 nginx 源, 是使用 wget 進行 clone 的, 方案十分不成熟, 暫時不公開了）
+ (圖中還有 nginx 源, 是使用 wget 進行 clone 的, 方案十分不成熟, 暫時不公開了)
 
 [![uuMirrors](/wp-content/uploads/2014/09/uuMirrors-300x187.png)](/wp-content/uploads/2014/09/uuMirrors-e1411224684522.png)

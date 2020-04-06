@@ -33,12 +33,12 @@ tags:
 </div>
 
 <div id="da121" class="choosed" style="display:none;">
-選擇**MIT授權條款（The MIT License）**
+選擇**MIT授權條款 (The MIT License) **
 [http://opensource.org/licenses/mit-license.php](http://opensource.org/licenses/mit-license.php)
 </div>
 
 <div id="da122" class="choosed" style="display:none;">
-選擇**BSD授權條款（Berkeley Software Distribution license）**
+選擇**BSD授權條款 (Berkeley Software Distribution license) **
 [http://www.opensource.org/licenses/bsd-license.php](http://www.opensource.org/licenses/bsd-license.php)
 </div>
 
@@ -48,7 +48,7 @@ tags:
 </div>
 
 <div id="da21" class="choosed" style="display:none;">
-選擇**GNU 通用公眾授權條款（GNU General Public License）**
+選擇**GNU 通用公眾授權條款 (GNU General Public License) **
 [http://www.gnu.org/licenses/gpl.html](http://www.gnu.org/licenses/gpl.html)
 </div>
 
@@ -58,11 +58,11 @@ tags:
 </div>
 
 <div id="da221" class="choosed" style="display:none;">
-選擇**Mozilla公共許可證（Mozilla Public License）**
+選擇**Mozilla公共許可證 (Mozilla Public License) **
 [http://www.mozilla.org/MPL/](http://www.mozilla.org/MPL/)
 </div>
 
 <div id="da222" class="choosed" style="display:none;">
-選擇**GNU宽通用公共许可证（GNU Lesser General Public License）**
+選擇**GNU宽通用公共许可证 (GNU Lesser General Public License) **
 [http://www.gnu.org/licenses/lgpl.html](http://www.gnu.org/licenses/lgpl.html)
 </div>

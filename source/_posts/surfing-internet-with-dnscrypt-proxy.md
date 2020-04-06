@@ -39,7 +39,7 @@ _如果在學校或公司等需要使用網絡時需要設定內網 DNS, 將內�
 
 ## Linux
 
-1.  下载 DNSCrypt-proxy 原始码（.tar.bz2檔）（点击[这里](http://download.dnscrypt.org/dnscrypt-proxy/)）</p>
+1.  下载 DNSCrypt-proxy 原始码 (.tar.bz2檔)  (点击[这里](http://download.dnscrypt.org/dnscrypt-proxy/)) </p>
 2.  安裝</p>
 
 ```bash
@@ -55,11 +55,11 @@ $ make install
 $ dnscrypt-proxy --daemonize
 ```
 
-1.  修改 DNS 设定（同 Mac OS X）
+1.  修改 DNS 设定 (同 Mac OS X)
 
 ## Windows
 
-1.  下载 DNSCrypt-proxy for win（dnscrypt-proxy-win32-full-*.zip檔）（点击[这里](http://download.dnscrypt.org/dnscrypt-proxy/)）
+1.  下载 DNSCrypt-proxy for win (dnscrypt-proxy-win32-full-*.zip檔)  (点击[这里](http://download.dnscrypt.org/dnscrypt-proxy/))
 
 2.  安裝
 
@@ -69,4 +69,4 @@ $ dnscrypt-proxy --daemonize
 > .\dnscrypt-proxy.exe --install
 ```
 
-1.  修改 DNS 设定（同 Mac OS X）
+1.  修改 DNS 设定 (同 Mac OS X)

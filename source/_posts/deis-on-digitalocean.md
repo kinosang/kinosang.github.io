@@ -11,7 +11,7 @@ tags:
 
 Deis 提供的 Documents 比較零散, 很多人看得雲裡霧裡.
 
-在下參悟多日, 經過數次嘗試（S/L 大法好）, 終於成功在 DigitalOcean 成功部署 Deis PaaS 系統（3 nodes）.
+在下參悟多日, 經過數次嘗試 (S/L 大法好) , 終於成功在 DigitalOcean 成功部署 Deis PaaS 系統 (3 nodes) .
 
 <!--more-->
 
@@ -29,7 +29,7 @@ $ git clone https://github.com/deis/deis.git
 $ ssh-keygen -q -t rsa -f ~/.ssh/deis -N '' -C deis
 ```
 
-接著在 git 倉庫根目錄執行下面的指令生成一個最小集群（3 nodes, 2G RAM）
+接著在 git 倉庫根目錄執行下面的指令生成一個最小集群 (3 nodes, 2G RAM)
 
 ```bash
 $ make discovery-url
@@ -47,7 +47,7 @@ Singapore 1 (sgp1)
 $ ./contrib/digitalocean/provision-do-cluster.sh nyc3 12345 2GB
 ```
 
-設定 DNS, 你需要設定如下記錄（用上一條指令返回的三個 IP 取代下面對應的 IP）：
+設定 DNS, 你需要設定如下記錄 (用上一條指令返回的三個 IP 取代下面對應的 IP) ：
 
 ```bash
 deis-1   IN A    104.131.93.162
@@ -61,13 +61,13 @@ deis-3   IN A    104.131.113.138
 
 ### 設定 Deis
 
-因為 DigitalOcean 沒有提供安全組設定, 所以使用 iptables 來實現轉發, 在 git 倉庫根目錄使用下面的命令（記得用你自己的域名替換 example.com）
+因為 DigitalOcean 沒有提供安全組設定, 所以使用 iptables 來實現轉發, 在 git 倉庫根目錄使用下面的命令 (記得用你自己的域名替換 example.com)
 
 ```bash
 $ for i in 1 2 3; do ssh core@deis-$i.example.com 'bash -s' < contrib/util/custom-firewall.sh; done
 ```
 
-在你的電腦中安裝 deisctl（[參考](http://docs.deis.io/en/latest/installing_deis/install-deisctl/#install-deisctl)）
+在你的電腦中安裝 deisctl ([參考](http://docs.deis.io/en/latest/installing_deis/install-deisctl/#install-deisctl))
 然後確認你所安裝的 deisctl 版本和你的 deis node 一致
 
 ```bash
@@ -88,7 +88,7 @@ $ ssh-add ~/.ssh/deis
 $ export DEISCTL_TUNNEL=104.131.93.162
 ```
 
-設定私鈅和節點域名, 安裝并啟動 deis 平台（這一步之前記得到 DigitalOcean 裡面創建個快照）
+設定私鈅和節點域名, 安裝并啟動 deis 平台 (這一步之前記得到 DigitalOcean 裡面創建個快照)
 
 ```bash
 $ deisctl config platform set sshPrivateKey=~/.ssh/deis

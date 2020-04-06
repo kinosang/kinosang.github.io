@@ -11,7 +11,7 @@ tags:
 
 ### 什么是 dn42
 
-dn42 是一個使用多種因特網技術（包括 BGP, whois 資料庫, DNS 等）構建的大型的動態 VPN 網路.參與者使用隧道技術（比如 GRE, OpenVPN, Tinc, IPsec）與其他人互相連線並利用BGP（邊界閘道器協議）交換路由.
+dn42 是一個使用多種因特網技術 (包括 BGP, whois 資料庫, DNS 等) 構建的大型的動態 VPN 網路.參與者使用隧道技術 (比如 GRE, OpenVPN, Tinc, IPsec) 與其他人互相連線並利用BGP (邊界閘道器協議) 交換路由.
 
 dn42 使用 172.20.0.0/14 , fd00::/8 和私有ASN.
 
@@ -22,8 +22,8 @@ dn42 也與其他網路, 比如 ChaosVPN 和部分 Freifunk 網路.
 ### 基礎需求
 
 *   至少一個 7x24 小時運行的路由器.Linux 或 BSD 盒子可以用作路由器.如果你的家用路由器使用 OpenWRT, 你可以考慮在 dn42 中使用該裝置.
-*   你的路由器可以通過因特網接入隧道服務（GRE, OpenVPN, IPsec, Tinc 等）.要注意, 在學校或其他地方, 你的網路管理員會過濾這些流量.
-*   你具備一定的網路和路由器知識, 比如BGP, IGP, 轉發.並且你具備配置 BGP 路由器（比如 Quagga 和 Bird）的能力.
+*   你的路由器可以通過因特網接入隧道服務 (GRE, OpenVPN, IPsec, Tinc 等) .要注意, 在學校或其他地方, 你的網路管理員會過濾這些流量.
+*   你具備一定的網路和路由器知識, 比如BGP, IGP, 轉發.並且你具備配置 BGP 路由器 (比如 Quagga 和 Bird) 的能力.
 
 ### 接入手續
 
@@ -42,22 +42,22 @@ dn42 也與其他網路, 比如 ChaosVPN 和部分 Freifunk 網路.
 
 假定的名字是 FOO , 是 FOO-ORG 機構的一員.下面的範例將會使用這些名稱.
 
-#### 首先要創建 維護者（maintainer）
+#### 首先要創建 維護者 (maintainer)
 
-你的個人信息, 機構信息和其他的項目（ASN, IP 子網, DNS 區域 等）都通過 mnt 項目管理.
+你的個人信息, 機構信息和其他的項目 (ASN, IP 子網, DNS 區域 等) 都通過 mnt 項目管理.
 
 按“Create Object”創建 mntner 項目, 輸入必備信息並按“Save”送出, 注意觀察右側下方信息是否報錯：
 
 ```yaml
 mntner:    FOO-MNT
 descr:     簡介
-sha512-pw: 密碼（明文, 非 sha512 指紋）
-admin-c:   DUMMY-DN42 （稍後我們會更新該項, 下同）
+sha512-pw: 密碼 (明文, 非 sha512 指紋)
+admin-c:   DUMMY-DN42  (稍後我們會更新該項, 下同)
 tech-c:    DUMMY-DN42
-mnt-by:    FOO-MNT （和 mntner 項相同）
+mnt-by:    FOO-MNT  (和 mntner 項相同)
 ```
 
-#### 為你個人創建個人（person）
+#### 為你個人創建個人 (person)
 
 ```yaml
 person:  foo foo 個人姓名或暱稱
@@ -72,7 +72,7 @@ mnt-by:  FOO-MNT
 
 修改 admin-c 和 tech-c 並按“Save”送出.
 
-#### 為你的機構創建機構（organisation）（若需要）
+#### 為你的機構創建機構 (organisation)  (若需要)
 
 ```yaml
 organisation: ORG-FOO
@@ -103,7 +103,7 @@ tech-c:  ORG-FOO
 mnt-by:  FOO-MNT
 ```
 
-#### 註冊 AS 號碼（ASN）
+#### 註冊 AS 號碼 (ASN)
 
 你的 ASN 必須在 dn42 的 AS 號碼空間中, 在 2014 年 6 月之前, 可選值為 64600-64855, 76100-76200**現在你必須**在 4242420000-4242423999 中選擇一個號碼來使用.
 
@@ -113,7 +113,7 @@ mnt-by:  FOO-MNT
 
 若不確定要使用哪個 ASN, 你可以在 mailing list 或 IRC 詢問.
 
-創建 aut-num 項目（省略了admin-c, tech-c 和 mnt-by）
+創建 aut-num 項目 (省略了admin-c, tech-c 和 mnt-by)
 
 ```yaml
 aut-num: AS4242420000 按前述內容自行選擇 AS 號碼
@@ -175,7 +175,7 @@ origin: AS4242420000
 mnt-by: FOO-MNT
 ```
 
-### 下一步（待整理）
+### 下一步 (待整理)
 
 取得 peers
 

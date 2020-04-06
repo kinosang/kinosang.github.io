@@ -47,7 +47,7 @@ MikroTik Wiki 中有如何設定 NO-IP DDNS 的說明[^2], 從其程式碼修改
 
 這樣每次 PPPoE 撥號成功就會自動更新 DDNS 了.
 
-*同理，WIKI 上 NO-IP 的程式碼也可以放在這裡使用.*
+*同理, WIKI 上 NO-IP 的程式碼也可以放在這裡使用.*
 
 [^1]: 不點名批評
 [^2]: https://wiki.mikrotik.com/wiki/Dynamic_DNS_Update_Script_for_No-IP_DNS

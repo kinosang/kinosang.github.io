@@ -27,4 +27,4 @@ $ sudo must be owned by uid 0 and have the setuid bit set
 
 在 Google 搜尋得知必須把 sudo 的 owner 設置為 uid 0, 然而因為平日我使用 rootless 權限的用戶, 而 Ubuntu 下, root 用戶默認根本沒有設置密碼, 包括 su 在內的切換到 root 身份的可能性全部斷絕, 因此不得不重灌系統.
 
-在重灌之前, 使用 tar 對包括 nginx 設定（/etc/nginx）,  mysql 數據文件（/var/lib/mysql）, 網站文件（/usr/share/nginx）在內的多個檔案夾進行壓縮然後藉助 dropbox-uploader 上載到 dropbox, 然後在另一家 IDC 新開了一臺 VPS, 把備份覆蓋到相應位置, 全部網站完美復活!
+在重灌之前, 使用 tar 對包括 nginx 設定 (/etc/nginx) ,  mysql 數據文件 (/var/lib/mysql) , 網站文件 (/usr/share/nginx) 在內的多個檔案夾進行壓縮然後藉助 dropbox-uploader 上載到 dropbox, 然後在另一家 IDC 新開了一臺 VPS, 把備份覆蓋到相應位置, 全部網站完美復活!

@@ -21,7 +21,7 @@ tags:
 ## PHP/Node 攻城師
 
 *   JSON
-*   MariaDB（MySQL）
+*   MariaDB (MySQL)
 
 ## <!--more-->
 

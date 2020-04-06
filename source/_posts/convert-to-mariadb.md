@@ -23,13 +23,13 @@ CentOS 安裝 Nginx + PHP + MariaDB | MySQL自動最佳化
 
 [caption id="attachment_1518" align="alignnone" width="300"][![Snapshot(DigitalOcean)](/wp-content/uploads/2014/01/H@_5NOHHWXCFOL8GYU-300x151.jpg)](/wp-content/uploads/2014/01/H@_5NOHHWXCFOL8GYU.jpg) Snapshot(DigitalOcean)[/caption]
 
-然後, 經過一番考慮, 我直接用 CentOS 6.5 x86 重灌了 Droplet（VPS）.這樣做的原因有三：
+然後, 經過一番考慮, 我直接用 CentOS 6.5 x86 重灌了 Droplet (VPS) .這樣做的原因有三：
 
 1.  之前不小心使用 yum update 更新了系統 kernel, 導致每次 Boot 有一定几率不能正常啟動
 2.  之前圖省事使用了 lnmp 套件, 這個套件是通過 make ,  make install 的方式灌裝組件的, 並且具備一個統一管理 N/M/P 的工具, 修改起來十分不方便
 3.  之前幾次折騰導致系統中殘留了大量垃圾
 
-然後使用之前創建的 Snapshot 新建一個 Droplet（命名為 bk, 原有 Droplet 命名為 main）, 兩個 Droplet 都開啟Private Network, 方便稍後傳輸文件.
+然後使用之前創建的 Snapshot 新建一個 Droplet (命名為 bk, 原有 Droplet 命名為 main) , 兩個 Droplet 都開啟Private Network, 方便稍後傳輸文件.
 
 ## 一, 安裝 MariaDB：
 

@@ -9,7 +9,7 @@ tags:
 
 有圖有真相.
 
-[caption id="attachment_1431" align="alignnone" width="300"][![Adobe Flash CC 歡迎界面（簡中）](/wp-content/uploads/2014/05/螢幕快照-2013-11-22-09.31.47-300x300.png)](/wp-content/uploads/2014/05/螢幕快照-2013-11-22-09.31.47-e1389272757168.png) Adobe Flash CC 歡迎界面（簡中）[/caption]
+[caption id="attachment_1431" align="alignnone" width="300"][![Adobe Flash CC 歡迎界面 (簡中) ](/wp-content/uploads/2014/05/螢幕快照-2013-11-22-09.31.47-300x300.png)](/wp-content/uploads/2014/05/螢幕快照-2013-11-22-09.31.47-e1389272757168.png) Adobe Flash CC 歡迎界面 (簡中) [/caption]
 
 [caption id="attachment_1434" align="alignnone" width="300"][![Adobe Flash CC for Mac 簡體中文 展示](/wp-content/uploads/2014/05/螢幕快照-2013-11-22-09.31.31-300x187.png)](/wp-content/uploads/2014/05/螢幕快照-2013-11-22-09.31.31-e1389272750542.png) Adobe Flash CC for Mac 簡體中文 展示[/caption]
 

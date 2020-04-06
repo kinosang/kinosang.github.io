@@ -29,7 +29,7 @@ tags:
 *   減少用戶終端的處理負擔.
 *   降低了用戶對於IT專業知識的依賴.
 
-（引自 [維基百科-雲端運算](https://zh.wikipedia.org/wiki/%E9%9B%B2%E7%AB%AF%E9%81%8B%E7%AE%97), 參考文獻 NIST. [美國國家標準與技術研究院對雲計算的定義](http://www.kekaoyunfuwu.com/%E7%BE%8E%E5%9B%BD%E5%9B%BD%E5%AE%B6%E6%A0%87%E5%87%86%E4%B8%8E%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6%E9%99%A2%E5%AF%B9%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E5%AE%9A%E4%B9%89/). 美國國家標準和技術研究院. 2011年9月 [2013年1月12日].）
+ (引自 [維基百科-雲端運算](https://zh.wikipedia.org/wiki/%E9%9B%B2%E7%AB%AF%E9%81%8B%E7%AE%97), 參考文獻 NIST. [美國國家標準與技術研究院對雲計算的定義](http://www.kekaoyunfuwu.com/%E7%BE%8E%E5%9B%BD%E5%9B%BD%E5%AE%B6%E6%A0%87%E5%87%86%E4%B8%8E%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6%E9%99%A2%E5%AF%B9%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E5%AE%9A%E4%B9%89/). 美國國家標準和技術研究院. 2011年9月 [2013年1月12日].)
 
 說的直白一些, 一般認爲, 雲端運算是對於 IaaS, PaaS, SaaS 等的更進一步發展.
 
@@ -37,23 +37,23 @@ tags:
 
 ### 公用雲和私有雲
 
-私有雲（Private cloud）將基礎設施與軟硬體資源建立在防火牆內, 供機構內部使用.
+私有雲 (Private cloud) 將基礎設施與軟硬體資源建立在防火牆內, 供機構內部使用.
 
 常見的私有雲系統主要有 VMware, Hyper-V, OpenStack, CloudStack.
 
 [caption id="attachment_2349" align="alignnone" width="1312"]![cgh-architecture-rc0](https://blog.7in0.me/wp-content/uploads/2016/10/CGH-architecture-rc0.png) HPE Helion OpenStack(R) Deployment architecture 來源：docs.hpcloud.com[/caption]
 
-公用雲（Public cloud）是第三方提供基礎設施, 出售雲端服務, 一般是面向網際網路（Internet）.
+公用雲 (Public cloud) 是第三方提供基礎設施, 出售雲端服務, 一般是面向網際網路 (Internet) .
 
 常見的共用雲服務主要有 Microsoft Azure, Amazon AWS, Google GCE, IBM Softlayer.
 
 [caption id="attachment_2343" align="alignnone" width="1585"]![aws](https://blog.7in0.me/wp-content/uploads/2016/10/AWS.png) AWS 參考架構 來源：aws.amazon.com[/caption]
 
-此外還有社群雲（Community cloud）, 由幾個組織共享基礎設施, 用於支持特定的社群.
+此外還有社群雲 (Community cloud) , 由幾個組織共享基礎設施, 用於支持特定的社群.
 
-至於混合雲（Hybrid cloud）, 是兩種或以上不同形式的雲的結合.
+至於混合雲 (Hybrid cloud) , 是兩種或以上不同形式的雲的結合.
 
-[caption id="attachment_2337" align="alignnone" width="1708"]![azure-hybrid-cloud-scenarios](https://blog.7in0.me/wp-content/uploads/2016/10/azure-hybrid-cloud-scenarios.png) 混合雲 （Azure Hybrid Cloud Scenarios） 來源：hybridcloudtalk-160203043228[/caption]
+[caption id="attachment_2337" align="alignnone" width="1708"]![azure-hybrid-cloud-scenarios](https://blog.7in0.me/wp-content/uploads/2016/10/azure-hybrid-cloud-scenarios.png) 混合雲  (Azure Hybrid Cloud Scenarios)  來源：hybridcloudtalk-160203043228[/caption]
 
 說了這麼多, 讓我們再回到一開始的問題
 

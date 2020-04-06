@@ -1,5 +1,5 @@
 ---
-title: 從 Wunderlist 到 OmniFocus（另：純 AppleScript 實現 OmniFocus 匯入 CSV）
+title: 從 Wunderlist 到 OmniFocus (另：純 AppleScript 實現 OmniFocus 匯入 CSV)
 id: 1853
 categories:
   - 應用技巧
@@ -7,13 +7,13 @@ date: 2014-05-12 19:41:00
 tags:
 ---
 
-本來在下用 Wunderlist 用的好好地, 一時腦子被門夾了, 想要用 OmniFocus（當然, 目前是 Cracked 版本）.
+本來在下用 Wunderlist 用的好好地, 一時腦子被門夾了, 想要用 OmniFocus (當然, 目前是 Cracked 版本) .
 
 但是 Wunderlist 裡面如此多的條目不方便逐一搬運.
 
 於是想到用 applescript 來實現這個過程.
 
-首先我們從 Wunderlist WebApp 匯出數據（JSON）.
+首先我們從 Wunderlist WebApp 匯出數據 (JSON) .
 
 <!--more-->
 

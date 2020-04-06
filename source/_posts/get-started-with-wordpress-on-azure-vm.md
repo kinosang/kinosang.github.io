@@ -9,9 +9,9 @@ tags:
 
 ### 要點
 
-*   建立虛擬機器（資源管理員部署模型）
+*   建立虛擬機器 (資源管理員部署模型)
 *   網路安全性群組
-*   Linux 基礎操作（不在本文詳細介紹）
+*   Linux 基礎操作 (不在本文詳細介紹)
 
 <!--more-->
 
@@ -31,7 +31,7 @@ tags:
 
 ![create-new-ubuntu-server016.04-instance.png](https://blog.7in0.me/wp-content/uploads/2016/10/create-new-ubuntu-server016.04-instance.png)
 
-填寫虛擬機器名稱, 設定使用者名稱, 提供一個 SSH 公開金鑰 或 密碼, 填寫新建資源群組名稱, 選擇部署位置, 按一下“確定”進入下一步.（下圖以 DEMO/chino 爲例且未提供 SSH金鑰）
+填寫虛擬機器名稱, 設定使用者名稱, 提供一個 SSH 公開金鑰 或 密碼, 填寫新建資源群組名稱, 選擇部署位置, 按一下“確定”進入下一步. (下圖以 DEMO/chino 爲例且未提供 SSH金鑰)
 
 ![create-new-ubuntu-server016.04-instance-step-one.png](https://blog.7in0.me/wp-content/uploads/2016/10/create-new-ubuntu-server016.04-instance-step-one.png)
 
@@ -43,7 +43,7 @@ tags:
 
 ![create-new-ubuntu-server016.04-instance-step-three.png](https://blog.7in0.me/wp-content/uploads/2016/10/create-new-ubuntu-server016.04-instance-step-three.png)
 
-按一下“加入輸入規則”新增一條連入規則, 如圖, 我們允許 HTTP （80埠）連入, 按“確定”新增.
+按一下“加入輸入規則”新增一條連入規則, 如圖, 我們允許 HTTP  (80埠) 連入, 按“確定”新增.
 
 ![create-new-ubuntu-server016.04-instance-step-four.png](https://blog.7in0.me/wp-content/uploads/2016/10/create-new-ubuntu-server016.04-instance-step-four.png)
 
@@ -63,7 +63,7 @@ tags:
 
 ![create-new-ubuntu-server16.04-instance-pending.jpeg](https://blog.7in0.me/wp-content/uploads/2016/10/create-new-ubuntu-server16.04-instance-pending.jpeg)
 
-部署完成後可查看虛擬機器的共用 IP 位址（若未出現, 按一下儀表板上的“DEMO”）
+部署完成後可查看虛擬機器的共用 IP 位址 (若未出現, 按一下儀表板上的“DEMO”)
 
 ![create-new-ubuntu-server16-04-instance-done](https://blog.7in0.me/wp-content/uploads/2016/10/create-new-ubuntu-server16.04-instance-done.png)
 
@@ -155,7 +155,7 @@ mysql> FLUSH PRIVILEGES;
 mysql> exit
 ```
 
-打開瀏覽器（比如 Google Chrome）, 轉到 http://your-ip-here 根據頁面提示繼續安裝.
+打開瀏覽器 (比如 Google Chrome) , 轉到 http://your-ip-here 根據頁面提示繼續安裝.
 
 ![螢幕快照 2016-10-14 15.21.11.png](https://blog.7in0.me/wp-content/uploads/2016/10/2016-10-14-15.21.11.png)
 

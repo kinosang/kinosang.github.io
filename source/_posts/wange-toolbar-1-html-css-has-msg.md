@@ -1,5 +1,5 @@
 ---
-title: 仿製萬戈工具條（免插件·第一版·純HTML+CSS·無滾動文本）
+title: 仿製萬戈工具條 (免插件·第一版·純HTML+CSS·無滾動文本)
 id: 393
 categories:
   - 軟體開發
@@ -11,7 +11,7 @@ tags:
 
 # 複製粘貼的簡單過程
 
-（鑒於安全性的考慮Kinosang's Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元）
+ (鑒於安全性的考慮Kinosang's Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)
 
 以下代碼放到style.css
 
@@ -24,7 +24,7 @@ tags:
 #topSNS{float:right;padding:5px 10px 0 0;margin:0;}
 ```
 
-以下代碼放到header.php適當位置（Kinosang's Labs建議您放在的下一行）
+以下代碼放到header.php適當位置 (Kinosang's Labs建議您放在的下一行)
 
 ```html
 <!-- Top Toolbar Begin -->
@@ -39,9 +39,9 @@ tags:
 <!-- Top Toolbar End -->
 ```
 
-記得修改上面的代碼中的Kinosang's Labs獨有的信息（包括域名, 主題名, 郵箱等）
+記得修改上面的代碼中的Kinosang's Labs獨有的信息 (包括域名, 主題名, 郵箱等)
 
-<del>如果需要Kinosang's Labs的圖標, 你可以直接依照代碼中的img標籤下載（但不要直接使用Kinosang's Labs的png文件的url, Kinosang's Labs的流量會嚴重短缺的.）</del><span style="color: #ff0000;">Kinosang's Labs改版, 源文件已被移除.</span>
+<del>如果需要Kinosang's Labs的圖標, 你可以直接依照代碼中的img標籤下載 (但不要直接使用Kinosang's Labs的png文件的url, Kinosang's Labs的流量會嚴重短缺的.) </del><span style="color: #ff0000;">Kinosang's Labs改版, 源文件已被移除.</span>
 
 這樣, 一個仿造的“萬戈工具條”就完成了.
 

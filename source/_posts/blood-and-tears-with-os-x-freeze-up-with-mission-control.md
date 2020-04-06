@@ -41,4 +41,4 @@ tags:
 $ sudo rm /Library/Preferences/com.apple.windowserver.plist
 ```
 
-欲哭無淚啊, 這讓像在下一樣折騰一整天的情以何堪（TAT）
+欲哭無淚啊, 這讓像在下一樣折騰一整天的情以何堪 (TAT)

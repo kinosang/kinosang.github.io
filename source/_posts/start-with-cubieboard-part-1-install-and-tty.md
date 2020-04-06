@@ -38,7 +38,7 @@ ssh: connect to host 192.168.1.5 port 22: connection refused
 
 誰能告訴我這是怎麽回事?!難不成是 Ubuntu 有問題了?
 
-啊啊啊, 重灌成 Cubian 好了.（參考[Install Cubian](https://github.com/cubieplayer/cubian/wiki/Install-Cubian)）
+啊啊啊, 重灌成 Cubian 好了. (參考[Install Cubian](https://github.com/cubieplayer/cubian/wiki/Install-Cubian))
 
 [caption id="attachment_1611" align="alignnone" width="300"][![通過 dd 指令安裝 Cubie 到 SD 卡](/wp-content/uploads/2014/01/螢幕快照-2014-01-11-10.04.52-300x210.png)](/wp-content/uploads/2014/01/螢幕快照-2014-01-11-10.04.52-e1389433421151.png) 通過 dd 指令安裝 Cubie 到 SD 卡[/caption]
 
@@ -46,7 +46,7 @@ ssh: connect to host 192.168.1.5 port 22: connection refused
 
 先體驗一下使用 ttl 連接到我可愛的 cubieboard.
 
-[caption id="attachment_1613" align="alignnone" width="300"][![把 Arduino 當做 usb2tty 組件（拉低Reset）](/wp-content/uploads/2014/01/CIMG2471-300x225.jpg)](/wp-content/uploads/2014/01/CIMG2471-e1389433363772.jpg) 把 Arduino 當做 usb2tty 組件（拉低Reset）[/caption]
+[caption id="attachment_1613" align="alignnone" width="300"][![把 Arduino 當做 usb2tty 組件 (拉低Reset) ](/wp-content/uploads/2014/01/CIMG2471-300x225.jpg)](/wp-content/uploads/2014/01/CIMG2471-e1389433363772.jpg) 把 Arduino 當做 usb2tty 組件 (拉低Reset) [/caption]
 
 [caption id="attachment_1612" align="alignnone" width="300"][![GND 接 GND, RX 接 RX, TX 接 TX, Vcc 懸空](/wp-content/uploads/2014/01/CIMG2469-e1389435395831-300x225.jpg)](/wp-content/uploads/2014/01/CIMG2469-e1389435395831.jpg) GND 接 GND, RX 接 RX, TX 接 TX, Vcc 懸空[/caption]
 

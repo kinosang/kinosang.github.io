@@ -21,7 +21,7 @@ VMware vSphere vCenter Server 同時提供 Windows 和 Linux 兩個不同版本�
 
 然後通過 SQL Server Configuration Manager 啟用 SQL Server Browser 和 TCP/IP 通訊協定, 否則之後安裝 VMware vSphere vCenter Server 時會提示啟動 invsvc 服務出錯.
 
-在 SQL Server Management Studio 添加新 SQL Server 驗證帳戶（如 vcenter, 賦予 sysadmin 角色）, 創建新的資料庫, 命名為 vCenterDB, 擁有者為 vcenter.
+在 SQL Server Management Studio 添加新 SQL Server 驗證帳戶 (如 vcenter, 賦予 sysadmin 角色) , 創建新的資料庫, 命名為 vCenterDB, 擁有者為 vcenter.
 
 打開 ODBC, 創建系統 DSN, 類型 SQL Server Native Client, Name 為 vCenterDB, Server 填 127.0.0.1\SQLEXPRESS, 使用 SQL Server 驗證帳戶.勾選“Change the default database to”, 修改默認資料庫為 vCenterDB.
 

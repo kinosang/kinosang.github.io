@@ -11,7 +11,7 @@ tags:
 
 [caption id="attachment_1484" align="alignnone" width="300"][![nom update -g 執行出錯](/wp-content/uploads/2014/01/螢幕快照-2014-01-07-22.14.48-300x210.png)](/wp-content/uploads/2014/01/螢幕快照-2014-01-07-22.14.48-e1389272840770.png) nom update -g 執行出錯[/caption]
 
-上網搜索了一下, 和 Homebrew 有關.（詳見[Homebrew installed npm can't upgrade itself](https://github.com/Homebrew/homebrew/issues/22408 "Homebrew installed npm can")）
+上網搜索了一下, 和 Homebrew 有關. (詳見[Homebrew installed npm can't upgrade itself](https://github.com/Homebrew/homebrew/issues/22408 "Homebrew installed npm can"))
 
 <!--more-->
 

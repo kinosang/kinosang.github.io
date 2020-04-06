@@ -24,6 +24,6 @@ zh_CN.UTF-8 UTF-8
 $ sudo dpkg-reconfigure locales
 ```
 
-最後 restart php-fpm（使用 Apache mod-php 的則 restart apache）
+最後 restart php-fpm (使用 Apache mod-php 的則 restart apache)
 
 問題完美解決!

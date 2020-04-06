@@ -31,7 +31,7 @@ TXD   -> TX
 GND   -> GND
 ```
 
-然後打開 Arduino IDE 的 Serial Monitor （使用 screen 也可以）
+然後打開 Arduino IDE 的 Serial Monitor  (使用 screen 也可以)
 
 選擇 `Both NL & CR -- 38400 baud`
 

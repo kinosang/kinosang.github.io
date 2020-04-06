@@ -13,7 +13,7 @@ tags:
 
 不過值得注意的是, 如果使用更新版本的 OpenConnect Server, config 中應當包含 `socket-file` 和 `device` 兩項, 否則啓動 ocserv 會失敗.
 
-另外, 路由表相關的設定可以刪除, 這樣就可以實現科學上網了（AnyConnect 的 iOS Client 只支持最多64條路由設定, 因此無法用 chnroute 產生的 IP 列表來設定自動切換）.
+另外, 路由表相關的設定可以刪除, 這樣就可以實現科學上網了 (AnyConnect 的 iOS Client 只支持最多64條路由設定, 因此無法用 chnroute 產生的 IP 列表來設定自動切換) .
 
 最後說一下 Mac OS X 上的使用.
 

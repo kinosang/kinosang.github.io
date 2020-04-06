@@ -1,5 +1,5 @@
 ---
-title: 仿製萬戈工具條（免插件·第二版·HTML+CSS+JS·提示文本）
+title: 仿製萬戈工具條 (免插件·第二版·HTML+CSS+JS·提示文本)
 id: 406
 categories:
   - 軟體開發
@@ -22,13 +22,13 @@ tags:
 #rssfeeddiv{width: 82px; height: 212px;right: 55px ;position:fixed;z-index:10000;overflow:hidden;top:expression(document.documentElement.scrollTop +"30px");VISIBILITY: hidden;}
 ```
 
-用下面的代碼替換body標籤（在header.php中）, 其中oncopy事件你可以根據需要進行修改, Kinosang在這裏提醒您：firefox中不支持JS對剪貼板的set操作, 常見的添加版權信息的腳本在firefox中無法運行.
+用下面的代碼替換body標籤 (在header.php中) , 其中oncopy事件你可以根據需要進行修改, Kinosang在這裏提醒您：firefox中不支持JS對剪貼板的set操作, 常見的添加版權信息的腳本在firefox中無法運行.
 
 ```html
 <body onclick = "document.getElementById('rssfeeddiv').style.visibility = 'hidden'; document.getElementById('topInfo').innerHTML = 'Kinosang推荐您使用Firefox3.6+, Opera10+或Safari5.0+ 在1280*720+分辨率下浏览本站.'; " oncopy = "document.getElementById('topInfo').innerHTML = '鉴于安全性的考虑奇诺网没有关闭半角字符替换功能, 如果您拷贝的是程序代码, 你需要手动把代码中的全角单双引号等字符替换成半角字符.';">
 ```
 
-以下代碼放到header.php適當位置（Kinosang's Labs建議您放在的下一行）
+以下代碼放到header.php適當位置 (Kinosang's Labs建議您放在的下一行)
 
 ```html
 <!-- RSS Feed BEGIN -->
@@ -49,9 +49,9 @@ tags:
 <!-- Top Toolbar End -->
 ```
 
-記得修改上面的代碼中的Kinosang's Labs獨有的信息（包括域名, 主題名, 郵箱等）
+記得修改上面的代碼中的Kinosang's Labs獨有的信息 (包括域名, 主題名, 郵箱等)
 
-<del>如果需要Kinosang's Labs的圖標與圖片, 你可以直接依照代碼中的img標籤下載（但不要直接使用Kinosang's Labs的png文件的url, Kinosang's Labs的流量會嚴重短缺的.）</del><span style="color: #ff0000;">Kinosang's Labs改版, 源文件已被移除.</span>
+<del>如果需要Kinosang's Labs的圖標與圖片, 你可以直接依照代碼中的img標籤下載 (但不要直接使用Kinosang's Labs的png文件的url, Kinosang's Labs的流量會嚴重短缺的.) </del><span style="color: #ff0000;">Kinosang's Labs改版, 源文件已被移除.</span>
 
 當然, 你也可以修改本工具條中的內容.
 

@@ -1,5 +1,5 @@
 ---
-title: 讓你的 IPv4 Only VPS（如DigitalOcean） 支援 IPv6
+title: 讓你的 IPv4 Only VPS (如DigitalOcean)  支援 IPv6
 id: 1784
 categories:
   - 網際網路
@@ -7,7 +7,7 @@ date: 2014-02-03 17:55:37
 tags:
 ---
 
-IPv6真的很好很強大, 在下折騰了一天讓在下的小窩也支援 IPv6 了.你可以在 IPv6 環境中通過 7in0.me 或 ipv6.7in0.me（IPv6 Only） 存取本站.
+IPv6真的很好很強大, 在下折騰了一天讓在下的小窩也支援 IPv6 了.你可以在 IPv6 環境中通過 7in0.me 或 ipv6.7in0.me (IPv6 Only)  存取本站.
 
 [caption id="attachment_1785" align="alignnone" width="250"][![This website is IPv6 Ready](/wp-content/uploads/2014/02/ipv6_ready_logo.png-250x300.jpeg)](/wp-content/uploads/2014/02/ipv6_ready_logo.png.jpeg) This website is IPv6 Ready[/caption]
 

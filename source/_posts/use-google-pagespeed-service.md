@@ -7,7 +7,7 @@ date: 2013-06-21 21:27:51
 tags:
 ---
 
-各位朋友在造訪本站的時候可能會發現訪問速度大幅提升, 同時, 網誌的網域也從裸域（kinosang.ws）301跳轉到了帶有www前綴的www.kinosang.ws.
+各位朋友在造訪本站的時候可能會發現訪問速度大幅提升, 同時, 網誌的網域也從裸域 (kinosang.ws) 301跳轉到了帶有www前綴的www.kinosang.ws.
 
 訪問加速的小秘密自然是使用了目前十分流行的CDN伺服器加速技術, 如果你使用ping指令對現在的網址進行探索, 你會發現返回信息中被ping的網域是pagespeed.googlehosted.com.
 

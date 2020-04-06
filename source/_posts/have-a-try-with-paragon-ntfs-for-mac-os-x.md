@@ -22,7 +22,7 @@ NTFS 文件系統的磁碟在 Mac 上會表現得如同一個光盤一樣, 是�
 
 而相對方便的是使用諸如 NTFS for Mac ,  NTFS-3G 這樣的第三方插件.
 
-NTFS-3G 是開源, 免費的, 但是稍有不足：寫入緩慢, 且會導致 NTFS 文件系統讀取速度下降.並且, NTFS-3G 還有 在每次彈出分區後, 會殘留分區的載點等問題（下圖中 “TEST”, “TEST 1”, “TEST 2”, “TEST 3” 為同一 U 盤多次插拔後殘留的檔案夾）.
+NTFS-3G 是開源, 免費的, 但是稍有不足：寫入緩慢, 且會導致 NTFS 文件系統讀取速度下降.並且, NTFS-3G 還有 在每次彈出分區後, 會殘留分區的載點等問題 (下圖中 “TEST”, “TEST 1”, “TEST 2”, “TEST 3” 為同一 U 盤多次插拔後殘留的檔案夾) .
 
 [![NTFS-3G left directory on /Volumes](/wp-content/uploads/2014/06/Pasted-Graphic-1-e1401774347230.png)](/wp-content/uploads/2014/06/Pasted-Graphic-1-300x207.png)
 
@@ -41,7 +41,7 @@ Paragon NTFS for Mac 提供了 10 天的免費試用版本, 大家可以到其[�
 
 [![Install NTFS for Mac](/wp-content/uploads/2014/06/螢幕快照-2014-06-03-12.56.16-300x206.png)](/wp-content/uploads/2014/06/-2014-06-03-12.56.16-e1401774366864.png)
 
-一路下一步（繼續）, 最後會要求重新啟動計算機.
+一路下一步 (繼續) , 最後會要求重新啟動計算機.
 
 [![Install NTFS for Mac](/wp-content/uploads/2014/06/螢幕快照-2014-06-03-12.56.19-300x268.png)](/wp-content/uploads/2014/06/-2014-06-03-12.56.19-e1401774378980.png)
 
@@ -63,5 +63,5 @@ Paragon NTFS for Mac 提供了 10 天的免費試用版本, 大家可以到其[�
 
 P.S. 安裝 Paragon NTFS for Mac 之前, 要完整卸載其他同類軟件, 包括 NTFS-3G 等.
 以 NTFS-3G 舉例：
-若使用 Homebrew 或 MacPorts , 直接用相關命令行卸載, 然後恢復 /sbin/mount_ntfs 的備份（若你在安裝時替換了該文件的話）.
+若使用 Homebrew 或 MacPorts , 直接用相關命令行卸載, 然後恢復 /sbin/mount_ntfs 的備份 (若你在安裝時替換了該文件的話) .
 若使用 NTFS-3G 的 dmg/pkg 包安裝, 在 NTFS-3G 的設置面板可以找到卸載選項.

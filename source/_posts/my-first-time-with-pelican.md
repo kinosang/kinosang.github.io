@@ -11,7 +11,7 @@ tags:
 
 [caption id="attachment_1719" align="alignnone" width="300"][![Pelican](/wp-content/uploads/2014/01/pelican-300x121.png)](/wp-content/uploads/2014/01/pelican.png) Pelican[/caption]
 
-Pelican 是一個靜態網站生成器（Static Site Generator）, 基於 Python, 提供豐富的設定, 主題和插件, 可以使用 PIP 進行安裝.
+Pelican 是一個靜態網站生成器 (Static Site Generator) , 基於 Python, 提供豐富的設定, 主題和插件, 可以使用 PIP 進行安裝.
 
 CentOS 的 Python 是 2.6 版本, Pelican 則需求 2.7+, 因此, 先編譯安裝 Python 2.7
 
@@ -140,7 +140,7 @@ test/
 └── publishconf.py
 ```
 
-通過修改 pelicanconf.py 設定站點, 修改 Makefile 可以改變目標檔案夾（默認是 ./output）
+通過修改 pelicanconf.py 設定站點, 修改 Makefile 可以改變目標檔案夾 (默認是 ./output)
 
 把寫好的 md 檔案丟進 content 裏, 然後
 

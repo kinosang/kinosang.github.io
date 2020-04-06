@@ -7,7 +7,7 @@ date: 2011-07-31 12:36:05
 tags:
 ---
 
-剛剛在雷鋒博客群裏看到 亂了感覺 發佈的評論可見功能短代碼（[《WP短代碼之評論可見》](http://messense.me/wp-shortcode-of-reply-to-read.html)）, 對於其中的“評論後刷新”頗為煩惱.
+剛剛在雷鋒博客群裏看到 亂了感覺 發佈的評論可見功能短代碼 ([《WP短代碼之評論可見》](http://messense.me/wp-shortcode-of-reply-to-read.html)) , 對於其中的“評論後刷新”頗為煩惱.
 
 一切追求快捷!
 
