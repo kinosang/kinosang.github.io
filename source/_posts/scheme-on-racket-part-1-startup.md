@@ -60,7 +60,7 @@ Windows:
 > pip install jupyterlab # 先用 scoop 安裝 python
 > raco pkg install iracket
 # win 上 raco pkgs 在 %APPDATA%\Racket\7.4\pkgs
-> raco iracket install --jupyter-exe -l sicp
+> raco iracket install raco iracket install --jupyter-exe $env:HOME\scoop\apps\python\current\Scripts\jupyter.exe -l sicp
 ```
 
 ### 測試 iracket
