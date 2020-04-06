@@ -43,7 +43,7 @@ Windows:
 
 ### 安裝 JupyterLab 和 iracket
 
-因當前版本的 iracket 不支援選擇語言, 所以在通過 rack pkg 安裝好之後需要到 [kinosang/iracket](https://github.com/kinosang/iracket) 獲取修改版的 `install.rkt` 和 `iracket.rkt` 並替換到本地.
+因當前版本的 iracket 不支援選擇語言, 所以在通過 raco pkg 安裝好之後需要到 [kinosang/iracket](https://github.com/kinosang/iracket) 獲取修改版的 `install.rkt` 和 `iracket.rkt` 並替換到本地.
 
 macOS:
 
