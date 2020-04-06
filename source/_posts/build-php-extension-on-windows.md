@@ -123,6 +123,8 @@ php-sdk\php-dev\vc15\x64\php-7.4.4-src\x64\Release_TS\php_zmq.dll # ZTS
 php-sdk\php-dev\vc15\x64\php-7.4.4-src\x64\Release\php_zmq.dll #NTS
 ```
 
+*編譯成果在 [zeromq/php-zmq#193](https://github.com/zeromq/php-zmq/issues/193#issuecomment-605456811)*
+
 ### 使用擴充套件
 
 將 `php_zmq.dll` 放到 `php/ext`, 將 `libzmq-v141-mt-4_3_2.dll` 放到 `php`, 然後在 `php.ini` 新增:
