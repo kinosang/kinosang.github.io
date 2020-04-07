@@ -1,7 +1,6 @@
 ---
 title: 水谷優子病逝
 tags:
-  - 灰度
 id: 2206
 categories:
   - 雜物箱

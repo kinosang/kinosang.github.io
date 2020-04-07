@@ -1,7 +1,6 @@
 ---
 title: 和田光司一路走好
 tags:
-  - 灰度
 id: 2128
 categories:
   - 雜物箱
