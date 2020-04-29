@@ -10,6 +10,7 @@ title: 友情連結
 * [千与琥珀的河川](https://www.ggdog.info)
 * [小泉 (Koizumi)](https://blog.minamigo.moe)
 * [AkibaRika](https://moe.akibarika.org)
+* [bangbang93](https://blog.bangbang93.com)
 * [C次元](https://ccoooss.com)
 * [Cocoa | 経験値上昇中☆](https://await.moe)
 * [FGHRSH 的博客](https://www.fghrsh.net)
