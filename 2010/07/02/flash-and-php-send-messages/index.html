@@ -1,0 +1,1078 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="7IN0SAN9">
+    <title>Flash與php通信研究系列 - 7IN0SAN9</title>
+    <meta name="author" content="Chino Chang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"這裏選擇as3+php架構\n在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables\nURLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：\n\nAS腳本 (放到關鍵幀上) ：\n1234567891011//聲明一個URLLoadervar loader:URLLoader = new URLLoader();//監聽數載加載完成事件loader.addEventListener(Event.COMPLETE,loaded);//事件相應函數function loaded(e:Event)&#123;trace(loader.data);//輸出返回的值&#125;//加載test.phploader.load(new URLRequest(\"test.php\"));\ntest.php：\n123456&lt;?php//聲明一個變數並賦給一個字元串$ data = \"I am PHP!\";//輸出這個變數給flashecho $ data;?&gt;\n從上面的示例可以看出, as3和後臺交互非常簡單, 但這只是單項的交互, 如果要flash向後臺發送數據並傳回數據該如何去做呢?\n這個時候你可能會把代碼該成這樣：\nAS腳本 (放到關鍵幀上) ：\n12345678var loader:URLLoader = new URLLoader();loader.data=&#123;message:\"hello im flash!\"&#125;;loader.addEventListener(Event.COMPLETE,loaded);function loaded(e:Event)&#123;trace(loader.data);//輸出&#125;loader.load(new URLRequest(\"test.php\"));\ntest.php：\n1234&lt;?php$ flashData = $ _POST['message'];echo \"this is flash say:$ flashData\";?&gt;\n看看輸出的代碼, 你得到了什麼?是的, 信息並沒有傳輸到php, 你還是在用loadVars的方式試圖傳送數據, 但as3裏已經不是這樣了, URLLoader的data只有在數據被下載完時才會被初始化, 在數據沒有加載完成時, 它是等於null的, 也就是說, 它只包含接受到的數據, 而不管要發送的數據, 那麼, as3裏如何向後臺發送數據呢?使用URLVariables.URLVariables允許你在flash和後臺程序間傳輸變數, as3裏已經把發送和接受數據分離, 再也不像as2的loadVars那樣, 一個類通吃所有了, 那麼這個URLVariables如何送要發送的數據呢?\n你可能找遍了URLLoader的文檔也沒有發現與它相關的東西, 是的URLLoader並不和URLVariables有關聯, 而是 URLRequest在使用它, URLRequest包含整個http請求的所有信息, 所以我們要發送的數據要放在這裏, URLRequest有一個 data屬性他接受一個object類型的參數, 這就是我們要發送的數據.同時你可能還注意到了, URLRequest也管理用什麼樣的方式來發送 http請求, 它的method屬性接受一個字元參數, post或者是get.好了, 現在我們來看看它們是怎麼工作的：\nAS腳本 (放到關鍵幀上) ：\n12345678910111213141516var loader:URLLoader = new URLLoader();//聲明一個URLRequestvar url:URLRequest = new URLRequest(\"test.php\");//設置傳輸方式為POSTurl.method = URLRequestMethod.POST;//聲明一個URLVariablesvar values:URLVariables = new URLVariables();//設置要傳輸的信息values.message=\"I am Flash!\";url.data = values;loader.addEventListener(Event.COMPLETE,loaded);function loaded(e:Event)&#123;trace(loader.data);//輸出&#125;loader.load(url);\ntest.php同上\n怎麼樣, 是不是也很方便的實現了as3和後臺的數據傳輸?現在我們的程序可以雙向交互數據了, 但這只是一些簡單的數據, 如果你要傳輸帶有結構的數據,  (熟悉as2的人都知道loadVars可以自動解析下載數據的結構) , 讓我們先按loadVars的方式來嘗試下, 看看 URLLoader是不是能自動的解析下載的數據.\nAS腳本 (放到關鍵幀上) ：\n1234567891011121314151617181920var loader:URLLoader = new URLLoader();//聲明一個URLRequestvar url:URLRequest = new URLRequest(\"test.php\");//設置傳輸方式為POSTurl.method = URLRequestMethod.POST;//聲明一個URLVariablesvar values:URLVariables = new URLVariables();//設置要傳輸的信息values.message=\"I am Flash!\";url.data = values;loader.addEventListener(Event.COMPLETE,loaded);function loaded(e:Event)&#123;trace(loader.data);//輸出整串數據trace(loader.data.phpMessage);//輸出phpMessagetrace(loader.data.flashMessage);//輸出flashMessage&#125;loader.load(url);\ntest.php：\n12345&lt;?php$ flashData = $ _POST['message'];$ phpMessage = \"I am PHP!\";echo \"phpMessage=$ phpMessage&amp;flashMessage=$ flashData\";?&gt;\n可以看到, 數據被完全下載下來了, 但是卻沒有被解析, 還拋出了異常, 那麼是不是 URLLoader就不能自動解析數據了呢?不是, 相反URLLoader 提供了多種數據解析方式供你選擇.這些數據解析方式都在URLLoaderDataFormat裏, 他們是：BINARY-以2進制的方式解析 TEXT-以文本的方式解析 VARIABLES-以變數-值配對的方式解析.URLLoader的dataFormat屬性提供了對解析方式的選擇, 好, 我們再來修改下程序使它變的更完美些：\nAS腳本 (放到關鍵幀上) ：\n12345678910111213141516171819202122var loader:URLLoader = new URLLoader();//聲明一個URLRequestvar url:URLRequest = new URLRequest(\"test.php\");//設置傳輸方式為POSTurl.method = URLRequestMethod.POST;//聲明一個URLVariablesvar values:URLVariables = new URLVariables();//設置要傳輸的信息values.message=\"hello im flash!\";url.data = values;//設置以變數-值配對的方式解析數據loader.dataFormat = URLLoaderDataFormat.VARIABLES;loader.addEventListener(Event.COMPLETE,loaded);function loaded(e:Event)&#123;trace(loader.data);//輸出整串數據trace(loader.data.phpMessage);//輸出整串數據phpMessagetrace(loader.data.flashMessage);//輸出整串數據flashMessage&#125;loader.load(url);\ntest.php同上\n以上這些就是as3裏和後臺交互的基礎內容, 現在你可以在as3裏創建這樣的交互, 獲取動態數據來豐富你的程序, 另外還有一些東西值得注意：\n1, 捕獲和處理異常, 上述的例子裏都是假定在完美的測試環境下運行, 所以沒有加上異常捕獲和處理的代碼, 但現實中你可能會遇到各種各樣的情況URLLoader可能引發好幾種異常情況, 詳細請參見說明文檔\n你應該通過監聽ioError和securityError事件, 或者通過try-catch來處理他們, 即使你確信不會發生這樣的問題.\n2, 文件的編碼, 經常很多數據變成了亂碼或者解析出錯都是因為編碼的問題, 我的做法是確保發送的數據和後臺傳回的數據都是UTF-8格式 (flash默認編碼為utf-8)\n","dateCreated":"2010-07-02T18:27:34+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2010-07-02T18:27:34+08:00","description":"這裏選擇as3+php架構\n在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables\nURLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：","headline":"Flash與php通信研究系列","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"}</script>
+    <meta name="description" content="這裏選擇as3+php架構 在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLReques">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Flash與php通信研究系列">
+<meta property="og:url" content="https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/index.html">
+<meta property="og:site_name" content="7IN0SAN9">
+<meta property="og:description" content="這裏選擇as3+php架構 在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLReques">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2010-07-02T10:27:34.000Z">
+<meta property="article:modified_time" content="2020-04-07T03:58:17.110Z">
+<meta property="article:author" content="Chino Chang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@chino_joymoe">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e?s=640"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-nixrza1vlppcwgzt4drisqzlqydvaicqou9ijms0f9qf6s24bbzore4snbxh.min.css">
+
+    <!--STYLES END-->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40735245-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-40735245-1');
+    </script>
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/%20"
+            aria-label=""
+        >
+            7IN0SAN9
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-icon open-algolia-search"
+                href="#search"
+                aria-label="打開鏈接: /#search"
+            >
+        
+        
+            <i class="fa fa-search fa-lg"></i>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="閱讀有關作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e?s=110" alt="作者的圖片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Chino Chang</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首頁"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首頁</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分類"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分類</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="標籤"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">標籤</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="所有文章"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">所有文章</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="搜尋"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">搜尋</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="關於"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">關於</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/links"
+                            
+                            rel="noopener"
+                            title="友情連結"
+                        >
+                        <i class="sidebar-button-icon fa fa-crown" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">友情連結</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/kinosang"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://twitter.com/chino_joymoe"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/in/chinochang"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://t.me/kinosang"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Telegram"
+                        >
+                        <i class="sidebar-button-icon fa fa-paper-plane" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Telegram</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://pgp.to/#0xBEC0B15F411666E5"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="PGP"
+                        >
+                        <i class="sidebar-button-icon fa fa-certificate" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">PGP</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="Atom"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Atom</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Flash與php通信研究系列
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2010-07-02T18:27:34+08:00">
+	
+		    7月 02, 2010
+    	
+    </time>
+    
+        <span>分類 </span>
+        
+    <a class="category-link" href="/categories/%E8%BB%9F%E9%AB%94%E9%96%8B%E7%99%BC/">軟體開發</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>這裏選擇as3+php架構</p>
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p>
+<a id="more"></a>
+<p>AS腳本 (放到關鍵幀上) ：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//聲明一個URLLoader</span></span><br><span class="line"><span class="keyword">var</span> loader:URLLoader = <span class="keyword">new</span> URLLoader();</span><br><span class="line"><span class="comment">//監聽數載加載完成事件</span></span><br><span class="line">loader.addEventListener(Event.COMPLETE,loaded);</span><br><span class="line"><span class="comment">//事件相應函數</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loaded</span><span class="params">(e:Event)</span></span>&#123;</span><br><span class="line">trace(loader.data);</span><br><span class="line"><span class="comment">//輸出返回的值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加載test.php</span></span><br><span class="line">loader.load(<span class="keyword">new</span> URLRequest(<span class="string">"test.php"</span>));</span><br></pre></td></tr></table></figure>
+<p>test.php：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//聲明一個變數並賦給一個字元串</span></span><br><span class="line">$ data = <span class="string">"I am PHP!"</span>;</span><br><span class="line"><span class="comment">//輸出這個變數給flash</span></span><br><span class="line"><span class="keyword">echo</span> $ data;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>從上面的示例可以看出, as3和後臺交互非常簡單, 但這只是單項的交互, 如果要flash向後臺發送數據並傳回數據該如何去做呢?
+這個時候你可能會把代碼該成這樣：</p>
+<p>AS腳本 (放到關鍵幀上) ：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loader:URLLoader = <span class="keyword">new</span> URLLoader();</span><br><span class="line">loader.data=&#123;message:<span class="string">"hello im flash!"</span>&#125;;</span><br><span class="line">loader.addEventListener(Event.COMPLETE,loaded);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loaded</span><span class="params">(e:Event)</span></span>&#123;</span><br><span class="line">trace(loader.data);</span><br><span class="line"><span class="comment">//輸出</span></span><br><span class="line">&#125;</span><br><span class="line">loader.load(<span class="keyword">new</span> URLRequest(<span class="string">"test.php"</span>));</span><br></pre></td></tr></table></figure>
+<p>test.php：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$ flashData = $ _POST[<span class="string">'message'</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"this is flash say:$ flashData"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>看看輸出的代碼, 你得到了什麼?是的, 信息並沒有傳輸到php, 你還是在用loadVars的方式試圖傳送數據, 但as3裏已經不是這樣了, URLLoader的data只有在數據被下載完時才會被初始化, 在數據沒有加載完成時, 它是等於null的, 也就是說, 它只包含接受到的數據, 而不管要發送的數據, 那麼, as3裏如何向後臺發送數據呢?使用URLVariables.URLVariables允許你在flash和後臺程序間傳輸變數, as3裏已經把發送和接受數據分離, 再也不像as2的loadVars那樣, 一個類通吃所有了, 那麼這個URLVariables如何送要發送的數據呢?
+你可能找遍了URLLoader的文檔也沒有發現與它相關的東西, 是的URLLoader並不和URLVariables有關聯, 而是 URLRequest在使用它, URLRequest包含整個http請求的所有信息, 所以我們要發送的數據要放在這裏, URLRequest有一個 data屬性他接受一個object類型的參數, 這就是我們要發送的數據.同時你可能還注意到了, URLRequest也管理用什麼樣的方式來發送 http請求, 它的method屬性接受一個字元參數, post或者是get.好了, 現在我們來看看它們是怎麼工作的：</p>
+<p>AS腳本 (放到關鍵幀上) ：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loader:URLLoader = <span class="keyword">new</span> URLLoader();</span><br><span class="line"><span class="comment">//聲明一個URLRequest</span></span><br><span class="line"><span class="keyword">var</span> url:URLRequest = <span class="keyword">new</span> URLRequest(<span class="string">"test.php"</span>);</span><br><span class="line"><span class="comment">//設置傳輸方式為POST</span></span><br><span class="line">url.method = URLRequestMethod.POST;</span><br><span class="line"><span class="comment">//聲明一個URLVariables</span></span><br><span class="line"><span class="keyword">var</span> values:URLVariables = <span class="keyword">new</span> URLVariables();</span><br><span class="line"><span class="comment">//設置要傳輸的信息</span></span><br><span class="line">values.message=<span class="string">"I am Flash!"</span>;</span><br><span class="line">url.data = values;</span><br><span class="line">loader.addEventListener(Event.COMPLETE,loaded);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loaded</span><span class="params">(e:Event)</span></span>&#123;</span><br><span class="line">trace(loader.data);</span><br><span class="line"><span class="comment">//輸出</span></span><br><span class="line">&#125;</span><br><span class="line">loader.load(url);</span><br></pre></td></tr></table></figure>
+<p>test.php同上</p>
+<p>怎麼樣, 是不是也很方便的實現了as3和後臺的數據傳輸?現在我們的程序可以雙向交互數據了, 但這只是一些簡單的數據, 如果你要傳輸帶有結構的數據,  (熟悉as2的人都知道loadVars可以自動解析下載數據的結構) , 讓我們先按loadVars的方式來嘗試下, 看看 URLLoader是不是能自動的解析下載的數據.</p>
+<p>AS腳本 (放到關鍵幀上) ：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loader:URLLoader = <span class="keyword">new</span> URLLoader();</span><br><span class="line"><span class="comment">//聲明一個URLRequest</span></span><br><span class="line"><span class="keyword">var</span> url:URLRequest = <span class="keyword">new</span> URLRequest(<span class="string">"test.php"</span>);</span><br><span class="line"><span class="comment">//設置傳輸方式為POST</span></span><br><span class="line">url.method = URLRequestMethod.POST;</span><br><span class="line"><span class="comment">//聲明一個URLVariables</span></span><br><span class="line"><span class="keyword">var</span> values:URLVariables = <span class="keyword">new</span> URLVariables();</span><br><span class="line"><span class="comment">//設置要傳輸的信息</span></span><br><span class="line">values.message=<span class="string">"I am Flash!"</span>;</span><br><span class="line">url.data = values;</span><br><span class="line">loader.addEventListener(Event.COMPLETE,loaded);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loaded</span><span class="params">(e:Event)</span></span>&#123;</span><br><span class="line">trace(loader.data);</span><br><span class="line"><span class="comment">//輸出整串數據</span></span><br><span class="line">trace(loader.data.phpMessage);</span><br><span class="line"><span class="comment">//輸出phpMessage</span></span><br><span class="line">trace(loader.data.flashMessage);</span><br><span class="line"><span class="comment">//輸出flashMessage</span></span><br><span class="line">&#125;</span><br><span class="line">loader.load(url);</span><br></pre></td></tr></table></figure>
+<p>test.php：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$ flashData = $ _POST[<span class="string">'message'</span>];</span><br><span class="line">$ phpMessage = <span class="string">"I am PHP!"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"phpMessage=$ phpMessage&amp;flashMessage=$ flashData"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到, 數據被完全下載下來了, 但是卻沒有被解析, 還拋出了異常, 那麼是不是 URLLoader就不能自動解析數據了呢?不是, 相反URLLoader 提供了多種數據解析方式供你選擇.這些數據解析方式都在URLLoaderDataFormat裏, 他們是：BINARY-以2進制的方式解析 TEXT-以文本的方式解析 VARIABLES-以變數-值配對的方式解析.URLLoader的dataFormat屬性提供了對解析方式的選擇, 好, 我們再來修改下程序使它變的更完美些：</p>
+<p>AS腳本 (放到關鍵幀上) ：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loader:URLLoader = <span class="keyword">new</span> URLLoader();</span><br><span class="line"><span class="comment">//聲明一個URLRequest</span></span><br><span class="line"><span class="keyword">var</span> url:URLRequest = <span class="keyword">new</span> URLRequest(<span class="string">"test.php"</span>);</span><br><span class="line"><span class="comment">//設置傳輸方式為POST</span></span><br><span class="line">url.method = URLRequestMethod.POST;</span><br><span class="line"><span class="comment">//聲明一個URLVariables</span></span><br><span class="line"><span class="keyword">var</span> values:URLVariables = <span class="keyword">new</span> URLVariables();</span><br><span class="line"><span class="comment">//設置要傳輸的信息</span></span><br><span class="line">values.message=<span class="string">"hello im flash!"</span>;</span><br><span class="line">url.data = values;</span><br><span class="line"><span class="comment">//設置以變數-值配對的方式解析數據</span></span><br><span class="line">loader.dataFormat = URLLoaderDataFormat.VARIABLES;</span><br><span class="line">loader.addEventListener(Event.COMPLETE,loaded);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loaded</span><span class="params">(e:Event)</span></span>&#123;</span><br><span class="line">trace(loader.data);</span><br><span class="line"><span class="comment">//輸出整串數據</span></span><br><span class="line">trace(loader.data.phpMessage);</span><br><span class="line"><span class="comment">//輸出整串數據phpMessage</span></span><br><span class="line">trace(loader.data.flashMessage);</span><br><span class="line"><span class="comment">//輸出整串數據flashMessage</span></span><br><span class="line">&#125;</span><br><span class="line">loader.load(url);</span><br></pre></td></tr></table></figure>
+<p>test.php同上</p>
+<p>以上這些就是as3裏和後臺交互的基礎內容, 現在你可以在as3裏創建這樣的交互, 獲取動態數據來豐富你的程序, 另外還有一些東西值得注意：
+1, 捕獲和處理異常, 上述的例子裏都是假定在完美的測試環境下運行, 所以沒有加上異常捕獲和處理的代碼, 但現實中你可能會遇到各種各樣的情況URLLoader可能引發好幾種異常情況, 詳細請參見說明文檔
+你應該通過監聽ioError和securityError事件, 或者通過try-catch來處理他們, 即使你確信不會發生這樣的問題.
+2, 文件的編碼, 經常很多數據變成了亂碼或者解析出錯都是因為編碼的問題, 我的做法是確保發送的數據和後臺傳回的數據都是UTF-8格式 (flash默認編碼為utf-8)</p>
+
+            
+
+
+        </div>
+    </div>
+    <div class="text-center">
+        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2010/07/03/vb-image-save-into-database/"
+                    data-tooltip="VB實現圖象在資料庫的存儲與顯示"
+                    aria-label="上一篇: VB實現圖象在資料庫的存儲與顯示"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                    title="分享到 Facebook"
+                    aria-label="分享到 Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                    title="分享到 Twitter"
+                    aria-label="分享到 Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                    title="分享到 Weibo"
+                    aria-label="分享到 Weibo"
+                >
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/&amp;title=Flash與php通信研究系列"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#disqus_thread"
+                        aria-label="Kommentieren"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Chino Chang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2010/07/03/vb-image-save-into-database/"
+                    data-tooltip="VB實現圖象在資料庫的存儲與顯示"
+                    aria-label="上一篇: VB實現圖象在資料庫的存儲與顯示"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                    title="分享到 Facebook"
+                    aria-label="分享到 Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                    title="分享到 Twitter"
+                    aria-label="分享到 Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                    title="分享到 Weibo"
+                    aria-label="分享到 Weibo"
+                >
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/&amp;title=Flash與php通信研究系列"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#disqus_thread"
+                        aria-label="Kommentieren"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                        aria-label="分享到 Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                        aria-label="分享到 Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                        aria-label="分享到 Weibo"
+                    >
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/&amp;title=Flash與php通信研究系列"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e?s=110" alt="作者的圖片"/>
+        
+            <h4 id="about-card-name">Chino Chang</h4>
+        
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                中國青島
+            </div>
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="/assets/images/logo-algolia-nebula-blue-full.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">沒有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/"
+                            aria-label=": Flash與php通信研究系列"
+                        >
+                            <h3 class="media-heading">Flash與php通信研究系列</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2010年7月2日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2010/07/03/vb-image-save-into-database/"
+                            aria-label=": VB實現圖象在資料庫的存儲與顯示"
+                        >
+                            <h3 class="media-heading">VB實現圖象在資料庫的存儲與顯示</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2010年7月3日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>在舉例之前, 先把數據綁定功能簡要的說明一下, 凡是具有 DataSource屬性的控件都是對數據敏感的, 它們都能通過數據控件直接使用數據庫裏的數據.比如CheckBox Control , ComboBox Comtrol , TextBox Comtrol , PictureBox Control ,Image Comtrol … 因為這種方式涉及到的知識點比較少, 也比較容易理解, 不多作說明, 現直接介紹編程步驟.</p>
+<p>1, 從數據庫中顯示所需要的圖片</p>
+<p>首先, 添加一個Data數據控件,設置它的DatabaseName和RecordSource屬性,</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2010/09/22/under-the-sky-of-microsoft/"
+                            aria-label=": 在微軟的藍天下"
+                        >
+                            <h3 class="media-heading">在微軟的藍天下</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2010年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2011/02/09/simple-asp-bbs/"
+                            aria-label=": ASP留言板教學"
+                        >
+                            <h3 class="media-heading">ASP留言板教學</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2011年2月9日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>我著實不喜歡asp, 但是Kinosang還是寫了這篇文章, 這篇文章是應一個網友的要求寫的, 過一段時間, 我會寫一個PHP版本的教程.</p>
+<p>我最初接觸的動態頁面腳本就是asp, 因為我學會的第一門編程語言是vb, 借助它們的相似性, 我進入了動態頁面開發的領域.對於動態頁面來說, PHP應該是一個更好的選擇, 豐富的第三方庫讓你的開發更容易, 有些人說jsp執行時更加高效, 但是Kinosang認為jsp在開發過程中不及php和asp方便, 這也是為什麼Kinosang遲遲沒有學會3P (別想歪了, 是asp, php, jsp) 的原因.</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2011/02/09/wordpress-do-different-thing-with-different-user-rank/"
+                            aria-label=": WP根據用戶級別執行不同操作"
+                        >
+                            <h3 class="media-heading">WP根據用戶級別執行不同操作</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2011年2月9日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>首先要說明一點, 本站的VIP級別用戶是使用Role Manager創建的, Role Manager的具體用法我會專門講解, 下面的代碼中特殊用戶組以本站VIP用戶 (level = 3) 為例.</p>
+<p>一, 對登錄或未登錄或評論者的訪客顯示不同內容</p>
+<p>【一】對登錄用戶不顯示, 對評論者和訪客顯示的內容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">if</span> (!$ user_ID) &#123; <span class="meta">?&gt;</span></span><br><span class="line">這裏填某些調用代碼, 內容</span><br><span class="line"><span class="meta">&lt;?php</span> &#125; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2011/02/12/wange-toolbar-1-html-css-has-msg/"
+                            aria-label=": 仿製萬戈工具條 (免插件·第一版·純HTML+CSS·無滾動文本)"
+                        >
+                            <h3 class="media-heading">仿製萬戈工具條 (免插件·第一版·純HTML+CSS·無滾動文本)</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2011年2月12日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+<h1>複製粘貼的簡單過程</h1>
+<p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
+<p>以下代碼放到style.css</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2011/02/14/wange-toolbar-2-html-css-js-has-msg/"
+                            aria-label=": 仿製萬戈工具條 (免插件·第二版·HTML+CSS+JS·提示文本)"
+                        >
+                            <h3 class="media-heading">仿製萬戈工具條 (免插件·第二版·HTML+CSS+JS·提示文本)</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2011年2月14日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+複製粘貼與替換的簡單過程</p>
+<p>以下代碼放到style.css</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2011/02/15/make-page-disable-when-loading/"
+                            aria-label=": 網頁加載時使頁面元素失效"
+                        >
+                            <h3 class="media-heading">網頁加載時使頁面元素失效</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2011年2月15日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>各位應該看到了我的網站在加載時會出現一個層覆蓋在頁面上, 致使頁面元素失效.</p>
+<p>這樣做的好處在於：</p>
+<p>*可以把一些必要但影響速度的元素放在頁腳加載 (如我的頂部工具條, jQuary) , 使頁面主體部分儘快展示出來</p>
+<p>*可以保證用戶瀏覽時所有元素已經加載完成, 不影響到用戶對頁面中各元素的正常使用.</p>
+<p>你在使用本文提到的技巧前, 可以先把放在頁面頭部 (對於wp來說是header.php) 的一些div, js元素 (比如, 如果你用了萬戈工具條代碼版或我的頂部工具條代碼, 你就可以放在頁腳之前;對於jQuary庫和代碼, 都可以移動到頁腳但要保證jQuary庫在所有jQuary代碼前被加載) 移動到頁腳 (對於wp來說是footer.php) .</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2011/02/17/wordpress-themes-add-options/"
+                            aria-label=": 為wp主題添加管理選項"
+                        >
+                            <h3 class="media-heading">為wp主題添加管理選項</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2011年2月17日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https://blog.7in0.me/2011/05/05/propaganda-wordpress-1-why-choose-it/"
+                            aria-label=": WordPress普及系列 (一) 為什麼選擇WP"
+                        >
+                            <h3 class="media-heading">WordPress普及系列 (一) 為什麼選擇WP</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2011年5月5日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+<p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="沒有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 93 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        <script>
+          var disqus_config = function() {
+            this.page.url = 'https://blog.7in0.me/2010/07/02/flash-and-php-send-messages/';
+              
+            this.page.identifier = '2010/07/02/flash-and-php-send-messages/';
+              
+          };
+          (function() {
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = '7in0san9';
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+    
+
+
+
+    
+<script src="/assets/js/moment-with-locales.js"></script>
+
+    
+<script src="/assets/js/algoliasearch.js"></script>
+
+    <script>
+      var algoliaClient = algoliasearch('PAABXPOQCP', '7e4cbdf633b332005fc09c6a10ce275f');
+      var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
+
+
+    </body>
+</html>
