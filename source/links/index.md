@@ -15,9 +15,9 @@ title: 友情連結
 * [Cocoa | 経験値上昇中☆](https://await.moe)
 * [FGHRSH 的博客](https://www.fghrsh.net)
 * [Geeku](https://www.geeku.net)
+* [HydricAcid](https://blog.hcl.moe)
 * [Kiseopt](https://acg.vc)
 * [Librehat's Blog](https://www.librehat.com)
 * [OX(EoZenfung)](https://www.ooxx.dk)
-* [TechOtaku](https://th0.me)
 
 **以上链接不分先后, 按名称首字母排序.**
