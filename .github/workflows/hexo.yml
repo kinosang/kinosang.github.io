@@ -1,0 +1,46 @@
+name: Hexo
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/checkout@v2
+      with:
+        repository: kinosang/blog.7in0.me
+        ref: gh-pages
+        path: .deploy_git
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 15.x
+
+    - run: |
+        yarn
+        cd themes/tranquilpeak
+        yarn
+
+    - run: yarn hexo g
+
+    - env:
+        ALGOLIA_ADMIN_API_KEY: ${{secrets.ALGOLIA_ADMIN_API_KEY}}
+        HEXO_DEPLOY_KEY: ${{secrets.HEXO_DEPLOY_KEY}}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$HEXO_DEPLOY_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        git config --global user.name "7IN0SAN9"
+        git config --global user.email "me@7in0.me"
+        yarn hexo d
+        yarn hexo a
+      if: ${{ github.repository_owner == 'kinosang' && github.ref == 'refs/heads/master' }}

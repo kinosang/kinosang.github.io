@@ -85,7 +85,6 @@ deploy:
 algolia:
   appId: "PAABXPOQCP"
   apiKey: "7e4cbdf633b332005fc09c6a10ce275f"
-  adminApiKey: ""
   chunkSize: 5000
   indexName: "my-hexo-blog"
   fields:
