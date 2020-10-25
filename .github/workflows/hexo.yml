@@ -24,14 +24,17 @@ jobs:
       with:
         node-version: 15.x
 
-    - run: |
+    - name: Prepare node_modules
+      run: |
         yarn
         cd themes/tranquilpeak
         yarn
 
-    - run: yarn hexo g
+    - name: Hexo Generate
+      run: yarn hexo g
 
-    - env:
+    - name: Hexo Deploy
+      env:
         ALGOLIA_ADMIN_API_KEY: ${{secrets.ALGOLIA_ADMIN_API_KEY}}
         HEXO_DEPLOY_KEY: ${{secrets.HEXO_DEPLOY_KEY}}
       run: |
