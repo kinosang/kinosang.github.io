@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="7IN0SAN9">
-    <title>Hello World - 7IN0SAN9</title>
+    <title>Boxbilling 多語言設置問題 - 7IN0SAN9</title>
     <meta name="author" content="Chino Chang">
     
     
@@ -15,16 +15,16 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.\n\n¶Quick Start\n¶Create a new post\n1$ hexo new \"My New Post\"\nMore info: Writing\n¶Run server\n1$ hexo server\nMore info: Server\n¶Generate static files\n1$ hexo generate\nMore info: Generating\n¶Deploy to remote sites\n1$ hexo deploy\nMore info: Deployment\n","dateCreated":"2020-04-07T11:58:17+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2020-04-07T11:58:17+08:00","description":"Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.","headline":"Hello World","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2020/04/07/hello-world/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2020/04/07/hello-world/"}</script>
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"前些日子我發現了一款很棒的開源 billing 程式—— Boxbilling, 通過簡單的嘗試, 我對於這款程式很滿意, 尤其是它物件導向的開發思想, 個人感覺比 WHMCS 高到不知哪裡去了.\n但是我發現它的多語言功能好像不能正常工作, 通過多方查詢, 我瞭解到除了準備 .po 和 .mo 檔之外, 還要設定伺服器的 locales 才行.\n\n以 Ubuntu 14.04 為例, 修改 /var/lib/locales/supported.d/local 之後更新 locales：\n123456$ sudo vim /var/lib/locales/supported.d/localen_US.UTF-8 UTF-8zh_TW.UTF-8 UTF-8zh_CN.UTF-8 UTF-8$ sudo dpkg-reconfigure locales\n最後 restart php-fpm (使用 Apache mod-php 的則 restart apache)\n問題完美解決!\n","dateCreated":"2015-12-01T17:12:56+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2015-12-01T17:12:56+00:00","description":"前些日子我發現了一款很棒的開源 billing 程式—— Boxbilling, 通過簡單的嘗試, 我對於這款程式很滿意, 尤其是它物件導向的開發思想, 個人感覺比 WHMCS 高到不知哪裡去了.\n但是我發現它的多語言功能好像不能正常工作, 通過多方查詢, 我瞭解到除了準備 .po 和 .mo 檔之外, 還要設定伺服器的 locales 才行.","headline":"Boxbilling 多語言設置問題","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"}</script>
+    <meta name="description" content="前些日子我發現了一款很棒的開源 billing 程式—— Boxbilling, 通過簡單的嘗試, 我對於這款程式很滿意, 尤其是它物件導向的開發思想, 個人感覺比 WHMCS 高到不知哪裡去了. 但是我發現它的多語言功能好像不能正常工作, 通過多方查詢, 我瞭解到除了準備 .po 和 .mo 檔之外, 還要設定伺服器的 locales 才行.">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://blog.7in0.me/2020/04/07/hello-world/index.html">
+<meta property="og:title" content="Boxbilling 多語言設置問題">
+<meta property="og:url" content="https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/index.html">
 <meta property="og:site_name" content="7IN0SAN9">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="前些日子我發現了一款很棒的開源 billing 程式—— Boxbilling, 通過簡單的嘗試, 我對於這款程式很滿意, 尤其是它物件導向的開發思想, 個人感覺比 WHMCS 高到不知哪裡去了. 但是我發現它的多語言功能好像不能正常工作, 通過多方查詢, 我瞭解到除了準備 .po 和 .mo 檔之外, 還要設定伺服器的 locales 才行.">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-07T03:58:17.114Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.114Z">
+<meta property="article:published_time" content="2015-12-01T17:12:56.000Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.808Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -55,6 +55,7 @@
 
 
     
+
 
     
         
@@ -323,6 +324,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -334,20 +336,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Hello World
+            Boxbilling 多語言設置問題
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-07T11:58:17+08:00">
+    <time datetime="2015-12-01T17:12:56+00:00">
 	
-		    4月 07, 2020
+		    12月 01, 2015
     	
     </time>
     
         <span>分類 </span>
         
-    <a class="category-link" href="/categories/%E9%9B%9C%E7%89%A9%E7%AE%B1/">雜物箱</a>
+    <a class="category-link" href="/categories/%E6%87%89%E7%94%A8%E6%8A%80%E5%B7%A7/">應用技巧</a>
 
 
     
@@ -359,21 +361,13 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+            <p>前些日子我發現了一款很棒的開源 billing 程式—— Boxbilling, 通過簡單的嘗試, 我對於這款程式很滿意, 尤其是它物件導向的開發思想, 個人感覺比 WHMCS 高到不知哪裡去了.</p>
+<p>但是我發現它的多語言功能好像不能正常工作, 通過多方查詢, 我瞭解到除了準備 .po 和 .mo 檔之外, 還要設定伺服器的 locales 才行.</p>
 <a id="more"></a>
-<h2 id="quick-start"><a class="header-anchor" href="#quick-start">¶</a>Quick Start</h2>
-<h3 id="create-a-new-post"><a class="header-anchor" href="#create-a-new-post">¶</a>Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server"><a class="header-anchor" href="#run-server">¶</a>Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files"><a class="header-anchor" href="#generate-static-files">¶</a>Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="header-anchor" href="#deploy-to-remote-sites">¶</a>Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>以 Ubuntu 14.04 為例, 修改 /var/lib/locales/supported.d/local 之後更新 locales：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /var/lib/locales/supported.d/<span class="built_in">local</span></span><br><span class="line">en_US.UTF-8 UTF-8</span><br><span class="line">zh_TW.UTF-8 UTF-8</span><br><span class="line">zh_CN.UTF-8 UTF-8</span><br><span class="line"></span><br><span class="line">$ sudo dpkg-reconfigure locales</span><br></pre></td></tr></table></figure>
+<p>最後 restart php-fpm (使用 Apache mod-php 的則 restart apache)</p>
+<p>問題完美解決!</p>
 
             
 
@@ -381,7 +375,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -391,11 +385,14 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2016/04/08/say-good-bye-to-wadakoji/"
+                    data-tooltip="和田光司一路走好"
+                    aria-label="上一篇: 和田光司一路走好"
+                >
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
                     </a>
@@ -405,9 +402,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/06/scheme-on-racket-part-1-startup/"
-                    data-tooltip="Scheme on Racket (一) 起步"
-                    aria-label="下一篇: Scheme on Racket (一) 起步"
+                    href="/2015/11/27/moved-to-a-new-vps-because-of-a-mistake/"
+                    data-tooltip="記一次因手誤導致的伺服器遷移"
+                    aria-label="下一篇: 記一次因手誤導致的伺服器遷移"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
@@ -432,7 +429,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2020/04/07/hello-world/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                     title="分享到 Facebook"
                     aria-label="分享到 Facebook"
                 >
@@ -445,7 +442,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2020/04/07/hello-world/"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                     title="分享到 Twitter"
                     aria-label="分享到 Twitter"
                 >
@@ -458,7 +455,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2020/04/07/hello-world/"
+                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                     title="分享到 Weibo"
                     aria-label="分享到 Weibo"
                 >
@@ -471,7 +468,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2020/04/07/hello-world/&amp;title=Hello World"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/&amp;title=Boxbilling 多語言設置問題"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -502,18 +499,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -530,11 +526,14 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2016/04/08/say-good-bye-to-wadakoji/"
+                    data-tooltip="和田光司一路走好"
+                    aria-label="上一篇: 和田光司一路走好"
+                >
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
                     </a>
@@ -544,9 +543,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/06/scheme-on-racket-part-1-startup/"
-                    data-tooltip="Scheme on Racket (一) 起步"
-                    aria-label="下一篇: Scheme on Racket (一) 起步"
+                    href="/2015/11/27/moved-to-a-new-vps-because-of-a-mistake/"
+                    data-tooltip="記一次因手誤導致的伺服器遷移"
+                    aria-label="下一篇: 記一次因手誤導致的伺服器遷移"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
@@ -571,7 +570,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2020/04/07/hello-world/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                     title="分享到 Facebook"
                     aria-label="分享到 Facebook"
                 >
@@ -584,7 +583,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2020/04/07/hello-world/"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                     title="分享到 Twitter"
                     aria-label="分享到 Twitter"
                 >
@@ -597,7 +596,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2020/04/07/hello-world/"
+                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                     title="分享到 Weibo"
                     aria-label="分享到 Weibo"
                 >
@@ -610,7 +609,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2020/04/07/hello-world/&amp;title=Hello World"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/&amp;title=Boxbilling 多語言設置問題"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -641,7 +640,6 @@
     </ul>
 </div>
 
-
                 </div>
                 
     <div id="share-options-bar" class="share-options-bar" data-behavior="4">
@@ -654,7 +652,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2020/04/07/hello-world/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                         aria-label="分享到 Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
@@ -667,7 +665,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2020/04/07/hello-world/"
+                        href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                         aria-label="分享到 Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
@@ -680,7 +678,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2020/04/07/hello-world/"
+                        href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/"
                         aria-label="分享到 Weibo"
                     >
                         <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
@@ -693,7 +691,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2020/04/07/hello-world/&amp;title=Hello World"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/&amp;title=Boxbilling 多語言設置問題"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -780,7 +778,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -902,7 +900,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -928,7 +926,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -980,7 +978,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1004,7 +1002,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1027,6 +1025,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>
@@ -1037,9 +1036,9 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
     
         <script>
           var disqus_config = function() {
-            this.page.url = 'https://blog.7in0.me/2020/04/07/hello-world/';
+            this.page.url = 'https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/';
               
-            this.page.identifier = '2020/04/07/hello-world/';
+            this.page.identifier = '2015/12/01/boxbilling-multi-languages-not-work/';
               
           };
           (function() {

@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"最近工作中深感自身內力不足, 遂決定讀 SICP (Structure and Interpretation of Computer Programs) 一書以加強修行.\n因書中程式碼均以 MIT Scheme 編寫, 在讀此書之前還需瞭解 Lisp 的這一方言.\n因 MIT Scheme 已不再維護其 Windows 版, 為了方便我在 macOS 和 Windows 上獲得比較一致的體驗, 我選擇使用 Racket 和 SICP language.\n這個系列就是我學習 Scheme (SICP language on Racket) 的一些筆記.\n\n自然, 在開始學習之前需要先準備工作環境, 我所選擇的軟體如下:\n\nJupyterLab\nMinimal Racket (也可以使用完整 Racket 發行版)\n\nsicp\niracket\n\n\n\n¶安裝 Racket 和 SICP\nmacOS:\n12$ brew install minimal-racket$ raco pkg install sicp\nWindows:\n12&gt; scoop install racket-minimal&gt; raco pkg install sicp\n¶安裝 JupyterLab 和 iracket\n因當前版本的 iracket 不支援選擇語言, 所以在通過 raco pkg 安裝好之後需要到 kinosang/iracket 獲取修改版的 install.rkt 和 iracket.rkt 並替換到本地.\nmacOS:\n1234$ brew install jupyterlab$ raco pkg install iracket# mac 上 raco pkgs 在 /usr/local/opt/minimal-racket/share/racket/pkgs$ raco iracket install -l sicp\nWindows:\n1234&gt; pip install jupyterlab # 先用 scoop 安裝 python&gt; raco pkg install iracket# win 上 raco pkgs 在 %APPDATA%\\Racket\\7.4\\pkgs&gt; raco iracket install raco iracket install --jupyter-exe $env:HOME\\scoop\\apps\\python\\current\\Scripts\\jupyter.exe -l sicp\n¶測試 iracket\n分別使用 racket kernel 和 sicp kernel 進行測試.\n¶Racket\n123456(require 2htdp/image) ; draw a picture(let sierpinski ([n 8])  (cond    [(zero? n) (triangle 2 'solid 'red)]    [else (define t (sierpinski (- n 1)))          (freeze (above t (beside t t)))]))\n\n¶SICP\n123(inc 42)(runtime)\n\n","dateCreated":"2020-04-06T13:20:21+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2020-04-06T13:20:21+08:00","description":"最近工作中深感自身內力不足, 遂決定讀 SICP (Structure and Interpretation of Computer Programs) 一書以加強修行.\n因書中程式碼均以 MIT Scheme 編寫, 在讀此書之前還需瞭解 Lisp 的這一方言.\n因 MIT Scheme 已不再維護其 Windows 版, 為了方便我在 macOS 和 Windows 上獲得比較一致的體驗, 我選擇使用 Racket 和 SICP language.\n這個系列就是我學習 Scheme (SICP language on Racket) 的一些筆記.","headline":"Scheme on Racket (一) 起步","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2020/04/06/scheme-on-racket-part-1-startup/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2020/04/06/scheme-on-racket-part-1-startup/","keywords":"Scheme on Racket, SICP"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"最近工作中深感自身內力不足, 遂決定讀 SICP (Structure and Interpretation of Computer Programs) 一書以加強修行.\n因書中程式碼均以 MIT Scheme 編寫, 在讀此書之前還需瞭解 Lisp 的這一方言.\n因 MIT Scheme 已不再維護其 Windows 版, 為了方便我在 macOS 和 Windows 上獲得比較一致的體驗, 我選擇使用 Racket 和 SICP language.\n這個系列就是我學習 Scheme (SICP language on Racket) 的一些筆記.\n\n自然, 在開始學習之前需要先準備工作環境, 我所選擇的軟體如下:\n\nJupyterLab\nMinimal Racket (也可以使用完整 Racket 發行版)\n\nsicp\niracket\n\n\n\n安裝 Racket 和 SICP\nmacOS:\n12$ brew install minimal-racket$ raco pkg install sicp\nWindows:\n12&gt; scoop install racket-minimal&gt; raco pkg install sicp\n安裝 JupyterLab 和 iracket\n因當前版本的 iracket 不支援選擇語言, 所以在通過 raco pkg 安裝好之後需要到 kinosang/iracket 獲取修改版的 install.rkt 和 iracket.rkt 並替換到本地.\nmacOS:\n1234$ brew install jupyterlab$ raco pkg install iracket# mac 上 raco pkgs 在 /usr/local/opt/minimal-racket/share/racket/pkgs$ raco iracket install -l sicp\nWindows:\n1234&gt; pip install jupyterlab # 先用 scoop 安裝 python&gt; raco pkg install iracket# win 上 raco pkgs 在 %APPDATA%\\Racket\\7.4\\pkgs&gt; raco iracket install raco iracket install --jupyter-exe $env:HOME\\scoop\\apps\\python\\current\\Scripts\\jupyter.exe -l sicp\n測試 iracket\n分別使用 racket kernel 和 sicp kernel 進行測試.\nRacket\n123456(require 2htdp/image) ; draw a picture(let sierpinski ([n 8])  (cond    [(zero? n) (triangle 2 &#x27;solid &#x27;red)]    [else (define t (sierpinski (- n 1)))          (freeze (above t (beside t t)))]))\n\nSICP\n123(inc 42)(runtime)\n\n","dateCreated":"2020-04-06T05:20:21+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2020-04-06T05:20:21+00:00","description":"最近工作中深感自身內力不足, 遂決定讀 SICP (Structure and Interpretation of Computer Programs) 一書以加強修行.\n因書中程式碼均以 MIT Scheme 編寫, 在讀此書之前還需瞭解 Lisp 的這一方言.\n因 MIT Scheme 已不再維護其 Windows 版, 為了方便我在 macOS 和 Windows 上獲得比較一致的體驗, 我選擇使用 Racket 和 SICP language.\n這個系列就是我學習 Scheme (SICP language on Racket) 的一些筆記.","headline":"Scheme on Racket (一) 起步","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2020/04/06/scheme-on-racket-part-1-startup/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2020/04/06/scheme-on-racket-part-1-startup/","keywords":"Scheme on Racket, SICP"}</script>
     <meta name="description" content="最近工作中深感自身內力不足, 遂決定讀 SICP (Structure and Interpretation of Computer Programs) 一書以加強修行. 因書中程式碼均以 MIT Scheme 編寫, 在讀此書之前還需瞭解 Lisp 的這一方言. 因 MIT Scheme 已不再維護其 Windows 版, 為了方便我在 macOS 和 Windows 上獲得比較一致的體驗, 我">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Scheme on Racket (一) 起步">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://blog.7in0.me/2020/04/06/scheme-on-racket-part-1-startup/c977d83335ebefeb667f3932375f44dd5514cadc.png">
 <meta property="og:image" content="https://blog.7in0.me/2020/04/06/scheme-on-racket-part-1-startup/aa8df7934589ebc45abaafb1df9cdb4ed0d792a6.png">
 <meta property="article:published_time" content="2020-04-06T05:20:21.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.121Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.812Z">
 <meta property="article:author" content="Chino Chang">
 <meta property="article:tag" content="Scheme on Racket">
 <meta property="article:tag" content="SICP">
@@ -60,6 +60,7 @@
 
 
     
+
 
     
         
@@ -328,6 +329,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -344,7 +346,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2020-04-06T13:20:21+08:00">
+    <time datetime="2020-04-06T05:20:21+00:00">
 	
 		    4月 06, 2020
     	
@@ -379,23 +381,23 @@
 </ul>
 </li>
 </ul>
-<h3 id="安裝-racket-和-sicp"><a class="header-anchor" href="#安裝-racket-和-sicp">¶</a>安裝 Racket 和 SICP</h3>
+<h3 id="安裝-Racket-和-SICP">安裝 Racket 和 SICP</h3>
 <p>macOS:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew install minimal-racket</span><br><span class="line">$ raco pkg install sicp</span><br></pre></td></tr></table></figure>
 <p>Windows:</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; scoop install racket<span class="literal">-minimal</span></span><br><span class="line">&gt; raco pkg install sicp</span><br></pre></td></tr></table></figure>
-<h3 id="安裝-jupyterlab-和-iracket"><a class="header-anchor" href="#安裝-jupyterlab-和-iracket">¶</a>安裝 JupyterLab 和 iracket</h3>
-<p>因當前版本的 iracket 不支援選擇語言, 所以在通過 raco pkg 安裝好之後需要到 <a href="https://github.com/kinosang/iracket" target="_blank" rel="noopener">kinosang/iracket</a> 獲取修改版的 <code>install.rkt</code> 和 <code>iracket.rkt</code> 並替換到本地.</p>
+<h3 id="安裝-JupyterLab-和-iracket">安裝 JupyterLab 和 iracket</h3>
+<p>因當前版本的 iracket 不支援選擇語言, 所以在通過 raco pkg 安裝好之後需要到 <a target="_blank" rel="noopener" href="https://github.com/kinosang/iracket">kinosang/iracket</a> 獲取修改版的 <code>install.rkt</code> 和 <code>iracket.rkt</code> 並替換到本地.</p>
 <p>macOS:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ brew install jupyterlab</span><br><span class="line">$ raco pkg install iracket</span><br><span class="line"><span class="comment"># mac 上 raco pkgs 在 /usr/local/opt/minimal-racket/share/racket/pkgs</span></span><br><span class="line">$ raco iracket install -l sicp</span><br></pre></td></tr></table></figure>
 <p>Windows:</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; pip install jupyterlab <span class="comment"># 先用 scoop 安裝 python</span></span><br><span class="line">&gt; raco pkg install iracket</span><br><span class="line"><span class="comment"># win 上 raco pkgs 在 %APPDATA%\Racket\7.4\pkgs</span></span><br><span class="line">&gt; raco iracket install raco iracket install -<span class="literal">-jupyter</span><span class="literal">-exe</span> <span class="variable">$env:HOME</span>\scoop\apps\python\current\Scripts\jupyter.exe <span class="literal">-l</span> sicp</span><br></pre></td></tr></table></figure>
-<h3 id="測試-iracket"><a class="header-anchor" href="#測試-iracket">¶</a>測試 iracket</h3>
+<h3 id="測試-iracket">測試 iracket</h3>
 <p>分別使用 racket kernel 和 sicp kernel 進行測試.</p>
-<h4 id="racket"><a class="header-anchor" href="#racket">¶</a>Racket</h4>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">require</span> <span class="number">2</span>htdp/image) <span class="comment">; draw a picture</span></span><br><span class="line">(<span class="name">let</span> sierpinski ([n <span class="number">8</span>])</span><br><span class="line">  (<span class="name">cond</span></span><br><span class="line">    [(<span class="name">zero</span>? n) (<span class="name">triangle</span> <span class="number">2</span> 'solid 'red)]</span><br><span class="line">    [else (<span class="name">define</span> <span class="literal">t</span> (<span class="name">sierpinski</span> (<span class="name">-</span> n <span class="number">1</span>)))</span><br><span class="line">          (<span class="name">freeze</span> (<span class="name">above</span> <span class="literal">t</span> (<span class="name">beside</span> <span class="literal">t</span> <span class="literal">t</span>)))]))</span><br></pre></td></tr></table></figure>
+<h4 id="Racket">Racket</h4>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">require</span> <span class="number">2</span>htdp/image) <span class="comment">; draw a picture</span></span><br><span class="line">(<span class="name">let</span> sierpinski ([n <span class="number">8</span>])</span><br><span class="line">  (<span class="name">cond</span></span><br><span class="line">    [(<span class="name">zero</span>? n) (<span class="name">triangle</span> <span class="number">2</span> &#x27;solid &#x27;red)]</span><br><span class="line">    [else (<span class="name">define</span> <span class="literal">t</span> (<span class="name">sierpinski</span> (<span class="name">-</span> n <span class="number">1</span>)))</span><br><span class="line">          (<span class="name">freeze</span> (<span class="name">above</span> <span class="literal">t</span> (<span class="name">beside</span> <span class="literal">t</span> <span class="literal">t</span>)))]))</span><br></pre></td></tr></table></figure>
 <p><img src="c977d83335ebefeb667f3932375f44dd5514cadc.png" alt=""></p>
-<h4 id="sicp"><a class="header-anchor" href="#sicp">¶</a>SICP</h4>
+<h4 id="SICP">SICP</h4>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">inc</span> <span class="number">42</span>)</span><br><span class="line"></span><br><span class="line">(<span class="name">runtime</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="aa8df7934589ebc45abaafb1df9cdb4ed0d792a6.png" alt=""></p>
 
@@ -405,14 +407,15 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">標籤</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/SICP/" rel="tag">SICP</a> <a class="tag tag--primary tag--small t-link" href="/tags/Scheme-on-Racket/" rel="tag">Scheme on Racket</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/SICP/" rel="tag">SICP</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Scheme-on-Racket/" rel="tag">Scheme on Racket</a>
+
 
             </div>
         
@@ -425,7 +428,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/07/hello-world/"
+                    href="/2020/10/25/hello-world/"
                     data-tooltip="Hello World"
                     aria-label="上一篇: Hello World"
                 >
@@ -536,18 +539,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -567,7 +569,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/07/hello-world/"
+                    href="/2020/10/25/hello-world/"
                     data-tooltip="Hello World"
                     aria-label="上一篇: Hello World"
                 >
@@ -677,7 +679,6 @@
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -817,7 +818,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -939,7 +940,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -965,7 +966,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -1017,7 +1018,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1041,7 +1042,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1064,6 +1065,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

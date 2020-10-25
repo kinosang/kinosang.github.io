@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"DNS 加密代理——這玩意兒應對 DNS 污染很有用.\n它在本地建立一個 DNS 伺服器, 然後當有解析請求時, 將請求通過加密的 TCP 信道傳遞給 OpenDNS 等服務商, 然後將返回的結果解碼後供計算機使用.\n[caption id=“attachment_1751” align=“alignnone” width=“190”] DNS 加密代理[/caption]\n\n讓我們來看一下如何安裝\n¶Mac OS X\nMac 下使用 Homebrew 進行安裝\n123$ brew install dnscrypt-proxy$ sudo cp -fv /wp-content/local/opt/dnscrypt-proxy/*.plist /Library/LaunchDaemons$ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnscrypt-proxy.plist\n然後設定系統的 DNS 伺服器為 127.0.0.1\n如果在學校或公司等需要使用網絡時需要設定內網 DNS, 將內網 DNS 排列在之下\n測試一下：\n[caption id=“attachment_1749” align=“alignnone” width=“300”] 測試 DNSCrypt-proxy 是否工作正常[/caption]\n上圖中“debug.opendns.com text = “dnscrypt enabled (…)””即代表 DNSCrypt-proxy 工作正常.\n¶Linux\n\n下载 DNSCrypt-proxy 原始码 (.tar.bz2檔)  (点击这里) \n安裝\n\n1234$ bunzip2 -cd dnscrypt-proxy-*.tar.bz2 | tar xvf -$ cd dnscrypt-proxy-*$ ./configure &amp;&amp; make -j2$ make install\n3.啟動\n1$ dnscrypt-proxy --daemonize\n\n修改 DNS 设定 (同 Mac OS X)\n\n¶Windows\n\n\n下载 DNSCrypt-proxy for win (dnscrypt-proxy-win32-full-*.zip檔)  (点击这里)\n\n\n安裝\n\n\n解開 zip 檔, cd 進入相應檔案夾, 執行下面的指令：\n1&gt; .\\dnscrypt-proxy.exe --install\n\n修改 DNS 设定 (同 Mac OS X)\n\n","dateCreated":"2014-01-25T11:56:46+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2014-01-25T11:56:46+08:00","description":"DNS 加密代理——這玩意兒應對 DNS 污染很有用.\n它在本地建立一個 DNS 伺服器, 然後當有解析請求時, 將請求通過加密的 TCP 信道傳遞給 OpenDNS 等服務商, 然後將返回的結果解碼後供計算機使用.\n[caption id=“attachment_1751” align=“alignnone” width=“190”] DNS 加密代理[/caption]","headline":"科學上網 - DNS 加密代理","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2014/01/25/surfing-internet-with-dnscrypt-proxy/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2014/01/25/surfing-internet-with-dnscrypt-proxy/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"DNS 加密代理——這玩意兒應對 DNS 污染很有用.\n它在本地建立一個 DNS 伺服器, 然後當有解析請求時, 將請求通過加密的 TCP 信道傳遞給 OpenDNS 等服務商, 然後將返回的結果解碼後供計算機使用.\n[caption id=“attachment_1751” align=“alignnone” width=“190”] DNS 加密代理[/caption]\n\n讓我們來看一下如何安裝\nMac OS X\nMac 下使用 Homebrew 進行安裝\n123$ brew install dnscrypt-proxy$ sudo cp -fv /wp-content/local/opt/dnscrypt-proxy/*.plist /Library/LaunchDaemons$ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnscrypt-proxy.plist\n然後設定系統的 DNS 伺服器為 127.0.0.1\n如果在學校或公司等需要使用網絡時需要設定內網 DNS, 將內網 DNS 排列在之下\n測試一下：\n[caption id=“attachment_1749” align=“alignnone” width=“300”] 測試 DNSCrypt-proxy 是否工作正常[/caption]\n上圖中“debug.opendns.com text = “dnscrypt enabled (…)””即代表 DNSCrypt-proxy 工作正常.\nLinux\n\n下载 DNSCrypt-proxy 原始码 (.tar.bz2檔)  (点击这里) \n安裝\n\n1234$ bunzip2 -cd dnscrypt-proxy-*.tar.bz2 | tar xvf -$ cd dnscrypt-proxy-*$ ./configure &amp;&amp; make -j2$ make install\n3.啟動\n1$ dnscrypt-proxy --daemonize\n\n修改 DNS 设定 (同 Mac OS X)\n\nWindows\n\n\n下载 DNSCrypt-proxy for win (dnscrypt-proxy-win32-full-*.zip檔)  (点击这里)\n\n\n安裝\n\n\n解開 zip 檔, cd 進入相應檔案夾, 執行下面的指令：\n1&gt; .\\dnscrypt-proxy.exe --install\n\n修改 DNS 设定 (同 Mac OS X)\n\n","dateCreated":"2014-01-25T03:56:46+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2014-01-25T03:56:46+00:00","description":"DNS 加密代理——這玩意兒應對 DNS 污染很有用.\n它在本地建立一個 DNS 伺服器, 然後當有解析請求時, 將請求通過加密的 TCP 信道傳遞給 OpenDNS 等服務商, 然後將返回的結果解碼後供計算機使用.\n[caption id=“attachment_1751” align=“alignnone” width=“190”] DNS 加密代理[/caption]","headline":"科學上網 - DNS 加密代理","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2014/01/25/surfing-internet-with-dnscrypt-proxy/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2014/01/25/surfing-internet-with-dnscrypt-proxy/"}</script>
     <meta name="description" content="DNS 加密代理——這玩意兒應對 DNS 污染很有用. 它在本地建立一個 DNS 伺服器, 然後當有解析請求時, 將請求通過加密的 TCP 信道傳遞給 OpenDNS 等服務商, 然後將返回的結果解碼後供計算機使用. [caption id&#x3D;“attachment_1751” align&#x3D;“alignnone” width&#x3D;“190”] DNS 加密代理[&#x2F;caption]">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="科學上網 - DNS 加密代理">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2014/01/DNSCrypt.jpg">
 <meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2014/01/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7-2014-01-25-11.27.19-300x210.png">
 <meta property="article:published_time" content="2014-01-25T03:56:46.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.126Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.812Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.7in0.me/wp-content/uploads/2014/01/DNSCrypt.jpg">
@@ -58,6 +58,7 @@
 
 
     
+
 
     
         
@@ -326,6 +327,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -342,7 +344,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2014-01-25T11:56:46+08:00">
+    <time datetime="2014-01-25T03:56:46+00:00">
 	
 		    1月 25, 2014
     	
@@ -367,17 +369,17 @@
 <p>[caption id=“attachment_1751” align=“alignnone” width=“190”]<a href="/wp-content/uploads/2014/01/DNSCrypt.jpg"><img src="/wp-content/uploads/2014/01/DNSCrypt.jpg" alt="DNS 加密代理"></a> DNS 加密代理[/caption]</p>
 <a id="more"></a>
 <p><span style="line-height: 1.5;">讓我們來看一下如何安裝</span></p>
-<h2 id="mac-os-x"><a class="header-anchor" href="#mac-os-x">¶</a>Mac OS X</h2>
+<h2 id="Mac-OS-X">Mac OS X</h2>
 <p>Mac 下使用 Homebrew 進行安裝</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ brew install dnscrypt-proxy</span><br><span class="line">$ sudo cp -fv /wp-content/<span class="built_in">local</span>/opt/dnscrypt-proxy/*.plist /Library/LaunchDaemons</span><br><span class="line">$ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnscrypt-proxy.plist</span><br></pre></td></tr></table></figure>
 <p>然後設定系統的 DNS 伺服器為 127.0.0.1</p>
 <p><em>如果在學校或公司等需要使用網絡時需要設定內網 DNS, 將內網 DNS 排列在之下</em></p>
 <p>測試一下：</p>
 <p>[caption id=“attachment_1749” align=“alignnone” width=“300”]<a href="/wp-content/uploads/2014/01/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7-2014-01-25-11.27.19-e1390620613906.png"><img src="/wp-content/uploads/2014/01/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7-2014-01-25-11.27.19-300x210.png" alt="測試 DNSCrypt-proxy 是否工作正常"></a> 測試 DNSCrypt-proxy 是否工作正常[/caption]</p>
-<p>上圖中“<a href="http://debug.opendns.com" target="_blank" rel="noopener">debug.opendns.com</a> text = “dnscrypt enabled (…)””即代表 DNSCrypt-proxy 工作正常.</p>
-<h2 id="linux"><a class="header-anchor" href="#linux">¶</a>Linux</h2>
+<p>上圖中“<a target="_blank" rel="noopener" href="http://debug.opendns.com">debug.opendns.com</a> text = “dnscrypt enabled (…)””即代表 DNSCrypt-proxy 工作正常.</p>
+<h2 id="Linux">Linux</h2>
 <ol>
-<li>下载 DNSCrypt-proxy 原始码 (.tar.bz2檔)  (点击<a href="http://download.dnscrypt.org/dnscrypt-proxy/" target="_blank" rel="noopener">这里</a>) </p></li>
+<li>下载 DNSCrypt-proxy 原始码 (.tar.bz2檔)  (点击<a target="_blank" rel="noopener" href="http://download.dnscrypt.org/dnscrypt-proxy/">这里</a>) </p></li>
 <li>安裝</p></li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ bunzip2 -<span class="built_in">cd</span> dnscrypt-proxy-*.tar.bz2 | tar xvf -</span><br><span class="line">$ <span class="built_in">cd</span> dnscrypt-proxy-*</span><br><span class="line">$ ./configure &amp;&amp; make -j2</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure>
@@ -386,10 +388,10 @@
 <ol>
 <li>修改 DNS 设定 (同 Mac OS X)</li>
 </ol>
-<h2 id="windows"><a class="header-anchor" href="#windows">¶</a>Windows</h2>
+<h2 id="Windows">Windows</h2>
 <ol>
 <li>
-<p>下载 DNSCrypt-proxy for win (dnscrypt-proxy-win32-full-*.zip檔)  (点击<a href="http://download.dnscrypt.org/dnscrypt-proxy/" target="_blank" rel="noopener">这里</a>)</p>
+<p>下载 DNSCrypt-proxy for win (dnscrypt-proxy-win32-full-*.zip檔)  (点击<a target="_blank" rel="noopener" href="http://download.dnscrypt.org/dnscrypt-proxy/">这里</a>)</p>
 </li>
 <li>
 <p>安裝</p>
@@ -407,7 +409,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -531,18 +533,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -672,7 +673,6 @@
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -812,7 +812,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -934,7 +934,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -960,7 +960,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -1012,7 +1012,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1036,7 +1036,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1059,6 +1059,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

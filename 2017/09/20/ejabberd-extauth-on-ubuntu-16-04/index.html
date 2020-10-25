@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的網頁上提供了一些第三方程式碼可供參考.詳細的說明在 ejabberd Developers Guide.\n\n以 ejabberd Developers Guide 中提供的 python 範例為基礎進行改進, 首先修改 python 版本為 python3.\n1#!/usr/bin/python\n修改為\n1#!/usr/bin/env python3\n對於 python3 不同於 python2 的部分做如下修改：\n12345678910...    (size,) = unpack('&gt;h', input_length)...def to_ejabberd(bool):    answer = 0    if bool:        answer = 1    token = pack('&gt;hh', 2, answer)    sys.stdout.write(token)    sys.stdout.flush()\n修改為\n123456789...    (size,) = unpack('&gt;h', input_length.encode())...def to_ejabberd(result):    if result:        sys.stdout.write('\\x00\\x02\\x00\\x01')    else:        sys.stdout.write('\\x00\\x02\\x00\\x00')    sys.stdout.flush()\n之後可對auth(), isuser(), setpass()做改動以適應自己的認證邏輯.其中isuser()和setpass()可以保留return True.\n最後將修改好的檔案丟去/etc/ejabberd/extauth.py, 修改 owner 為ejabberd, 添加執行權限.\n在/etc/ejabberd/ejabberd.yml找到auth_method: internal修改為：\n123auth_method:  - internal  - external\n在其下方增加：\n123extauth_program: \"/etc/ejabberd/extauth.py\"extauth_instances: 3auth_use_cache: false\n通過ejabberdcctl重新啟動ejabberd使設定生效.\n若出現extauth script has exitted abruptly with reason 'normal', 在排除檔案 owner 和執行權限有誤的情況下, 可能為apparmor所致 (帶有 SELinux 的作業系統中可能為 SELinux 所致, 可以通過sudo setenforce 0臨時關閉 SELinux 測試) , 查看/var/log/syslog可看到相關 log.\n1Sep 19 11:31:45 localhost kernel: [ 5031.995813] audit: type&#x3D;1400 audit(1505827901.939:57): apparmor&#x3D;&quot;DENIED&quot; operation&#x3D;&quot;exec&quot; profile&#x3D;&quot;&#x2F;usr&#x2F;sbin&#x2F;ejabberdctl&quot; name&#x3D;&quot;&#x2F;var&#x2F;lib&#x2F;ejabberd&#x2F;extauth.py&quot; pid&#x3D;4419 comm&#x3D;&quot;sh&quot; requested_mask&#x3D;&quot;x&quot; denied_mask&#x3D;&quot;x&quot; fsuid&#x3D;100 ouid&#x3D;100\n臨時解決方法是移除apparmor.\n1$ sudo apt-get purge --auto-remove apparmor\n","dateCreated":"2017-09-20T12:59:40+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2017-09-20T12:59:40+08:00","description":"Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的網頁上提供了一些第三方程式碼可供參考.詳細的說明在 ejabberd Developers Guide.","headline":"Ubuntu 16.04 上 Ejabberd extauth 設定","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2017/09/20/ejabberd-extauth-on-ubuntu-16-04/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2017/09/20/ejabberd-extauth-on-ubuntu-16-04/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的網頁上提供了一些第三方程式碼可供參考.詳細的說明在 ejabberd Developers Guide.\n\n以 ejabberd Developers Guide 中提供的 python 範例為基礎進行改進, 首先修改 python 版本為 python3.\n1#!/usr/bin/python\n修改為\n1#!/usr/bin/env python3\n對於 python3 不同於 python2 的部分做如下修改：\n12345678910...    (size,) = unpack(&#x27;&gt;h&#x27;, input_length)...def to_ejabberd(bool):    answer = 0    if bool:        answer = 1    token = pack(&#x27;&gt;hh&#x27;, 2, answer)    sys.stdout.write(token)    sys.stdout.flush()\n修改為\n123456789...    (size,) = unpack(&#x27;&gt;h&#x27;, input_length.encode())...def to_ejabberd(result):    if result:        sys.stdout.write(&#x27;\\x00\\x02\\x00\\x01&#x27;)    else:        sys.stdout.write(&#x27;\\x00\\x02\\x00\\x00&#x27;)    sys.stdout.flush()\n之後可對auth(), isuser(), setpass()做改動以適應自己的認證邏輯.其中isuser()和setpass()可以保留return True.\n最後將修改好的檔案丟去/etc/ejabberd/extauth.py, 修改 owner 為ejabberd, 添加執行權限.\n在/etc/ejabberd/ejabberd.yml找到auth_method: internal修改為：\n123auth_method:  - internal  - external\n在其下方增加：\n123extauth_program: &quot;/etc/ejabberd/extauth.py&quot;extauth_instances: 3auth_use_cache: false\n通過ejabberdcctl重新啟動ejabberd使設定生效.\n若出現extauth script has exitted abruptly with reason 'normal', 在排除檔案 owner 和執行權限有誤的情況下, 可能為apparmor所致 (帶有 SELinux 的作業系統中可能為 SELinux 所致, 可以通過sudo setenforce 0臨時關閉 SELinux 測試) , 查看/var/log/syslog可看到相關 log.\n1Sep 19 11:31:45 localhost kernel: [ 5031.995813] audit: type&#x3D;1400 audit(1505827901.939:57): apparmor&#x3D;&quot;DENIED&quot; operation&#x3D;&quot;exec&quot; profile&#x3D;&quot;&#x2F;usr&#x2F;sbin&#x2F;ejabberdctl&quot; name&#x3D;&quot;&#x2F;var&#x2F;lib&#x2F;ejabberd&#x2F;extauth.py&quot; pid&#x3D;4419 comm&#x3D;&quot;sh&quot; requested_mask&#x3D;&quot;x&quot; denied_mask&#x3D;&quot;x&quot; fsuid&#x3D;100 ouid&#x3D;100\n臨時解決方法是移除apparmor.\n1$ sudo apt-get purge --auto-remove apparmor\n","dateCreated":"2017-09-20T04:59:40+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2017-09-20T04:59:40+00:00","description":"Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的網頁上提供了一些第三方程式碼可供參考.詳細的說明在 ejabberd Developers Guide.","headline":"Ubuntu 16.04 上 Ejabberd extauth 設定","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2017/09/20/ejabberd-extauth-on-ubuntu-16-04/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2017/09/20/ejabberd-extauth-on-ubuntu-16-04/"}</script>
     <meta name="description" content="Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的網頁上提供了一些第三方程式碼可供參考.詳細的說明在 ejabberd Developers Guide.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Ubuntu 16.04 上 Ejabberd extauth 設定">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的網頁上提供了一些第三方程式碼可供參考.詳細的說明在 ejabberd Developers Guide.">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-09-20T04:59:40.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.110Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.808Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -55,6 +55,7 @@
 
 
     
+
 
     
         
@@ -323,6 +324,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -339,7 +341,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2017-09-20T12:59:40+08:00">
+    <time datetime="2017-09-20T04:59:40+00:00">
 	
 		    9月 20, 2017
     	
@@ -359,22 +361,22 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的<a href="https://www.ejabberd.im/extauth" target="_blank" rel="noopener">網頁</a>上提供了一些第三方程式碼可供參考.詳細的說明在 <a href="https://www.ejabberd.im/files/doc/dev.html#htoc9" target="_blank" rel="noopener">ejabberd Developers Guide</a>.</p>
+            <p>Ejabberd 支援通過執行外部程式自定義外部認證邏輯, ejabberd 的<a target="_blank" rel="noopener" href="https://www.ejabberd.im/extauth">網頁</a>上提供了一些第三方程式碼可供參考.詳細的說明在 <a target="_blank" rel="noopener" href="https://www.ejabberd.im/files/doc/dev.html#htoc9">ejabberd Developers Guide</a>.</p>
 <a id="more"></a>
 <p>以 ejabberd Developers Guide 中提供的 python 範例為基礎進行改進, 首先修改 python 版本為 python3.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/python</span></span><br></pre></td></tr></table></figure>
 <p>修改為</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env python3</span></span><br></pre></td></tr></table></figure>
 <p>對於 python3 不同於 python2 的部分做如下修改：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    (size,) = unpack(<span class="string">'&gt;h'</span>, input_length)</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_ejabberd</span><span class="params">(bool)</span>:</span></span><br><span class="line">    answer = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> bool:</span><br><span class="line">        answer = <span class="number">1</span></span><br><span class="line">    token = pack(<span class="string">'&gt;hh'</span>, <span class="number">2</span>, answer)</span><br><span class="line">    sys.stdout.write(token)</span><br><span class="line">    sys.stdout.flush()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    (size,) = unpack(<span class="string">&#x27;&gt;h&#x27;</span>, input_length)</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_ejabberd</span>(<span class="params"><span class="built_in">bool</span></span>):</span></span><br><span class="line">    answer = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">bool</span>:</span><br><span class="line">        answer = <span class="number">1</span></span><br><span class="line">    token = pack(<span class="string">&#x27;&gt;hh&#x27;</span>, <span class="number">2</span>, answer)</span><br><span class="line">    sys.stdout.write(token)</span><br><span class="line">    sys.stdout.flush()</span><br></pre></td></tr></table></figure>
 <p>修改為</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    (size,) = unpack(<span class="string">'&gt;h'</span>, input_length.encode())</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_ejabberd</span><span class="params">(result)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> result:</span><br><span class="line">        sys.stdout.write(<span class="string">'\x00\x02\x00\x01'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        sys.stdout.write(<span class="string">'\x00\x02\x00\x00'</span>)</span><br><span class="line">    sys.stdout.flush()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    (size,) = unpack(<span class="string">&#x27;&gt;h&#x27;</span>, input_length.encode())</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_ejabberd</span>(<span class="params">result</span>):</span></span><br><span class="line">    <span class="keyword">if</span> result:</span><br><span class="line">        sys.stdout.write(<span class="string">&#x27;\x00\x02\x00\x01&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        sys.stdout.write(<span class="string">&#x27;\x00\x02\x00\x00&#x27;</span>)</span><br><span class="line">    sys.stdout.flush()</span><br></pre></td></tr></table></figure>
 <p>之後可對<code>auth()</code>, <code>isuser()</code>, <code>setpass()</code>做改動以適應自己的認證邏輯.其中<code>isuser()</code>和<code>setpass()</code>可以保留<code>return True</code>.</p>
 <p>最後將修改好的檔案丟去<code>/etc/ejabberd/extauth.py</code>, 修改 owner 為<code>ejabberd</code>, 添加執行權限.</p>
 <p>在<code>/etc/ejabberd/ejabberd.yml</code>找到<code>auth_method: internal</code>修改為：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auth_method:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">internal</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">external</span></span><br></pre></td></tr></table></figure>
 <p>在其下方增加：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extauth_program:</span> <span class="string">"/etc/ejabberd/extauth.py"</span></span><br><span class="line"><span class="attr">extauth_instances:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">auth_use_cache:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extauth_program:</span> <span class="string">&quot;/etc/ejabberd/extauth.py&quot;</span></span><br><span class="line"><span class="attr">extauth_instances:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">auth_use_cache:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <p>通過<code>ejabberdcctl</code>重新啟動<code>ejabberd</code>使設定生效.</p>
 <p>若出現<code>extauth script has exitted abruptly with reason 'normal'</code>, 在排除檔案 owner 和執行權限有誤的情況下, 可能為<code>apparmor</code>所致 (帶有 SELinux 的作業系統中可能為 SELinux 所致, 可以通過<code>sudo setenforce 0</code>臨時關閉 SELinux 測試) , 查看<code>/var/log/syslog</code>可看到相關 log.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sep 19 11:31:45 localhost kernel: [ 5031.995813] audit: type&#x3D;1400 audit(1505827901.939:57): apparmor&#x3D;&quot;DENIED&quot; operation&#x3D;&quot;exec&quot; profile&#x3D;&quot;&#x2F;usr&#x2F;sbin&#x2F;ejabberdctl&quot; name&#x3D;&quot;&#x2F;var&#x2F;lib&#x2F;ejabberd&#x2F;extauth.py&quot; pid&#x3D;4419 comm&#x3D;&quot;sh&quot; requested_mask&#x3D;&quot;x&quot; denied_mask&#x3D;&quot;x&quot; fsuid&#x3D;100 ouid&#x3D;100</span><br></pre></td></tr></table></figure>
@@ -387,7 +389,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -511,18 +513,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -652,7 +653,6 @@
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -792,7 +792,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -914,7 +914,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -940,7 +940,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -992,7 +992,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1016,7 +1016,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1039,6 +1039,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"在舉例之前, 先把數據綁定功能簡要的說明一下, 凡是具有 DataSource屬性的控件都是對數據敏感的, 它們都能通過數據控件直接使用數據庫裏的數據.比如CheckBox Control , ComboBox Comtrol , TextBox Comtrol , PictureBox Control ,Image Comtrol … 因為這種方式涉及到的知識點比較少, 也比較容易理解, 不多作說明, 現直接介紹編程步驟.\n1, 從數據庫中顯示所需要的圖片\n首先, 添加一個Data數據控件,設置它的DatabaseName和RecordSource屬性,\n\n12345strPath = App.PathIf Right(strPath, 1) &lt;&gt; \"\" ThenstrPath = strPath &amp; \"\"MyData.DatabaseName = strPath &amp; \"ExampleDB.mdb\" '數據庫存地址MyData.RecordSource = \"Info\" '表名\n第二步, 添加Image控件用來顯示圖片, 設置它的DataSource和DataField屬性.例如本例中: Image1.DataSource=“MyData&quot;和Image1.DataField=” MyPhoto&quot; .然後設置其它具有數據綁定功能的控件用來顯示所要的其它內容, 經過這兩步的操作, 運行程序就可以顯示你要的數據了.\n2, 向數據庫中添加需要存儲的圖片\n首先, 利用數據控件所具有的AddNew屬性, 添加一個按鈕, 雙擊後添加如下代碼 MyData.Recordset.AddNew\n第二步, 為Image控件圖片指定圖片路徑Image1.Picture = LoadPicture(“圖片路徑”), 經過這兩步的操作, 就可以向數據庫中添加圖片了.\n這種方法最簡單快捷, 要寫的代碼量很少.但是這種方法在運行速度和靈活性方面有一定的限制, 適合於初學者和一些簡單的應用, 要想靈活多變的顯示圖象, 下面介紹的方法或許更適應您的要求.\n利用編寫代碼實現圖片的存儲與顯示\n這種方法相對於方法一來說, 代碼量大, 但是它操作靈活, 能夠滿足多樣形式下的操作, 受到更多編程者的青睞.但是涉及到的知識面相對要多一些, 不僅要掌握數據庫的操作方法, 還要二進制文件的讀寫作進一步的瞭解.關於數據庫及二進制文件的基本操作很多參考書上都介紹的比較詳細, 需要時請查閱即可.在編程之前把本部分用到的變數說明如下：\n1234567Dim RS As New ADODB.RecordsetDim Chunk() As ByteConst ChunkSize As Integer = 2384Dim DataFile As Integer, Chunks, Fragment As IntegerDim MediaTemp As StringDim lngOffset, lngTotalSize As LongDim i As Integer\n1, 從數據庫中顯示所需要的圖片\n第一步首先打開數據庫, 看有沒有要查找的內容, 有則繼續執行, 沒有就退出\n1234RS.Source = \"select * from Info Where Name='\" &amp; sparaName &amp;\"';\"RS.ActiveConnection = \"UID=;PWD=;DSN=TestDB;\"RS.OpenIf RS.EOF Then RS.cCose : Exit Sub\n第二步, 讀出長二進制數據即圖片數據, 把它轉換成圖片文件, 操作過程如下\n123456789101112131415MediaTemp = strPath &amp; \"picturetemp.tmp\"DataFile = 1Open MediaTemp For Binary Access Write As DataFilelngTotalSize = RS!MyPhoto.ActualSizeChunks = lngTotalSize ChunkSizeFragment = lngTotalSize Mod ChunkSizeReDim Chunk(Fragment)Chunk() = RS!MyPhoto.GetChunk(Fragment)Put DataFile, , Chunk()For i = 1 To ChunksReDim Chunk(ChunkSize)Chunk() = RS!MyPhoto.GetChunk(ChunkSize)Put DataFile, , Chunk()Next iClose DataFile\n第三步, 關閉數據庫, 這樣就可以顯示所要的圖片了.\n1234RS.CloseIf MediaTemp = \"\" Then Exit SubPicture1.Picture = LoadPicture(MediaTemp)If Picture1.Picture = 0 Then Exit Subj\n2, 向數據庫中添加需要存儲的圖片\n向數據庫添加存儲的圖片是顯示圖片逆過程, 只要掌握了顯示圖片的操作, 存儲圖片的操作也就迎刃而解了, 下面將操作步驟介紹如下\n第一步首先打開數據庫, 過程如下：\n12345RS.Source = \"select * from Info ;\"RS.CursorType = adOpenKeysetRS.LockType = adLockOptimisticRS.ActiveConnection = \"UID=;PWD=;DSN=TestDB;\"RS.Open\n第二步, 把要存儲的圖片轉換成二進制長文件存入數據庫中, 操作過程如下\n12345678910111213141516RS.AddNewDataFile = 1Open strPathPicture For Binary Access Read As DataFileFileLen = LOF(DataFile) ' 文件中數據長度If FileLen = 0 Then : Close DataFile : RS.Close : Exit SubChunks = FileLen ChunkSizeFragment = FileLen Mod ChunkSizeReDim Chunk(Fragment)Get DataFile, , Chunk()RS!MyPhoto.AppendChunk Chunk()ReDim Chunk(ChunkSize)For i = 1 To ChunksGet DataFile, , Chunk()RS!MyPhoto.AppendChunk Chunk()Next iClose DataFile\n第三步, 更新紀錄後, 關閉數據庫, 就完成了數據圖片到數據庫的存儲.\n123RS.UpdateRS.CloseSet RS = Nothing\n兩種方法在使用方面各有所長, 讀者可以針對自己的情況做出合理的選擇.\n","dateCreated":"2010-07-03T15:10:17+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2010-07-03T15:10:17+08:00","description":"在舉例之前, 先把數據綁定功能簡要的說明一下, 凡是具有 DataSource屬性的控件都是對數據敏感的, 它們都能通過數據控件直接使用數據庫裏的數據.比如CheckBox Control , ComboBox Comtrol , TextBox Comtrol , PictureBox Control ,Image Comtrol … 因為這種方式涉及到的知識點比較少, 也比較容易理解, 不多作說明, 現直接介紹編程步驟.\n1, 從數據庫中顯示所需要的圖片\n首先, 添加一個Data數據控件,設置它的DatabaseName和RecordSource屬性,","headline":"VB實現圖象在資料庫的存儲與顯示","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2010/07/03/vb-image-save-into-database/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2010/07/03/vb-image-save-into-database/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"在舉例之前, 先把數據綁定功能簡要的說明一下, 凡是具有 DataSource屬性的控件都是對數據敏感的, 它們都能通過數據控件直接使用數據庫裏的數據.比如CheckBox Control , ComboBox Comtrol , TextBox Comtrol , PictureBox Control ,Image Comtrol … 因為這種方式涉及到的知識點比較少, 也比較容易理解, 不多作說明, 現直接介紹編程步驟.\n1, 從數據庫中顯示所需要的圖片\n首先, 添加一個Data數據控件,設置它的DatabaseName和RecordSource屬性,\n\n12345strPath = App.PathIf Right(strPath, 1) &lt;&gt; &quot;&quot; ThenstrPath = strPath &amp; &quot;&quot;MyData.DatabaseName = strPath &amp; &quot;ExampleDB.mdb&quot; &#x27;數據庫存地址MyData.RecordSource = &quot;Info&quot; &#x27;表名\n第二步, 添加Image控件用來顯示圖片, 設置它的DataSource和DataField屬性.例如本例中: Image1.DataSource=“MyData&quot;和Image1.DataField=” MyPhoto&quot; .然後設置其它具有數據綁定功能的控件用來顯示所要的其它內容, 經過這兩步的操作, 運行程序就可以顯示你要的數據了.\n2, 向數據庫中添加需要存儲的圖片\n首先, 利用數據控件所具有的AddNew屬性, 添加一個按鈕, 雙擊後添加如下代碼 MyData.Recordset.AddNew\n第二步, 為Image控件圖片指定圖片路徑Image1.Picture = LoadPicture(“圖片路徑”), 經過這兩步的操作, 就可以向數據庫中添加圖片了.\n這種方法最簡單快捷, 要寫的代碼量很少.但是這種方法在運行速度和靈活性方面有一定的限制, 適合於初學者和一些簡單的應用, 要想靈活多變的顯示圖象, 下面介紹的方法或許更適應您的要求.\n利用編寫代碼實現圖片的存儲與顯示\n這種方法相對於方法一來說, 代碼量大, 但是它操作靈活, 能夠滿足多樣形式下的操作, 受到更多編程者的青睞.但是涉及到的知識面相對要多一些, 不僅要掌握數據庫的操作方法, 還要二進制文件的讀寫作進一步的瞭解.關於數據庫及二進制文件的基本操作很多參考書上都介紹的比較詳細, 需要時請查閱即可.在編程之前把本部分用到的變數說明如下：\n1234567Dim RS As New ADODB.RecordsetDim Chunk() As ByteConst ChunkSize As Integer = 2384Dim DataFile As Integer, Chunks, Fragment As IntegerDim MediaTemp As StringDim lngOffset, lngTotalSize As LongDim i As Integer\n1, 從數據庫中顯示所需要的圖片\n第一步首先打開數據庫, 看有沒有要查找的內容, 有則繼續執行, 沒有就退出\n1234RS.Source = &quot;select * from Info Where Name=&#x27;&quot; &amp; sparaName &amp;&quot;&#x27;;&quot;RS.ActiveConnection = &quot;UID=;PWD=;DSN=TestDB;&quot;RS.OpenIf RS.EOF Then RS.cCose : Exit Sub\n第二步, 讀出長二進制數據即圖片數據, 把它轉換成圖片文件, 操作過程如下\n123456789101112131415MediaTemp = strPath &amp; &quot;picturetemp.tmp&quot;DataFile = 1Open MediaTemp For Binary Access Write As DataFilelngTotalSize = RS!MyPhoto.ActualSizeChunks = lngTotalSize ChunkSizeFragment = lngTotalSize Mod ChunkSizeReDim Chunk(Fragment)Chunk() = RS!MyPhoto.GetChunk(Fragment)Put DataFile, , Chunk()For i = 1 To ChunksReDim Chunk(ChunkSize)Chunk() = RS!MyPhoto.GetChunk(ChunkSize)Put DataFile, , Chunk()Next iClose DataFile\n第三步, 關閉數據庫, 這樣就可以顯示所要的圖片了.\n1234RS.CloseIf MediaTemp = &quot;&quot; Then Exit SubPicture1.Picture = LoadPicture(MediaTemp)If Picture1.Picture = 0 Then Exit Subj\n2, 向數據庫中添加需要存儲的圖片\n向數據庫添加存儲的圖片是顯示圖片逆過程, 只要掌握了顯示圖片的操作, 存儲圖片的操作也就迎刃而解了, 下面將操作步驟介紹如下\n第一步首先打開數據庫, 過程如下：\n12345RS.Source = &quot;select * from Info ;&quot;RS.CursorType = adOpenKeysetRS.LockType = adLockOptimisticRS.ActiveConnection = &quot;UID=;PWD=;DSN=TestDB;&quot;RS.Open\n第二步, 把要存儲的圖片轉換成二進制長文件存入數據庫中, 操作過程如下\n12345678910111213141516RS.AddNewDataFile = 1Open strPathPicture For Binary Access Read As DataFileFileLen = LOF(DataFile) &#x27; 文件中數據長度If FileLen = 0 Then : Close DataFile : RS.Close : Exit SubChunks = FileLen ChunkSizeFragment = FileLen Mod ChunkSizeReDim Chunk(Fragment)Get DataFile, , Chunk()RS!MyPhoto.AppendChunk Chunk()ReDim Chunk(ChunkSize)For i = 1 To ChunksGet DataFile, , Chunk()RS!MyPhoto.AppendChunk Chunk()Next iClose DataFile\n第三步, 更新紀錄後, 關閉數據庫, 就完成了數據圖片到數據庫的存儲.\n123RS.UpdateRS.CloseSet RS = Nothing\n兩種方法在使用方面各有所長, 讀者可以針對自己的情況做出合理的選擇.\n","dateCreated":"2010-07-03T07:10:17+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2010-07-03T07:10:17+00:00","description":"在舉例之前, 先把數據綁定功能簡要的說明一下, 凡是具有 DataSource屬性的控件都是對數據敏感的, 它們都能通過數據控件直接使用數據庫裏的數據.比如CheckBox Control , ComboBox Comtrol , TextBox Comtrol , PictureBox Control ,Image Comtrol … 因為這種方式涉及到的知識點比較少, 也比較容易理解, 不多作說明, 現直接介紹編程步驟.\n1, 從數據庫中顯示所需要的圖片\n首先, 添加一個Data數據控件,設置它的DatabaseName和RecordSource屬性,","headline":"VB實現圖象在資料庫的存儲與顯示","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2010/07/03/vb-image-save-into-database/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2010/07/03/vb-image-save-into-database/"}</script>
     <meta name="description" content="在舉例之前, 先把數據綁定功能簡要的說明一下, 凡是具有 DataSource屬性的控件都是對數據敏感的, 它們都能通過數據控件直接使用數據庫裏的數據.比如CheckBox Control , ComboBox Comtrol , TextBox Comtrol , PictureBox Control ,Image Comtrol … 因為這種方式涉及到的知識點比較少, 也比較容易理解, 不多作">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="VB實現圖象在資料庫的存儲與顯示">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="在舉例之前, 先把數據綁定功能簡要的說明一下, 凡是具有 DataSource屬性的控件都是對數據敏感的, 它們都能通過數據控件直接使用數據庫裏的數據.比如CheckBox Control , ComboBox Comtrol , TextBox Comtrol , PictureBox Control ,Image Comtrol … 因為這種方式涉及到的知識點比較少, 也比較容易理解, 不多作">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2010-07-03T07:10:17.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.131Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.816Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -55,6 +55,7 @@
 
 
     
+
 
     
         
@@ -323,6 +324,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -339,7 +341,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2010-07-03T15:10:17+08:00">
+    <time datetime="2010-07-03T07:10:17+00:00">
 	
 		    7月 03, 2010
     	
@@ -363,7 +365,7 @@
 <p>1, 從數據庫中顯示所需要的圖片</p>
 <p>首先, 添加一個Data數據控件,設置它的DatabaseName和RecordSource屬性,</p>
 <a id="more"></a>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">strPath = App.Path</span><br><span class="line"><span class="keyword">If</span> Right(strPath, <span class="number">1</span>) &lt;&gt; <span class="string">""</span> <span class="keyword">Then</span></span><br><span class="line">strPath = strPath &amp; <span class="string">""</span></span><br><span class="line">MyData.DatabaseName = strPath &amp; <span class="string">"ExampleDB.mdb"</span> <span class="comment">'數據庫存地址</span></span><br><span class="line">MyData.RecordSource = <span class="string">"Info"</span> <span class="comment">'表名</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">strPath = App.Path</span><br><span class="line"><span class="keyword">If</span> Right(strPath, <span class="number">1</span>) &lt;&gt; <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">strPath = strPath &amp; <span class="string">&quot;&quot;</span></span><br><span class="line">MyData.DatabaseName = strPath &amp; <span class="string">&quot;ExampleDB.mdb&quot;</span> <span class="comment">&#x27;數據庫存地址</span></span><br><span class="line">MyData.RecordSource = <span class="string">&quot;Info&quot;</span> <span class="comment">&#x27;表名</span></span><br></pre></td></tr></table></figure>
 <p>第二步, 添加Image控件用來顯示圖片, 設置它的DataSource和DataField屬性.例如本例中: Image1.DataSource=“MyData&quot;和Image1.DataField=” MyPhoto&quot; .然後設置其它具有數據綁定功能的控件用來顯示所要的其它內容, 經過這兩步的操作, 運行程序就可以顯示你要的數據了.</p>
 <p>2, 向數據庫中添加需要存儲的圖片</p>
 <p>首先, 利用數據控件所具有的AddNew屬性, 添加一個按鈕, 雙擊後添加如下代碼 MyData.Recordset.AddNew</p>
@@ -374,17 +376,17 @@
 <figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Dim</span> RS <span class="keyword">As</span> <span class="keyword">New</span> ADODB.Recordset</span><br><span class="line"><span class="keyword">Dim</span> Chunk() <span class="keyword">As</span> <span class="built_in">Byte</span></span><br><span class="line"><span class="keyword">Const</span> ChunkSize <span class="keyword">As</span> <span class="built_in">Integer</span> = <span class="number">2384</span></span><br><span class="line"><span class="keyword">Dim</span> DataFile <span class="keyword">As</span> <span class="built_in">Integer</span>, Chunks, Fragment <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line"><span class="keyword">Dim</span> MediaTemp <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="keyword">Dim</span> lngOffset, lngTotalSize <span class="keyword">As</span> <span class="built_in">Long</span></span><br><span class="line"><span class="keyword">Dim</span> i <span class="keyword">As</span> <span class="built_in">Integer</span></span><br></pre></td></tr></table></figure>
 <p>1, 從數據庫中顯示所需要的圖片</p>
 <p>第一步首先打開數據庫, 看有沒有要查找的內容, 有則繼續執行, 沒有就退出</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RS.Source = <span class="string">"select * from Info Where Name='"</span> &amp; sparaName &amp;<span class="string">"';"</span></span><br><span class="line">RS.ActiveConnection = <span class="string">"UID=;PWD=;DSN=TestDB;"</span></span><br><span class="line">RS.Open</span><br><span class="line"><span class="keyword">If</span> RS.EOF <span class="keyword">Then</span> RS.cCose : <span class="keyword">Exit</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RS.Source = <span class="string">&quot;select * from Info Where Name=&#x27;&quot;</span> &amp; sparaName &amp;<span class="string">&quot;&#x27;;&quot;</span></span><br><span class="line">RS.ActiveConnection = <span class="string">&quot;UID=;PWD=;DSN=TestDB;&quot;</span></span><br><span class="line">RS.Open</span><br><span class="line"><span class="keyword">If</span> RS.EOF <span class="keyword">Then</span> RS.cCose : <span class="keyword">Exit</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
 <p>第二步, 讀出長二進制數據即圖片數據, 把它轉換成圖片文件, 操作過程如下</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">MediaTemp = strPath &amp; <span class="string">"picturetemp.tmp"</span></span><br><span class="line">DataFile = <span class="number">1</span></span><br><span class="line">Open MediaTemp <span class="keyword">For</span> <span class="keyword">Binary</span> Access Write <span class="keyword">As</span> DataFile</span><br><span class="line">lngTotalSize = RS!MyPhoto.ActualSize</span><br><span class="line">Chunks = lngTotalSize ChunkSize</span><br><span class="line">Fragment = lngTotalSize <span class="keyword">Mod</span> ChunkSize</span><br><span class="line"><span class="keyword">ReDim</span> Chunk(Fragment)</span><br><span class="line">Chunk() = RS!MyPhoto.GetChunk(Fragment)</span><br><span class="line">Put DataFile, , Chunk()</span><br><span class="line"><span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Chunks</span><br><span class="line"><span class="keyword">ReDim</span> Chunk(ChunkSize)</span><br><span class="line">Chunk() = RS!MyPhoto.GetChunk(ChunkSize)</span><br><span class="line">Put DataFile, , Chunk()</span><br><span class="line"><span class="keyword">Next</span> i</span><br><span class="line">Close DataFile</span><br></pre></td></tr></table></figure>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">MediaTemp = strPath &amp; <span class="string">&quot;picturetemp.tmp&quot;</span></span><br><span class="line">DataFile = <span class="number">1</span></span><br><span class="line">Open MediaTemp <span class="keyword">For</span> <span class="keyword">Binary</span> Access Write <span class="keyword">As</span> DataFile</span><br><span class="line">lngTotalSize = RS!MyPhoto.ActualSize</span><br><span class="line">Chunks = lngTotalSize ChunkSize</span><br><span class="line">Fragment = lngTotalSize <span class="keyword">Mod</span> ChunkSize</span><br><span class="line"><span class="keyword">ReDim</span> Chunk(Fragment)</span><br><span class="line">Chunk() = RS!MyPhoto.GetChunk(Fragment)</span><br><span class="line">Put DataFile, , Chunk()</span><br><span class="line"><span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Chunks</span><br><span class="line"><span class="keyword">ReDim</span> Chunk(ChunkSize)</span><br><span class="line">Chunk() = RS!MyPhoto.GetChunk(ChunkSize)</span><br><span class="line">Put DataFile, , Chunk()</span><br><span class="line"><span class="keyword">Next</span> i</span><br><span class="line">Close DataFile</span><br></pre></td></tr></table></figure>
 <p>第三步, 關閉數據庫, 這樣就可以顯示所要的圖片了.</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RS.Close</span><br><span class="line"><span class="keyword">If</span> MediaTemp = <span class="string">""</span> <span class="keyword">Then</span> <span class="keyword">Exit</span> <span class="keyword">Sub</span></span><br><span class="line">Picture1.Picture = LoadPicture(MediaTemp)</span><br><span class="line"><span class="keyword">If</span> Picture1.Picture = <span class="number">0</span> <span class="keyword">Then</span> <span class="keyword">Exit</span> Subj</span><br></pre></td></tr></table></figure>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RS.Close</span><br><span class="line"><span class="keyword">If</span> MediaTemp = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span> <span class="keyword">Exit</span> <span class="keyword">Sub</span></span><br><span class="line">Picture1.Picture = LoadPicture(MediaTemp)</span><br><span class="line"><span class="keyword">If</span> Picture1.Picture = <span class="number">0</span> <span class="keyword">Then</span> <span class="keyword">Exit</span> Subj</span><br></pre></td></tr></table></figure>
 <p>2, 向數據庫中添加需要存儲的圖片</p>
 <p>向數據庫添加存儲的圖片是顯示圖片逆過程, 只要掌握了顯示圖片的操作, 存儲圖片的操作也就迎刃而解了, 下面將操作步驟介紹如下</p>
 <p>第一步首先打開數據庫, 過程如下：</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RS.Source = <span class="string">"select * from Info ;"</span></span><br><span class="line">RS.CursorType = adOpenKeyset</span><br><span class="line">RS.LockType = adLockOptimistic</span><br><span class="line">RS.ActiveConnection = <span class="string">"UID=;PWD=;DSN=TestDB;"</span></span><br><span class="line">RS.Open</span><br></pre></td></tr></table></figure>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RS.Source = <span class="string">&quot;select * from Info ;&quot;</span></span><br><span class="line">RS.CursorType = adOpenKeyset</span><br><span class="line">RS.LockType = adLockOptimistic</span><br><span class="line">RS.ActiveConnection = <span class="string">&quot;UID=;PWD=;DSN=TestDB;&quot;</span></span><br><span class="line">RS.Open</span><br></pre></td></tr></table></figure>
 <p>第二步, 把要存儲的圖片轉換成二進制長文件存入數據庫中, 操作過程如下</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">RS.AddNew</span><br><span class="line">DataFile = <span class="number">1</span></span><br><span class="line">Open strPathPicture <span class="keyword">For</span> <span class="keyword">Binary</span> Access Read <span class="keyword">As</span> DataFile</span><br><span class="line">FileLen = LOF(DataFile) <span class="comment">' 文件中數據長度</span></span><br><span class="line"><span class="keyword">If</span> FileLen = <span class="number">0</span> <span class="keyword">Then</span> : Close DataFile : RS.Close : <span class="keyword">Exit</span> <span class="keyword">Sub</span></span><br><span class="line">Chunks = FileLen ChunkSize</span><br><span class="line">Fragment = FileLen <span class="keyword">Mod</span> ChunkSize</span><br><span class="line"><span class="keyword">ReDim</span> Chunk(Fragment)</span><br><span class="line"><span class="keyword">Get</span> DataFile, , Chunk()</span><br><span class="line">RS!MyPhoto.AppendChunk Chunk()</span><br><span class="line"><span class="keyword">ReDim</span> Chunk(ChunkSize)</span><br><span class="line"><span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Chunks</span><br><span class="line"><span class="keyword">Get</span> DataFile, , Chunk()</span><br><span class="line">RS!MyPhoto.AppendChunk Chunk()</span><br><span class="line"><span class="keyword">Next</span> i</span><br><span class="line">Close DataFile</span><br></pre></td></tr></table></figure>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">RS.AddNew</span><br><span class="line">DataFile = <span class="number">1</span></span><br><span class="line">Open strPathPicture <span class="keyword">For</span> <span class="keyword">Binary</span> Access Read <span class="keyword">As</span> DataFile</span><br><span class="line">FileLen = LOF(DataFile) <span class="comment">&#x27; 文件中數據長度</span></span><br><span class="line"><span class="keyword">If</span> FileLen = <span class="number">0</span> <span class="keyword">Then</span> : Close DataFile : RS.Close : <span class="keyword">Exit</span> <span class="keyword">Sub</span></span><br><span class="line">Chunks = FileLen ChunkSize</span><br><span class="line">Fragment = FileLen <span class="keyword">Mod</span> ChunkSize</span><br><span class="line"><span class="keyword">ReDim</span> Chunk(Fragment)</span><br><span class="line"><span class="keyword">Get</span> DataFile, , Chunk()</span><br><span class="line">RS!MyPhoto.AppendChunk Chunk()</span><br><span class="line"><span class="keyword">ReDim</span> Chunk(ChunkSize)</span><br><span class="line"><span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Chunks</span><br><span class="line"><span class="keyword">Get</span> DataFile, , Chunk()</span><br><span class="line">RS!MyPhoto.AppendChunk Chunk()</span><br><span class="line"><span class="keyword">Next</span> i</span><br><span class="line">Close DataFile</span><br></pre></td></tr></table></figure>
 <p>第三步, 更新紀錄後, 關閉數據庫, 就完成了數據圖片到數據庫的存儲.</p>
 <figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RS.Update</span><br><span class="line">RS.Close</span><br><span class="line"><span class="keyword">Set</span> RS = <span class="literal">Nothing</span></span><br></pre></td></tr></table></figure>
 <p>兩種方法在使用方面各有所長, 讀者可以針對自己的情況做出合理的選擇.</p>
@@ -395,7 +397,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -519,18 +521,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -660,7 +661,6 @@
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -800,7 +800,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -922,7 +922,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -948,7 +948,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -1000,7 +1000,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1024,7 +1024,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1047,6 +1047,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

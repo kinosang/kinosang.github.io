@@ -52,6 +52,7 @@
 
     
 
+
     
 </head>
 
@@ -317,6 +318,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="1"
                  class="
                         hasCoverMetaIn
@@ -340,7 +342,7 @@
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2015-06-17T16:37:34+08:00">
+    <time datetime="2015-06-17T08:37:34+00:00">
 	
 		    6月 17, 2015
     	
@@ -360,7 +362,7 @@
                     <p>前些日子翻 PHP 的手冊看, 發現一個神奇的函數, 手冊中的說明如下：</p>
 <blockquote>
 <p>Description</p>
-<p><code>array token_get_all ( string $source )</code>
+<p><code>array token_get_all ( string $source )</code><br>
 token_get_all() parses the given source string into PHP language tokens using the Zend engine’s lexical scanner.</p>
 <p>For a list of parser tokens, see List of Parser Tokens, or use token_name() to translate a token value into its string representation.</p>
 </blockquote>
@@ -397,7 +399,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2015-06-16T18:03:58+08:00">
+    <time datetime="2015-06-16T10:03:58+00:00">
 	
 		    6月 16, 2015
     	
@@ -414,9 +416,9 @@ token_get_all() parses the given source string into PHP language tokens using th
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h3 id="安裝-mariadb"><a class="header-anchor" href="#安裝-mariadb">¶</a>安裝 Mariadb</h3>
+                    <h3 id="安裝-Mariadb">安裝 Mariadb</h3>
 <p>過程略, 參見 往期網誌.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p</span><br><span class="line">MariaDB [(none)]&gt; create database shadowsocks;</span><br><span class="line">MariaDB [(none)]&gt; CREATE USER 'shadowsocks'@'%' IDENTIFIED BY 'password';</span><br><span class="line">MariaDB [(none)]&gt; GRANT SELECT, INSERT, UPDATE, DELETE, INDEX ON shadowsocks.* TO 'shadowsocks'@'%';</span><br><span class="line">MariaDB [(none)]&gt; flush privileges;\q</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p</span><br><span class="line">MariaDB [(none)]&gt; create database shadowsocks;</span><br><span class="line">MariaDB [(none)]&gt; CREATE USER &#x27;shadowsocks&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;password&#x27;;</span><br><span class="line">MariaDB [(none)]&gt; GRANT SELECT, INSERT, UPDATE, DELETE, INDEX ON shadowsocks.* TO &#x27;shadowsocks&#x27;@&#x27;%&#x27;;</span><br><span class="line">MariaDB [(none)]&gt; flush privileges;\q</span><br></pre></td></tr></table></figure>
                     
                         <a
                             href="/2015/06/16/install-shadowsocks-manyuser-on-ubuntu/"
@@ -450,7 +452,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2015-04-12T15:53:00+08:00">
+    <time datetime="2015-04-12T07:53:00+00:00">
 	
 		    4月 12, 2015
     	
@@ -513,7 +515,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2015-03-04T22:56:00+08:00">
+    <time datetime="2015-03-04T14:56:00+00:00">
 	
 		    3月 04, 2015
     	
@@ -564,7 +566,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2015-02-26T13:32:00+08:00">
+    <time datetime="2015-02-26T05:32:00+00:00">
 	
 		    2月 26, 2015
     	
@@ -582,7 +584,7 @@ token_get_all() parses the given source string into PHP language tokens using th
             
                 <div class="postShorten-excerpt">
                     <p>這篇博文是根據回憶所寫, 可能存在謬誤, 歡迎大家指正.</p>
-<h3 id="系統簡介"><a class="header-anchor" href="#系統簡介">¶</a>系統簡介</h3>
+<h3 id="系統簡介">系統簡介</h3>
 <p>這套系統是一套高可靠性 WAF 平臺, 讓 haproxy, Naxsi(Nginx 模塊) 和 fail2ban 協同工作來保護網路服務, 對注入, XSS, CC, DDoS等攻擊方式有一定效果.</p>
                     
                         <a
@@ -609,7 +611,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                         <a
                             class="link-unstyled"
-                            href="/2015/01/06/anyconnect-works-well/"
+                            href="/2015/01/05/anyconnect-works-well/"
                             aria-label=": AnyConnect 好評如潮!"
                         >
                             AnyConnect 好評如潮!
@@ -617,9 +619,9 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2015-01-06T00:50:00+08:00">
+    <time datetime="2015-01-05T16:50:00+00:00">
 	
-		    1月 06, 2015
+		    1月 05, 2015
     	
     </time>
     
@@ -635,7 +637,7 @@ token_get_all() parses the given source string into PHP language tokens using th
             
                 <div class="postShorten-content">
                     <p>最近幾天被各種 AnyConnect 的消息反覆轟炸, 終於下定決心試試傳說中萌萌噠的 AnyConnect.</p>
-<p>伺服器的部署參考鳳凰菊苣的網誌<a href="https://blog.phoenixlzx.com/2014/07/21/setup-openconnect-server-on-ubuntu/" target="_blank" rel="noopener">《在 Ubuntu 服务器上搭建 OpenConnect 服务器小记》</a>.</p>
+<p>伺服器的部署參考鳳凰菊苣的網誌<a target="_blank" rel="noopener" href="https://blog.phoenixlzx.com/2014/07/21/setup-openconnect-server-on-ubuntu/">《在 Ubuntu 服务器上搭建 OpenConnect 服务器小记》</a>.</p>
 <p>不過值得注意的是, 如果使用更新版本的 OpenConnect Server, config 中應當包含 <code>socket-file</code> 和 <code>device</code> 兩項, 否則啓動 ocserv 會失敗.</p>
 <p>另外, 路由表相關的設定可以刪除, 這樣就可以實現科學上網了 (AnyConnect 的 iOS Client 只支持最多64條路由設定, 因此無法用 chnroute 產生的 IP 列表來設定自動切換) .</p>
 <p>最後說一下 Mac OS X 上的使用.</p>
@@ -650,7 +652,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                         <p>
                             <a
-                                href="/2015/01/06/anyconnect-works-well/#post-footer"
+                                href="/2015/01/05/anyconnect-works-well/#post-footer"
                                 class="postShorten-excerpt_link link"
                                 aria-label=""
                             >
@@ -681,7 +683,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2014-12-28T15:41:48+08:00">
+    <time datetime="2014-12-28T07:41:48+00:00">
 	
 		    12月 28, 2014
     	
@@ -698,7 +700,7 @@ token_get_all() parses the given source string into PHP language tokens using th
             </div>
             
                 <div class="postShorten-content">
-                    <p>就像大家看到的那樣, 在下換用 Typecho 了, 雖然有些小瑕疵 (比如關鍵字是簡體字, 過去上載的文件丟失等) , 但是, 我相信經過一段時間的改進, 本網誌一定能恢復到之前的狀態.
+                    <p>就像大家看到的那樣, 在下換用 Typecho 了, 雖然有些小瑕疵 (比如關鍵字是簡體字, 過去上載的文件丟失等) , 但是, 我相信經過一段時間的改進, 本網誌一定能恢復到之前的狀態.<br>
 下一步在下會把圖片, 文件等靜態資源放到 又拍雲 上面, 這樣頁面載入速度又將進一步提升.同時, 擱置已久的 Pureness Typecho 網誌託管服務也會正式開始開發, 想來距離正式上線運營不遠了.</p>
 
                     
@@ -740,7 +742,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2014-11-19T14:18:00+08:00">
+    <time datetime="2014-11-19T06:18:00+00:00">
 	
 		    11月 19, 2014
     	
@@ -793,7 +795,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2014-09-28T09:30:00+08:00">
+    <time datetime="2014-09-28T01:30:00+00:00">
 	
 		    9月 28, 2014
     	
@@ -853,7 +855,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2014-09-20T22:50:00+08:00">
+    <time datetime="2014-09-20T14:50:00+00:00">
 	
 		    9月 20, 2014
     	
@@ -1009,7 +1011,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1131,7 +1133,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -1157,7 +1159,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -1209,7 +1211,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1233,7 +1235,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1256,6 +1258,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

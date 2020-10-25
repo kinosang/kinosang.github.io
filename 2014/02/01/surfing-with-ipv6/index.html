@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"現在 IPv6風頭很盛, 於是在下決定也體驗一把.\nTunnelBroker, he.net 旗下的免費 IPv6 Tunnel Broker.\n[caption id=“attachment_1761” align=“alignnone” width=“300”] Hurricane Electric[/caption]\n什麼, 你不知道 he.net?這是一家 ISP, 7in0.me 就在使用 he 家的 DNS.\n\n¶創建 IPv6 Tunnel Broker\n首先, 到 TunnelBroker 註冊帳號 (有 he.net 帳號者可直接登入) .\n記下你的 User ID\n[caption id=“attachment_1762” align=“alignnone” width=“300”] TunnelBroker Main Page[/caption]\n選左側 Create Regular Tunnel, 填寫你的 IPv4 位址, 選擇一個和你的距離比較靠近的節點, 按一下“Create Tunnel”\n[caption id=“attachment_1763” align=“alignnone” width=“241”] TunnelBroker Create New Tunnel[/caption]\n重點是下面用紅色線條標識的信息\n[caption id=“attachment_1764” align=“alignnone” width=“300”] TunnelBroker Tunnel Details[/caption]\n¶設定\n你可以通過 Example Configurations 讓系統教你設定.\n我使用搭載 DD-WRT 的路徑器, 因此在下面以 DD-WRT 設定方法為例講解一下\n進入 DD-WRT Web 界面, “系統管理”——“基本管理”——“IPv6 支援”\n啟用 IPv6 和 Radvd, 並鍵入如下設定信息 (粗體紅色部分使用之前的信息替換) ：\n1234567interface br0 &#123;  AdvSendAdvert on;  prefix [Routed /64] &#123;    AdvOnLink on;    AdvAutonomous on;  &#125;;&#125;;\n然後, 進入“系統管理”——“指令”, 編輯啟動指令 (其中, MTU 請到 “Tunnel Details” 的 “Advanced” 查找)\nTunnelBroker 調整了安全設定, 目前網上流傳的指令無法完成自動更新 IPv4 位址信息的工作, 下面的指令是7IN0修改後的新版指令.\n1234567891011121314151617181920212223242526272829sleep 10insmod ipv6USERID=\"&lt;span style=\"color: #ff0000;\"&gt;**User ID**&lt;/span&gt;\"PASSWORD=\"&lt;span style=\"color: #ff0000;\"&gt;**MTU**&lt;/span&gt;\"TUNNELID=\"&lt;span style=\"color: #ff0000;\"&gt;**Tunnel ID**&lt;/span&gt;\"while [ true ]doIPV4=$(ip -4 addr show dev ppp0 | awk '/inet / &#123;print $2&#125;' | cut -d/ -f1)if [ \"$IPV4\" != \"$OLDIP\" ]then/wp-content/bin/wget 'http://ipv4.tunnelbroker.net/ipv4_end.php?ipv4b='$IPV4'&amp;pass='$PASSWORD'&amp;user_id='$USERID'&amp;tunnel_id='$TUNNELID -O -echo \"`date` ip address changed\" &gt;&gt; /tmp/startup.debugip tunnel del he-ipv6ip tunnel add he-ipv6 mode sit remote &lt;span style=\"color: #ff0000;\"&gt;**Server IPv4 Address**&lt;/span&gt; local $IPV4 ttl 255ip link set he-ipv6 upip addr add &lt;span style=\"color: #ff0000;\"&gt;**Server IPv6 Address**&lt;/span&gt; dev he-ipv6ip -6 addr add &lt;span style=\"color: #ff0000;\"&gt;**Routed /64 (在::之後添加“1”, 如2001:470:19:456::1/64) **&lt;/span&gt; dev br0ip route add ::/0 dev he-ipv6ip route add &lt;span style=\"color: #ff0000;\"&gt;**Routed /64**&lt;/span&gt; dev br0fiif [ `ps | grep radvd | grep -vc grep` -ne 1 ]thenradvd -C /tmp/radvd.conf &amp;echo \"`date` process radvd not found, restarting\" &gt;&gt; /tmp/startup.debugfiOLDIP=\"$IPV4\"sleep 60done\n全部保存後重啟路徑器.\n最後的最後：在你的電腦中設定 IPv6 DNS, 比如 2001:470:20::2\n","dateCreated":"2014-02-01T16:37:35+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2014-02-01T16:37:35+08:00","description":"現在 IPv6風頭很盛, 於是在下決定也體驗一把.\nTunnelBroker, he.net 旗下的免費 IPv6 Tunnel Broker.\n[caption id=“attachment_1761” align=“alignnone” width=“300”] Hurricane Electric[/caption]\n什麼, 你不知道 he.net?這是一家 ISP, 7in0.me 就在使用 he 家的 DNS.","headline":"暢遊·IPv6","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2014/02/01/surfing-with-ipv6/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2014/02/01/surfing-with-ipv6/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"現在 IPv6風頭很盛, 於是在下決定也體驗一把.\nTunnelBroker, he.net 旗下的免費 IPv6 Tunnel Broker.\n[caption id=“attachment_1761” align=“alignnone” width=“300”] Hurricane Electric[/caption]\n什麼, 你不知道 he.net?這是一家 ISP, 7in0.me 就在使用 he 家的 DNS.\n\n創建 IPv6 Tunnel Broker\n首先, 到 TunnelBroker 註冊帳號 (有 he.net 帳號者可直接登入) .\n記下你的 User ID\n[caption id=“attachment_1762” align=“alignnone” width=“300”] TunnelBroker Main Page[/caption]\n選左側 Create Regular Tunnel, 填寫你的 IPv4 位址, 選擇一個和你的距離比較靠近的節點, 按一下“Create Tunnel”\n[caption id=“attachment_1763” align=“alignnone” width=“241”] TunnelBroker Create New Tunnel[/caption]\n重點是下面用紅色線條標識的信息\n[caption id=“attachment_1764” align=“alignnone” width=“300”] TunnelBroker Tunnel Details[/caption]\n設定\n你可以通過 Example Configurations 讓系統教你設定.\n我使用搭載 DD-WRT 的路徑器, 因此在下面以 DD-WRT 設定方法為例講解一下\n進入 DD-WRT Web 界面, “系統管理”——“基本管理”——“IPv6 支援”\n啟用 IPv6 和 Radvd, 並鍵入如下設定信息 (粗體紅色部分使用之前的信息替換) ：\n1234567interface br0 &#123;  AdvSendAdvert on;  prefix [Routed /64] &#123;    AdvOnLink on;    AdvAutonomous on;  &#125;;&#125;;\n然後, 進入“系統管理”——“指令”, 編輯啟動指令 (其中, MTU 請到 “Tunnel Details” 的 “Advanced” 查找)\nTunnelBroker 調整了安全設定, 目前網上流傳的指令無法完成自動更新 IPv4 位址信息的工作, 下面的指令是7IN0修改後的新版指令.\n1234567891011121314151617181920212223242526272829sleep 10insmod ipv6USERID=&quot;&lt;span style=&quot;color: #ff0000;&quot;&gt;**User ID**&lt;/span&gt;&quot;PASSWORD=&quot;&lt;span style=&quot;color: #ff0000;&quot;&gt;**MTU**&lt;/span&gt;&quot;TUNNELID=&quot;&lt;span style=&quot;color: #ff0000;&quot;&gt;**Tunnel ID**&lt;/span&gt;&quot;while [ true ]doIPV4=$(ip -4 addr show dev ppp0 | awk &#x27;/inet / &#123;print $2&#125;&#x27; | cut -d/ -f1)if [ &quot;$IPV4&quot; != &quot;$OLDIP&quot; ]then/wp-content/bin/wget &#x27;http://ipv4.tunnelbroker.net/ipv4_end.php?ipv4b=&#x27;$IPV4&#x27;&amp;pass=&#x27;$PASSWORD&#x27;&amp;user_id=&#x27;$USERID&#x27;&amp;tunnel_id=&#x27;$TUNNELID -O -echo &quot;`date` ip address changed&quot; &gt;&gt; /tmp/startup.debugip tunnel del he-ipv6ip tunnel add he-ipv6 mode sit remote &lt;span style=&quot;color: #ff0000;&quot;&gt;**Server IPv4 Address**&lt;/span&gt; local $IPV4 ttl 255ip link set he-ipv6 upip addr add &lt;span style=&quot;color: #ff0000;&quot;&gt;**Server IPv6 Address**&lt;/span&gt; dev he-ipv6ip -6 addr add &lt;span style=&quot;color: #ff0000;&quot;&gt;**Routed /64 (在::之後添加“1”, 如2001:470:19:456::1/64) **&lt;/span&gt; dev br0ip route add ::/0 dev he-ipv6ip route add &lt;span style=&quot;color: #ff0000;&quot;&gt;**Routed /64**&lt;/span&gt; dev br0fiif [ `ps | grep radvd | grep -vc grep` -ne 1 ]thenradvd -C /tmp/radvd.conf &amp;echo &quot;`date` process radvd not found, restarting&quot; &gt;&gt; /tmp/startup.debugfiOLDIP=&quot;$IPV4&quot;sleep 60done\n全部保存後重啟路徑器.\n最後的最後：在你的電腦中設定 IPv6 DNS, 比如 2001:470:20::2\n","dateCreated":"2014-02-01T08:37:35+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2014-02-01T08:37:35+00:00","description":"現在 IPv6風頭很盛, 於是在下決定也體驗一把.\nTunnelBroker, he.net 旗下的免費 IPv6 Tunnel Broker.\n[caption id=“attachment_1761” align=“alignnone” width=“300”] Hurricane Electric[/caption]\n什麼, 你不知道 he.net?這是一家 ISP, 7in0.me 就在使用 he 家的 DNS.","headline":"暢遊·IPv6","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2014/02/01/surfing-with-ipv6/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2014/02/01/surfing-with-ipv6/"}</script>
     <meta name="description" content="現在 IPv6風頭很盛, 於是在下決定也體驗一把. TunnelBroker, he.net 旗下的免費 IPv6 Tunnel Broker. [caption id&#x3D;“attachment_1761” align&#x3D;“alignnone” width&#x3D;“300”] Hurricane Electric[&#x2F;caption] 什麼, 你不知道 he.net?這是一家 ISP, 7in0.me 就在使">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="暢遊·IPv6">
@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2014/02/QQ20140201-3@2x-241x300.png">
 <meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2014/02/QQ20140201-4@2x-300x275.png">
 <meta property="article:published_time" content="2014-02-01T08:37:35.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.126Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.812Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.7in0.me/wp-content/uploads/2014/02/helogo-300x73.gif">
@@ -60,6 +60,7 @@
 
 
     
+
 
     
         
@@ -328,6 +329,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -344,7 +346,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2014-02-01T16:37:35+08:00">
+    <time datetime="2014-02-01T08:37:35+00:00">
 	
 		    2月 01, 2014
     	
@@ -365,19 +367,19 @@
     <div class="post-content markdown">
         <div class="main-content-wrap">
             <p>現在 IPv6風頭很盛, 於是在下決定也體驗一把.</p>
-<p>TunnelBroker, <a href="http://he.net" target="_blank" rel="noopener">he.net</a> 旗下的免費 IPv6 Tunnel Broker.</p>
+<p>TunnelBroker, <a target="_blank" rel="noopener" href="http://he.net">he.net</a> 旗下的免費 IPv6 Tunnel Broker.</p>
 <p>[caption id=“attachment_1761” align=“alignnone” width=“300”]<a href="/wp-content/uploads/2014/02/helogo.gif"><img src="/wp-content/uploads/2014/02/helogo-300x73.gif" alt="Hurricane Electric"></a> Hurricane Electric[/caption]</p>
-<p>什麼, 你不知道 <a href="http://he.net?%E9%80%99%E6%98%AF%E4%B8%80%E5%AE%B6" target="_blank" rel="noopener">he.net?這是一家</a> ISP, <a href="http://7in0.me" target="_blank" rel="noopener">7in0.me</a> 就在使用 he 家的 DNS.</p>
+<p>什麼, 你不知道 <a target="_blank" rel="noopener" href="http://he.net?%E9%80%99%E6%98%AF%E4%B8%80%E5%AE%B6">he.net?這是一家</a> ISP, <a target="_blank" rel="noopener" href="http://7in0.me">7in0.me</a> 就在使用 he 家的 DNS.</p>
 <a id="more"></a>
-<h2 id="創建-ipv6-tunnel-broker"><a class="header-anchor" href="#創建-ipv6-tunnel-broker">¶</a>創建 IPv6 Tunnel Broker</h2>
-<p>首先, 到 <a href="https://tunnelbroker.net" target="_blank" rel="noopener">TunnelBroker</a> 註冊帳號 (有 <a href="http://he.net" target="_blank" rel="noopener">he.net</a> 帳號者可直接登入) .</p>
+<h2 id="創建-IPv6-Tunnel-Broker">創建 IPv6 Tunnel Broker</h2>
+<p>首先, 到 <a target="_blank" rel="noopener" href="https://tunnelbroker.net">TunnelBroker</a> 註冊帳號 (有 <a target="_blank" rel="noopener" href="http://he.net">he.net</a> 帳號者可直接登入) .</p>
 <p>記下你的 User ID</p>
 <p>[caption id=“attachment_1762” align=“alignnone” width=“300”]<a href="/wp-content/uploads/2014/02/QQ20140201-1@2x-e1391243938494.png"><img src="/wp-content/uploads/2014/02/QQ20140201-1@2x-300x192.png" alt="TunnelBroker Main Page"></a> TunnelBroker Main Page[/caption]</p>
 <p>選左側 Create Regular Tunnel, 填寫你的 IPv4 位址, 選擇一個和你的距離比較靠近的節點, 按一下“Create Tunnel”</p>
 <p>[caption id=“attachment_1763” align=“alignnone” width=“241”]<a href="/wp-content/uploads/2014/02/QQ20140201-3@2x-e1391244021845.png"><img src="/wp-content/uploads/2014/02/QQ20140201-3@2x-241x300.png" alt="TunnelBroker Create New Tunnel"></a> TunnelBroker Create New Tunnel[/caption]</p>
 <p>重點是下面用紅色線條標識的信息</p>
 <p>[caption id=“attachment_1764” align=“alignnone” width=“300”]<a href="/wp-content/uploads/2014/02/QQ20140201-4@2x-e1391244044353.png"><img src="/wp-content/uploads/2014/02/QQ20140201-4@2x-300x275.png" alt="TunnelBroker Tunnel Details"></a> TunnelBroker Tunnel Details[/caption]</p>
-<h2 id="設定"><a class="header-anchor" href="#設定">¶</a>設定</h2>
+<h2 id="設定">設定</h2>
 <p>你可以通過 Example Configurations 讓系統教你設定.</p>
 <p>我使用搭載 DD-WRT 的路徑器, 因此在下面以 DD-WRT 設定方法為例講解一下</p>
 <p>進入 DD-WRT Web 界面, “系統管理”——“基本管理”——“IPv6 支援”</p>
@@ -385,7 +387,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">interface</span> br0 &#123;</span><br><span class="line">  <span class="attribute">AdvSendAdvert</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">prefix</span> [Routed /<span class="number">64</span>] &#123;</span><br><span class="line">    <span class="attribute">AdvOnLink</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">AdvAutonomous</span> <span class="literal">on</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>然後, 進入“系統管理”——“指令”, 編輯啟動指令 (其中, MTU 請到 “Tunnel Details” 的 “Advanced” 查找)</p>
 <p>TunnelBroker 調整了安全設定, 目前網上流傳的指令無法完成自動更新 IPv4 位址信息的工作, 下面的指令是7IN0修改後的新版指令.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">sleep 10</span><br><span class="line">insmod ipv6</span><br><span class="line">USERID=<span class="string">"&lt;span style="</span>color: <span class="comment">#ff0000;"&gt;**User ID**&lt;/span&gt;"</span></span><br><span class="line">PASSWORD=<span class="string">"&lt;span style="</span>color: <span class="comment">#ff0000;"&gt;**MTU**&lt;/span&gt;"</span></span><br><span class="line">TUNNELID=<span class="string">"&lt;span style="</span>color: <span class="comment">#ff0000;"&gt;**Tunnel ID**&lt;/span&gt;"</span></span><br><span class="line"><span class="keyword">while</span> [ <span class="literal">true</span> ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">IPV4=$(ip -4 addr show dev ppp0 | awk <span class="string">'/inet / &#123;print $2&#125;'</span> | cut -d/ -f1)</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$IPV4</span>"</span> != <span class="string">"<span class="variable">$OLDIP</span>"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">/wp-content/bin/wget <span class="string">'http://ipv4.tunnelbroker.net/ipv4_end.php?ipv4b='</span><span class="variable">$IPV4</span><span class="string">'&amp;pass='</span><span class="variable">$PASSWORD</span><span class="string">'&amp;user_id='</span><span class="variable">$USERID</span><span class="string">'&amp;tunnel_id='</span><span class="variable">$TUNNELID</span> -O -</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"`date` ip address changed"</span> &gt;&gt; /tmp/startup.debug</span><br><span class="line">ip tunnel del he-ipv6</span><br><span class="line">ip tunnel add he-ipv6 mode sit remote &lt;span style=<span class="string">"color: #ff0000;"</span>&gt;**Server IPv4 Address**&lt;/span&gt; <span class="built_in">local</span> <span class="variable">$IPV4</span> ttl 255</span><br><span class="line">ip link <span class="built_in">set</span> he-ipv6 up</span><br><span class="line">ip addr add &lt;span style=<span class="string">"color: #ff0000;"</span>&gt;**Server IPv6 Address**&lt;/span&gt; dev he-ipv6</span><br><span class="line">ip -6 addr add &lt;span style=<span class="string">"color: #ff0000;"</span>&gt;**Routed /64 (在::之後添加“1”, 如2001:470:19:456::1/64) **&lt;/span&gt; dev br0</span><br><span class="line">ip route add ::/0 dev he-ipv6</span><br><span class="line">ip route add &lt;span style=<span class="string">"color: #ff0000;"</span>&gt;**Routed /64**&lt;/span&gt; dev br0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ `ps | grep radvd | grep -vc grep` -ne 1 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">radvd -C /tmp/radvd.conf &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"`date` process radvd not found, restarting"</span> &gt;&gt; /tmp/startup.debug</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">OLDIP=<span class="string">"<span class="variable">$IPV4</span>"</span></span><br><span class="line">sleep 60</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">sleep 10</span><br><span class="line">insmod ipv6</span><br><span class="line">USERID=<span class="string">&quot;&lt;span style=&quot;</span>color: <span class="comment">#ff0000;&quot;&gt;**User ID**&lt;/span&gt;&quot;</span></span><br><span class="line">PASSWORD=<span class="string">&quot;&lt;span style=&quot;</span>color: <span class="comment">#ff0000;&quot;&gt;**MTU**&lt;/span&gt;&quot;</span></span><br><span class="line">TUNNELID=<span class="string">&quot;&lt;span style=&quot;</span>color: <span class="comment">#ff0000;&quot;&gt;**Tunnel ID**&lt;/span&gt;&quot;</span></span><br><span class="line"><span class="keyword">while</span> [ <span class="literal">true</span> ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">IPV4=$(ip -4 addr show dev ppp0 | awk <span class="string">&#x27;/inet / &#123;print $2&#125;&#x27;</span> | cut -d/ -f1)</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$IPV4</span>&quot;</span> != <span class="string">&quot;<span class="variable">$OLDIP</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">/wp-content/bin/wget <span class="string">&#x27;http://ipv4.tunnelbroker.net/ipv4_end.php?ipv4b=&#x27;</span><span class="variable">$IPV4</span><span class="string">&#x27;&amp;pass=&#x27;</span><span class="variable">$PASSWORD</span><span class="string">&#x27;&amp;user_id=&#x27;</span><span class="variable">$USERID</span><span class="string">&#x27;&amp;tunnel_id=&#x27;</span><span class="variable">$TUNNELID</span> -O -</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;`date` ip address changed&quot;</span> &gt;&gt; /tmp/startup.debug</span><br><span class="line">ip tunnel del he-ipv6</span><br><span class="line">ip tunnel add he-ipv6 mode sit remote &lt;span style=<span class="string">&quot;color: #ff0000;&quot;</span>&gt;**Server IPv4 Address**&lt;/span&gt; <span class="built_in">local</span> <span class="variable">$IPV4</span> ttl 255</span><br><span class="line">ip link <span class="built_in">set</span> he-ipv6 up</span><br><span class="line">ip addr add &lt;span style=<span class="string">&quot;color: #ff0000;&quot;</span>&gt;**Server IPv6 Address**&lt;/span&gt; dev he-ipv6</span><br><span class="line">ip -6 addr add &lt;span style=<span class="string">&quot;color: #ff0000;&quot;</span>&gt;**Routed /64 (在::之後添加“1”, 如2001:470:19:456::1/64) **&lt;/span&gt; dev br0</span><br><span class="line">ip route add ::/0 dev he-ipv6</span><br><span class="line">ip route add &lt;span style=<span class="string">&quot;color: #ff0000;&quot;</span>&gt;**Routed /64**&lt;/span&gt; dev br0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ `ps | grep radvd | grep -vc grep` -ne 1 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">radvd -C /tmp/radvd.conf &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;`date` process radvd not found, restarting&quot;</span> &gt;&gt; /tmp/startup.debug</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">OLDIP=<span class="string">&quot;<span class="variable">$IPV4</span>&quot;</span></span><br><span class="line">sleep 60</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>全部保存後重啟路徑器.</p>
 <p>最後的最後：在你的電腦中設定 IPv6 DNS, 比如 2001:470:20::2</p>
 
@@ -395,7 +397,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -519,18 +521,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -660,7 +661,6 @@
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -800,7 +800,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -922,7 +922,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -948,7 +948,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -1000,7 +1000,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1024,7 +1024,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1047,6 +1047,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

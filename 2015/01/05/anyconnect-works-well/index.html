@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="7IN0SAN9">
-    <title>OS X 血淚史 之 10.9 Mission Control 卡頓 - 7IN0SAN9</title>
+    <title>AnyConnect 好評如潮! - 7IN0SAN9</title>
     <meta name="author" content="Chino Chang">
     
     
@@ -15,22 +15,18 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"昨天在下一整天沒有上網, 因為在下在折騰 OS X.\n不得不說 OS X 是個好東西, 但是還是禁不住在下的折騰啊【遠目】.\n昨天遇到的問題是突然發現桌面切換卡頓.這可把我嚇壞了, 一開始以為是顯示卡故障, 於是用 AHT 進行了一次深度檢測, 就是開機過程中按住 D 鍵不放知道進入 Apple Hardware Test 界面.\n[caption id=“attachment_1710” align=“alignnone” width=“225”] AHT 語言選擇界面[/caption]\n\n開始檢測\n[caption id=“attachment_1712” align=“alignnone” width=“300”] AHT 工作中[/caption]\n萬幸的是在下的硬件看起來沒有任何問題\n[caption id=“attachment_1711” align=“alignnone” width=“300”] AHT 通過檢測[/caption]\n然後, 在下腦殘了——沒錯, 就是腦殘了, 在下決定重灌 OS X, 然後通過開機按住 Option 進入了 Recovery.\n抹掉磁盤後, 在下發現一個嚴重的問題——重灌要求之前曾在 App Store 購買過 10.9, 而在下是通過其他渠道獲取到 OS X 10.9 GM2進行升級的, 於是在下悲劇了.\n好在還有 Option + Command + R 的無敵組合, 但是這個聯網回復系統比較慢而且會重灌成機器預裝的 10.8.\n這時候在下決定通過 Time Machine 回復之前的系統.\n最後的最後——\n在下在 Google 上找到了一行命令解決問題的方案：\n1$ sudo rm /Library/Preferences/com.apple.windowserver.plist\n欲哭無淚啊, 這讓像在下一樣折騰一整天的情以何堪 (TAT)\n","dateCreated":"2014-01-21T00:32:38+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2014-01-21T00:32:38+08:00","description":"昨天在下一整天沒有上網, 因為在下在折騰 OS X.\n不得不說 OS X 是個好東西, 但是還是禁不住在下的折騰啊【遠目】.\n昨天遇到的問題是突然發現桌面切換卡頓.這可把我嚇壞了, 一開始以為是顯示卡故障, 於是用 AHT 進行了一次深度檢測, 就是開機過程中按住 D 鍵不放知道進入 Apple Hardware Test 界面.\n[caption id=“attachment_1710” align=“alignnone” width=“225”] AHT 語言選擇界面[/caption]","headline":"OS X 血淚史 之 10.9 Mission Control 卡頓","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"}</script>
-    <meta name="description" content="昨天在下一整天沒有上網, 因為在下在折騰 OS X. 不得不說 OS X 是個好東西, 但是還是禁不住在下的折騰啊【遠目】. 昨天遇到的問題是突然發現桌面切換卡頓.這可把我嚇壞了, 一開始以為是顯示卡故障, 於是用 AHT 進行了一次深度檢測, 就是開機過程中按住 D 鍵不放知道進入 Apple Hardware Test 界面. [caption id&#x3D;“attachment_1710” ali">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"最近幾天被各種 AnyConnect 的消息反覆轟炸, 終於下定決心試試傳說中萌萌噠的 AnyConnect.\n伺服器的部署參考鳳凰菊苣的網誌《在 Ubuntu 服务器上搭建 OpenConnect 服务器小记》.\n不過值得注意的是, 如果使用更新版本的 OpenConnect Server, config 中應當包含 socket-file 和 device 兩項, 否則啓動 ocserv 會失敗.\n另外, 路由表相關的設定可以刪除, 這樣就可以實現科學上網了 (AnyConnect 的 iOS Client 只支持最多64條路由設定, 因此無法用 chnroute 產生的 IP 列表來設定自動切換) .\n最後說一下 Mac OS X 上的使用.\nHomebrew 中收錄了 OpenConnect Client, 在沒有安裝 TUNTAP Device 的 OS X 10.10 上運行良好, 唯一不方便的就是沒有 GUI 工具, CLI 使用方法如下：\n1$ sudo openconnect --user=username --cafile=/path/to/your/ca-cert.pem ladder.abc.com\n","dateCreated":"2015-01-05T16:50:00+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2015-01-05T16:50:00+00:00","description":"","headline":"AnyConnect 好評如潮!","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2015/01/05/anyconnect-works-well/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2015/01/05/anyconnect-works-well/"}</script>
+    <meta name="description" content="最近幾天被各種 AnyConnect 的消息反覆轟炸, 終於下定決心試試傳說中萌萌噠的 AnyConnect. 伺服器的部署參考鳳凰菊苣的網誌《在 Ubuntu 服务器上搭建 OpenConnect 服务器小记》. 不過值得注意的是, 如果使用更新版本的 OpenConnect Server, config 中應當包含 socket-file 和 device 兩項, 否則啓動 ocserv 會失">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="OS X 血淚史 之 10.9 Mission Control 卡頓">
-<meta property="og:url" content="https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/index.html">
+<meta property="og:title" content="AnyConnect 好評如潮!">
+<meta property="og:url" content="https://blog.7in0.me/2015/01/05/anyconnect-works-well/index.html">
 <meta property="og:site_name" content="7IN0SAN9">
-<meta property="og:description" content="昨天在下一整天沒有上網, 因為在下在折騰 OS X. 不得不說 OS X 是個好東西, 但是還是禁不住在下的折騰啊【遠目】. 昨天遇到的問題是突然發現桌面切換卡頓.這可把我嚇壞了, 一開始以為是顯示卡故障, 於是用 AHT 進行了一次深度檢測, 就是開機過程中按住 D 鍵不放知道進入 Apple Hardware Test 界面. [caption id&#x3D;“attachment_1710” ali">
+<meta property="og:description" content="最近幾天被各種 AnyConnect 的消息反覆轟炸, 終於下定決心試試傳說中萌萌噠的 AnyConnect. 伺服器的部署參考鳳凰菊苣的網誌《在 Ubuntu 服务器上搭建 OpenConnect 服务器小记》. 不過值得注意的是, 如果使用更新版本的 OpenConnect Server, config 中應當包含 socket-file 和 device 兩項, 否則啓動 ocserv 會失">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2014/01/IMG_20140120_150055-225x300.jpg">
-<meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2014/01/IMG_20140120_150200-300x225.jpg">
-<meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2014/01/IMG_20140120_150130-300x225.jpg">
-<meta property="article:published_time" content="2014-01-20T16:32:38.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.106Z">
+<meta property="article:published_time" content="2015-01-05T16:50:00.000Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.808Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.7in0.me/wp-content/uploads/2014/01/IMG_20140120_150055-225x300.jpg">
 <meta name="twitter:creator" content="@chino_joymoe">
     
     
@@ -59,6 +55,7 @@
 
 
     
+
 
     
         
@@ -327,6 +324,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -338,20 +336,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            OS X 血淚史 之 10.9 Mission Control 卡頓
+            AnyConnect 好評如潮!
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2014-01-21T00:32:38+08:00">
+    <time datetime="2015-01-05T16:50:00+00:00">
 	
-		    1月 21, 2014
+		    1月 05, 2015
     	
     </time>
     
         <span>分類 </span>
         
-    <a class="category-link" href="/categories/%E6%87%89%E7%94%A8%E6%8A%80%E5%B7%A7/">應用技巧</a>
+    <a class="category-link" href="/categories/%E7%B6%B2%E9%9A%9B%E7%B6%B2%E8%B7%AF/">網際網路</a>
 
 
     
@@ -363,23 +361,13 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>昨天在下一整天沒有上網, 因為在下在折騰 OS X.</p>
-<p>不得不說 OS X 是個好東西, 但是還是禁不住在下的折騰啊【遠目】.</p>
-<p>昨天遇到的問題是突然發現桌面切換卡頓.這可把我嚇壞了, 一開始以為是顯示卡故障, 於是用 AHT 進行了一次深度檢測, 就是開機過程中按住 D 鍵不放知道進入 Apple Hardware Test 界面.</p>
-<p>[caption id=“attachment_1710” align=“alignnone” width=“225”]<a href="/wp-content/uploads/2014/01/IMG_20140120_150055-e1390235661918.jpg"><img src="/wp-content/uploads/2014/01/IMG_20140120_150055-225x300.jpg" alt="AHT 語言選擇界面"></a> AHT 語言選擇界面[/caption]</p>
-<a id="more"></a>
-<p>開始檢測</p>
-<p>[caption id=“attachment_1712” align=“alignnone” width=“300”]<a href="/wp-content/uploads/2014/01/IMG_20140120_150200-e1390235615851.jpg"><img src="/wp-content/uploads/2014/01/IMG_20140120_150200-300x225.jpg" alt="AHT 工作中"></a> AHT 工作中[/caption]</p>
-<p>萬幸的是在下的硬件看起來沒有任何問題</p>
-<p>[caption id=“attachment_1711” align=“alignnone” width=“300”]<a href="/wp-content/uploads/2014/01/IMG_20140120_150130-e1390236392413.jpg"><img src="/wp-content/uploads/2014/01/IMG_20140120_150130-300x225.jpg" alt="AHT 通過檢測"></a> AHT 通過檢測[/caption]</p>
-<p>然後, 在下腦殘了——沒錯, 就是腦殘了, 在下決定重灌 OS X, 然後通過開機按住 Option 進入了 Recovery.</p>
-<p>抹掉磁盤後, 在下發現一個嚴重的問題——重灌要求之前曾在 App Store 購買過 10.9, 而在下是通過其他渠道獲取到 OS X 10.9 GM2進行升級的, 於是在下悲劇了.</p>
-<p>好在還有 Option + Command + R 的無敵組合, 但是這個聯網回復系統比較慢而且會重灌成機器預裝的 10.8.</p>
-<p>這時候在下決定通過 Time Machine 回復之前的系統.</p>
-<p>最後的最後——</p>
-<p>在下在 Google 上找到了一行命令解決問題的方案：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm /Library/Preferences/com.apple.windowserver.plist</span><br></pre></td></tr></table></figure>
-<p>欲哭無淚啊, 這讓像在下一樣折騰一整天的情以何堪 (TAT)</p>
+            <p>最近幾天被各種 AnyConnect 的消息反覆轟炸, 終於下定決心試試傳說中萌萌噠的 AnyConnect.</p>
+<p>伺服器的部署參考鳳凰菊苣的網誌<a target="_blank" rel="noopener" href="https://blog.phoenixlzx.com/2014/07/21/setup-openconnect-server-on-ubuntu/">《在 Ubuntu 服务器上搭建 OpenConnect 服务器小记》</a>.</p>
+<p>不過值得注意的是, 如果使用更新版本的 OpenConnect Server, config 中應當包含 <code>socket-file</code> 和 <code>device</code> 兩項, 否則啓動 ocserv 會失敗.</p>
+<p>另外, 路由表相關的設定可以刪除, 這樣就可以實現科學上網了 (AnyConnect 的 iOS Client 只支持最多64條路由設定, 因此無法用 chnroute 產生的 IP 列表來設定自動切換) .</p>
+<p>最後說一下 Mac OS X 上的使用.</p>
+<p>Homebrew 中收錄了 OpenConnect Client, 在沒有安裝 TUNTAP Device 的 OS X 10.10 上運行良好, 唯一不方便的就是沒有 GUI 工具, CLI 使用方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo openconnect --user=username --cafile=/path/to/your/ca-cert.pem ladder.abc.com</span><br></pre></td></tr></table></figure>
 
             
 
@@ -387,7 +375,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -400,9 +388,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2014/01/21/my-first-time-with-pelican/"
-                    data-tooltip="Pelican 初體驗"
-                    aria-label="上一篇: Pelican 初體驗"
+                    href="/2015/02/26/use-haproxy-nginx-naxsi-fail2ban-to-protect-your-server/"
+                    data-tooltip="haproxy, nginx-naxsi 和 fail2ban 緩解網路攻擊"
+                    aria-label="上一篇: haproxy, nginx-naxsi 和 fail2ban 緩解網路攻擊"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -414,9 +402,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2014/01/19/wanted-fiends/"
-                    data-tooltip="菊苣通緝令"
-                    aria-label="下一篇: 菊苣通緝令"
+                    href="/2014/12/28/get-typecho-worked/"
+                    data-tooltip="歡天喜地用 Typecho"
+                    aria-label="下一篇: 歡天喜地用 Typecho"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
@@ -441,7 +429,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                     title="分享到 Facebook"
                     aria-label="分享到 Facebook"
                 >
@@ -454,7 +442,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                     title="分享到 Twitter"
                     aria-label="分享到 Twitter"
                 >
@@ -467,7 +455,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                     title="分享到 Weibo"
                     aria-label="分享到 Weibo"
                 >
@@ -480,7 +468,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/&amp;title=OS X 血淚史 之 10.9 Mission Control 卡頓"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2015/01/05/anyconnect-works-well/&amp;title=AnyConnect 好評如潮!"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -511,18 +499,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -542,9 +529,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2014/01/21/my-first-time-with-pelican/"
-                    data-tooltip="Pelican 初體驗"
-                    aria-label="上一篇: Pelican 初體驗"
+                    href="/2015/02/26/use-haproxy-nginx-naxsi-fail2ban-to-protect-your-server/"
+                    data-tooltip="haproxy, nginx-naxsi 和 fail2ban 緩解網路攻擊"
+                    aria-label="上一篇: haproxy, nginx-naxsi 和 fail2ban 緩解網路攻擊"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -556,9 +543,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2014/01/19/wanted-fiends/"
-                    data-tooltip="菊苣通緝令"
-                    aria-label="下一篇: 菊苣通緝令"
+                    href="/2014/12/28/get-typecho-worked/"
+                    data-tooltip="歡天喜地用 Typecho"
+                    aria-label="下一篇: 歡天喜地用 Typecho"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
@@ -583,7 +570,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                     title="分享到 Facebook"
                     aria-label="分享到 Facebook"
                 >
@@ -596,7 +583,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                     title="分享到 Twitter"
                     aria-label="分享到 Twitter"
                 >
@@ -609,7 +596,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                    target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                     title="分享到 Weibo"
                     aria-label="分享到 Weibo"
                 >
@@ -622,7 +609,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/&amp;title=OS X 血淚史 之 10.9 Mission Control 卡頓"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2015/01/05/anyconnect-works-well/&amp;title=AnyConnect 好評如潮!"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -653,7 +640,6 @@
     </ul>
 </div>
 
-
                 </div>
                 
     <div id="share-options-bar" class="share-options-bar" data-behavior="4">
@@ -666,7 +652,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                         aria-label="分享到 Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
@@ -679,7 +665,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                        href="https://twitter.com/intent/tweet?text=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                         aria-label="分享到 Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
@@ -692,7 +678,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/"
+                        href="http://service.weibo.com/share/share.php?&amp;title=https://blog.7in0.me/2015/01/05/anyconnect-works-well/"
                         aria-label="分享到 Weibo"
                     >
                         <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
@@ -705,7 +691,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/&amp;title=OS X 血淚史 之 10.9 Mission Control 卡頓"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.7in0.me/2015/01/05/anyconnect-works-well/&amp;title=AnyConnect 好評如潮!"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -792,7 +778,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -914,7 +900,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -940,7 +926,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -992,7 +978,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1016,7 +1002,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1039,6 +1025,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>
@@ -1049,9 +1036,9 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
     
         <script>
           var disqus_config = function() {
-            this.page.url = 'https://blog.7in0.me/2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/';
+            this.page.url = 'https://blog.7in0.me/2015/01/05/anyconnect-works-well/';
               
-            this.page.identifier = '2014/01/21/blood-and-tears-with-os-x-freeze-up-with-mission-control/';
+            this.page.identifier = '2015/01/05/anyconnect-works-well/';
               
           };
           (function() {

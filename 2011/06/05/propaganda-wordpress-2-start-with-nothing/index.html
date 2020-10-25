@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的《WordPress 那些事兒》, 《WordPress 我變我變我變變變》兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.\n上一篇博文 (《WordPress普及系列 (一) 為什麼選擇WP》) 介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用.\n想要使用WP, 第一步當然是安裝, 安裝方式分為本地安裝和遠程安裝, 步驟基本相同, 只不過遠程安裝需要你擁有一臺服務器, 並將WP的文件上傳至你的服務器.\n\n這裏以本地安裝為例進行講解.\n一, 搭建運行環境\n本地安裝需要你在本地 (就是你的電腦上, 別告訴我你看不懂-_-!) 搭建一個PHP+Mysql運行環境, 如果你已經搭建好了一個運行環境, 請跳過本步.\n萬戈 (叫他萬大叔好像傷到了他的心) 推薦在本地搭建運行環境時使用XAMPP for Windows PHP+MySql 套裝, 我個人習慣使用appserv (win32版本已在文末提供下載) , 這裏就以appserv-win32進行講解了.\n運行“appserv-win32.exe”進行安裝, 設置什麼的很簡單, 不多說了, 上圖：\n\n\n\n\n這個地址可以修改, Kinosang’s Labs在這裏保留了默認\n\n\n\n全勾上哦～否則會出現問題的, 除非你之前安裝過MySQL等部件\n\n\n\nKinosang’s Labs在這裏修改了Port (連接埠) !\nServer Name可以隨便填, 但推薦填寫127.0.0.1 (僅限本地測試時)\nEmail請填寫正確的E-mail地址, 這裏因為是演示, 所以隨便填寫了一個\n\n\n最後, 安裝完成後點擊Finish即可.\n二, 安裝WordPress\n把WP的文件解壓到appserv安裝目錄下的WWW目錄中 (最好新建一個目錄, 如wordpress, 放在新建的目錄裏面) .\n然後訪問http://127.0.0.1:8080/wordpress (以上文中所述地址)\n會提示錯誤, 如下圖：\n\n點擊“試試創建一個配置文件”\n\nKinosang’s Labs提醒您確保wp所在目錄可寫, windows取消“只讀”, linux設置為777\n\n進入下面的界面：\n\n點擊“現在就開始!”下一步：\n\n填寫好數據庫信息, 點擊“提交”\n\nKinosang’s Labs不推薦使用root級別數據庫用戶\nKinosang’s Labs推薦將表名前綴修改為無規律的字元 (與您的網站或wp差距越大越好)\n\n進入下一步：\n\n很好, 成功連接數據庫, 說明填寫的信息沒問題, 否則就要修改數據庫信息.點擊“進行安裝”進入下一步.\n填寫站點信息：\n\nKinosang’s Labs不推薦用默認的用戶名——admin\nKinosang’s Labs提醒您郵箱必須填寫正確的\n\n\n點擊“安裝WordPress”, 進入下一步\n\n於是, 不要沈浸在安裝的喜悅中了, 安裝已經結束了!快點擊“登錄”, 登入後臺吧!\n","dateCreated":"2011-06-05T14:52:25+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2011-06-05T14:52:25+08:00","description":"撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的《WordPress 那些事兒》, 《WordPress 我變我變我變變變》兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.\n上一篇博文 (《WordPress普及系列 (一) 為什麼選擇WP》) 介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用.\n想要使用WP, 第一步當然是安裝, 安裝方式分為本地安裝和遠程安裝, 步驟基本相同, 只不過遠程安裝需要你擁有一臺服務器, 並將WP的文件上傳至你的服務器.","headline":"WordPress普及系列 (二) 從零開始搭建WP站點","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2011/06/05/propaganda-wordpress-2-start-with-nothing/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2011/06/05/propaganda-wordpress-2-start-with-nothing/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的《WordPress 那些事兒》, 《WordPress 我變我變我變變變》兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.\n上一篇博文 (《WordPress普及系列 (一) 為什麼選擇WP》) 介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用.\n想要使用WP, 第一步當然是安裝, 安裝方式分為本地安裝和遠程安裝, 步驟基本相同, 只不過遠程安裝需要你擁有一臺服務器, 並將WP的文件上傳至你的服務器.\n\n這裏以本地安裝為例進行講解.\n一, 搭建運行環境\n本地安裝需要你在本地 (就是你的電腦上, 別告訴我你看不懂-_-!) 搭建一個PHP+Mysql運行環境, 如果你已經搭建好了一個運行環境, 請跳過本步.\n萬戈 (叫他萬大叔好像傷到了他的心) 推薦在本地搭建運行環境時使用XAMPP for Windows PHP+MySql 套裝, 我個人習慣使用appserv (win32版本已在文末提供下載) , 這裏就以appserv-win32進行講解了.\n運行“appserv-win32.exe”進行安裝, 設置什麼的很簡單, 不多說了, 上圖：\n\n\n\n\n這個地址可以修改, Kinosang’s Labs在這裏保留了默認\n\n\n\n全勾上哦～否則會出現問題的, 除非你之前安裝過MySQL等部件\n\n\n\nKinosang’s Labs在這裏修改了Port (連接埠) !\nServer Name可以隨便填, 但推薦填寫127.0.0.1 (僅限本地測試時)\nEmail請填寫正確的E-mail地址, 這裏因為是演示, 所以隨便填寫了一個\n\n\n最後, 安裝完成後點擊Finish即可.\n二, 安裝WordPress\n把WP的文件解壓到appserv安裝目錄下的WWW目錄中 (最好新建一個目錄, 如wordpress, 放在新建的目錄裏面) .\n然後訪問http://127.0.0.1:8080/wordpress (以上文中所述地址)\n會提示錯誤, 如下圖：\n\n點擊“試試創建一個配置文件”\n\nKinosang’s Labs提醒您確保wp所在目錄可寫, windows取消“只讀”, linux設置為777\n\n進入下面的界面：\n\n點擊“現在就開始!”下一步：\n\n填寫好數據庫信息, 點擊“提交”\n\nKinosang’s Labs不推薦使用root級別數據庫用戶\nKinosang’s Labs推薦將表名前綴修改為無規律的字元 (與您的網站或wp差距越大越好)\n\n進入下一步：\n\n很好, 成功連接數據庫, 說明填寫的信息沒問題, 否則就要修改數據庫信息.點擊“進行安裝”進入下一步.\n填寫站點信息：\n\nKinosang’s Labs不推薦用默認的用戶名——admin\nKinosang’s Labs提醒您郵箱必須填寫正確的\n\n\n點擊“安裝WordPress”, 進入下一步\n\n於是, 不要沈浸在安裝的喜悅中了, 安裝已經結束了!快點擊“登錄”, 登入後臺吧!\n","dateCreated":"2011-06-05T06:52:25+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2011-06-05T06:52:25+00:00","description":"撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的《WordPress 那些事兒》, 《WordPress 我變我變我變變變》兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.\n上一篇博文 (《WordPress普及系列 (一) 為什麼選擇WP》) 介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用.\n想要使用WP, 第一步當然是安裝, 安裝方式分為本地安裝和遠程安裝, 步驟基本相同, 只不過遠程安裝需要你擁有一臺服務器, 並將WP的文件上傳至你的服務器.","headline":"WordPress普及系列 (二) 從零開始搭建WP站點","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2011/06/05/propaganda-wordpress-2-start-with-nothing/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2011/06/05/propaganda-wordpress-2-start-with-nothing/"}</script>
     <meta name="description" content="撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的《WordPress 那些事兒》, 《WordPress 我變我變我變變變》兩篇文章, 下文中引用自萬大叔文章中的文本會被註明. 上一篇博文 (《WordPress普及系列 (一) 為什麼選擇WP》) 介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用. 想要使">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="WordPress普及系列 (二) 從零開始搭建WP站點">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2015/06/2838023a778dfaecdc212708f721b7881.png">
 <meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2015/06/7f39f8317fbdb1988ef4c628eba025911.png">
 <meta property="article:published_time" content="2011-06-05T06:52:25.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.120Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.812Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.7in0.me/wp-content/uploads/2015/06/c4ca4238a0b923820dcc509a6f75849b.png">
@@ -68,6 +68,7 @@
 
 
     
+
 
     
         
@@ -336,6 +337,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -352,7 +354,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2011-06-05T14:52:25+08:00">
+    <time datetime="2011-06-05T06:52:25+00:00">
 	
 		    6月 05, 2011
     	
@@ -372,8 +374,8 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
-<p><span style="line-height: 1.714285714; font-size: 1rem;">上一篇博文 (</span><a href="http://www.chinvo.org/html/y_2011/m_05/593.html" target="_blank" rel="noopener">《WordPress普及系列 (一) 為什麼選擇WP》</a><span style="line-height: 1.714285714; font-size: 1rem;">) 介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用.</span></p>
+            <p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+<p><span style="line-height: 1.714285714; font-size: 1rem;">上一篇博文 (</span><a target="_blank" rel="noopener" href="http://www.chinvo.org/html/y_2011/m_05/593.html">《WordPress普及系列 (一) 為什麼選擇WP》</a><span style="line-height: 1.714285714; font-size: 1rem;">) 介紹了WordPress的優勢, 從這一篇開始, Kinosang開始講解WordPress的使用.</span></p>
 <p>想要使用WP, 第一步當然是安裝, 安裝方式分為本地安裝和遠程安裝, 步驟基本相同, 只不過遠程安裝需要你擁有一臺服務器, 並將WP的文件上傳至你的服務器.</p>
 <a id="more"></a>
 <p>這裏以本地安裝為例進行講解.</p>
@@ -381,53 +383,53 @@
 <p>本地安裝需要你在本地 (就是你的電腦上, 別告訴我你看不懂-_-!) 搭建一個PHP+Mysql運行環境, 如果你已經搭建好了一個運行環境, 請跳過本步.</p>
 <p>萬戈 (叫他萬大叔好像傷到了他的心) 推薦在本地搭建運行環境時使用<span style="text-decoration: underline;">XAMPP for Windows PHP+MySql 套裝</span>, 我個人習慣使用appserv (win32版本已在文末提供下載) , 這裏就以appserv-win32進行講解了.</p>
 <p>運行“appserv-win32.exe”進行安裝, 設置什麼的很簡單, 不多說了, 上圖：</p>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b71" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/c4ca4238a0b923820dcc509a6f75849b.png" alt="" title="捕獲1"></a></p>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b72" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/c81e728d9d4c2f636f067f89cc14862c.png" alt="" title="捕獲2"></a></p>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b73" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/eccbc87e4b5ce2fe28308fd9f2a7baf3.png" alt="" title="捕獲3"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b71"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/c4ca4238a0b923820dcc509a6f75849b.png" alt="" title="捕獲1"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b72"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/c81e728d9d4c2f636f067f89cc14862c.png" alt="" title="捕獲2"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b73"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/eccbc87e4b5ce2fe28308fd9f2a7baf3.png" alt="" title="捕獲3"></a></p>
 <ul>
 <li>這個地址可以修改, Kinosang’s Labs在這裏保留了默認</li>
 </ul>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b74" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/a87ff679a2f3e71d9181a67b7542122c.png" alt="" title="捕獲4"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b74"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/a87ff679a2f3e71d9181a67b7542122c.png" alt="" title="捕獲4"></a></p>
 <ul>
 <li>全勾上哦～否則會出現問題的, 除非你之前安裝過MySQL等部件</li>
 </ul>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b75" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/e4da3b7fbbce2345d7772b0674a318d5.png" alt="" title="捕獲5"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b75"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/e4da3b7fbbce2345d7772b0674a318d5.png" alt="" title="捕獲5"></a></p>
 <ul>
 <li>Kinosang’s Labs在這裏修改了Port (連接埠) !</li>
 <li>Server Name可以隨便填, 但推薦填寫127.0.0.1 (僅限本地測試時)</li>
 <li>Email請填寫正確的E-mail地址, 這裏因為是演示, 所以隨便填寫了一個</li>
 </ul>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b76" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/1679091c5a880faf6fb5e6087eb1b2dc1.png" alt="" title="捕獲6"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e6%8d%95%e8%8e%b76"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/1679091c5a880faf6fb5e6087eb1b2dc1.png" alt="" title="捕獲6"></a></p>
 <p>最後, 安裝完成後點擊Finish即可.</p>
 <p>二, 安裝WordPress</p>
 <p>把WP的文件解壓到appserv安裝目錄下的WWW目錄中 (最好新建一個目錄, 如wordpress, 放在新建的目錄裏面) .</p>
 <p>然後訪問http://127.0.0.1:8080/wordpress (以上文中所述地址)</p>
 <p>會提示錯誤, 如下圖：</p>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%851" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/6512bd43d9caa6e02c990b0a82652dca1.png" alt="" title="安裝1"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%851"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/6512bd43d9caa6e02c990b0a82652dca1.png" alt="" title="安裝1"></a></p>
 <p>點擊“試試創建一個配置文件”</p>
 <ul>
 <li>Kinosang’s Labs提醒您確保wp所在目錄可寫, windows取消“只讀”, linux設置為777</li>
 </ul>
 <p>進入下面的界面：</p>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%852" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/3c59dc048e8850243be8079a5c74d0791.png" alt="" title="安裝2"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%852"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/3c59dc048e8850243be8079a5c74d0791.png" alt="" title="安裝2"></a></p>
 <p>點擊“現在就開始!”下一步：</p>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%853" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/c16a5320fa475530d9583c34fd356ef51.png" alt="" title="安裝3"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%853"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/c16a5320fa475530d9583c34fd356ef51.png" alt="" title="安裝3"></a></p>
 <p>填寫好數據庫信息, 點擊“提交”</p>
 <ul>
 <li>Kinosang’s Labs不推薦使用root級別數據庫用戶</li>
 <li>Kinosang’s Labs推薦將表名前綴修改為無規律的字元 (與您的網站或wp差距越大越好)</li>
 </ul>
 <p>進入下一步：</p>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%854" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/3416a75f4cea9109507cacd8e2f2aefc1.png" alt="" title="安裝4"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%854"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/3416a75f4cea9109507cacd8e2f2aefc1.png" alt="" title="安裝4"></a></p>
 <p>很好, 成功連接數據庫, 說明填寫的信息沒問題, 否則就要修改數據庫信息.點擊“進行安裝”進入下一步.</p>
 <p>填寫站點信息：</p>
 <ul>
 <li>Kinosang’s Labs不推薦用默認的用戶名——admin</li>
 <li>Kinosang’s Labs提醒您郵箱必須填寫正確的</li>
 </ul>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%855" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/2838023a778dfaecdc212708f721b7881.png" alt="" title="安裝5"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%855"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/2838023a778dfaecdc212708f721b7881.png" alt="" title="安裝5"></a></p>
 <p>點擊“安裝WordPress”, 進入下一步</p>
-<p><a href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%856" target="_blank" rel="noopener"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/7f39f8317fbdb1988ef4c628eba025911.png" alt="" title="安裝6"></a></p>
+<p><a target="_blank" rel="noopener" href="http://www.chinvo.org/blog/chinvo/2011/06/608-propaganda-wordpress-2-start-with-nothing.html/%e5%ae%89%e8%a3%856"><img src="https://blog.7in0.me/wp-content/uploads/2015/06/7f39f8317fbdb1988ef4c628eba025911.png" alt="" title="安裝6"></a></p>
 <p>於是, 不要沈浸在安裝的喜悅中了, 安裝已經結束了!快點擊“登錄”, 登入後臺吧!</p>
 
             
@@ -436,7 +438,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -560,18 +562,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -701,7 +702,6 @@
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -841,7 +841,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -963,7 +963,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -989,7 +989,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -1041,7 +1041,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1065,7 +1065,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1088,6 +1088,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

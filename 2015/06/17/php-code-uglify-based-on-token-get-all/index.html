@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"前些日子翻 PHP 的手冊看, 發現一個神奇的函數, 手冊中的說明如下：\n\nDescription\narray token_get_all ( string $source )\ntoken_get_all() parses the given source string into PHP language tokens using the Zend engine’s lexical scanner.\nFor a list of parser tokens, see List of Parser Tokens, or use token_name() to translate a token value into its string representation.\n\n\n仔細研究了一下發現可以用來對 PHP 代碼進行壓縮和混淆.\n主要思路如下：\n\n使用 token_get_all() 解析讀入的代碼\n通過返回值中的 Parser Tokens 對 token 數組進行處理\n合併數組為字符串并輸出.\n\n下面給出一段示例代碼：\n12345678910111213141516171819202122232425262728293031323334353637function uglify($contents) &#123;    $tokens = token_get_all($contents);    $last_space = false;    foreach( $tokens as $num =&gt; $token) &#123;        if (is_string($token)) &#123;            $last_space = false;            continue;        &#125;        switch ($token[0]) &#123;            case T_COMMENT:            case T_DOC_COMMENT:                $token[1] = \"\";                break;            case T_OPEN_TAG:                $token[1] = \"&lt;?php\";                break;            case T_CLOSE_TAG:                $token[1] = \"?&gt;\";                break;            case T_WHITESPACE:                if (!$last_space) &#123;                    $token[1] = \" \";                    $last_space = true;                &#125; else &#123;                    $token[1] = \"\";                &#125;                break;            default:                $last_space = false;        &#125;        $tokens[$num] = $token[1];    &#125;    return implode(\"\", $tokens);&#125;\n註：代碼沒有實現混淆功能, 僅演示了利用 token_get_all() 分析處理 PHP 文件.\n","dateCreated":"2015-06-17T16:37:34+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2015-06-17T16:37:34+08:00","description":"前些日子翻 PHP 的手冊看, 發現一個神奇的函數, 手冊中的說明如下：\n\nDescription\narray token_get_all ( string $source )\ntoken_get_all() parses the given source string into PHP language tokens using the Zend engine’s lexical scanner.\nFor a list of parser tokens, see List of Parser Tokens, or use token_name() to translate a token value into its string representation.\n","headline":"基於 token_get_all 的 PHP 代碼壓縮混淆的研究","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2015/06/17/php-code-uglify-based-on-token-get-all/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2015/06/17/php-code-uglify-based-on-token-get-all/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"前些日子翻 PHP 的手冊看, 發現一個神奇的函數, 手冊中的說明如下：\n\nDescription\narray token_get_all ( string $source )\ntoken_get_all() parses the given source string into PHP language tokens using the Zend engine’s lexical scanner.\nFor a list of parser tokens, see List of Parser Tokens, or use token_name() to translate a token value into its string representation.\n\n\n仔細研究了一下發現可以用來對 PHP 代碼進行壓縮和混淆.\n主要思路如下：\n\n使用 token_get_all() 解析讀入的代碼\n通過返回值中的 Parser Tokens 對 token 數組進行處理\n合併數組為字符串并輸出.\n\n下面給出一段示例代碼：\n12345678910111213141516171819202122232425262728293031323334353637function uglify($contents) &#123;    $tokens = token_get_all($contents);    $last_space = false;    foreach( $tokens as $num =&gt; $token) &#123;        if (is_string($token)) &#123;            $last_space = false;            continue;        &#125;        switch ($token[0]) &#123;            case T_COMMENT:            case T_DOC_COMMENT:                $token[1] = &quot;&quot;;                break;            case T_OPEN_TAG:                $token[1] = &quot;&lt;?php&quot;;                break;            case T_CLOSE_TAG:                $token[1] = &quot;?&gt;&quot;;                break;            case T_WHITESPACE:                if (!$last_space) &#123;                    $token[1] = &quot; &quot;;                    $last_space = true;                &#125; else &#123;                    $token[1] = &quot;&quot;;                &#125;                break;            default:                $last_space = false;        &#125;        $tokens[$num] = $token[1];    &#125;    return implode(&quot;&quot;, $tokens);&#125;\n註：代碼沒有實現混淆功能, 僅演示了利用 token_get_all() 分析處理 PHP 文件.\n","dateCreated":"2015-06-17T08:37:34+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2015-06-17T08:37:34+00:00","description":"前些日子翻 PHP 的手冊看, 發現一個神奇的函數, 手冊中的說明如下：\n\nDescription\narray token_get_all ( string $source )\ntoken_get_all() parses the given source string into PHP language tokens using the Zend engine’s lexical scanner.\nFor a list of parser tokens, see List of Parser Tokens, or use token_name() to translate a token value into its string representation.\n","headline":"基於 token_get_all 的 PHP 代碼壓縮混淆的研究","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2015/06/17/php-code-uglify-based-on-token-get-all/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2015/06/17/php-code-uglify-based-on-token-get-all/"}</script>
     <meta name="description" content="前些日子翻 PHP 的手冊看, 發現一個神奇的函數, 手冊中的說明如下：  Description array token_get_all ( string $source ) token_get_all() parses the given source string into PHP language tokens using the Zend engine’s lexical scanner">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="基於 token_get_all 的 PHP 代碼壓縮混淆的研究">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="前些日子翻 PHP 的手冊看, 發現一個神奇的函數, 手冊中的說明如下：  Description array token_get_all ( string $source ) token_get_all() parses the given source string into PHP language tokens using the Zend engine’s lexical scanner">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2015-06-17T08:37:34.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.119Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.812Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -55,6 +55,7 @@
 
 
     
+
 
     
         
@@ -323,6 +324,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -339,7 +341,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2015-06-17T16:37:34+08:00">
+    <time datetime="2015-06-17T08:37:34+00:00">
 	
 		    6月 17, 2015
     	
@@ -362,7 +364,7 @@
             <p>前些日子翻 PHP 的手冊看, 發現一個神奇的函數, 手冊中的說明如下：</p>
 <blockquote>
 <p>Description</p>
-<p><code>array token_get_all ( string $source )</code>
+<p><code>array token_get_all ( string $source )</code><br>
 token_get_all() parses the given source string into PHP language tokens using the Zend engine’s lexical scanner.</p>
 <p>For a list of parser tokens, see List of Parser Tokens, or use token_name() to translate a token value into its string representation.</p>
 </blockquote>
@@ -375,7 +377,7 @@ token_get_all() parses the given source string into PHP language tokens using th
 <li>合併數組為字符串并輸出.</li>
 </ol>
 <p>下面給出一段示例代碼：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uglify</span><span class="params">($contents)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    $tokens = token_get_all($contents);</span><br><span class="line"></span><br><span class="line">    $last_space = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">foreach</span>( $tokens <span class="keyword">as</span> $num =&gt; $token) &#123;</span><br><span class="line">        <span class="keyword">if</span> (is_string($token)) &#123;</span><br><span class="line">            $last_space = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">switch</span> ($token[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">case</span> T_COMMENT:</span><br><span class="line">            <span class="keyword">case</span> T_DOC_COMMENT:</span><br><span class="line">                $token[<span class="number">1</span>] = <span class="string">""</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> T_OPEN_TAG:</span><br><span class="line">                $token[<span class="number">1</span>] = <span class="string">"&lt;?php"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> T_CLOSE_TAG:</span><br><span class="line">                $token[<span class="number">1</span>] = <span class="string">"?&gt;"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> T_WHITESPACE:</span><br><span class="line">                <span class="keyword">if</span> (!$last_space) &#123;</span><br><span class="line">                    $token[<span class="number">1</span>] = <span class="string">" "</span>;</span><br><span class="line">                    $last_space = <span class="keyword">true</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    $token[<span class="number">1</span>] = <span class="string">""</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                $last_space = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        $tokens[$num] = $token[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> implode(<span class="string">""</span>, $tokens);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uglify</span>(<span class="params">$contents</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    $tokens = token_get_all($contents);</span><br><span class="line"></span><br><span class="line">    $last_space = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">foreach</span>( $tokens <span class="keyword">as</span> $num =&gt; $token) &#123;</span><br><span class="line">        <span class="keyword">if</span> (is_string($token)) &#123;</span><br><span class="line">            $last_space = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">switch</span> ($token[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">case</span> T_COMMENT:</span><br><span class="line">            <span class="keyword">case</span> T_DOC_COMMENT:</span><br><span class="line">                $token[<span class="number">1</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> T_OPEN_TAG:</span><br><span class="line">                $token[<span class="number">1</span>] = <span class="string">&quot;&lt;?php&quot;</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> T_CLOSE_TAG:</span><br><span class="line">                $token[<span class="number">1</span>] = <span class="string">&quot;?&gt;&quot;</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> T_WHITESPACE:</span><br><span class="line">                <span class="keyword">if</span> (!$last_space) &#123;</span><br><span class="line">                    $token[<span class="number">1</span>] = <span class="string">&quot; &quot;</span>;</span><br><span class="line">                    $last_space = <span class="literal">true</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    $token[<span class="number">1</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                $last_space = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        $tokens[$num] = $token[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> implode(<span class="string">&quot;&quot;</span>, $tokens);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>註：代碼沒有實現混淆功能, 僅演示了利用 token_get_all() 分析處理 PHP 文件.</p>
 
             
@@ -384,7 +386,7 @@ token_get_all() parses the given source string into PHP language tokens using th
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -508,18 +510,17 @@ token_get_all() parses the given source string into PHP language tokens using th
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -649,7 +650,6 @@ token_get_all() parses the given source string into PHP language tokens using th
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -789,7 +789,7 @@ token_get_all() parses the given source string into PHP language tokens using th
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -911,7 +911,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -937,7 +937,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -989,7 +989,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1013,7 +1013,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1036,6 +1036,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

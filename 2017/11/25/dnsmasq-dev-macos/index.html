@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"通常我們需要修改/etc/hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些.\n但是這樣還是需要頻繁修改hosts檔.\n可以改用 Dnsmasq 來更方便地解決問題.\n\n主要思路：\n\n安裝 Dnsmasq\n設定 Dnsmasq 解析*.dev為127.0.0.1\n設定 macOS 使用 Dnsmasq 處理.dev域\n\n¶安裝 Dnsmasq\n使用 Homebrew 安裝\n1$ brew install dnsmasq\n¶設定 Dnsmasq\n12345678910$ vim /usr/local/etc/dnsmasq.conf# address=/double-click.net/127.0.0.1address=/dev/127.0.0.1$ sudo brew services start dnsmasq$ dig abc.dev @127.0.0.1;; ANSWER SECTION:abc.dev. 0 IN   A   127.0.0.1\n¶設定 macOS\n123$ sudo mkdir -p /etc/resolver$ sudo vim /etc/resolver/devnameserver 127.0.0.1\n¶測試\n123$ ping he.net$ ping abc.dev$ ping foo.bar.dev\n","dateCreated":"2017-11-25T18:07:17+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2017-11-25T18:07:17+08:00","description":"通常我們需要修改/etc/hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些.\n但是這樣還是需要頻繁修改hosts檔.\n可以改用 Dnsmasq 來更方便地解決問題.","headline":"在 macOS 上使用 Dnsmasq 進行測試","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2017/11/25/dnsmasq-dev-macos/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2017/11/25/dnsmasq-dev-macos/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"通常我們需要修改/etc/hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些.\n但是這樣還是需要頻繁修改hosts檔.\n可以改用 Dnsmasq 來更方便地解決問題.\n\n主要思路：\n\n安裝 Dnsmasq\n設定 Dnsmasq 解析*.dev為127.0.0.1\n設定 macOS 使用 Dnsmasq 處理.dev域\n\n安裝 Dnsmasq\n使用 Homebrew 安裝\n1$ brew install dnsmasq\n設定 Dnsmasq\n12345678910$ vim /usr/local/etc/dnsmasq.conf# address=/double-click.net/127.0.0.1address=/dev/127.0.0.1$ sudo brew services start dnsmasq$ dig abc.dev @127.0.0.1;; ANSWER SECTION:abc.dev. 0 IN   A   127.0.0.1\n設定 macOS\n123$ sudo mkdir -p /etc/resolver$ sudo vim /etc/resolver/devnameserver 127.0.0.1\n測試\n123$ ping he.net$ ping abc.dev$ ping foo.bar.dev\n","dateCreated":"2017-11-25T10:07:17+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2017-11-25T10:07:17+00:00","description":"通常我們需要修改/etc/hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些.\n但是這樣還是需要頻繁修改hosts檔.\n可以改用 Dnsmasq 來更方便地解決問題.","headline":"在 macOS 上使用 Dnsmasq 進行測試","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2017/11/25/dnsmasq-dev-macos/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2017/11/25/dnsmasq-dev-macos/"}</script>
     <meta name="description" content="通常我們需要修改&#x2F;etc&#x2F;hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些. 但是這樣還是需要頻繁修改hosts檔. 可以改用 Dnsmasq 來更方便地解決問題.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="在 macOS 上使用 Dnsmasq 進行測試">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="通常我們需要修改&#x2F;etc&#x2F;hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些. 但是這樣還是需要頻繁修改hosts檔. 可以改用 Dnsmasq 來更方便地解決問題.">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-11-25T10:07:17.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.109Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.808Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -55,6 +55,7 @@
 
 
     
+
 
     
         
@@ -323,6 +324,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -339,7 +341,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2017-11-25T18:07:17+08:00">
+    <time datetime="2017-11-25T10:07:17+00:00">
 	
 		    11月 25, 2017
     	
@@ -369,14 +371,14 @@
 <li>設定 Dnsmasq 解析<code>*.dev</code>為<code>127.0.0.1</code></li>
 <li>設定 macOS 使用 Dnsmasq 處理<code>.dev</code>域</li>
 </ol>
-<h3 id="安裝-dnsmasq"><a class="header-anchor" href="#安裝-dnsmasq">¶</a>安裝 Dnsmasq</h3>
+<h3 id="安裝-Dnsmasq">安裝 Dnsmasq</h3>
 <p>使用 Homebrew 安裝</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install dnsmasq</span><br></pre></td></tr></table></figure>
-<h3 id="設定-dnsmasq"><a class="header-anchor" href="#設定-dnsmasq">¶</a>設定 Dnsmasq</h3>
+<h3 id="設定-Dnsmasq">設定 Dnsmasq</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ vim /usr/<span class="built_in">local</span>/etc/dnsmasq.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># address=/double-click.net/127.0.0.1</span></span><br><span class="line">address=/dev/127.0.0.1</span><br><span class="line"></span><br><span class="line">$ sudo brew services start dnsmasq</span><br><span class="line"></span><br><span class="line">$ dig abc.dev @127.0.0.1</span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">abc.dev. 0 IN   A   127.0.0.1</span><br></pre></td></tr></table></figure>
-<h3 id="設定-macos"><a class="header-anchor" href="#設定-macos">¶</a>設定 macOS</h3>
+<h3 id="設定-macOS">設定 macOS</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir -p /etc/resolver</span><br><span class="line">$ sudo vim /etc/resolver/dev</span><br><span class="line">nameserver 127.0.0.1</span><br></pre></td></tr></table></figure>
-<h3 id="測試"><a class="header-anchor" href="#測試">¶</a>測試</h3>
+<h3 id="測試">測試</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ping he.net</span><br><span class="line">$ ping abc.dev</span><br><span class="line">$ ping foo.bar.dev</span><br></pre></td></tr></table></figure>
 
             
@@ -385,7 +387,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -509,18 +511,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -650,7 +651,6 @@
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -790,7 +790,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -912,7 +912,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -938,7 +938,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -990,7 +990,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1014,7 +1014,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1037,6 +1037,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>

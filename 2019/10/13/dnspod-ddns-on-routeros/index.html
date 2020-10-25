@@ -15,16 +15,16 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務[1].\n這種行為是十分不安全的, 故自行研究方法.\n\nMikroTik Wiki 中有如何設定 NO-IP DDNS 的說明[2], 從其程式碼修改即可適配 DNSPod.\n12345678910111213141516171819202122##############Script Settings##################:local DNSPODTOKENID \"DNSPod API Token ID\":local DNSPODTOKEN \"DNSPod API Token\":local DNSPODDOMAIN \"DNSPod Domain Name\":local DNSPODRECORD \"DNSPod Record ID\":local DNSPODSUBDOMAIN \"DNSPod SubDomain Name\":local WANInterface \"MikroTik Router WAN Interface Name\"###############################################:local DdnsDomain \"$DNSPODSUBDOMAIN.$DNSPODDOMAIN\":local IpCurrent [/ip address get [find interface=$WANInterface] address];:for i from=( [:len $IpCurrent] - 1) to=0 do=&#123;  :if ( [:pick $IpCurrent $i] = \"/\") do=&#123;    :local NewIP [:pick $IpCurrent 0 $i];    :if ([:resolve $DdnsDomain] != $NewIP) do=&#123;      /tool fetch mode=https url=\"https://dnsapi.cn/Record.Ddns\" http-data=\"login_token=$DNSPODTOKENID%2C$DNSPODTOKEN&amp;domain=$DNSPODDOMAIN&amp;record_id=$DNSPODRECORD&amp;sub_domain=$DNSPODSUBDOMAIN&amp;record_line_id=0&amp;value=$NewIP\" keep-result=no      :log info \"NO-IP Update: $DdnsDomain - $NewIP\"     &#125;   &#125;&#125;\n雖然可以通過 RouterOS Schedule 定時執行上述程式碼, 但是這種方法一點也不優雅.\n經過搜尋發現, 可以利用 PPP Profile 的 ON-UP Script[3].\n於是將上述程式碼放到 pppoe-out1 使用的 profile 中, 並在開頭新增 :delay 10.\n這樣每次 PPPoE 撥號成功就會自動更新 DDNS 了.\n同理, WIKI 上 NO-IP 的程式碼也可以放在這裡使用.\n\n\n\n不點名批評 ↩\n\nhttps://wiki.mikrotik.com/wiki/Dynamic_DNS_Update_Script_for_No-IP_DNS ↩\n\nhttps://forum.mikrotik.com/viewtopic.php?t=124990 ↩\n\n\n\n","dateCreated":"2019-10-13T16:36:37+08:00","dateModified":"2020-04-07T11:58:17+08:00","datePublished":"2019-10-13T16:36:37+08:00","description":"最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務[1].\n這種行為是十分不安全的, 故自行研究方法.","headline":"RouterOS DNSPod DDNS 設定","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/"}</script>
-    <meta name="description" content="最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務[1]. 這種行為是十分不安全的, 故自行研究方法.">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1.\n這種行為是十分不安全的, 故自行研究方法.\n\nMikroTik Wiki 中有如何設定 NO-IP DDNS 的說明^2, 從其程式碼修改即可適配 DNSPod.\n12345678910111213141516171819202122##############Script Settings##################:local DNSPODTOKENID &quot;DNSPod API Token ID&quot;:local DNSPODTOKEN &quot;DNSPod API Token&quot;:local DNSPODDOMAIN &quot;DNSPod Domain Name&quot;:local DNSPODRECORD &quot;DNSPod Record ID&quot;:local DNSPODSUBDOMAIN &quot;DNSPod SubDomain Name&quot;:local WANInterface &quot;MikroTik Router WAN Interface Name&quot;###############################################:local DdnsDomain &quot;$DNSPODSUBDOMAIN.$DNSPODDOMAIN&quot;:local IpCurrent [/ip address get [find interface=$WANInterface] address];:for i from=( [:len $IpCurrent] - 1) to=0 do=&#123;  :if ( [:pick $IpCurrent $i] = &quot;/&quot;) do=&#123;    :local NewIP [:pick $IpCurrent 0 $i];    :if ([:resolve $DdnsDomain] != $NewIP) do=&#123;      /tool fetch mode=https url=&quot;https://dnsapi.cn/Record.Ddns&quot; http-data=&quot;login_token=$DNSPODTOKENID%2C$DNSPODTOKEN&amp;domain=$DNSPODDOMAIN&amp;record_id=$DNSPODRECORD&amp;sub_domain=$DNSPODSUBDOMAIN&amp;record_line_id=0&amp;value=$NewIP&quot; keep-result=no      :log info &quot;NO-IP Update: $DdnsDomain - $NewIP&quot;     &#125;   &#125;&#125;\n雖然可以通過 RouterOS Schedule 定時執行上述程式碼, 但是這種方法一點也不優雅.\n經過搜尋發現, 可以利用 PPP Profile 的 ON-UP Script^3.\n於是將上述程式碼放到 pppoe-out1 使用的 profile 中, 並在開頭新增 :delay 10.\n這樣每次 PPPoE 撥號成功就會自動更新 DDNS 了.\n同理, WIKI 上 NO-IP 的程式碼也可以放在這裡使用.\n","dateCreated":"2019-10-13T08:36:37+00:00","dateModified":"2020-10-25T15:40:10+00:00","datePublished":"2019-10-13T08:36:37+00:00","description":"最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1.\n這種行為是十分不安全的, 故自行研究方法.","headline":"RouterOS DNSPod DDNS 設定","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/"}</script>
+    <meta name="description" content="最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1. 這種行為是十分不安全的, 故自行研究方法.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="RouterOS DNSPod DDNS 設定">
 <meta property="og:url" content="https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/index.html">
 <meta property="og:site_name" content="7IN0SAN9">
-<meta property="og:description" content="最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務[1]. 這種行為是十分不安全的, 故自行研究方法.">
+<meta property="og:description" content="最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1. 這種行為是十分不安全的, 故自行研究方法.">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-10-13T08:36:37.000Z">
-<meta property="article:modified_time" content="2020-04-07T03:58:17.109Z">
+<meta property="article:modified_time" content="2020-10-25T15:40:10.808Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -55,6 +55,7 @@
 
 
     
+
 
     
         
@@ -323,6 +324,7 @@
 </nav>
 
             
+
             <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
@@ -339,7 +341,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2019-10-13T16:36:37+08:00">
+    <time datetime="2019-10-13T08:36:37+00:00">
 	
 		    10月 13, 2019
     	
@@ -359,27 +361,16 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+            <p>最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務<a href="%E4%B8%8D%E9%BB%9E%E5%90%8D%E6%89%B9%E8%A9%95">^1</a>.</p>
 <p>這種行為是十分不安全的, 故自行研究方法.</p>
 <a id="more"></a>
-<p>MikroTik Wiki 中有如何設定 NO-IP DDNS 的說明<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>, 從其程式碼修改即可適配 DNSPod.</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##############Script Settings##################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">:local</span> DNSPODTOKENID <span class="string">"DNSPod API Token ID"</span></span><br><span class="line"><span class="keyword">:local</span> DNSPODTOKEN <span class="string">"DNSPod API Token"</span></span><br><span class="line"><span class="keyword">:local</span> DNSPODDOMAIN <span class="string">"DNSPod Domain Name"</span></span><br><span class="line"><span class="keyword">:local</span> DNSPODRECORD <span class="string">"DNSPod Record ID"</span></span><br><span class="line"><span class="keyword">:local</span> DNSPODSUBDOMAIN <span class="string">"DNSPod SubDomain Name"</span></span><br><span class="line"><span class="keyword">:local</span> WANInterface <span class="string">"MikroTik Router WAN Interface Name"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">:local</span> DdnsDomain <span class="string">"<span class="variable">$DNSPODSUBDOMAIN</span>.<span class="variable">$DNSPODDOMAIN</span>"</span></span><br><span class="line"><span class="keyword">:local</span> IpCurrent [<span class="built_in">/ip address </span><span class="builtin-name">get</span> [<span class="builtin-name">find</span> <span class="attribute">interface</span>=<span class="variable">$WANInterface</span>] address];</span><br><span class="line"><span class="keyword">:for</span> i <span class="keyword">from</span>=( [<span class="keyword">:len</span> <span class="variable">$IpCurrent</span>] - 1) <span class="attribute">to</span>=0 <span class="keyword">do</span>=&#123;</span><br><span class="line">  <span class="keyword">:if</span> ( [<span class="keyword">:pick</span> <span class="variable">$IpCurrent</span> <span class="variable">$i</span>] = <span class="string">"/"</span>) <span class="keyword">do</span>=&#123;</span><br><span class="line">    <span class="keyword">:local</span> NewIP [<span class="keyword">:pick</span> <span class="variable">$IpCurrent</span> 0 <span class="variable">$i</span>];</span><br><span class="line">    <span class="keyword">:if</span> ([<span class="keyword">:resolve</span> <span class="variable">$DdnsDomain</span>] != <span class="variable">$NewIP</span>) <span class="keyword">do</span>=&#123;</span><br><span class="line">      <span class="built_in">/tool </span>fetch <span class="attribute">mode</span>=https <span class="attribute">url</span>=<span class="string">"https://dnsapi.cn/Record.Ddns"</span> <span class="attribute">http-data</span>=<span class="string">"login_token=<span class="variable">$DNSPODTOKENID</span>%2C<span class="variable">$DNSPODTOKEN</span>&amp;domain=<span class="variable">$DNSPODDOMAIN</span>&amp;record_id=<span class="variable">$DNSPODRECORD</span>&amp;sub_domain=<span class="variable">$DNSPODSUBDOMAIN</span>&amp;record_line_id=0&amp;value=<span class="variable">$NewIP</span>"</span> <span class="attribute">keep-result</span>=<span class="literal">no</span></span><br><span class="line">      <span class="keyword">:log</span> <span class="builtin-name">info</span> <span class="string">"NO-IP Update: <span class="variable">$DdnsDomain</span> - <span class="variable">$NewIP</span>"</span></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>MikroTik Wiki 中有如何設定 NO-IP DDNS 的說明<a target="_blank" rel="noopener" href="https://wiki.mikrotik.com/wiki/Dynamic_DNS_Update_Script_for_No-IP_DNS">^2</a>, 從其程式碼修改即可適配 DNSPod.</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##############Script Settings##################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">:local</span> DNSPODTOKENID <span class="string">&quot;DNSPod API Token ID&quot;</span></span><br><span class="line"><span class="keyword">:local</span> DNSPODTOKEN <span class="string">&quot;DNSPod API Token&quot;</span></span><br><span class="line"><span class="keyword">:local</span> DNSPODDOMAIN <span class="string">&quot;DNSPod Domain Name&quot;</span></span><br><span class="line"><span class="keyword">:local</span> DNSPODRECORD <span class="string">&quot;DNSPod Record ID&quot;</span></span><br><span class="line"><span class="keyword">:local</span> DNSPODSUBDOMAIN <span class="string">&quot;DNSPod SubDomain Name&quot;</span></span><br><span class="line"><span class="keyword">:local</span> WANInterface <span class="string">&quot;MikroTik Router WAN Interface Name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">:local</span> DdnsDomain <span class="string">&quot;<span class="variable">$DNSPODSUBDOMAIN</span>.<span class="variable">$DNSPODDOMAIN</span>&quot;</span></span><br><span class="line"><span class="keyword">:local</span> IpCurrent [<span class="built_in">/ip address </span><span class="builtin-name">get</span> [<span class="builtin-name">find</span> <span class="attribute">interface</span>=<span class="variable">$WANInterface</span>] address];</span><br><span class="line"><span class="keyword">:for</span> i <span class="keyword">from</span>=( [<span class="keyword">:len</span> <span class="variable">$IpCurrent</span>] - 1) <span class="attribute">to</span>=0 <span class="keyword">do</span>=&#123;</span><br><span class="line">  <span class="keyword">:if</span> ( [<span class="keyword">:pick</span> <span class="variable">$IpCurrent</span> <span class="variable">$i</span>] = <span class="string">&quot;/&quot;</span>) <span class="keyword">do</span>=&#123;</span><br><span class="line">    <span class="keyword">:local</span> NewIP [<span class="keyword">:pick</span> <span class="variable">$IpCurrent</span> 0 <span class="variable">$i</span>];</span><br><span class="line">    <span class="keyword">:if</span> ([<span class="keyword">:resolve</span> <span class="variable">$DdnsDomain</span>] != <span class="variable">$NewIP</span>) <span class="keyword">do</span>=&#123;</span><br><span class="line">      <span class="built_in">/tool </span>fetch <span class="attribute">mode</span>=https <span class="attribute">url</span>=<span class="string">&quot;https://dnsapi.cn/Record.Ddns&quot;</span> <span class="attribute">http-data</span>=<span class="string">&quot;login_token=<span class="variable">$DNSPODTOKENID</span>%2C<span class="variable">$DNSPODTOKEN</span>&amp;domain=<span class="variable">$DNSPODDOMAIN</span>&amp;record_id=<span class="variable">$DNSPODRECORD</span>&amp;sub_domain=<span class="variable">$DNSPODSUBDOMAIN</span>&amp;record_line_id=0&amp;value=<span class="variable">$NewIP</span>&quot;</span> <span class="attribute">keep-result</span>=<span class="literal">no</span></span><br><span class="line">      <span class="keyword">:log</span> <span class="builtin-name">info</span> <span class="string">&quot;NO-IP Update: <span class="variable">$DdnsDomain</span> - <span class="variable">$NewIP</span>&quot;</span></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>雖然可以通過 RouterOS Schedule 定時執行上述程式碼, 但是這種方法一點也不優雅.</p>
-<p>經過搜尋發現, 可以利用 PPP Profile 的 ON-UP Script<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>.</p>
+<p>經過搜尋發現, 可以利用 PPP Profile 的 ON-UP Script<a target="_blank" rel="noopener" href="https://forum.mikrotik.com/viewtopic.php?t=124990">^3</a>.</p>
 <p>於是將上述程式碼放到 <code>pppoe-out1</code> 使用的 profile 中, 並在開頭新增 <code>:delay 10</code>.</p>
 <p>這樣每次 PPPoE 撥號成功就會自動更新 DDNS 了.</p>
 <p><em>同理, WIKI 上 NO-IP 的程式碼也可以放在這裡使用.</em></p>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1"  class="footnote-item"><p>不點名批評 <a href="#fnref1" class="footnote-backref">↩</a></p>
-</li>
-<li id="fn2"  class="footnote-item"><p><a href="https://wiki.mikrotik.com/wiki/Dynamic_DNS_Update_Script_for_No-IP_DNS" target="_blank" rel="noopener">https://wiki.mikrotik.com/wiki/Dynamic_DNS_Update_Script_for_No-IP_DNS</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
-</li>
-<li id="fn3"  class="footnote-item"><p><a href="https://forum.mikrotik.com/viewtopic.php?t=124990" target="_blank" rel="noopener">https://forum.mikrotik.com/viewtopic.php?t=124990</a> <a href="#fnref3" class="footnote-backref">↩</a></p>
-</li>
-</ol>
-</section>
 
             
 
@@ -387,7 +378,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本著作係採用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權.
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
@@ -511,18 +502,17 @@
     </ul>
 </div>
 
-
         
         
             
                 <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
             
         
     </div>
 </article>
-
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -652,7 +642,6 @@
         </li>
     </ul>
 </div>
-
 
                 </div>
                 
@@ -792,7 +781,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><p>這裏選擇as3+php架構</p>
-<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables
+<p>在 as3裏, 原來的loadVars方法已經被廢棄, 而改用一系列的類來實現與後臺數據的交互：URLLoader, URLLoaderDataFormat, URLStream, URLVariables<br>
 URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, URL數據等信息的有力工具.URLLoader接受一個URLRequest 作為構造的參數, 使用load方法來加載數據.URLLoder也可以進行監聽, 這點也loadVars不同, 一個簡單的示例如下：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -914,7 +903,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a href="http://wange.im/wg-toolbar.html" target="_blank" rel="noopener">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客<a target="_blank" rel="noopener" href="http://wange.im/wg-toolbar.html">《萬戈牌工具條》</a> 認識一下這個工具條插件.</p>
 <h1>複製粘貼的簡單過程</h1>
 <p>(鑒於安全性的考慮Kinosang’s Labs沒有關閉半形字元替換功能, 你需要手動把全形單雙引號等字元替換成半形字元)</p>
 <p>以下代碼放到style.css</p></div>
@@ -940,7 +929,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.
+                        <div class="media-content hide-xs font-merryweather"><p>不知道萬戈工具條的朋友可以到萬戈的博客《萬戈牌工具條》 認識一下這個工具條插件.<br>
 複製粘貼與替換的簡單過程</p>
 <p>以下代碼放到style.css</p></div>
                     </div>
@@ -992,7 +981,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a href="http://wange.im/control-panel-for-wordpress-plugin.html" target="_blank" rel="noopener">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?
+                        <div class="media-content hide-xs font-merryweather"><p>想必不少朋友都看到了萬戈的<a target="_blank" rel="noopener" href="http://wange.im/control-panel-for-wordpress-plugin.html">《為 WordPress 插件添加後臺控制選項》</a>, 那麼, 如何給主題添加後臺選項呢?<br>
 下面以為主題添加“公告”功能為例進行講解, 其他項目類似.</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1016,7 +1005,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a href="http://wange.im/about-wordpress.html" target="_blank" rel="noopener">《WordPress 那些事兒》</a>, <a href="http://wange.im/wordpress-is-not-everything.html" target="_blank" rel="noopener">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
+                        <div class="media-content hide-xs font-merryweather"><p>撰寫本系列文章的主要目的, 是普及WordPress博客程序, 寫作之前, 參考了萬大叔的<a target="_blank" rel="noopener" href="http://wange.im/about-wordpress.html">《WordPress 那些事兒》</a>, <a target="_blank" rel="noopener" href="http://wange.im/wordpress-is-not-everything.html">《WordPress 我變我變我變變變》</a>兩篇文章, 下文中引用自萬大叔文章中的文本會被註明.</p>
 <p>在本系列文章的開頭, 先來介紹一下博客的分類 (以下信息引用自萬戈《WordPress》PPT幻燈片第2頁)</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -1039,6 +1028,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
         
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+
         <!--SCRIPTS-->
 
 <script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>
