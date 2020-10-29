@@ -8,6 +8,7 @@ title: 友情連結
 
 * [钉子の次元](http://blog.dimpurr.com)
 * [千与琥珀的河川](https://www.ggdog.info)
+* [苏卡卡的有底洞](https://skk.moe)
 * [小泉 (Koizumi)](https://blog.minamigo.moe)
 * [AkibaRika](https://moe.akibarika.org)
 * [bangbang93](https://blog.bangbang93.com)
