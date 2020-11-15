@@ -2,41 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.7in0.me/2014/01/19/wanted-fiends/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2014/01/21/what-fuck-my-skill-tree-is/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2011/07/27/what-i-think-what-i-want/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2016/10/13/what-is-cloud-computing/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2018/06/28/why-i-delete-my-keybase-account/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.7in0.me/2011/02/09/wordpress-do-different-thing-with-different-user-rank/</loc>
     
     <lastmod>2020-11-15</lastmod>
@@ -261,7 +226,84 @@
   </url>
   
   <url>
-    <loc>https://blog.7in0.me/2019/10/13/aspnet-core-mvc-chinese-localization-problem/</loc>
+    <loc>https://blog.7in0.me/2014/01/19/wanted-fiends/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2014/01/21/what-fuck-my-skill-tree-is/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2011/07/27/what-i-think-what-i-want/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2016/10/13/what-is-cloud-computing/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2018/06/28/why-i-delete-my-keybase-account/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2020/11/15/why-not-trust-user-input/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2014/03/22/7in0s-labs-and-atomphp-and-smsbao/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2014/08/13/about-ani-jie-2014-guangzhou-animation-cultural-festival-and-something-happened-after/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2013/06/19/about-src-and-quote/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2013/11/22/adobe-flash-cc-for-mac-chinese-language-packages/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2013/12/10/alfred-download-online-videos-workflow/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2015/01/05/anyconnect-works-well/</loc>
     
     <lastmod>2020-11-15</lastmod>
     
@@ -269,6 +311,13 @@
   
   <url>
     <loc>https://blog.7in0.me/2019/01/18/asp-net-core-mvc-identityserver-and-external-login/</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/2019/10/13/aspnet-core-mvc-chinese-localization-problem/</loc>
     
     <lastmod>2020-11-15</lastmod>
     
@@ -290,27 +339,6 @@
   
   <url>
     <loc>https://blog.7in0.me/2014/01/20/blood-and-tears-with-os-x-freeze-up-with-mission-control/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2020/03/29/build-php-extension-on-windows/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2014/01/07/change-domain-to-7in0-and-change-droplet/</loc>
     
     <lastmod>2020-11-15</lastmod>
     
@@ -492,14 +520,14 @@
   </url>
   
   <url>
-    <loc>https://blog.7in0.me/2016/06/03/installing-vmware-vsphere-vcenter-server/</loc>
+    <loc>https://blog.7in0.me/2015/06/16/install-shadowsocks-manyuser-on-ubuntu/</loc>
     
     <lastmod>2020-11-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.7in0.me/2015/06/16/install-shadowsocks-manyuser-on-ubuntu/</loc>
+    <loc>https://blog.7in0.me/2016/06/03/installing-vmware-vsphere-vcenter-server/</loc>
     
     <lastmod>2020-11-15</lastmod>
     
@@ -653,42 +681,21 @@
   </url>
   
   <url>
-    <loc>https://blog.7in0.me/2014/03/22/7in0s-labs-and-atomphp-and-smsbao/</loc>
+    <loc>https://blog.7in0.me/2014/01/07/change-domain-to-7in0-and-change-droplet/</loc>
     
     <lastmod>2020-11-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.7in0.me/2014/08/13/about-ani-jie-2014-guangzhou-animation-cultural-festival-and-something-happened-after/</loc>
+    <loc>https://blog.7in0.me/2020/03/29/build-php-extension-on-windows/</loc>
     
     <lastmod>2020-11-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.7in0.me/2013/06/19/about-src-and-quote/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2013/11/22/adobe-flash-cc-for-mac-chinese-language-packages/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2013/12/10/alfred-download-online-videos-workflow/</loc>
-    
-    <lastmod>2020-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.7in0.me/2015/01/05/anyconnect-works-well/</loc>
+    <loc>https://blog.7in0.me/2015/12/01/boxbilling-multi-languages-not-work/</loc>
     
     <lastmod>2020-11-15</lastmod>
     
@@ -712,6 +719,13 @@
   
   <url>
     <loc>https://blog.7in0.me/tags/SICP/</loc>
+    <lastmod>2020-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.7in0.me/tags/Flag-Hunter/</loc>
     <lastmod>2020-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
