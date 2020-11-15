@@ -1,6 +1,5 @@
 ---
 title: Cubieboard 入門筆記 I 安裝與TTY
-id: 1606
 categories:
   - 硬體研究
 date: 2014-01-11 17:46:57

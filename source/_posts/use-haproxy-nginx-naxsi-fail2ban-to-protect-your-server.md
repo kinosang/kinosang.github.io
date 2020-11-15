@@ -1,6 +1,5 @@
 ---
 title: haproxy, nginx-naxsi 和 fail2ban 緩解網路攻擊
-id: 1967
 categories:
   - 資安技術
 date: 2015-02-26 13:32:00

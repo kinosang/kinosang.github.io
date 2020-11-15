@@ -1,6 +1,5 @@
 ---
 title: WordPress普及系列 (一) 為什麼選擇WP
-id: 593
 categories:
   - 應用技巧
 date: 2011-05-05 13:52:49

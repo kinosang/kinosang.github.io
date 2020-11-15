@@ -1,6 +1,5 @@
 ---
 title: Google +1
-id: 716
 categories:
   - 應用技巧
 date: 2011-07-09 15:24:08

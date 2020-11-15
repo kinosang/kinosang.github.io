@@ -1,6 +1,5 @@
 ---
 title: WP短代碼只評論可見AJAX版
-id: 875
 categories:
   - 軟體開發
 date: 2011-07-31 12:36:05

@@ -1,6 +1,5 @@
 ---
 title: 在 Azure 上使用虛擬機器部署 Web 服務 以WordPress 爲例
-id: 2377
 categories:
   - 雜物箱
 date: 2016-10-14 15:31:10

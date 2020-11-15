@@ -1,6 +1,5 @@
 ---
 title: Ubuntu 16.04 上部署 GitLab
-id: 2641
 categories:
   - 應用技巧
 date: 2017-02-23 13:10:16

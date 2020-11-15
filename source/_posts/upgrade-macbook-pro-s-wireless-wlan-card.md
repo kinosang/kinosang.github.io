@@ -1,6 +1,5 @@
 ---
 title: MacBook Pro 升級無線網路卡
-id: 2153
 categories:
   - 雜物箱
 date: 2016-04-19 12:46:57

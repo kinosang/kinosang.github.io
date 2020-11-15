@@ -1,6 +1,5 @@
 ---
 title: ASP留言板教學
-id: 367
 categories:
   - 軟體開發
 date: 2011-02-09 12:37:37

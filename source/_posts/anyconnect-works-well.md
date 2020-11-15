@@ -1,6 +1,5 @@
 ---
 title: AnyConnect 好評如潮!
-id: 1965
 categories:
   - 網際網路
 date: 2015-01-06 00:50:00

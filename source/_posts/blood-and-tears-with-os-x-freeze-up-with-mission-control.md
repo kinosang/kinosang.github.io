@@ -1,6 +1,5 @@
 ---
 title: OS X 血淚史 之 10.9 Mission Control 卡頓
-id: 1709
 categories:
   - 應用技巧
 date: 2014-01-21 00:32:38

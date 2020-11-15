@@ -1,7 +1,6 @@
 ---
 title: 和田光司一路走好
 tags:
-id: 2128
 categories:
   - 雜物箱
 date: 2016-04-08 13:50:00

@@ -1,6 +1,5 @@
 ---
 title: Mac + Steam 偶爾休息一下也不錯
-id: 1374
 categories:
   - 雜物箱
 date: 2013-09-15 18:42:18

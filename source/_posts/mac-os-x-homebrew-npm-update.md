@@ -1,6 +1,5 @@
 ---
 title: 透過Homebrew安裝node, npm update報錯
-id: 1483
 categories:
   - 應用技巧
 date: 2014-01-07 22:21:05

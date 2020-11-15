@@ -1,6 +1,5 @@
 ---
 title: Hello world! 哈囉!
-id: 1929
 categories:
   - 雜物箱
 date: 2014-09-28 09:30:00

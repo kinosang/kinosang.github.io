@@ -1,6 +1,5 @@
 ---
 title: VMware vSphere vCenter Server 安裝備忘
-id: 2214
 categories:
   - 應用技巧
 date: 2016-06-03 11:55:20

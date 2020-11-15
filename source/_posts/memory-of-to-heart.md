@@ -1,6 +1,5 @@
 ---
 title: To Heart —— 記憶
-id: 1841
 categories:
   - 雜物箱
 date: 2014-04-14 21:32:00

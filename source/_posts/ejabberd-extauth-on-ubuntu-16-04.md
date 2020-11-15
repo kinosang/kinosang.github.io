@@ -1,6 +1,5 @@
 ---
 title: Ubuntu 16.04 上 Ejabberd extauth 設定
-id: 2922
 categories:
   - 應用技巧
 date: 2017-09-20 12:59:40

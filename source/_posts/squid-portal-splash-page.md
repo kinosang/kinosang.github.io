@@ -1,6 +1,5 @@
 ---
 title: Squid Portal Splash 頁
-id: 2610
 categories:
   - 應用技巧
 date: 2016-11-30 20:57:30

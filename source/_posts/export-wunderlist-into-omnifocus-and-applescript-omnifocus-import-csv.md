@@ -1,6 +1,5 @@
 ---
 title: 從 Wunderlist 到 OmniFocus (另：純 AppleScript 實現 OmniFocus 匯入 CSV)
-id: 1853
 categories:
   - 應用技巧
 date: 2014-05-12 19:41:00

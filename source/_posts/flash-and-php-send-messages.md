@@ -1,6 +1,5 @@
 ---
 title: Flash與php通信研究系列
-id: 29
 categories:
   - 軟體開發
 date: 2010-07-02 18:27:34

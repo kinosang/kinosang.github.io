@@ -1,6 +1,5 @@
 ---
 title: XML-RPC測試
-id: 1280
 categories:
   - 雜物箱
 date: 2013-07-01 19:32:16

@@ -1,6 +1,5 @@
 ---
 title: Cubieboard 參考手冊 前言
-id: 1645
 categories:
   - 硬體研究
 date: 2014-01-13 13:08:51

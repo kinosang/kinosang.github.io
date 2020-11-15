@@ -1,6 +1,5 @@
 ---
 title: GitLab 8.17 中文化
-id: 2761
 categories:
   - 雜物箱
 date: 2017-03-10 16:53:12

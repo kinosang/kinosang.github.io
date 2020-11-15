@@ -1,7 +1,6 @@
 ---
 title: 水谷優子病逝
 tags:
-id: 2206
 categories:
   - 雜物箱
 date: 2016-05-19 23:25:56

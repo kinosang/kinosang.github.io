@@ -1,6 +1,5 @@
 ---
 title: Shadowsocks Manyuser 安裝筆記
-id: 2097
 categories:
   - 應用技巧
 date: 2015-06-16 18:03:58

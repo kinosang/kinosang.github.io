@@ -1,6 +1,5 @@
 ---
 title: CentOS 安裝 Lizardfs Chunkserver 備忘錄
-id: 2584
 categories:
   - 應用技巧
 date: 2016-11-27 21:42:53

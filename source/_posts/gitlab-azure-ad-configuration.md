@@ -1,6 +1,5 @@
 ---
 title: GitLab Azure AD 設定
-id: 2784
 categories:
   - 雜物箱
 date: 2017-03-10 17:42:46

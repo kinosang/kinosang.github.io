@@ -1,6 +1,5 @@
 ---
 title: Cubieboard 入門筆記 II 藍牙串列埠 和 DHT11
-id: 1801
 categories:
   - 硬體研究
 date: 2014-02-07 16:04:00

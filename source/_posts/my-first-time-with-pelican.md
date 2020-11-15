@@ -1,6 +1,5 @@
 ---
 title: Pelican 初體驗
-id: 1699
 categories:
   - 應用技巧
 date: 2014-01-21 10:52:49

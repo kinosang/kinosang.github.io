@@ -1,6 +1,5 @@
 ---
 title: 歡天喜地用 Typecho
-id: 1964
 categories:
   - 雜物箱
 date: 2014-12-28 15:41:48
