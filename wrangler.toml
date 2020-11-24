@@ -1,0 +1,10 @@
+name = "blog"
+type = "webpack"
+account_id = "9bcc33dd2f9e5f54cadc6e907ae1229c"
+workers_dev = false
+route = "blog.7in0.me/*"
+zone_id = "1d291f3587b5bd93b5cbcb2bb5909dae"
+
+[site]
+bucket = "./public"
+entry-point = "workers-site"

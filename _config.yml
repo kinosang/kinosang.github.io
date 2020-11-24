@@ -75,14 +75,6 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: tranquilpeak
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: git@github.com:kinosang/blog.7in0.me.git
-  branch: gh-pages
-  message:
-
 algolia:
   appId: "PAABXPOQCP"
   apiKey: "7e4cbdf633b332005fc09c6a10ce275f"
@@ -97,8 +89,6 @@ algolia:
     - permalink
     - thumbnailImageUrl
 
-# Markdown-it config
-## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/
 markdown: 'default'
 
 archive_generator:
