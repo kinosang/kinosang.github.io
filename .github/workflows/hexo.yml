@@ -11,6 +11,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version:
+          - 15.x
+
     steps:
     - uses: actions/checkout@v2
 
@@ -20,9 +25,20 @@ jobs:
         ref: gh-pages
         path: .deploy_git
 
-    - uses: actions/setup-node@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        node-version: 15.x
+        node-version: ${{ matrix.node-version }}
+
+    - name: Cache node_modules
+      uses: actions/cache@v1
+      env:
+        cache-name: hexo-node-modules
+      with:
+        path: |
+          node_modules
+          themes/tranquilpeak/node_modules
+        key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package.json') }}
 
     - name: Prepare node_modules
       run: |
@@ -33,9 +49,8 @@ jobs:
     - name: Hexo Generate
       run: yarn hexo g
 
-    - name: Hexo Deploy
+    - name: Deploy to GitHub Page
       env:
-        ALGOLIA_ADMIN_API_KEY: ${{secrets.ALGOLIA_ADMIN_API_KEY}}
         HEXO_DEPLOY_KEY: ${{secrets.HEXO_DEPLOY_KEY}}
       run: |
         mkdir -p ~/.ssh/
@@ -45,5 +60,10 @@ jobs:
         git config --global user.name "7IN0SAN9"
         git config --global user.email "me@7in0.me"
         yarn hexo d
-        yarn hexo a
+      if: ${{ github.repository_owner == 'kinosang' && github.ref == 'refs/heads/master' }}
+
+    - name: Algolia Indexing
+      env:
+        ALGOLIA_ADMIN_API_KEY: ${{secrets.ALGOLIA_ADMIN_API_KEY}}
+      run: yarn hexo a
       if: ${{ github.repository_owner == 'kinosang' && github.ref == 'refs/heads/master' }}
