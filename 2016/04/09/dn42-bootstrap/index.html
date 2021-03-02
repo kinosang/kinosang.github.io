@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"\n什么是 dn42\ndn42 是一個使用多種因特網技術 (包括 BGP, whois 資料庫, DNS 等) 構建的大型的動態 VPN 網路.參與者使用隧道技術 (比如 GRE, OpenVPN, Tinc, IPsec) 與其他人互相連線並利用BGP (邊界閘道器協議) 交換路由.\ndn42 使用 172.20.0.0/14 , fd00::/8 和私有ASN.\ndn42 也與其他網路, 比如 ChaosVPN 和部分 Freifunk 網路.\n\n基礎需求\n\n至少一個 7x24 小時運行的路由器.Linux 或 BSD 盒子可以用作路由器.如果你的家用路由器使用 OpenWRT, 你可以考慮在 dn42 中使用該裝置.\n你的路由器可以通過因特網接入隧道服務 (GRE, OpenVPN, IPsec, Tinc 等) .要注意, 在學校或其他地方, 你的網路管理員會過濾這些流量.\n你具備一定的網路和路由器知識, 比如BGP, IGP, 轉發.並且你具備配置 BGP 路由器 (比如 Quagga 和 Bird) 的能力.\n\n接入手續\n一, 加入 mail list\n\n郵箱 dn42@lists.nox.tf\nNNTP alt.net.dn42.users\n存檔 http://lists.nox.tf/pipermail/dn42/\n發送任意電郵給 dn42-subscribe@lists.nox.tf 加入串列\n\n你也可以同時加入 IRC 頻道 #dn42 @ hackint.org\n二, 註冊\n你需要通過表單註冊一系列項目.推薦使用網頁來進行, 你也可以使用 monotone.\n假定的名字是 FOO , 是 FOO-ORG 機構的一員.下面的範例將會使用這些名稱.\n首先要創建 維護者 (maintainer)\n你的個人信息, 機構信息和其他的項目 (ASN, IP 子網, DNS 區域 等) 都通過 mnt 項目管理.\n按“Create Object”創建 mntner 項目, 輸入必備信息並按“Save”送出, 注意觀察右側下方信息是否報錯：\n123456mntner:    FOO-MNTdescr:     簡介sha512-pw: 密碼 (明文, 非 sha512 指紋)admin-c:   DUMMY-DN42  (稍後我們會更新該項, 下同)tech-c:    DUMMY-DN42mnt-by:    FOO-MNT  (和 mntner 項相同)\n為你個人創建個人 (person)\n1234person:  foo foo 個人姓名或暱稱contact: 電子郵箱地址, xmpp, irc 或 twitter 如 xmpp:foo@foo.comnic-hdl: FOO-DN42 以 -DN42 結尾mnt-by:  FOO-MNT\n更新 mntner\n在 “Search the whois database” 鍵入 FOO-MNT 按 Enter 查詢之前創建的 mntner.\n修改 admin-c 和 tech-c 並按“Save”送出.\n為你的機構創建機構 (organisation)  (若需要)\n12345678organisation: ORG-FOOorg-name:     機構名稱descr:        機構簡介e-mail:       dn42@foo.com 按“+”添加該項, 並填寫機構電郵或 mail listwww:          http://foo.com 按“+”添加該項, 並填寫機構網站admin-c:      FOO-DN42tech-c:       FOO-DN42mnt-by:       FOO-MNT\n現在, 你可以使用下面的信息創建其他項目\n個人項目：\n123admin-c: FOO-DN42tech-c:  FOO-DN42mnt-by:  FOO-MNT\n機構項目：\n123admin-c: ORG-FOOtech-c:  ORG-FOOmnt-by:  FOO-MNT\n註冊 AS 號碼 (ASN)\n你的 ASN 必須在 dn42 的 AS 號碼空間中, 在 2014 年 6 月之前, 可選值為 64600-64855, 76100-76200現在你必須在 4242420000-4242423999 中選擇一個號碼來使用.\n你可以在 http://ix.ucis.nl/dn42/as.php 查看已經被佔用的 ASN.\n若你想使用一個不在上述號碼空間的 ASN, 請確認該號碼不會與 Freifunk, ChaosVPN 等網絡的 ASN 衝突.你可以在 http://nixnodes.net/dn42/graph/ 查看在 dn42 中廣播的 ASN.\n若不確定要使用哪個 ASN, 你可以在 mailing list 或 IRC 詢問.\n創建 aut-num 項目 (省略了admin-c, tech-c 和 mnt-by)\n123aut-num: AS4242420000 按前述內容自行選擇 AS 號碼as-name: FOO-ASdescr:   Foo&#x27;s AS\n註冊子網\n在 http://dn42.netrik.de/ 查看可以註冊的 IPv4 子網, 系統默認分配 /27 子網, 請儘可能不要使用比 /26 更大的子網, 不要使用比 /25 更大的子網.dn42 的 IPv4 空間有限, 在註冊 IPv4 子網之前, 仔細思考再進行選擇：\n\n若 僅家用 或 只運行 2-3 台伺服器和兩個 VPN 空間, /28 子網就夠用了\n若需要 /24 或更大的子網, 請先在 mailing list 或 IRC 詢問\n\ninetnum/172.23.75.0_24 範例：\n1234567inetnum: 172.23.75.0 - 172.23.75.255netname: FOO-NETWORKdescr:   Network of FOOcountry: CNnserver: ns1.foo.dn42nserver: ns2.foo.dn42status:  ASSIGNED\n若需要 IPv6, 你可以通過 http://unique-local-ipv6.com/ 生成一個 IPv6 子網.\ninet6num/fd42:4992:6a6d::_48 範例：\n1234567inet6num: fd42:4992:6a6d:0000:0000:0000:0000:0000 - fd42:4992:6a6d:ffff:ffff:ffff:ffff:ffffnetname:  FOO-NETWORKdescr:    Network of FOOcountry:  CNnserver:  ns1.foo.dn42nserver:  ns2.foo.dn42status:   ASSIGNED\n創建路由器\n若要廣播你的子網, 需要為他們創建路由器.\nroute/172.23.75.0_24:\n1234route:      172.23.75.0/24origin:     AS4242420000mnt-by:     FOO-MNTbgp-status: active\nroute6/fd42:4992:6a6d::_48\n123route6: fd42:4992:6a6d::/48origin: AS4242420000mnt-by: FOO-MNT\n下一步 (待整理)\n取得 peers\n接入隧道\n運行路由伺服\n設定 DNS\n使用或創建網際服務\n你們可以在“關於我”找到我的 dn42 ASN 等信息.\n","dateCreated":"2016-04-09T08:33:32+00:00","dateModified":"2020-11-24T07:26:25+00:00","datePublished":"2016-04-09T08:33:32+00:00","description":"\n什么是 dn42\ndn42 是一個使用多種因特網技術 (包括 BGP, whois 資料庫, DNS 等) 構建的大型的動態 VPN 網路.參與者使用隧道技術 (比如 GRE, OpenVPN, Tinc, IPsec) 與其他人互相連線並利用BGP (邊界閘道器協議) 交換路由.\ndn42 使用 172.20.0.0/14 , fd00::/8 和私有ASN.\ndn42 也與其他網路, 比如 ChaosVPN 和部分 Freifunk 網路.","headline":"DN42 入門指南","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2016/04/09/dn42-bootstrap/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2016/04/09/dn42-bootstrap/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"\n什么是 dn42\ndn42 是一個使用多種因特網技術 (包括 BGP, whois 資料庫, DNS 等) 構建的大型的動態 VPN 網路.參與者使用隧道技術 (比如 GRE, OpenVPN, Tinc, IPsec) 與其他人互相連線並利用BGP (邊界閘道器協議) 交換路由.\ndn42 使用 172.20.0.0/14 , fd00::/8 和私有ASN.\ndn42 也與其他網路, 比如 ChaosVPN 和部分 Freifunk 網路.\n\n基礎需求\n\n至少一個 7x24 小時運行的路由器.Linux 或 BSD 盒子可以用作路由器.如果你的家用路由器使用 OpenWRT, 你可以考慮在 dn42 中使用該裝置.\n你的路由器可以通過因特網接入隧道服務 (GRE, OpenVPN, IPsec, Tinc 等) .要注意, 在學校或其他地方, 你的網路管理員會過濾這些流量.\n你具備一定的網路和路由器知識, 比如BGP, IGP, 轉發.並且你具備配置 BGP 路由器 (比如 Quagga 和 Bird) 的能力.\n\n接入手續\n一, 加入 mail list\n\n郵箱 dn42@lists.nox.tf\nNNTP alt.net.dn42.users\n存檔 http://lists.nox.tf/pipermail/dn42/\n發送任意電郵給 dn42-subscribe@lists.nox.tf 加入串列\n\n你也可以同時加入 IRC 頻道 #dn42 @ hackint.org\n二, 註冊\n你需要通過表單註冊一系列項目.推薦使用網頁來進行, 你也可以使用 monotone.\n假定的名字是 FOO , 是 FOO-ORG 機構的一員.下面的範例將會使用這些名稱.\n首先要創建 維護者 (maintainer)\n你的個人信息, 機構信息和其他的項目 (ASN, IP 子網, DNS 區域 等) 都通過 mnt 項目管理.\n按“Create Object”創建 mntner 項目, 輸入必備信息並按“Save”送出, 注意觀察右側下方信息是否報錯：\n123456mntner:    FOO-MNTdescr:     簡介sha512-pw: 密碼 (明文, 非 sha512 指紋)admin-c:   DUMMY-DN42  (稍後我們會更新該項, 下同)tech-c:    DUMMY-DN42mnt-by:    FOO-MNT  (和 mntner 項相同)\n為你個人創建個人 (person)\n1234person:  foo foo 個人姓名或暱稱contact: 電子郵箱地址, xmpp, irc 或 twitter 如 xmpp:foo@foo.comnic-hdl: FOO-DN42 以 -DN42 結尾mnt-by:  FOO-MNT\n更新 mntner\n在 “Search the whois database” 鍵入 FOO-MNT 按 Enter 查詢之前創建的 mntner.\n修改 admin-c 和 tech-c 並按“Save”送出.\n為你的機構創建機構 (organisation)  (若需要)\n12345678organisation: ORG-FOOorg-name:     機構名稱descr:        機構簡介e-mail:       dn42@foo.com 按“+”添加該項, 並填寫機構電郵或 mail listwww:          http://foo.com 按“+”添加該項, 並填寫機構網站admin-c:      FOO-DN42tech-c:       FOO-DN42mnt-by:       FOO-MNT\n現在, 你可以使用下面的信息創建其他項目\n個人項目：\n123admin-c: FOO-DN42tech-c:  FOO-DN42mnt-by:  FOO-MNT\n機構項目：\n123admin-c: ORG-FOOtech-c:  ORG-FOOmnt-by:  FOO-MNT\n註冊 AS 號碼 (ASN)\n你的 ASN 必須在 dn42 的 AS 號碼空間中, 在 2014 年 6 月之前, 可選值為 64600-64855, 76100-76200現在你必須在 4242420000-4242423999 中選擇一個號碼來使用.\n你可以在 http://ix.ucis.nl/dn42/as.php 查看已經被佔用的 ASN.\n若你想使用一個不在上述號碼空間的 ASN, 請確認該號碼不會與 Freifunk, ChaosVPN 等網絡的 ASN 衝突.你可以在 http://nixnodes.net/dn42/graph/ 查看在 dn42 中廣播的 ASN.\n若不確定要使用哪個 ASN, 你可以在 mailing list 或 IRC 詢問.\n創建 aut-num 項目 (省略了admin-c, tech-c 和 mnt-by)\n123aut-num: AS4242420000 按前述內容自行選擇 AS 號碼as-name: FOO-ASdescr:   Foo&#x27;s AS\n註冊子網\n在 http://dn42.netrik.de/ 查看可以註冊的 IPv4 子網, 系統默認分配 /27 子網, 請儘可能不要使用比 /26 更大的子網, 不要使用比 /25 更大的子網.dn42 的 IPv4 空間有限, 在註冊 IPv4 子網之前, 仔細思考再進行選擇：\n\n若 僅家用 或 只運行 2-3 台伺服器和兩個 VPN 空間, /28 子網就夠用了\n若需要 /24 或更大的子網, 請先在 mailing list 或 IRC 詢問\n\ninetnum/172.23.75.0_24 範例：\n1234567inetnum: 172.23.75.0 - 172.23.75.255netname: FOO-NETWORKdescr:   Network of FOOcountry: CNnserver: ns1.foo.dn42nserver: ns2.foo.dn42status:  ASSIGNED\n若需要 IPv6, 你可以通過 http://unique-local-ipv6.com/ 生成一個 IPv6 子網.\ninet6num/fd42:4992:6a6d::_48 範例：\n1234567inet6num: fd42:4992:6a6d:0000:0000:0000:0000:0000 - fd42:4992:6a6d:ffff:ffff:ffff:ffff:ffffnetname:  FOO-NETWORKdescr:    Network of FOOcountry:  CNnserver:  ns1.foo.dn42nserver:  ns2.foo.dn42status:   ASSIGNED\n創建路由器\n若要廣播你的子網, 需要為他們創建路由器.\nroute/172.23.75.0_24:\n1234route:      172.23.75.0/24origin:     AS4242420000mnt-by:     FOO-MNTbgp-status: active\nroute6/fd42:4992:6a6d::_48\n123route6: fd42:4992:6a6d::/48origin: AS4242420000mnt-by: FOO-MNT\n下一步 (待整理)\n取得 peers\n接入隧道\n運行路由伺服\n設定 DNS\n使用或創建網際服務\n你們可以在“關於我”找到我的 dn42 ASN 等信息.\n","dateCreated":"2016-04-09T08:33:32+00:00","dateModified":"2021-03-02T12:52:57+00:00","datePublished":"2016-04-09T08:33:32+00:00","description":"\n什么是 dn42\ndn42 是一個使用多種因特網技術 (包括 BGP, whois 資料庫, DNS 等) 構建的大型的動態 VPN 網路.參與者使用隧道技術 (比如 GRE, OpenVPN, Tinc, IPsec) 與其他人互相連線並利用BGP (邊界閘道器協議) 交換路由.\ndn42 使用 172.20.0.0/14 , fd00::/8 和私有ASN.\ndn42 也與其他網路, 比如 ChaosVPN 和部分 Freifunk 網路.","headline":"DN42 入門指南","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2016/04/09/dn42-bootstrap/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2016/04/09/dn42-bootstrap/"}</script>
     <meta name="description" content="什么是 dn42 dn42 是一個使用多種因特網技術 (包括 BGP, whois 資料庫, DNS 等) 構建的大型的動態 VPN 網路.參與者使用隧道技術 (比如 GRE, OpenVPN, Tinc, IPsec) 與其他人互相連線並利用BGP (邊界閘道器協議) 交換路由. dn42 使用 172.20.0.0&#x2F;14 , fd00::&#x2F;8 和私有ASN. dn42 也與其他網路, 比如">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="DN42 入門指南">
@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://blog.7in0.me/wp-content/uploads/2016/04/dn42.png">
 <meta property="article:published_time" content="2016-04-09T08:33:32.000Z">
-<meta property="article:modified_time" content="2020-11-24T07:26:25.787Z">
+<meta property="article:modified_time" content="2021-03-02T12:52:57.314Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.7in0.me/wp-content/uploads/2016/04/dn42.png">
@@ -46,13 +46,13 @@
 
     <!--STYLES END-->
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40735245-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZZDNJQECZ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-40735245-1');
+        gtag('config', 'G-VZZDNJQECZ');
     </script>
 
 
@@ -368,7 +368,7 @@
 <p>dn42 是一個使用多種因特網技術 (包括 BGP, whois 資料庫, DNS 等) 構建的大型的動態 VPN 網路.參與者使用隧道技術 (比如 GRE, OpenVPN, Tinc, IPsec) 與其他人互相連線並利用BGP (邊界閘道器協議) 交換路由.</p>
 <p>dn42 使用 172.20.0.0/14 , fd00::/8 和私有ASN.</p>
 <p>dn42 也與其他網路, 比如 ChaosVPN 和部分 Freifunk 網路.</p>
-<a id="more"></a>
+<span id="more"></span>
 <h3 id="基礎需求">基礎需求</h3>
 <ul>
 <li>至少一個 7x24 小時運行的路由器.Linux 或 BSD 盒子可以用作路由器.如果你的家用路由器使用 OpenWRT, 你可以考慮在 dn42 中使用該裝置.</li>
@@ -580,7 +580,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Chino Chang. All Rights Reserved.
+        Copyrights &copy; 2021 Chino Chang. All Rights Reserved.
     </span>
 </footer>
 
@@ -1082,7 +1082,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                 data-message-zero="沒有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 95 篇文章
+                找到 96 篇文章
             </p>
         </div>
     </div>

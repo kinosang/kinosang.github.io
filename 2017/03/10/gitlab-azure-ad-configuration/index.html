@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 https://docs.gitlab.com/ce/integration/azure.html\n\n註冊企業應用程式\n首先在 Azure 入口網站 Azure AD 管理界面註冊企業應用程式, 到“Azure Active Directory”-“預設目錄”-“應用程式註冊”點“加入”, 填寫“名稱”和“登入URL”創建企業應用程式, 然後點“端點”查看鏈接內的TENANT ID.\n然後到新創建的應用“設定”-“金鑰”中創建新的金鑰並記下來.\n設定 GitLab\n12345678910111213141516171819$ sudo -u git -H editor config/gitlab.yml## OmniAuth settings  omniauth:    # Allow login via Twitter, Google, etc. using OmniAuth providers    enabled: true    # CAUTION!    # This allows users to login without having a user account first. Define the allowed providers    # using an array, e.g. [&quot;saml&quot;, &quot;twitter&quot;], or as true/false to allow all providers or none.    # User accounts will be created automatically when authentication was successful.    allow_single_sign_on: [&quot;azure_oauth2&quot;] #在這裏設定 Azure Oauth2    auto_link_ldap_user: true    # Locks down those users until they have been cleared by the admin (default: true).    block_auto_created_users: true  omniauth_providers:    - &#123; name: &#x27;azure_oauth2&#x27;, args: &#123; client_id: &quot;CLIENT ID&quot;, client_secret: &quot;CLIENT SECRET&quot;, tenant_id: &quot;TENANT ID&quot; &#125; &#125;$ sudo systemctl restart gitlab\n","dateCreated":"2017-03-10T09:42:46+00:00","dateModified":"2020-11-24T07:26:25+00:00","datePublished":"2017-03-10T09:42:46+00:00","description":"GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 https://docs.gitlab.com/ce/integration/azure.html","headline":"GitLab Azure AD 設定","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2017/03/10/gitlab-azure-ad-configuration/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2017/03/10/gitlab-azure-ad-configuration/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 https://docs.gitlab.com/ce/integration/azure.html\n\n註冊企業應用程式\n首先在 Azure 入口網站 Azure AD 管理界面註冊企業應用程式, 到“Azure Active Directory”-“預設目錄”-“應用程式註冊”點“加入”, 填寫“名稱”和“登入URL”創建企業應用程式, 然後點“端點”查看鏈接內的TENANT ID.\n然後到新創建的應用“設定”-“金鑰”中創建新的金鑰並記下來.\n設定 GitLab\n12345678910111213141516171819$ sudo -u git -H editor config/gitlab.yml## OmniAuth settings  omniauth:    # Allow login via Twitter, Google, etc. using OmniAuth providers    enabled: true    # CAUTION!    # This allows users to login without having a user account first. Define the allowed providers    # using an array, e.g. [&quot;saml&quot;, &quot;twitter&quot;], or as true/false to allow all providers or none.    # User accounts will be created automatically when authentication was successful.    allow_single_sign_on: [&quot;azure_oauth2&quot;] #在這裏設定 Azure Oauth2    auto_link_ldap_user: true    # Locks down those users until they have been cleared by the admin (default: true).    block_auto_created_users: true  omniauth_providers:    - &#123; name: &#x27;azure_oauth2&#x27;, args: &#123; client_id: &quot;CLIENT ID&quot;, client_secret: &quot;CLIENT SECRET&quot;, tenant_id: &quot;TENANT ID&quot; &#125; &#125;$ sudo systemctl restart gitlab\n","dateCreated":"2017-03-10T09:42:46+00:00","dateModified":"2021-03-02T12:52:57+00:00","datePublished":"2017-03-10T09:42:46+00:00","description":"GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 https://docs.gitlab.com/ce/integration/azure.html","headline":"GitLab Azure AD 設定","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2017/03/10/gitlab-azure-ad-configuration/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2017/03/10/gitlab-azure-ad-configuration/"}</script>
     <meta name="description" content="GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 https:&#x2F;&#x2F;docs.gitlab.com&#x2F;ce&#x2F;integration&#x2F;azure.html">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="GitLab Azure AD 設定">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 https:&#x2F;&#x2F;docs.gitlab.com&#x2F;ce&#x2F;integration&#x2F;azure.html">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-03-10T09:42:46.000Z">
-<meta property="article:modified_time" content="2020-11-24T07:26:25.787Z">
+<meta property="article:modified_time" content="2021-03-02T12:52:57.314Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -44,13 +44,13 @@
 
     <!--STYLES END-->
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40735245-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZZDNJQECZ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-40735245-1');
+        gtag('config', 'G-VZZDNJQECZ');
     </script>
 
 
@@ -362,7 +362,7 @@
     <div class="post-content markdown">
         <div class="main-content-wrap">
             <p>GitLab 自帶 Azure AD Oauth2 支援, 詳見 GitLab 文檔 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ce/integration/azure.html">https://docs.gitlab.com/ce/integration/azure.html</a></p>
-<a id="more"></a>
+<span id="more"></span>
 <h3 id="註冊企業應用程式">註冊企業應用程式</h3>
 <p>首先在 Azure 入口網站 Azure AD 管理界面註冊企業應用程式, 到“Azure Active Directory”-“預設目錄”-“應用程式註冊”點“加入”, 填寫“名稱”和“登入URL”創建企業應用程式, 然後點“端點”查看鏈接內的TENANT ID.</p>
 <p>然後到新創建的應用“設定”-“金鑰”中創建新的金鑰並記下來.</p>
@@ -514,7 +514,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Chino Chang. All Rights Reserved.
+        Copyrights &copy; 2021 Chino Chang. All Rights Reserved.
     </span>
 </footer>
 
@@ -1016,7 +1016,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                 data-message-zero="沒有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 95 篇文章
+                找到 96 篇文章
             </p>
         </div>
     </div>

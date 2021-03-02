@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"Asp.Net Core MVC 提供了非常方便的本地化工具^1, 但是此工具在處理中文時存在一個問題.\n眾所周知, 中文存在多個不同的 Culture^2, 常見“語種”如下表, 這些 Culture 分為 Neutral 和 Specific 兩種型別.\n\n    \n        \n            繁體字\n            zh-TW\n            zh-CHT*\n            zh-Hant-TW\n            zh-Hant*\n            zh*\n        \n        \n            簡體字\n            zh-CN\n            zh-CHS*\n            zh-Hans-CN\n            zh-Hans*\n        \n    \n\n標星的屬於 Neutral 型別\n而因歷史遺留問題, 瀏覽器傳送的 Accept-Language header 可能為上述 Culture 中的一種或多種, 但 Asp.Net MVC 提供的 fallback 機制不能正確 fallback 部分 Culture^3.\n\n多方調查後發現, 首先要修正 fallback 相關程式碼, 使 fallback 通過 CultureInfo.Parent 向前查詢, 而非使用字串剪下^5.\n在此基礎上, 因為 Linux 系統上 zh-CN 和 zh-TW 是“別名”, .Net Core 不能正確處理別名^6, 所以需要額外增加程式碼進行處理^7.\n1234567891011app.Use((context, next) =&gt;&#123;    context.Request.Headers[&quot;Accept-Language&quot;] = new StringValues(context.Request.Headers[&quot;Accept-Language&quot;]        .Select(lang =&gt; lang.ToLower()            .Replace(&quot;zh-tw&quot;, &quot;zh-hant-tw&quot;)            .Replace(&quot;zh-cn&quot;, &quot;zh-hans-cn&quot;)).ToArray());    return next();&#125;);// 上面的程式碼必須放在此句之前.app.UseRequestLocalization();\n","dateCreated":"2019-10-13T13:22:45+00:00","dateModified":"2020-11-24T07:26:25+00:00","datePublished":"2019-10-13T13:22:45+00:00","description":"Asp.Net Core MVC 提供了非常方便的本地化工具^1, 但是此工具在處理中文時存在一個問題.\n眾所周知, 中文存在多個不同的 Culture^2, 常見“語種”如下表, 這些 Culture 分為 Neutral 和 Specific 兩種型別.\n\n    \n        \n            繁體字\n            zh-TW\n            zh-CHT*\n            zh-Hant-TW\n            zh-Hant*\n            zh*\n        \n        \n            簡體字\n            zh-CN\n            zh-CHS*\n            zh-Hans-CN\n            zh-Hans*\n        \n    \n\n標星的屬於 Neutral 型別\n而因歷史遺留問題, 瀏覽器傳送的 Accept-Language header 可能為上述 Culture 中的一種或多種, 但 Asp.Net MVC 提供的 fallback 機制不能正確 fallback 部分 Culture^3.","headline":"Asp.Net Core MVC 中文字地化問題","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2019/10/13/aspnet-core-mvc-chinese-localization-problem/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2019/10/13/aspnet-core-mvc-chinese-localization-problem/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"Asp.Net Core MVC 提供了非常方便的本地化工具^1, 但是此工具在處理中文時存在一個問題.\n眾所周知, 中文存在多個不同的 Culture^2, 常見“語種”如下表, 這些 Culture 分為 Neutral 和 Specific 兩種型別.\n\n    \n        \n            繁體字\n            zh-TW\n            zh-CHT*\n            zh-Hant-TW\n            zh-Hant*\n            zh*\n        \n        \n            簡體字\n            zh-CN\n            zh-CHS*\n            zh-Hans-CN\n            zh-Hans*\n        \n    \n\n標星的屬於 Neutral 型別\n而因歷史遺留問題, 瀏覽器傳送的 Accept-Language header 可能為上述 Culture 中的一種或多種, 但 Asp.Net MVC 提供的 fallback 機制不能正確 fallback 部分 Culture^3.\n\n多方調查後發現, 首先要修正 fallback 相關程式碼, 使 fallback 通過 CultureInfo.Parent 向前查詢, 而非使用字串剪下^5.\n在此基礎上, 因為 Linux 系統上 zh-CN 和 zh-TW 是“別名”, .Net Core 不能正確處理別名^6, 所以需要額外增加程式碼進行處理^7.\n1234567891011app.Use((context, next) =&gt;&#123;    context.Request.Headers[&quot;Accept-Language&quot;] = new StringValues(context.Request.Headers[&quot;Accept-Language&quot;]        .Select(lang =&gt; lang.ToLower()            .Replace(&quot;zh-tw&quot;, &quot;zh-hant-tw&quot;)            .Replace(&quot;zh-cn&quot;, &quot;zh-hans-cn&quot;)).ToArray());    return next();&#125;);// 上面的程式碼必須放在此句之前.app.UseRequestLocalization();\n","dateCreated":"2019-10-13T13:22:45+00:00","dateModified":"2021-03-02T12:52:57+00:00","datePublished":"2019-10-13T13:22:45+00:00","description":"Asp.Net Core MVC 提供了非常方便的本地化工具^1, 但是此工具在處理中文時存在一個問題.\n眾所周知, 中文存在多個不同的 Culture^2, 常見“語種”如下表, 這些 Culture 分為 Neutral 和 Specific 兩種型別.\n\n    \n        \n            繁體字\n            zh-TW\n            zh-CHT*\n            zh-Hant-TW\n            zh-Hant*\n            zh*\n        \n        \n            簡體字\n            zh-CN\n            zh-CHS*\n            zh-Hans-CN\n            zh-Hans*\n        \n    \n\n標星的屬於 Neutral 型別\n而因歷史遺留問題, 瀏覽器傳送的 Accept-Language header 可能為上述 Culture 中的一種或多種, 但 Asp.Net MVC 提供的 fallback 機制不能正確 fallback 部分 Culture^3.","headline":"Asp.Net Core MVC 中文字地化問題","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2019/10/13/aspnet-core-mvc-chinese-localization-problem/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2019/10/13/aspnet-core-mvc-chinese-localization-problem/"}</script>
     <meta name="description" content="Asp.Net Core MVC 提供了非常方便的本地化工具^1, 但是此工具在處理中文時存在一個問題. 眾所周知, 中文存在多個不同的 Culture^2, 常見“語種”如下表, 這些 Culture 分為 Neutral 和 Specific 兩種型別.                            繁體字             zh-TW             zh-CHT*">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Asp.Net Core MVC 中文字地化問題">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="Asp.Net Core MVC 提供了非常方便的本地化工具^1, 但是此工具在處理中文時存在一個問題. 眾所周知, 中文存在多個不同的 Culture^2, 常見“語種”如下表, 這些 Culture 分為 Neutral 和 Specific 兩種型別.                            繁體字             zh-TW             zh-CHT*">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-10-13T13:22:45.000Z">
-<meta property="article:modified_time" content="2020-11-24T07:26:25.783Z">
+<meta property="article:modified_time" content="2021-03-02T12:52:57.314Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -44,13 +44,13 @@
 
     <!--STYLES END-->
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40735245-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZZDNJQECZ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-40735245-1');
+        gtag('config', 'G-VZZDNJQECZ');
     </script>
 
 
@@ -384,7 +384,7 @@
 </table>
 <p><em>標星的屬於 <code>Neutral</code> 型別</em></p>
 <p>而因歷史遺留問題, 瀏覽器傳送的 <code>Accept-Language</code> header 可能為上述 <code>Culture</code> 中的一種或多種, 但 <a target="_blank" rel="noopener" href="http://Asp.Net">Asp.Net</a> MVC 提供的 fallback 機制不能正確 fallback 部分 <code>Culture</code><a target="_blank" rel="noopener" href="https://github.com/aspnet/AspNetCore/issues/2634">^3</a>.</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>多方調查後發現, 首先要修正 fallback 相關程式碼, 使 fallback 通過 <code>CultureInfo.Parent</code> 向前查詢, 而非使用字串剪下<a target="_blank" rel="noopener" href="https://github.com/aspnet/AspNetCore/issues/14452">^5</a>.</p>
 <p>在此基礎上, 因為 Linux 系統上 <code>zh-CN</code> 和 <code>zh-TW</code> 是“別名”, .Net Core 不能正確處理別名<a target="_blank" rel="noopener" href="https://github.com/dotnet/coreclr/issues/23252#issuecomment-473994613">^6</a>, 所以需要額外增加程式碼進行處理<a target="_blank" rel="noopener" href="https://github.com/aspnet/AspNetCore/issues/14558">^7</a>.</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.Use((context, next) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    context.Request.Headers[<span class="string">&quot;Accept-Language&quot;</span>] = <span class="keyword">new</span> StringValues(context.Request.Headers[<span class="string">&quot;Accept-Language&quot;</span>]</span><br><span class="line">        .Select(lang =&gt; lang.ToLower()</span><br><span class="line">            .Replace(<span class="string">&quot;zh-tw&quot;</span>, <span class="string">&quot;zh-hant-tw&quot;</span>)</span><br><span class="line">            .Replace(<span class="string">&quot;zh-cn&quot;</span>, <span class="string">&quot;zh-hans-cn&quot;</span>)).ToArray());</span><br><span class="line">    <span class="keyword">return</span> next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的程式碼必須放在此句之前.</span></span><br><span class="line">app.UseRequestLocalization();</span><br></pre></td></tr></table></figure>
@@ -534,7 +534,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Chino Chang. All Rights Reserved.
+        Copyrights &copy; 2021 Chino Chang. All Rights Reserved.
     </span>
 </footer>
 
@@ -1036,7 +1036,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                 data-message-zero="沒有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 95 篇文章
+                找到 96 篇文章
             </p>
         </div>
     </div>

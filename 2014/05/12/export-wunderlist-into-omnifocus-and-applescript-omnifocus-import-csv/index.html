@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"本來在下用 Wunderlist 用的好好地, 一時腦子被門夾了, 想要用 OmniFocus (當然, 目前是 Cracked 版本) .\n但是 Wunderlist 裡面如此多的條目不方便逐一搬運.\n於是想到用 applescript 來實現這個過程.\n首先我們從 Wunderlist WebApp 匯出數據 (JSON) .\n\n進入 Wunderlist WebApp, 點擊左上角的頭像, 選擇“賬號設定”, 可以看到“建立備份”選項.\n然後, 用 Node.js 取得 Task 列：\n1234$ node&gt; var fs = require(&#x27;fs&#x27;);&gt; var file = &#x27;/path/to/your.json&#x27;;&gt; fs.readFile(file, &#x27;utf8&#x27;, function (err, data) &#123;data = JSON.parse(data);fs.writeFile(file, JSON.stringify(data.tasks));&#125;);\n接著, 藉助 JSON to CSV 將 JSON 轉換成 CSV.\n下一步, 你還需要用 Numbers 或 Excel for Mac 編輯它, 將它變成下面的格式：\n\nTask ID | Type | Task | Project | Context | Start Date | Due Date | Completion Date | Duration | Flagged | Notes\n\n分別對應：\n1234567891011Task ID ﹣&gt; 留空Type ﹣&gt; ＝IF(ISBLANK(D2),&quot;Project&quot;,&quot;Action&quot;)Task ﹣&gt; titleProject ﹣&gt; 如果當前條是子任務, 則填寫主任務的titleContext ﹣&gt; 留空Start Date ﹣&gt; created_atDue Date ﹣&gt; 留空Completion Date ﹣&gt; completed_atDuration ﹣&gt; 留空Flagged ﹣&gt; starredNotes ﹣&gt; 留空\nP.S. Wunderlist 匯出的 Date 數據格式是 2014-04-27T01:57:45Z 的形式, 請自行尋找工具轉換成 DD/MM/YYYY H:i:s 的格式.\n最後, 用下面的 AppleScript 匯入CSV 到 OmniFocus.\n[download id=“3”]\n","dateCreated":"2014-05-12T11:41:00+00:00","dateModified":"2020-11-24T07:26:25+00:00","datePublished":"2014-05-12T11:41:00+00:00","description":"本來在下用 Wunderlist 用的好好地, 一時腦子被門夾了, 想要用 OmniFocus (當然, 目前是 Cracked 版本) .\n但是 Wunderlist 裡面如此多的條目不方便逐一搬運.\n於是想到用 applescript 來實現這個過程.\n首先我們從 Wunderlist WebApp 匯出數據 (JSON) .","headline":"從 Wunderlist 到 OmniFocus (另：純 AppleScript 實現 OmniFocus 匯入 CSV)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2014/05/12/export-wunderlist-into-omnifocus-and-applescript-omnifocus-import-csv/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2014/05/12/export-wunderlist-into-omnifocus-and-applescript-omnifocus-import-csv/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"本來在下用 Wunderlist 用的好好地, 一時腦子被門夾了, 想要用 OmniFocus (當然, 目前是 Cracked 版本) .\n但是 Wunderlist 裡面如此多的條目不方便逐一搬運.\n於是想到用 applescript 來實現這個過程.\n首先我們從 Wunderlist WebApp 匯出數據 (JSON) .\n\n進入 Wunderlist WebApp, 點擊左上角的頭像, 選擇“賬號設定”, 可以看到“建立備份”選項.\n然後, 用 Node.js 取得 Task 列：\n1234$ node&gt; var fs = require(&#x27;fs&#x27;);&gt; var file = &#x27;/path/to/your.json&#x27;;&gt; fs.readFile(file, &#x27;utf8&#x27;, function (err, data) &#123;data = JSON.parse(data);fs.writeFile(file, JSON.stringify(data.tasks));&#125;);\n接著, 藉助 JSON to CSV 將 JSON 轉換成 CSV.\n下一步, 你還需要用 Numbers 或 Excel for Mac 編輯它, 將它變成下面的格式：\n\nTask ID | Type | Task | Project | Context | Start Date | Due Date | Completion Date | Duration | Flagged | Notes\n\n分別對應：\n1234567891011Task ID ﹣&gt; 留空Type ﹣&gt; ＝IF(ISBLANK(D2),&quot;Project&quot;,&quot;Action&quot;)Task ﹣&gt; titleProject ﹣&gt; 如果當前條是子任務, 則填寫主任務的titleContext ﹣&gt; 留空Start Date ﹣&gt; created_atDue Date ﹣&gt; 留空Completion Date ﹣&gt; completed_atDuration ﹣&gt; 留空Flagged ﹣&gt; starredNotes ﹣&gt; 留空\nP.S. Wunderlist 匯出的 Date 數據格式是 2014-04-27T01:57:45Z 的形式, 請自行尋找工具轉換成 DD/MM/YYYY H:i:s 的格式.\n最後, 用下面的 AppleScript 匯入CSV 到 OmniFocus.\n[download id=“3”]\n","dateCreated":"2014-05-12T11:41:00+00:00","dateModified":"2021-03-02T12:52:57+00:00","datePublished":"2014-05-12T11:41:00+00:00","description":"本來在下用 Wunderlist 用的好好地, 一時腦子被門夾了, 想要用 OmniFocus (當然, 目前是 Cracked 版本) .\n但是 Wunderlist 裡面如此多的條目不方便逐一搬運.\n於是想到用 applescript 來實現這個過程.\n首先我們從 Wunderlist WebApp 匯出數據 (JSON) .","headline":"從 Wunderlist 到 OmniFocus (另：純 AppleScript 實現 OmniFocus 匯入 CSV)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2014/05/12/export-wunderlist-into-omnifocus-and-applescript-omnifocus-import-csv/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2014/05/12/export-wunderlist-into-omnifocus-and-applescript-omnifocus-import-csv/"}</script>
     <meta name="description" content="本來在下用 Wunderlist 用的好好地, 一時腦子被門夾了, 想要用 OmniFocus (當然, 目前是 Cracked 版本) . 但是 Wunderlist 裡面如此多的條目不方便逐一搬運. 於是想到用 applescript 來實現這個過程. 首先我們從 Wunderlist WebApp 匯出數據 (JSON) .">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="從 Wunderlist 到 OmniFocus (另：純 AppleScript 實現 OmniFocus 匯入 CSV)">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="本來在下用 Wunderlist 用的好好地, 一時腦子被門夾了, 想要用 OmniFocus (當然, 目前是 Cracked 版本) . 但是 Wunderlist 裡面如此多的條目不方便逐一搬運. 於是想到用 applescript 來實現這個過程. 首先我們從 Wunderlist WebApp 匯出數據 (JSON) .">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2014-05-12T11:41:00.000Z">
-<meta property="article:modified_time" content="2020-11-24T07:26:25.787Z">
+<meta property="article:modified_time" content="2021-03-02T12:52:57.314Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -44,13 +44,13 @@
 
     <!--STYLES END-->
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40735245-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZZDNJQECZ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-40735245-1');
+        gtag('config', 'G-VZZDNJQECZ');
     </script>
 
 
@@ -365,7 +365,7 @@
 <p>但是 Wunderlist 裡面如此多的條目不方便逐一搬運.</p>
 <p>於是想到用 applescript 來實現這個過程.</p>
 <p>首先我們從 Wunderlist WebApp 匯出數據 (JSON) .</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>進入 Wunderlist WebApp, 點擊左上角的頭像, 選擇“賬號設定”, 可以看到“建立備份”選項.</p>
 <p>然後, 用 Node.js 取得 Task 列：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ node</span><br><span class="line">&gt; <span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line">&gt; <span class="keyword">var</span> file = <span class="string">&#x27;/path/to/your.json&#x27;</span>;</span><br><span class="line">&gt; fs.readFile(file, <span class="string">&#x27;utf8&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;data = <span class="built_in">JSON</span>.parse(data);fs.writeFile(file, <span class="built_in">JSON</span>.stringify(data.tasks));&#125;);</span><br></pre></td></tr></table></figure>
@@ -525,7 +525,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Chino Chang. All Rights Reserved.
+        Copyrights &copy; 2021 Chino Chang. All Rights Reserved.
     </span>
 </footer>
 
@@ -1027,7 +1027,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                 data-message-zero="沒有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 95 篇文章
+                找到 96 篇文章
             </p>
         </div>
     </div>

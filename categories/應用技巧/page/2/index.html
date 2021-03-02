@@ -40,13 +40,13 @@
 
     <!--STYLES END-->
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40735245-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZZDNJQECZ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-40735245-1');
+        gtag('config', 'G-VZZDNJQECZ');
     </script>
 
 
@@ -362,7 +362,7 @@
                 <div class="postShorten-excerpt">
                     <h3 id="安裝-Mariadb">安裝 Mariadb</h3>
 <p>過程略, 參見 往期網誌.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p</span><br><span class="line">MariaDB [(none)]&gt; create database shadowsocks;</span><br><span class="line">MariaDB [(none)]&gt; CREATE USER &#x27;shadowsocks&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;password&#x27;;</span><br><span class="line">MariaDB [(none)]&gt; GRANT SELECT, INSERT, UPDATE, DELETE, INDEX ON shadowsocks.* TO &#x27;shadowsocks&#x27;@&#x27;%&#x27;;</span><br><span class="line">MariaDB [(none)]&gt; flush privileges;\q</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mysql <span class="operator">-</span>u root <span class="operator">-</span>p</span><br><span class="line">MariaDB [(<span class="keyword">none</span>)]<span class="operator">&gt;</span> <span class="keyword">create</span> database shadowsocks;</span><br><span class="line">MariaDB [(<span class="keyword">none</span>)]<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;shadowsocks&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>;</span><br><span class="line">MariaDB [(<span class="keyword">none</span>)]<span class="operator">&gt;</span> <span class="keyword">GRANT</span> <span class="keyword">SELECT</span>, <span class="keyword">INSERT</span>, UPDATE, <span class="keyword">DELETE</span>, INDEX <span class="keyword">ON</span> shadowsocks.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;shadowsocks&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br><span class="line">MariaDB [(<span class="keyword">none</span>)]<span class="operator">&gt;</span> flush privileges;\q</span><br></pre></td></tr></table></figure>
                     
                         <a
                             href="/2015/06/16/install-shadowsocks-manyuser-on-ubuntu/"
@@ -894,7 +894,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Chino Chang. All Rights Reserved.
+        Copyrights &copy; 2021 Chino Chang. All Rights Reserved.
     </span>
 </footer>
 
@@ -1213,7 +1213,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
                 data-message-zero="沒有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 95 篇文章
+                找到 96 篇文章
             </p>
         </div>
     </div>
