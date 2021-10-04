@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"通常我們需要修改/etc/hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些.\n但是這樣還是需要頻繁修改hosts檔.\n可以改用 Dnsmasq 來更方便地解決問題.\n\n主要思路：\n\n安裝 Dnsmasq\n設定 Dnsmasq 解析*.dev為127.0.0.1\n設定 macOS 使用 Dnsmasq 處理.dev域\n\n安裝 Dnsmasq\n使用 Homebrew 安裝\n1$ brew install dnsmasq\n設定 Dnsmasq\n12345678910$ vim /usr/local/etc/dnsmasq.conf# address=/double-click.net/127.0.0.1address=/dev/127.0.0.1$ sudo brew services start dnsmasq$ dig abc.dev @127.0.0.1;; ANSWER SECTION:abc.dev. 0 IN   A   127.0.0.1\n設定 macOS\n123$ sudo mkdir -p /etc/resolver$ sudo vim /etc/resolver/devnameserver 127.0.0.1\n測試\n123$ ping he.net$ ping abc.dev$ ping foo.bar.dev\n","dateCreated":"2017-11-25T10:07:17+00:00","dateModified":"2021-10-04T13:21:56+00:00","datePublished":"2017-11-25T10:07:17+00:00","description":"通常我們需要修改/etc/hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些.\n但是這樣還是需要頻繁修改hosts檔.\n可以改用 Dnsmasq 來更方便地解決問題.","headline":"在 macOS 上使用 Dnsmasq 進行測試","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2017/11/25/dnsmasq-dev-macos/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2017/11/25/dnsmasq-dev-macos/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"通常我們需要修改/etc/hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些.\n但是這樣還是需要頻繁修改hosts檔.\n可以改用 Dnsmasq 來更方便地解決問題.\n\n主要思路：\n\n安裝 Dnsmasq\n設定 Dnsmasq 解析*.dev為127.0.0.1\n設定 macOS 使用 Dnsmasq 處理.dev域\n\n安裝 Dnsmasq\n使用 Homebrew 安裝\n1$ brew install dnsmasq\n設定 Dnsmasq\n12345678910$ vim /usr/local/etc/dnsmasq.conf# address=/double-click.net/127.0.0.1address=/dev/127.0.0.1$ sudo brew services start dnsmasq$ dig abc.dev @127.0.0.1;; ANSWER SECTION:abc.dev. 0 IN   A   127.0.0.1\n設定 macOS\n123$ sudo mkdir -p /etc/resolver$ sudo vim /etc/resolver/devnameserver 127.0.0.1\n測試\n123$ ping he.net$ ping abc.dev$ ping foo.bar.dev\n","dateCreated":"2017-11-25T10:07:17+00:00","dateModified":"2021-10-04T13:26:45+00:00","datePublished":"2017-11-25T10:07:17+00:00","description":"通常我們需要修改/etc/hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些.\n但是這樣還是需要頻繁修改hosts檔.\n可以改用 Dnsmasq 來更方便地解決問題.","headline":"在 macOS 上使用 Dnsmasq 進行測試","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2017/11/25/dnsmasq-dev-macos/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2017/11/25/dnsmasq-dev-macos/"}</script>
     <meta name="description" content="通常我們需要修改&#x2F;etc&#x2F;hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些. 但是這樣還是需要頻繁修改hosts檔. 可以改用 Dnsmasq 來更方便地解決問題.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="在 macOS 上使用 Dnsmasq 進行測試">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="通常我們需要修改&#x2F;etc&#x2F;hosts以進行測試, 例如127.0.0.1 abc.dev, 有些時候使用 Gas Mask 可以更方便一些. 但是這樣還是需要頻繁修改hosts檔. 可以改用 Dnsmasq 來更方便地解決問題.">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-11-25T10:07:17.000Z">
-<meta property="article:modified_time" content="2021-10-04T13:21:56.887Z">
+<meta property="article:modified_time" content="2021-10-04T13:26:45.186Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -40,7 +40,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-7yxkehzg63sestywklfbbbxw4r0upvydubwn3ntenymbq1ezllfxaz4ypxp8.min.css">
+<link rel="stylesheet" href="/assets/css/style-tdpz6sszczrzdab6rdbzodbml8pufwforu02khx15lan6zvw9q3mchqmrcg9.min.css">
 
     <!--STYLES END-->
     
@@ -1040,7 +1040,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
 
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-04ldkrsf07xigzqy1nnldoqgrkrj5bstmn7l86jg7x9xs8mdu23fvoewgs8n.min.js"></script>
+<script src="/assets/js/script-aaslwakxgw6ht14psbibvgcpi2ljqs4xu9xxfsvwwxsszbgzwgncvasqwxry.min.js"></script>
 
 <!--SCRIPTS END-->
 
