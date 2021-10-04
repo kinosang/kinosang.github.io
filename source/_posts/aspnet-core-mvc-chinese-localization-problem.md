@@ -1,12 +1,12 @@
 ---
-title: Asp.Net Core MVC 中文字地化問題
+title: Asp.Net Core MVC 中文在地化問題
 categories:
   - 軟體開發
 date: 2019-10-13 21:22:45
 tags:
 ---
 
-Asp.Net Core MVC 提供了非常方便的本地化工具[^1], 但是此工具在處理中文時存在一個問題.
+Asp.Net Core MVC 提供了非常方便的在地化工具[^1], 但是此工具在處理中文時存在一個問題.
 
 眾所周知, 中文存在多個不同的 `Culture`[^2], 常見“語種”如下表, 這些 `Culture` 分為 `Neutral` 和 `Specific` 兩種型別.
 
