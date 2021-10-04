@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1.\n這種行為是十分不安全的, 故自行研究方法.\n\nMikroTik Wiki 中有如何設定 NO-IP DDNS 的說明^2, 從其程式碼修改即可適配 DNSPod.\n12345678910111213141516171819202122##############Script Settings##################:local DNSPODTOKENID &quot;DNSPod API Token ID&quot;:local DNSPODTOKEN &quot;DNSPod API Token&quot;:local DNSPODDOMAIN &quot;DNSPod Domain Name&quot;:local DNSPODRECORD &quot;DNSPod Record ID&quot;:local DNSPODSUBDOMAIN &quot;DNSPod SubDomain Name&quot;:local WANInterface &quot;MikroTik Router WAN Interface Name&quot;###############################################:local DdnsDomain &quot;$DNSPODSUBDOMAIN.$DNSPODDOMAIN&quot;:local IpCurrent [/ip address get [find interface=$WANInterface] address];:for i from=( [:len $IpCurrent] - 1) to=0 do=&#123;  :if ( [:pick $IpCurrent $i] = &quot;/&quot;) do=&#123;    :local NewIP [:pick $IpCurrent 0 $i];    :if ([:resolve $DdnsDomain] != $NewIP) do=&#123;      /tool fetch mode=https url=&quot;https://dnsapi.cn/Record.Ddns&quot; http-data=&quot;login_token=$DNSPODTOKENID%2C$DNSPODTOKEN&amp;domain=$DNSPODDOMAIN&amp;record_id=$DNSPODRECORD&amp;sub_domain=$DNSPODSUBDOMAIN&amp;record_line_id=0&amp;value=$NewIP&quot; keep-result=no      :log info &quot;NO-IP Update: $DdnsDomain - $NewIP&quot;     &#125;   &#125;&#125;\n雖然可以通過 RouterOS Schedule 定時執行上述程式碼, 但是這種方法一點也不優雅.\n經過搜尋發現, 可以利用 PPP Profile 的 ON-UP Script^3.\n於是將上述程式碼放到 pppoe-out1 使用的 profile 中, 並在開頭新增 :delay 10.\n這樣每次 PPPoE 撥號成功就會自動更新 DDNS 了.\n同理, WIKI 上 NO-IP 的程式碼也可以放在這裡使用.\n","dateCreated":"2019-10-13T08:36:37+00:00","dateModified":"2021-03-02T12:52:57+00:00","datePublished":"2019-10-13T08:36:37+00:00","description":"最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1.\n這種行為是十分不安全的, 故自行研究方法.","headline":"RouterOS DNSPod DDNS 設定","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"},"articleBody":"最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1.\n這種行為是十分不安全的, 故自行研究方法.\n\nMikroTik Wiki 中有如何設定 NO-IP DDNS 的說明^2, 從其程式碼修改即可適配 DNSPod.\n12345678910111213141516171819202122##############Script Settings##################:local DNSPODTOKENID &quot;DNSPod API Token ID&quot;:local DNSPODTOKEN &quot;DNSPod API Token&quot;:local DNSPODDOMAIN &quot;DNSPod Domain Name&quot;:local DNSPODRECORD &quot;DNSPod Record ID&quot;:local DNSPODSUBDOMAIN &quot;DNSPod SubDomain Name&quot;:local WANInterface &quot;MikroTik Router WAN Interface Name&quot;###############################################:local DdnsDomain &quot;$DNSPODSUBDOMAIN.$DNSPODDOMAIN&quot;:local IpCurrent [/ip address get [find interface=$WANInterface] address];:for i from=( [:len $IpCurrent] - 1) to=0 do=&#123;  :if ( [:pick $IpCurrent $i] = &quot;/&quot;) do=&#123;    :local NewIP [:pick $IpCurrent 0 $i];    :if ([:resolve $DdnsDomain] != $NewIP) do=&#123;      /tool fetch mode=https url=&quot;https://dnsapi.cn/Record.Ddns&quot; http-data=&quot;login_token=$DNSPODTOKENID%2C$DNSPODTOKEN&amp;domain=$DNSPODDOMAIN&amp;record_id=$DNSPODRECORD&amp;sub_domain=$DNSPODSUBDOMAIN&amp;record_line_id=0&amp;value=$NewIP&quot; keep-result=no      :log info &quot;NO-IP Update: $DdnsDomain - $NewIP&quot;     &#125;   &#125;&#125;\n雖然可以通過 RouterOS Schedule 定時執行上述程式碼, 但是這種方法一點也不優雅.\n經過搜尋發現, 可以利用 PPP Profile 的 ON-UP Script^3.\n於是將上述程式碼放到 pppoe-out1 使用的 profile 中, 並在開頭新增 :delay 10.\n這樣每次 PPPoE 撥號成功就會自動更新 DDNS 了.\n同理, WIKI 上 NO-IP 的程式碼也可以放在這裡使用.\n","dateCreated":"2019-10-13T08:36:37+00:00","dateModified":"2021-10-04T13:21:56+00:00","datePublished":"2019-10-13T08:36:37+00:00","description":"最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1.\n這種行為是十分不安全的, 故自行研究方法.","headline":"RouterOS DNSPod DDNS 設定","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/"},"publisher":{"@type":"Organization","name":"Chino Chang","sameAs":["/links","https://github.com/kinosang","https://twitter.com/chino_joymoe","https://www.linkedin.com/in/chinochang","https://t.me/kinosang","https://pgp.to/#0xBEC0B15F411666E5"],"image":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/32ea01579d55a60ec8cd27147482287e"}},"url":"https://blog.7in0.me/2019/10/13/dnspod-ddns-on-routeros/"}</script>
     <meta name="description" content="最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1. 這種行為是十分不安全的, 故自行研究方法.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="RouterOS DNSPod DDNS 設定">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="最近開始使用 MikroTik RouterOS, 檢索發現 DNSPod DDNS 設定多依賴某轉發服務^1. 這種行為是十分不安全的, 故自行研究方法.">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-10-13T08:36:37.000Z">
-<meta property="article:modified_time" content="2021-03-02T12:52:57.314Z">
+<meta property="article:modified_time" content="2021-10-04T13:21:56.887Z">
 <meta property="article:author" content="Chino Chang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@chino_joymoe">
@@ -40,7 +40,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-nixrza1vlppcwgzt4drisqzlqydvaicqou9ijms0f9qf6s24bbzore4snbxh.min.css">
+<link rel="stylesheet" href="/assets/css/style-7yxkehzg63sestywklfbbbxw4r0upvydubwn3ntenymbq1ezllfxaz4ypxp8.min.css">
 
     <!--STYLES END-->
     
@@ -1031,7 +1031,7 @@ URLLoader 類和原來的loadVars類似, 是加載文本, 二進制數據, xml, 
 
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-xrkaemvwl4qkjepqcwdyrhghljp24zusfiettazvrlbljr3wfu37iswrbm6y.min.js"></script>
+<script src="/assets/js/script-04ldkrsf07xigzqy1nnldoqgrkrj5bstmn7l86jg7x9xs8mdu23fvoewgs8n.min.js"></script>
 
 <!--SCRIPTS END-->
 
