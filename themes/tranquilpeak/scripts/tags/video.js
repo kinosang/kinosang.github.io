@@ -45,7 +45,7 @@
     while (args.length && rClass.test(args[0])) {
       classes.push(args.shift());
     }
-    
+
     // Get path of original video
     original = args.shift();
 
@@ -53,12 +53,12 @@
     if (args.length && rPath.test(args[0])) {
       poster = args.shift();
     }
-    
+
     // Get width of video
     if (args.length && rSize.test(args[0])) {
       width = args.shift();
     }
-    
+
     // Get title of video
     var title = args.join(' ');
 
@@ -90,7 +90,7 @@
       // remove `clear` class of `classes` to not be attached on the main div
       classes.splice(classes.indexOf(clearClass), 1);
     }
-    
+
     // remove all video-related classes to only have style-related classes
     videoClasses.forEach(function(videoClass) {
       if (classes.includes(videoClass)) {
@@ -110,7 +110,7 @@
       html += title + '';
       html += '</span>';
     }
-    
+
     html += '\n</div>';
 
     // add `clear` div if previously specified

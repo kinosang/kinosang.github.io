@@ -46,13 +46,13 @@ sidebar:
             icon: fa fa-archive
         search:
             title: global.search
-            url: '#search'
+            url: "#search"
             icon: fa fa-search
             # `open-algolia-search` classes are used to open algolia search modal
             class: open-algolia-search
         about:
             title: global.about
-            url: '#about'
+            url: "#about"
             icon: fa fa-question
     author_links:
         links:
@@ -118,6 +118,9 @@ header:
         url: /#search
         icon: fa fa-search
         class: open-algolia-search
+        # url: /#about
+        # icon:
+        # class:
 
 # ------
 # Author
@@ -126,9 +129,11 @@ header:
 # Your biography and your job is editable in each languages files in `languages` folder
 author:
     email: me@7in0.me
-    bio: '**永遠的十七歲**'
+    bio: "**永遠的十七歲**"
     job: 軟體工程師
     location: 中國青島
+    # email:
+    # location:
     # Your profile picture located in folder `source/_images/` (development)
     # or in `source/assets/images/` (production)
     # or you can use an external url
@@ -234,11 +239,11 @@ gitalk:
     post_identifier: path
     # See all options: https://github.com/gitalk/gitalk#options
     options:
-        language: 'en'
+        language: "en"
         perPage: 10
         distractionFreeMode: false
         enableHotKey: true
-        pagerDirection: 'first'
+        pagerDirection: "first"
 
 # -------------------
 # Integrated services
@@ -278,30 +283,30 @@ fb_app_id:
 # ```
 sharing_options:
     facebook:
-        icon: 'fab fa-facebook'
-        url: 'https://www.facebook.com/sharer/sharer.php?u={{post.permalink}}'
+        icon: "fab fa-facebook"
+        url: "https://www.facebook.com/sharer/sharer.php?u={{post.permalink}}"
     twitter:
-        icon: 'fab fa-twitter'
-        url: 'https://twitter.com/intent/tweet?text={{post.permalink}}'
+        icon: "fab fa-twitter"
+        url: "https://twitter.com/intent/tweet?text={{post.permalink}}"
     # google_plus:
-    #     icon: 'fab fa-google-plus'
-    #     url: 'https://plus.google.com/share?url={{post.permalink}}'
-    # Business Social Networks
-    #    linkedin:
-    #        icon: "fab fa-linkedin"
-    #        url: "https://www.linkedin.com/shareArticle?mini=true&url={{post.permalink}}"
-    #    xing:
-    #        icon: "fab fa-xing"
-    #        url: "https://www.xing.com/spi/shares/new?url={{post.permalink}}"
-    # Asian social networks
+    #     icon: "fab fa-google-plus"
+    #     url: "https://plus.google.com/share?url={{post.permalink}}"
+# Business Social Networks
+#    linkedin:
+#        icon: "fab fa-linkedin"
+#        url: "https://www.linkedin.com/shareArticle?mini=true&url={{post.permalink}}"
+#    xing:
+#        icon: "fab fa-xing"
+#        url: "https://www.xing.com/spi/shares/new?url={{post.permalink}}"
+# Asian social networks
     weibo:
-        title: 'Weibo'
-        icon: 'fab fa-weibo'
-        url: 'http://service.weibo.com/share/share.php?&title={{post.permalink}}'
+        title: "Weibo"
+        icon: "fab fa-weibo"
+        url: "http://service.weibo.com/share/share.php?&title={{post.permalink}}"
     qq:
-        title: 'QQ'
-        icon: 'fab fa-qq'
-        url: 'http://connect.qq.com/widget/shareqq/index.html?url={{post.permalink}}&title={{post.title}}'
+        title: "QQ"
+        icon: "fab fa-qq"
+        url: "http://connect.qq.com/widget/shareqq/index.html?url={{post.permalink}}&title={{post.title}}"
 #    qzone:
 #        title: "Qzone"
 #        icon: "fa fa-star"

@@ -29,14 +29,18 @@ jobs:
           themes/tranquilpeak/node_modules
         key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package.json') }}
 
-    - name: Prepare node_modules
+    - name: Build theme
       run: |
-        yarn
         cd themes/tranquilpeak
-        yarn
+        npm install
+        npm run build
+
+    - name: Prepare Hexo
+      run: |
+        npm install
 
     - name: Hexo Generate
-      run: yarn hexo g
+      run: npm run build
 
     - name: Deploy to Cloudflare Workers
       uses: cloudflare/wrangler-action@1.1.0
@@ -54,5 +58,5 @@ jobs:
     - name: Algolia Indexing
       env:
         ALGOLIA_ADMIN_API_KEY: ${{secrets.ALGOLIA_ADMIN_API_KEY}}
-      run: yarn hexo a
+      run: npm run algolia
       if: ${{ github.repository_owner == 'kinosang' && github.ref == 'refs/heads/master' }}
