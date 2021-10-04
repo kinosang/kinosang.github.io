@@ -44,6 +44,13 @@ jobs:
         apiToken: ${{ secrets.CF_WORKERS_TOKEN }}
       if: ${{ github.repository_owner == 'kinosang' && github.ref == 'refs/heads/master' }}
 
+    - name: Deploy to GitHub.io
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+      if: ${{ github.repository_owner == 'kinosang' && github.ref == 'refs/heads/master' }}
+
     - name: Algolia Indexing
       env:
         ALGOLIA_ADMIN_API_KEY: ${{secrets.ALGOLIA_ADMIN_API_KEY}}
